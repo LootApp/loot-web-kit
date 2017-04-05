@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Input from 'react-toolbox/lib/input';
 
-class WebKitConfig extends Component {
+class InputText extends Component {
   // -- prop validation ----------------------------------------------------- //
   state = {
     text: ''
@@ -16,4 +16,4 @@ class WebKitConfig extends Component {
   }
 }
 
-export default WebKitConfig;
+export default InputText;

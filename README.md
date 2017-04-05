@@ -23,26 +23,4 @@ empty and just keep pressing enter until all steps are done.
 
 6. Check that you can ssh into github `ssh -T git@github.com`
 
-After this you should be able to install via yarn or npm.
-
-### Add Roboto font to your project
-`<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">`
-
-### Wrap your app in WebKitConfig
-```
-import React from 'react';
-import ReactDOM from 'react-dom';
-import WebKitConfig from 'loot-web-kit/WebKitConfig';
-import MyAwesomeReactComponent from './MyAwesomeReactComponent';
-
-const App = () => (
-  <WebKitConfig>
-    <MyAwesomeReactComponent />
-  </WebKitConfig>
-);
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
-```
+After this you should be able to install via yarn or npm

@@ -10,10 +10,12 @@
     "build": "webpack -p"
   },
   "dependencies": {
-    "material-ui": "^0.17.1",
+    "css-loader": "^0.28.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-tap-event-plugin": "^2.0.1",
+    "react-toolbox": "^2.0.0-beta.7",
+    "style-loader": "^0.16.1",
     "styled-components": "2.0.0-14"
   },
   "devDependencies": {

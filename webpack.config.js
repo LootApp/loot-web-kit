@@ -3,8 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    WebKitConfig: './src/WebKitConfig',
-    common: ['react']
+    InputText: './src/InputText'
   },
   output: {
     filename: '[name].js'
@@ -20,13 +19,11 @@ module.exports = {
             presets: ['env', 'es2015', 'stage-0', 'react']
           }
         }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
-  },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-    name: "common",
-    minChunks: Infinity
-  })
-  ]
+  }
 };

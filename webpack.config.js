@@ -2,7 +2,10 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    WebKitConfig: './src/WebKitConfig',
+    vendor: ['react']
+  },
   output: {
     filename: '[name].js'
   },
@@ -14,11 +17,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'es2015', 'stage-0', 'react'],
-            plugins: ['syntax-dynamic-import']
+            presets: ['env', 'es2015', 'stage-0', 'react']
           }
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+    name: "vendor",
+    minChunks: Infinity
+  })
+  ]
 };

@@ -21,6 +21,8 @@ empty and just keep pressing enter until all steps are done.
 
 5. Add new ssh key in terminal i.e. `ssh-add ~/Dropbox/Work/GitHub`
 
+6. Check that you can ssh into github `ssh -T git@github.com`
+
 After this you should be able to install via yarn or npm.
 
 ### Add Roboto font to your project

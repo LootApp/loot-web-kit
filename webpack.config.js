@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     WebKitConfig: './src/WebKitConfig',
-    vendor: ['react']
+    common: ['react']
   },
   output: {
     filename: '[name].js'
@@ -24,9 +24,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-    name: "vendor",
-    minChunks: Infinity
-  })
+    new webpack.optimize.CommonsChunkPlugin("common", "common.js", Infinity)
   ]
 };

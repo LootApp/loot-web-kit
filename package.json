@@ -9,7 +9,7 @@
   "author": "Loot",
   "license": "MIT",
   "scripts": {
-    "prepublish": "babel --plugins transform-es2015-modules-umd src --out-dir ./dist",
+    "prepublish": "babel --plugins transform-es2015-modules-umd src --out-dir ./lib",
     "lint": "eslint ./src",
     "test": "npm run lint"
   },

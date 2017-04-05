@@ -4,6 +4,10 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class WebKitConfig extends Component {
   // -- prop validation ----------------------------------------------------- //
+  static propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired
+  }
+
   // -- methods ------------------------------------------------------------- //
   componentDidMount() {
     injectTapEventPlugin();
@@ -18,9 +22,5 @@ class WebKitConfig extends Component {
     );
   }
 }
-
-WebKitConfig.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.array]).isRequired
-};
 
 export default WebKitConfig;

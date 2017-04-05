@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class WebKitConfig extends Component {
   // -- prop validation ----------------------------------------------------- //
@@ -9,16 +9,16 @@ class WebKitConfig extends Component {
   }
 
   // -- methods ------------------------------------------------------------- //
-  // componentDidMount() {
-  //   injectTapEventPlugin();
-  // }
+  componentDidMount() {
+    injectTapEventPlugin();
+  }
 
   render() {
     const { children } = this.props;
     return (
-      <div>
+      <MuiThemeProvider>
         {children}
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

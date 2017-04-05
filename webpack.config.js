@@ -24,6 +24,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin("common", "common.js", Infinity)
+    new webpack.optimize.CommonsChunkPlugin({
+    name: "common",
+    minChunks: Infinity
+  })
   ]
 };

@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 class WebKitConfig extends Component {
@@ -16,9 +16,9 @@ class WebKitConfig extends Component {
   render() {
     const { children } = this.props;
     return (
-      <MuiThemeProvider>
+      <div>
         {children}
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

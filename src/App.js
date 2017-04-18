@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { injectGlobal } from "styled-components";
+import LiveEditor from "./utilities/LiveEditor";
 import Input from "./components/Input";
 
 // eslint-disable-next-line
@@ -14,7 +15,11 @@ injectGlobal`
 
 class App extends Component {
   render() {
-    return <Input />;
+    return (
+      <div>
+        <LiveEditor scope={{ Input }} code="<Input />" />
+      </div>
+    );
   }
 }
 

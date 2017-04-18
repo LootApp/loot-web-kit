@@ -57,11 +57,14 @@ const SLabel = styled.label`
 
 class Input extends Component {
   static propTypes = {
-    value: PropTypes.string
+    value: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    placeholder: PropTypes.string
   };
 
   static defaultProps = {
-    value: ""
+    value: "",
+    placeholder: ""
   };
 
   state = {
@@ -77,16 +80,23 @@ class Input extends Component {
     this.setState({ focus: false });
   };
 
+  _onChange = ({ target }) => {
+    this.setState({ value: target.value });
+  };
+
   render() {
     return (
       <SContainer focus={!!this.state.value.length || this.state.focus}>
         <SLabel focus={!!this.state.value.length || this.state.focus}>
-          Test Label
+          {this.props.label}
         </SLabel>
         <SInput
           onFocus={this._onFocus}
           onBlur={this._onBlur}
+          onChange={this._onChange}
           focus={!!this.state.value.length || this.state.focus}
+          value={this.state.value}
+          placeholder={this.props.placeholder}
         />
       </SContainer>
     );

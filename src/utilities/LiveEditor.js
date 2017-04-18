@@ -6,9 +6,9 @@ import { colours } from "../Constants";
 
 const StyledProvider = styled(LiveProvider)`
   border-radius: 3px;
-  box-shadow: 1px 1px 20px rgba(20, 20, 20, 0.27);
+  box-shadow: 1px 1px 20px rgba(20, 20, 20, 0.2);
   overflow: hidden;
-  margin-bottom: 20px;
+  margin: 30px 0;
 `;
 
 const LiveWrapper = styled.div`
@@ -16,6 +16,7 @@ const LiveWrapper = styled.div`
   flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
+
   @media (max-width: 600px) {
     flex-direction: column;
   }
@@ -25,6 +26,7 @@ const column = css`
   flex-basis: 50%;
   width: 50%;
   max-width: 50%;
+
   @media (max-width: 600px) {
     flex-basis: auto;
     width: 100%;
@@ -43,7 +45,7 @@ const StyledEditor = styled(LiveEditor)`
 
 const StyledPreview = styled(LivePreview)`
   position: relative;
-  padding: 0.5rem;
+  padding: 20px;
   background: white;
   color: black;
   height: auto;

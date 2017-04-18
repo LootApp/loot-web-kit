@@ -7,8 +7,10 @@
     "url": "https://github.com/LootApp/loot-web-kit.git"
   },
   "dependencies": {
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "styled-components": "2.0.0-15"
   },
   "devDependencies": {
     "babel-cli": "^6.6.4",

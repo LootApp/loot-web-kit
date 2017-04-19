@@ -66,7 +66,6 @@ const LiveEdit = ({ noInline, code, scope }) => (
       <StyledEditor />
       <StyledPreview />
     </LiveWrapper>
-
     <StyledError />
   </StyledProvider>
 );

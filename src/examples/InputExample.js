@@ -5,8 +5,6 @@ import Description from "../utilities/Description";
 
 const docs = `
   ## Input
-  What sort of magic is this?
-
   ${" `import Input from 'loot-web-kit/lib/Input'` "}
 `;
 

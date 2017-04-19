@@ -34,21 +34,25 @@ const SInput = styled.input`
   border: none;
   outline: none;
   font-size: 16px;
-  padding-bottom: 8px;
+  padding: 8px 0;
   background-color: transparent;
   transition: ${transitions.base};
   opacity: ${props => (props.focus ? 1 : 0)};
+  text-transform: ${props => (props.uppercase ? "uppercase" : props.capitalise ? "capitalize" : "none")};
 
   &::selection {
     background-color: ${colours.blue};
     color: ${colours.white};
+  }
+
+  &::placeholder {
+    color: ${colours.grey};
   }
 `;
 
 const SLabel = styled.label`
   color: ${props => (props.focus ? props.error ? colours.red : colours.blue : colours.darkGrey)};
   padding-top: 16px;
-  padding-bottom: 8px;
   pointer-events: none;
   font-size: 12px;
   display: block;
@@ -58,6 +62,11 @@ const SLabel = styled.label`
     scale(${props => (props.focus ? 1 : 1.3333)})
     translateY(${props => (props.focus ? 0 : "14px")});
   will-change: transform;
+
+  & span {
+    margin-left: 3px;
+    color: ${colours.red};
+  }
 `;
 
 const SHelperText = styled.span`
@@ -73,28 +82,31 @@ class Input extends Component {
     value: PropTypes.string,
     label: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    error: PropTypes.bool,
-    touched: PropTypes.bool,
     required: PropTypes.bool,
     minLength: PropTypes.number,
-    maxLength: PropTypes.number
+    maxLength: PropTypes.number,
+    helperText: PropTypes.string,
+    uppercase: PropTypes.bool,
+    capitalise: PropTypes.bool
   };
 
   static defaultProps = {
     value: "",
     placeholder: "",
-    error: false,
-    touched: false,
     required: false,
     minLength: 0,
-    maxLength: 9999
+    maxLength: 9999,
+    helperText: "",
+    uppercase: false,
+    capitalise: false
   };
 
   state = {
     focus: false,
     value: this.props.value,
-    error: this.props.error,
-    touched: this.props.touched
+    error: false,
+    touched: false,
+    helperText: this.props.helperText
   };
 
   _onFocus = () => {
@@ -103,7 +115,12 @@ class Input extends Component {
 
   _onBlur = ({ target }) => {
     this._validate(target.value) === true &&
-      this.setState({ focus: false, touched: true, error: false });
+      this.setState({
+        focus: false,
+        touched: true,
+        error: false,
+        helperText: this.props.helperText
+      });
   };
 
   _onChange = ({ target }) => {
@@ -111,12 +128,29 @@ class Input extends Component {
   };
 
   _validate = value => {
-    if (
-      (this.props.required && !value.length) ||
-      (this.props.minLength > 0 && value.length < this.props.minLength) ||
-      (this.props.maxLength && value.length > this.props.maxLength)
+    if (this.props.required && !value.length) {
+      return this.setState({
+        focus: true,
+        touched: true,
+        error: true,
+        helperText: "This field is required"
+      });
+    } else if (
+      this.props.minLength > 0 && value.length < this.props.minLength
     ) {
-      return this.setState({ focus: true, touched: true, error: true });
+      return this.setState({
+        focus: true,
+        touched: true,
+        error: true,
+        helperText: `Minimum ${this.props.minLength} characters`
+      });
+    } else if (this.props.maxLength && value.length > this.props.maxLength) {
+      return this.setState({
+        focus: true,
+        touched: true,
+        error: true,
+        helperText: `Maximum ${this.props.maxLength} characters`
+      });
     }
     return true;
   };
@@ -133,6 +167,7 @@ class Input extends Component {
             error={this.state.error}
           >
             {this.props.label}
+            {this.props.required && <span>*</span>}
           </SLabel>
           <SInput
             onFocus={this._onFocus}
@@ -141,9 +176,14 @@ class Input extends Component {
             focus={!!this.state.value.length || this.state.focus}
             value={this.state.value}
             placeholder={this.props.placeholder}
+            uppercase={this.props.uppercase}
+            capitalise={this.props.capitalise}
           />
         </SContainer>
-        <SHelperText error={this.state.error}>Helper Text</SHelperText>
+        {(this.state.error || !!this.props.helperText.length) &&
+          <SHelperText error={this.state.error}>
+            {this.state.helperText}
+          </SHelperText>}
       </div>
     );
   }

@@ -26,7 +26,6 @@ const SContainer = styled.div`
 
   &:hover {
     border-bottom-color: ${colours.darkGrey};
-    cursor: ${props => (props.disabled ? "crosshair" : "default")};
   }
 `;
 

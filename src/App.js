@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import styled, { injectGlobal } from "styled-components";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import Accordion from "./utilities/Accordion";
 import InputExample from "./examples/InputExample";
 import { colours } from "./Constants";
+import anchor from "./assets/anchor.svg";
 
 // eslint-disable-next-line
 injectGlobal`
@@ -13,6 +16,7 @@ injectGlobal`
     margin: 0;
     height: 100%;
     min-width: 1200px;
+    color: ${colours.darkGrey};
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -31,13 +35,10 @@ const Sidebar = styled.aside`
   top: 0;
   bottom: 0;
   width: 300px;
-  background-color: rgb(${colours.blue});
-  background-image:
-    radial-gradient(
-      circle farthest-corner at 0% 35%,
-      #59bcc3,
-      #35647f
-    );
+  overflow: scroll;
+  background-color: ${colours.white};
+  border-right: 1px solid #E0E4E5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 `;
 
 const Content = styled.div`
@@ -45,15 +46,72 @@ const Content = styled.div`
   padding: 3.5vw 5vw;
 `;
 
+const Branding = styled.div`
+  border-bottom: 1px solid #E0E4E5;
+  text-align: center;
+  padding: 40px 0;
+
+  img {
+    width: 50px;
+  }
+
+  span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    letter-spacing: 3px;
+    color: ${colours.grey};
+  }
+`;
+
+const SLink = styled(NavLink)`
+  text-decoration: none;
+  color: ${colours.darkGrey};
+  display: block;
+  padding: 10px 0;
+
+  &:hover {
+    color: ${colours.grey};
+  }
+`;
+
 class App extends Component {
   render() {
     return (
-      <Main>
-        <Sidebar />
-        <Content>
-          <InputExample />
-        </Content>
-      </Main>
+      <Router>
+        <Main>
+          <Sidebar>
+            <Branding>
+              <SLink to="/">
+                <img src={anchor} alt="Loot anchor" />
+                <span>Styleguide</span>
+              </SLink>
+            </Branding>
+            <Accordion title="Overview" />
+            <Accordion title="Design" />
+            <Accordion title="Components">
+              <SLink
+                activeStyle={{ color: colours.blue }}
+                to="/components/input"
+              >
+                Input
+              </SLink>
+              <SLink
+                activeStyle={{ color: colours.blue }}
+                to="/components/input-money"
+              >
+                InputMoney
+              </SLink>
+            </Accordion>
+            <Accordion title="Utility" />
+          </Sidebar>
+          <Content>
+            <Route exact path="/" render={() => <p>Home</p>} />
+            <Route exact path="/components/input" component={InputExample} />
+          </Content>
+        </Main>
+      </Router>
     );
   }
 }

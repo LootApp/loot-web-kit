@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import styled, { injectGlobal } from "styled-components";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Switch
+} from "react-router-dom";
 import Accordion from "./utilities/Accordion";
 import InputExample from "./examples/InputExample";
 import { colours } from "./Constants";
@@ -83,7 +88,7 @@ class App extends Component {
         <Main>
           <Sidebar>
             <Branding>
-              <SLink to="/">
+              <SLink to="/styleguide">
                 <img src={anchor} alt="Loot anchor" />
                 <span>Styleguide</span>
               </SLink>
@@ -93,13 +98,13 @@ class App extends Component {
             <Accordion title="Components">
               <SLink
                 activeStyle={{ color: colours.blue }}
-                to="/components/input"
+                to="/styleguide/components/input"
               >
                 Input
               </SLink>
               <SLink
                 activeStyle={{ color: colours.blue }}
-                to="/components/input-money"
+                to="/styleguide/components/input-money"
               >
                 InputMoney
               </SLink>
@@ -107,8 +112,13 @@ class App extends Component {
             <Accordion title="Utility" />
           </Sidebar>
           <Content>
-            <Route exact path="/" render={() => <p>Home</p>} />
-            <Route exact path="/components/input" component={InputExample} />
+            <Switch>
+              <Route
+                path="/styleguide/components/input"
+                component={InputExample}
+              />
+              <Route path="/styleguide" render={() => <p>Home</p>} />
+            </Switch>
           </Content>
         </Main>
       </Router>

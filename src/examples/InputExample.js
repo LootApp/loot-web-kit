@@ -72,6 +72,12 @@ const props = `
   **capitalise**: bool
 
   Makes text within the input capitalised. *Default:* false
+
+  ---
+
+  **disabled**: bool
+
+  Disables the input and styles it accordingly. *Default:* false
 `;
 
 const code = `<div>
@@ -114,6 +120,11 @@ const code = `<div>
     label="Capitalised text field"
     capitalise
     placeholder="Capitalised text"
+  />
+  <Input
+    label="Disabled field"
+    disabled
+    placeholder="Disabled"
   />
 </div>`;
 

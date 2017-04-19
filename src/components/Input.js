@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { colours, transitions } from "../Constants";
 
 const SContainer = styled.div`
-  border-bottom: 1px solid ${colours.grey};
+  border-bottom: 1px ${props => (props.disabled ? "dashed" : "solid")} ${colours.grey};
   transition: ${transitions.base};
   position: relative;
+  pointer-events: ${props => (props.disabled ? "none" : "auto")};
 
   &::after {
     content: '';
@@ -16,15 +17,16 @@ const SContainer = styled.div`
     left: ${props => (props.focus ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
-    display: block;
     z-index: 1;
     background-color: ${props => (props.error ? colours.red : colours.blue)};
     transition: ${transitions.long};
     opacity: ${props => (props.focus ? 1 : 0)};
+    display: ${props => (props.disabled ? "none" : "block")};
   }
 
   &:hover {
     border-bottom-color: ${colours.darkGrey};
+    cursor: ${props => (props.disabled ? "crosshair" : "default")};
   }
 `;
 
@@ -51,7 +53,7 @@ const SInput = styled.input`
 `;
 
 const SLabel = styled.label`
-  color: ${props => (props.focus ? props.error ? colours.red : colours.blue : colours.darkGrey)};
+  color: ${props => (props.disabled ? colours.darkGrey : props.focus ? props.error ? colours.red : colours.blue : colours.darkGrey)};
   padding-top: 16px;
   pointer-events: none;
   font-size: 12px;
@@ -97,7 +99,8 @@ class Input extends Component {
     helperText: PropTypes.string,
     uppercase: PropTypes.bool,
     capitalise: PropTypes.bool,
-    counter: PropTypes.bool
+    counter: PropTypes.bool,
+    disabled: PropTypes.disabled
   };
 
   static defaultProps = {
@@ -109,7 +112,8 @@ class Input extends Component {
     helperText: "",
     uppercase: false,
     capitalise: false,
-    counter: false
+    counter: false,
+    disabled: false
   };
 
   state = {
@@ -177,10 +181,12 @@ class Input extends Component {
         <SContainer
           focus={!!this.state.value.length || this.state.focus}
           error={this.state.error}
+          disabled={this.props.disabled}
         >
           <SLabel
             focus={!!this.state.value.length || this.state.focus}
             error={this.state.error}
+            disabled={this.props.disabled}
           >
             {this.props.label}
             {this.props.required && <span>*</span>}

@@ -51,6 +51,12 @@ const props = `
 
   ---
 
+  **counter**: bool
+
+  Displays character counter. *Default:* false
+
+  ---
+
   **helperText**: string
 
   Small helper text, appears below the nput. *Default:* ""
@@ -89,6 +95,17 @@ const code = `<div>
     placeholder="Maximum length"
   />
   <Input
+    label="Field with character counter"
+    maxLength={30}
+    counter
+    placeholder="Character counter"
+  />
+  <Input
+    label="Field with helper text"
+    helperText="Use common sense"
+    placeholder="Helper text"
+  />
+  <Input
     label="Uppercase text field"
     uppercase
     placeholder="Uppercase text"
@@ -97,11 +114,6 @@ const code = `<div>
     label="Capitalised text field"
     capitalise
     placeholder="Capitalised text"
-  />
-  <Input
-    label="Field with helper text"
-    helperText="Use common sense"
-    placeholder="Helper text"
   />
 </div>`;
 

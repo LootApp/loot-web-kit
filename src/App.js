@@ -12,6 +12,7 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     height: 100%;
+    min-width: 1200px;
   }
 
   h1, h2, h3, h4, h5, h6 {

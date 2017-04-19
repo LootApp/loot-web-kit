@@ -77,6 +77,15 @@ const SHelperText = styled.span`
   margin-top: 8px;
 `;
 
+const SCounter = styled.span`
+  display: block;
+  font-size: 10px;
+  position: absolute;
+  color: ${colours.darkGrey};
+  right: 0;
+  bottom: -22px;
+`;
+
 class Input extends Component {
   static propTypes = {
     value: PropTypes.string,
@@ -87,7 +96,8 @@ class Input extends Component {
     maxLength: PropTypes.number,
     helperText: PropTypes.string,
     uppercase: PropTypes.bool,
-    capitalise: PropTypes.bool
+    capitalise: PropTypes.bool,
+    counter: PropTypes.bool
   };
 
   static defaultProps = {
@@ -98,7 +108,8 @@ class Input extends Component {
     maxLength: 9999,
     helperText: "",
     uppercase: false,
-    capitalise: false
+    capitalise: false,
+    counter: false
   };
 
   state = {
@@ -124,6 +135,11 @@ class Input extends Component {
   };
 
   _onChange = ({ target }) => {
+    if (
+      this.props.maxLength !== 9999 &&
+      target.value.length > this.props.maxLength
+    )
+      return false;
     this.setState({ value: target.value });
   };
 
@@ -179,6 +195,10 @@ class Input extends Component {
             uppercase={this.props.uppercase}
             capitalise={this.props.capitalise}
           />
+          {this.props.counter &&
+            <SCounter>
+              {`${this.state.value.length} / ${this.props.maxLength}`}
+            </SCounter>}
         </SContainer>
         {(this.state.error || !!this.props.helperText.length) &&
           <SHelperText error={this.state.error}>

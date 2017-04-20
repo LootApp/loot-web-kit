@@ -78,6 +78,13 @@ const props = `
   **disabled**: bool
 
   Disables the input and styles it accordingly. *Default:* false
+
+  ---
+
+  **onChange**: func(value)
+
+  Custom onChange handler that can be passed from above InputType component in order to
+  format value, must take in value that will be passed from default Input. *Default:* null
 `;
 
 const code = `<div>

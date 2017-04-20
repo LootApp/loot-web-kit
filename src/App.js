@@ -10,6 +10,7 @@ import Accordion from "./utilities/Accordion";
 import InputExample from "./examples/InputExample";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
+import InputMoney from "./components/InputMoney";
 
 // eslint-disable-next-line
 injectGlobal`
@@ -112,6 +113,7 @@ class App extends Component {
             <Accordion title="Utility" />
           </Sidebar>
           <Content>
+            <InputMoney placeholder="0.00" label="Amount" />
             <Switch>
               <Route
                 path="/styleguide/components/input"

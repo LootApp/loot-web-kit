@@ -99,7 +99,9 @@ class Input extends Component {
     uppercase: PropTypes.bool,
     capitalise: PropTypes.bool,
     counter: PropTypes.bool,
-    disabled: PropTypes.disabled
+    disabled: PropTypes.bool,
+    type: PropTypes.string,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -112,7 +114,9 @@ class Input extends Component {
     uppercase: false,
     capitalise: false,
     counter: false,
-    disabled: false
+    disabled: false,
+    type: "text",
+    onChange: null
   };
 
   state = {
@@ -138,12 +142,13 @@ class Input extends Component {
   };
 
   _onChange = ({ target }) => {
-    if (
-      this.props.maxLength !== 9999 &&
-      target.value.length > this.props.maxLength
-    )
+    let value;
+    typeof this.props.onChange === "function"
+      ? (value = this.props.onChange(target.value))
+      : (value = target.value);
+    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength)
       return false;
-    this.setState({ value: target.value });
+    this.setState({ value });
   };
 
   _validate = value => {
@@ -175,37 +180,54 @@ class Input extends Component {
   };
 
   render() {
+    const {
+      value,
+      label,
+      placeholder,
+      required,
+      minLength,
+      maxLength,
+      helperText,
+      uppercase,
+      capitalise,
+      counter,
+      disabled,
+      type,
+      ...props
+    } = this.props;
     return (
       <div>
         <SContainer
           focus={!!this.state.value.length || this.state.focus}
           error={this.state.error}
-          disabled={this.props.disabled}
+          disabled={disabled}
         >
           <SLabel
             focus={!!this.state.value.length || this.state.focus}
             error={this.state.error}
-            disabled={this.props.disabled}
+            disabled={disabled}
           >
-            {this.props.label}
-            {this.props.required && <span>*</span>}
+            {label}
+            {required && <span>*</span>}
           </SLabel>
           <SInput
+            {...props}
+            type={type}
             onFocus={this._onFocus}
             onBlur={this._onBlur}
             onChange={this._onChange}
             focus={!!this.state.value.length || this.state.focus}
             value={this.state.value}
-            placeholder={this.props.placeholder}
-            uppercase={this.props.uppercase}
-            capitalise={this.props.capitalise}
+            placeholder={placeholder}
+            uppercase={uppercase}
+            capitalise={capitalise}
           />
-          {this.props.counter &&
+          {counter &&
             <SCounter>
-              {`${this.state.value.length} / ${this.props.maxLength}`}
+              {`${this.state.value.length} / ${maxLength}`}
             </SCounter>}
         </SContainer>
-        {(this.state.error || !!this.props.helperText.length) &&
+        {(this.state.error || !!helperText.length) &&
           <SHelperText error={this.state.error}>
             {this.state.helperText}
           </SHelperText>}

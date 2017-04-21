@@ -196,7 +196,7 @@ class Input extends Component {
       ...props
     } = this.props;
     return (
-      <div>
+      <div {...props}>
         <SContainer
           focus={!!this.state.value.length || this.state.focus}
           error={this.state.error}

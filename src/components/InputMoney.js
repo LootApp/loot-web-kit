@@ -1,27 +1,66 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 import Input from "./Input";
+import { colours } from "../Constants";
+
+const SContainer = styled.div`
+  display: flex;
+`;
+
+const SPrefix = styled.div`
+  font-size: 24px;
+  padding-right: 16px;
+  color: ${colours.grey};
+  align-self: flex-end;
+`;
+
+const SInput = styled(Input)`
+  flex-grow: 1;
+`;
 
 class InputMoney extends Component {
+  static propTypes = {
+    prefix: PropTypes.string
+  };
+
+  static defaultProps = {
+    prefix: "£"
+  };
+
   _onChange = value => {
-    let formatedValue = value;
-    if (value.length === 1) formatedValue = `0.0${value}`;
+    let formatedValue = value.toString();
+    if (formatedValue.length === 1) formatedValue = `0.0${value}`;
     else {
-      formatedValue = value.split(".").join("");
+      formatedValue = formatedValue.split(".").join("");
       const length = formatedValue.length;
       formatedValue = `${formatedValue.substring(0, length - 2)}.${formatedValue.substring(length - 2)}`;
     }
-    return isNaN(Number(formatedValue)) ? "" : Number(formatedValue).toString();
+    formatedValue = Number(formatedValue).toString();
+    const decimal = formatedValue.substring(formatedValue.indexOf(".") + 1);
+    if (decimal.length < 2) formatedValue = `${formatedValue}0`;
+    if (formatedValue.indexOf(".") === -1)
+      formatedValue = `${formatedValue}.00`;
+    return formatedValue === "NaN" ||
+      formatedValue === "0" ||
+      formatedValue === "00.00" ||
+      formatedValue === "NaN.00"
+      ? ""
+      : formatedValue;
   };
 
   render() {
-    const { ...props } = this.props;
+    const { prefix, ...props } = this.props;
     return (
-      <Input
-        {...props}
-        type="tel"
-        onChange={this._onChange}
-        innerRef={input => this.input = input}
-      />
+      <SContainer>
+        <SPrefix>{prefix}</SPrefix>
+        <SInput
+          {...props}
+          type="tel"
+          onChange={this._onChange}
+          innerRef={input => this.input = input}
+        />
+      </SContainer>
     );
   }
 }

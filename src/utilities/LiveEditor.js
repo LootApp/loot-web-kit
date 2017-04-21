@@ -39,6 +39,7 @@ const StyledEditor = styled(LiveEditor)`
   font-family: 'Source Code Pro', monospace;
   font-size: 14px;
   height: 100%;
+  min-height: 300px;
   overflow: scroll;
   ${column}
 `;

@@ -19,6 +19,27 @@ const Markdown = styled(ReactMarkdown)`
     border: none;
     border-bottom: 1px solid ${colours.grey};
   }
+
+  & img[alt="GitHub"] {
+    width: 27px;
+    margin-bottom: -10px;
+    margin-left: 10px;
+    opacity: 0.2;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  & img[alt="EditIcon"] {
+    width: 20px;
+    margin-left: 5px;
+    opacity: 0.2;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `;
 
 class Description extends Component {

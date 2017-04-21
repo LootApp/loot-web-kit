@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Accordion from "./utilities/Accordion";
 import InputExample from "./examples/InputExample";
+import ColorScheme from "./examples/ColorScheme";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
 // import InputMoney from "./components/InputMoney";
@@ -27,6 +28,10 @@ injectGlobal`
 
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
+  }
+
+  p {
+    line-height: 28px;
   }
 `;
 
@@ -49,7 +54,7 @@ const Sidebar = styled.aside`
 
 const Content = styled.div`
   margin-left: 300px;
-  padding: 3.5vw 5vw;
+  padding: 50px 100px;
 `;
 
 const Branding = styled.div`
@@ -94,8 +99,11 @@ class App extends Component {
                 <span>Styleguide</span>
               </SLink>
             </Branding>
-            <Accordion title="Overview" />
-            <Accordion title="Design" />
+            <Accordion title="Design">
+              <SLink activeStyle={{ color: colours.blue }} to="/styleguide">
+                Colour Scheme
+              </SLink>
+            </Accordion>
             <Accordion title="Components">
               <SLink
                 activeStyle={{ color: colours.blue }}
@@ -119,7 +127,7 @@ class App extends Component {
                 path="/styleguide/components/input"
                 component={InputExample}
               />
-              <Route path="/styleguide" render={() => <p>Home</p>} />
+              <Route path="/styleguide" component={ColorScheme} />
             </Switch>
           </Content>
         </Main>

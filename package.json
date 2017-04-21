@@ -9,6 +9,7 @@
   "dependencies": {
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-clipboard.js": "^1.0.1",
     "react-dom": "^15.5.4",
     "react-live": "^1.4.3",
     "react-markdown": "^2.5.0",

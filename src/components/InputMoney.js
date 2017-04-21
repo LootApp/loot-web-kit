@@ -5,7 +5,12 @@ class InputMoney extends Component {
   _onChange = value => {
     let formatedValue = value;
     if (value.length === 1) formatedValue = `0.0${value}`;
-    return formatedValue;
+    else {
+      formatedValue = value.split(".").join("");
+      const length = formatedValue.length;
+      formatedValue = `${formatedValue.substring(0, length - 2)}.${formatedValue.substring(length - 2)}`;
+    }
+    return isNaN(Number(formatedValue)) ? "" : Number(formatedValue).toString();
   };
 
   render() {

@@ -7,6 +7,7 @@
     "url": "https://github.com/LootApp/loot-web-kit.git"
   },
   "dependencies": {
+    "material-datetime-picker": "^2.3.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-clipboard.js": "^1.0.1",

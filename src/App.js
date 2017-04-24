@@ -12,6 +12,7 @@ import InputMoneyExample from "./examples/InputMoneyExample";
 import ColorScheme from "./examples/ColorScheme";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
+import InputDateTime from "./components/InputDateTime";
 
 // eslint-disable-next-line
 injectGlobal`
@@ -121,6 +122,7 @@ class App extends Component {
             <Accordion title="Utility" />
           </Sidebar>
           <Content>
+            <InputDateTime />
             <Switch>
               <Route
                 path="/styleguide/components/input"

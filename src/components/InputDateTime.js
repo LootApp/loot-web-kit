@@ -28,7 +28,7 @@ injectGlobal`
   }
 
   .c-datepicker {
-    min-height: 400px !important;
+    min-height: 380px !important;
   }
 
   .c-datepicker__day-body:hover {
@@ -62,7 +62,8 @@ injectGlobal`
 
   .c-datepicker__day--disabled {
     pointer-events: none;
-    opacity: 0.4;
+    opacity: 0.35;
+    cursor: not-allowed;
   }
 `;
 
@@ -82,11 +83,15 @@ const SInput = styled(Input)`
 
 class InputDateTime extends Component {
   static propTypes = {
-    defaultDate: PropTypes.instanceOf(Date)
+    defaultDate: PropTypes.instanceOf(Date),
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date)
   };
 
   static defaultProps = {
-    defaultDate: new Date()
+    defaultDate: new Date(),
+    minDate: null,
+    maxDate: null
   };
 
   componentWillUnmount() {
@@ -98,7 +103,13 @@ class InputDateTime extends Component {
   _onCloseCalendar = () => this.picker.close();
 
   picker = new MaterialDateTimePicker({
-    default: this.props.defaultDate
+    default: this.props.defaultDate,
+    dateValidator: d => {
+      if (this.props.minDate && this.props.maxDate) {
+        return d >= this.props.minDate && d <= this.props.maxDate;
+      } else if (this.props.minDate) return d >= this.props.minDate;
+      else if (this.props.maxDate) return d <= this.props.maxDate;
+    }
   })
     .on("open", () => {
       setTimeout(() => {

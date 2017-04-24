@@ -21,13 +21,27 @@ const props = `
   ${"`new Date('1994-07-04')`"}
 
   *Default:* new Date()
+
+  ---
+
+  **minDate**: date [ISO format (yyyy-mm-dd)]
+
+  Minimum date to enable in calendar *Default:* null
+
+  ---
+
+  **maxDate**: date [ISO format (yyyy-mm-dd)]
+
+  Maximum date to enable in calendar *Default:* null
 `;
 
 const code = `<InputDateTime
   label='Date'
   placeholder='DD/MM/YYYY'
-  defaultDate={new Date('1994-07-04')}
-  value="1994-07-04"
+  defaultDate={new Date('2017-04-20')}
+  value="2017-04-20"
+  minDate={new Date('2017-04-10')}
+  maxDate={new Date('2017-04-30')}
 />`;
 
 class InputExample extends Component {

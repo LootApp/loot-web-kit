@@ -101,7 +101,8 @@ class Input extends Component {
     counter: PropTypes.bool,
     disabled: PropTypes.bool,
     type: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    innerRef: PropTypes.func
   };
 
   static defaultProps = {
@@ -116,7 +117,8 @@ class Input extends Component {
     counter: false,
     disabled: false,
     type: "text",
-    onChange: null
+    onChange: null,
+    innerRef: null
   };
 
   state = {
@@ -160,7 +162,8 @@ class Input extends Component {
         helperText: "This field is required"
       });
     } else if (
-      this.props.minLength > 0 && value.length < this.props.minLength
+      this.props.minLength > 0 &&
+      value.length < this.props.minLength
     ) {
       return this.setState({
         focus: true,
@@ -193,6 +196,7 @@ class Input extends Component {
       counter,
       disabled,
       type,
+      innerRef,
       ...props
     } = this.props;
     return (
@@ -212,6 +216,7 @@ class Input extends Component {
           </SLabel>
           <SInput
             {...props}
+            innerRef={innerRef}
             type={type}
             onFocus={this._onFocus}
             onBlur={this._onBlur}

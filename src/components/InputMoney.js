@@ -21,11 +21,13 @@ const SInput = styled(Input)`
 
 class InputMoney extends Component {
   static propTypes = {
-    prefix: PropTypes.string
+    prefix: PropTypes.string,
+    innerRef: PropTypes.func
   };
 
   static defaultProps = {
-    prefix: "£"
+    prefix: "£",
+    innerRef: null
   };
 
   _onChange = value => {
@@ -50,15 +52,15 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, ...props } = this.props;
+    const { prefix, innerRef, ...props } = this.props;
     return (
       <SContainer>
         <SPrefix>{prefix}</SPrefix>
         <SInput
           {...props}
           type="tel"
+          innerRef={innerRef}
           onChange={this._onChange}
-          innerRef={input => this.input = input}
         />
       </SContainer>
     );

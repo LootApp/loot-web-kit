@@ -41,7 +41,7 @@ injectGlobal`
     transition: ${transitions.base};
 
     &:hover {
-      background-color: ${colours.grey};
+      background-color: ${colours.blue};
     }
   }
 
@@ -51,6 +51,12 @@ injectGlobal`
 
   .c-datepicker {
     min-height: 400px !important;
+  }
+
+  .c-datepicker__day-body:hover {
+    &::before {
+      background-color: ${colours.blue} !important;
+    }
   }
 `;
 

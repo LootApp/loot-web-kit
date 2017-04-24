@@ -86,6 +86,16 @@ const props = `
 
   Custom onChange handler that can be passed from above InputType component in order to
   format value, must take in value that will be passed from default Input. *Default:* null
+
+  ---
+
+  **innerRef**: func
+
+  Refference to original input in DOM i.e. to get value. written as
+
+  ${"`innerRef={input => this._nameInput = input}`"}
+
+  *Default:* null
 `;
 
 const code = `<div>

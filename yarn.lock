@@ -335,14 +335,14 @@ babel-eslint@7.1.1:
     babylon "^6.13.0"
     lodash.pickby "^4.6.0"
 
-babel-eslint@^7.2.1:
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.2.tgz#0da2cbe6554fd0fb069f19674f2db2f9c59270ff"
+babel-eslint@7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.3.tgz#b2fe2d80126470f5c19442dc757253a897710827"
   dependencies:
     babel-code-frame "^6.22.0"
     babel-traverse "^6.23.1"
     babel-types "^6.23.0"
-    babylon "^6.16.1"
+    babylon "^6.17.0"
 
 babel-generator@^6.18.0, babel-generator@^6.22.0, babel-generator@^6.24.1:
   version "6.24.1"
@@ -1297,9 +1297,13 @@ babel-types@^6.15.0, babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.22
     lodash "^4.2.0"
     to-fast-properties "^1.0.1"
 
-babylon@^6.11.0, babylon@^6.13.0, babylon@^6.15.0, babylon@^6.16.1:
+babylon@^6.11.0, babylon@^6.13.0, babylon@^6.15.0:
   version "6.16.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.16.1.tgz#30c5a22f481978a9e7f8cdfdf496b11d94b404d3"
+
+babylon@^6.17.0:
+  version "6.17.0"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.17.0.tgz#37da948878488b9c4e3c4038893fa3314b3fc932"
 
 balanced-match@^0.4.1, balanced-match@^0.4.2:
   version "0.4.2"
@@ -4842,7 +4846,7 @@ promise@7.1.1, promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.1, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
+prop-types@^15.5.0, prop-types@^15.5.1, prop-types@^15.5.4, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
   version "15.5.8"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
@@ -4918,11 +4922,12 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-clipboard.js@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-clipboard.js/-/react-clipboard.js-1.0.1.tgz#56dea0547c13977cd1a1650fc740e0349aa90bdf"
+react-clipboard.js@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-clipboard.js/-/react-clipboard.js-1.1.1.tgz#66dae95e4286c332f093c21a9fdf4c7b1f88ee65"
   dependencies:
     clipboard "^1.4.0"
+    prop-types "^15.5.0"
 
 react-dev-utils@^0.5.2:
   version "0.5.2"
@@ -4948,13 +4953,14 @@ react-dom@^15.5.4:
     object-assign "^4.1.0"
     prop-types "~15.5.7"
 
-react-live@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.4.3.tgz#48b80ce972f35a20ed59d4bbeefff002644859cc"
+react-live@1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.4.4.tgz#d4f5b3b6a0bf7f5ff2c5d621b834f9faf2c94989"
   dependencies:
     buble "^0.15.2"
     dom-iterator "^0.3.0"
     prismjs "^1.6.0"
+    prop-types "^15.5.8"
     unescape "^0.2.0"
 
 react-markdown@^2.5.0:
@@ -5306,9 +5312,9 @@ ripemd160@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-0.2.0.tgz#2bf198bde167cacfa51c0a928e84b68bbe171fce"
 
-"rome@git+https://github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6":
+"rome@https://github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6":
   version "2.1.22"
-  resolved "git+https://github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6"
+  resolved "https://github.com/jwhitfieldseed/rome.git#19f5d3031a922c29c52b9038b2832a827e5e99d6"
   dependencies:
     bullseye "1.4.6"
     contra "^1.9.4"

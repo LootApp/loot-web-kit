@@ -96,6 +96,19 @@ const props = `
   ${"`innerRef={input => this._nameInput = input}`"}
 
   *Default:* null
+
+  # Helpers
+
+  **_value**: func
+
+  Helper function to get value of the component i.e. when importing component
+  into the project add ref to it like this:
+
+  ${"`<Input ref={input => this.input = input}`"}
+
+  And you can now get inputs value on form submission using
+
+  ${"`this.input._value()`"}
 `;
 
 const code = `<div>

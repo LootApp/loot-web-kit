@@ -101,8 +101,7 @@ class Input extends Component {
     counter: PropTypes.bool,
     disabled: PropTypes.bool,
     type: PropTypes.string,
-    onChange: PropTypes.func,
-    innerRef: PropTypes.func
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -117,8 +116,7 @@ class Input extends Component {
     counter: false,
     disabled: false,
     type: "text",
-    onChange: null,
-    innerRef: null
+    onChange: null
   };
 
   state = {
@@ -182,6 +180,8 @@ class Input extends Component {
     return true;
   };
 
+  _value = () => this.state.value;
+
   render() {
     const {
       value,
@@ -196,7 +196,6 @@ class Input extends Component {
       counter,
       disabled,
       type,
-      innerRef,
       ...props
     } = this.props;
     return (
@@ -216,7 +215,6 @@ class Input extends Component {
           </SLabel>
           <SInput
             {...props}
-            innerRef={innerRef}
             type={type}
             onFocus={this._onFocus}
             onBlur={this._onBlur}

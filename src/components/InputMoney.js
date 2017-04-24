@@ -53,6 +53,8 @@ class InputMoney extends Component {
       : formatedValue;
   };
 
+  _value = () => this.input._value();
+
   render() {
     const { prefix, maxLength, ...props } = this.props;
     return (
@@ -63,6 +65,7 @@ class InputMoney extends Component {
           maxLength={maxLength}
           type="tel"
           onChange={this._onChange}
+          innerRef={input => (this.input = input)}
         />
       </SContainer>
     );

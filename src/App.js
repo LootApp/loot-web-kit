@@ -9,13 +9,17 @@ import {
 import Accordion from "./utilities/Accordion";
 import InputExample from "./examples/InputExample";
 import InputMoneyExample from "./examples/InputMoneyExample";
+import InputDateTimeExample from "./examples/InputDateTimeExample";
 import ColorScheme from "./examples/ColorScheme";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
-import InputDateTime from "./components/InputDateTime";
 
 // eslint-disable-next-line
 injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+
   html, body {
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
@@ -118,11 +122,16 @@ class App extends Component {
               >
                 InputMoney
               </SLink>
+              <SLink
+                activeStyle={{ color: colours.blue }}
+                to="/styleguide/components/input-date-time"
+              >
+                InputDateTime
+              </SLink>
             </Accordion>
             <Accordion title="Utility" />
           </Sidebar>
           <Content>
-            <InputDateTime />
             <Switch>
               <Route
                 path="/styleguide/components/input"
@@ -131,6 +140,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input-money"
                 component={InputMoneyExample}
+              />
+              <Route
+                path="/styleguide/components/input-date-time"
+                component={InputDateTimeExample}
               />
               <Route path="/styleguide" component={ColorScheme} />
             </Switch>

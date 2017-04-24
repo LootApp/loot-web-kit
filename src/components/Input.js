@@ -17,7 +17,7 @@ const SContainer = styled.div`
     left: ${props => (props.focus ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
-    z-index: 1;
+    z-index: 0;
     background-color: ${props => (props.error ? colours.red : colours.blue)};
     transition: ${transitions.long};
     opacity: ${props => (props.focus ? 1 : 0)};

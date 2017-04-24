@@ -5,7 +5,9 @@ import MaterialDateTimePicker from "material-datetime-picker";
 import "material-datetime-picker/dist/material-datetime-picker.css";
 import { transitions, colours } from "../Constants";
 import arrow from "../assets/arrow-calendar.svg";
+import Input from "./Input";
 
+// eslint-disable-next-line
 injectGlobal`
   .c-btn--flat {
     padding: 7px 10px;
@@ -59,6 +61,14 @@ injectGlobal`
 `;
 
 class InputDateTime extends Component {
+  state = {
+    currentDate: new Date().toLocaleDateString("en-GB")
+  };
+
+  componentWillUnmount() {
+    this.overlay.removeEventListener("click", this._onCloseCalendar);
+  }
+
   _onOpenCalendar = () => this.picker.open();
 
   _onCloseCalendar = () => this.picker.close();
@@ -72,13 +82,19 @@ class InputDateTime extends Component {
     })
     .on("close", () => {
       this.overlay.removeEventListener("click", this._onCloseCalendar);
-    });
+    })
+    .on("submit", value =>
+      console.log(value.toDate().toLocaleDateString("en-GB"))
+    );
 
   render() {
     return (
-      <button className="test-datepicker" onClick={this._onOpenCalendar}>
-        Open Date Picker
-      </button>
+      <Input
+        label="Date"
+        value={this.state.selectedDate}
+        placeholder={this.state.currentDate}
+        onFocus={this._onOpenCalendar}
+      />
     );
   }
 }

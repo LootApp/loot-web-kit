@@ -21,11 +21,13 @@ const SInput = styled(Input)`
 
 class InputMoney extends Component {
   static propTypes = {
-    prefix: PropTypes.string
+    prefix: PropTypes.string,
+    maxLength: PropTypes.number
   };
 
   static defaultProps = {
-    prefix: "£"
+    prefix: "£",
+    maxLength: 10
   };
 
   _onChange = value => {
@@ -52,11 +54,16 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, ...props } = this.props;
+    const { prefix, maxLength, ...props } = this.props;
     return (
       <SContainer>
         <SPrefix>{prefix}</SPrefix>
-        <SInput {...props} type="tel" onChange={this._onChange} />
+        <SInput
+          {...props}
+          maxLength={maxLength}
+          type="tel"
+          onChange={this._onChange}
+        />
       </SContainer>
     );
   }

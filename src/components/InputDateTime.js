@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { injectGlobal } from "styled-components";
+import styled, { injectGlobal } from "styled-components";
 // eslint-disable-next-line
 import MaterialDateTimePicker from "material-datetime-picker";
 import "material-datetime-picker/dist/material-datetime-picker.css";
@@ -36,10 +36,6 @@ injectGlobal`
     }
   }
 
-  .c-datepicker__day--selected {
-    font-weight: bold;
-  }
-
   .c-datepicker__days {
     margin-top: 0 !important;
   }
@@ -58,13 +54,28 @@ injectGlobal`
   .c-datepicker__back::before {
     transform: rotate(180deg);
   }
+
+  .c-datepicker__toggle {
+    display: none !important;
+  }
+`;
+
+const SInput = styled(Input)`
+  appearance: none;
+
+  ::-webkit-datetime-edit-fields-wrapper {
+    text-transform: uppercase;
+    color: ${colours.grey};
+  }
+
+  ::-webkit-calendar-picker-indicator,
+  ::-webkit-inner-spin-button,
+  ::-webkit-clear-button {
+    display: none;
+  }
 `;
 
 class InputDateTime extends Component {
-  state = {
-    currentDate: new Date().toLocaleDateString("en-GB")
-  };
-
   componentWillUnmount() {
     this.overlay.removeEventListener("click", this._onCloseCalendar);
   }
@@ -72,6 +83,8 @@ class InputDateTime extends Component {
   _onOpenCalendar = () => this.picker.open();
 
   _onCloseCalendar = () => this.picker.close();
+
+  _onChange = value => value;
 
   picker = new MaterialDateTimePicker()
     .on("open", () => {
@@ -83,16 +96,19 @@ class InputDateTime extends Component {
     .on("close", () => {
       this.overlay.removeEventListener("click", this._onCloseCalendar);
     })
-    .on("submit", value =>
-      console.log(value.toDate().toLocaleDateString("en-GB"))
-    );
+    .on("submit", value => {
+      console.log(value.toDate().toLocaleDateString("en-GB"));
+    });
 
   render() {
     return (
-      <Input
+      <SInput
+        type="date"
         label="Date"
-        value={this.state.selectedDate}
-        placeholder={this.state.currentDate}
+        placeholder="DD/MM/YYYY"
+        onChange={this._onChange}
+        readOnly
+        innerRef={input => (this.input = input)}
         onFocus={this._onOpenCalendar}
       />
     );

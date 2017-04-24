@@ -21,13 +21,11 @@ const SInput = styled(Input)`
 
 class InputMoney extends Component {
   static propTypes = {
-    prefix: PropTypes.string,
-    innerRef: PropTypes.func
+    prefix: PropTypes.string
   };
 
   static defaultProps = {
-    prefix: "£",
-    innerRef: null
+    prefix: "£"
   };
 
   _onChange = value => {
@@ -39,6 +37,8 @@ class InputMoney extends Component {
       formatedValue = `${formatedValue.substring(0, length - 2)}.${formatedValue.substring(length - 2)}`;
     }
     formatedValue = Number(formatedValue).toString();
+    if (formatedValue.indexOf(".") === -1)
+      formatedValue = `${formatedValue}.00`;
     const decimal = formatedValue.substring(formatedValue.indexOf(".") + 1);
     if (decimal.length < 2) formatedValue = `${formatedValue}0`;
     if (formatedValue.indexOf(".") === -1)
@@ -52,16 +52,11 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, innerRef, ...props } = this.props;
+    const { prefix, ...props } = this.props;
     return (
       <SContainer>
         <SPrefix>{prefix}</SPrefix>
-        <SInput
-          {...props}
-          type="tel"
-          innerRef={innerRef}
-          onChange={this._onChange}
-        />
+        <SInput {...props} type="tel" onChange={this._onChange} />
       </SContainer>
     );
   }

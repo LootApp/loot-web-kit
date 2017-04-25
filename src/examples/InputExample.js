@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Input from "../components/Input";
-import LiveEditor from "../utilities/LiveEditor";
-import Description from "../utilities/Description";
+import LiveEditor from "../elements/LiveEditor";
+import Description from "../elements/Description";
 
 const docs = `
   # Input [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/InputExample.js)

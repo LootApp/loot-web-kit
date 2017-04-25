@@ -6,7 +6,7 @@ import {
   NavLink,
   Switch
 } from "react-router-dom";
-import Accordion from "./utilities/Accordion";
+import Accordion from "./elements/Accordion";
 import InputExample from "./examples/InputExample";
 import InputMoneyExample from "./examples/InputMoneyExample";
 import InputDateTimeExample from "./examples/InputDateTimeExample";

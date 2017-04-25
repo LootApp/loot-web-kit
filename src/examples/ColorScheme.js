@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 import ClipboardButton from "react-clipboard.js";
-import Heading from "../utilities/Heading";
+import Heading from "../elements/Heading";
 import copy from "../assets/copy.svg";
 import copyDark from "../assets/copy-dark.svg";
 import { colours } from "../Constants";

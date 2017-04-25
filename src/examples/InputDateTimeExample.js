@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import LiveEditor from "../utilities/LiveEditor";
-import Description from "../utilities/Description";
+import LiveEditor from "../elements/LiveEditor";
+import Description from "../elements/Description";
 import InputDateTime from "../components/InputDateTime";
 
 const docs = `

@@ -4,9 +4,10 @@ import styled, { injectGlobal } from "styled-components";
 import { transitions, colours } from "../Constants";
 import Input from "./Input";
 import isMobile from "../utilities/isMobile";
+import isDateInput from "../utilities/isDateInput";
 
 let MaterialDateTimePicker;
-if (!isMobile()) {
+if (!isMobile() || (isMobile() && !isDateInput())) {
   MaterialDateTimePicker = require("material-datetime-picker");
   require("material-datetime-picker/dist/material-datetime-picker.css");
   const arrow = require("../assets/arrow-calendar.svg");
@@ -99,7 +100,7 @@ class InputDateTime extends Component {
   };
 
   componentDidMount() {
-    if (!isMobile()) {
+    if (!isMobile() || (isMobile() && !isDateInput())) {
       this.picker = new MaterialDateTimePicker({
         default: this.props.defaultDate,
         dateValidator: d => {
@@ -131,11 +132,14 @@ class InputDateTime extends Component {
   }
 
   componentWillUnmount() {
-    if (!isMobile())
+    if (!isMobile() || (isMobile() && !isDateInput()))
       this.overlay.removeEventListener("click", this._onCloseCalendar);
   }
 
-  _onCalendarOpen = () => (!isMobile() ? this._onOpenCalendar() : null);
+  _onCalendarOpen = () =>
+    (!isMobile() || (isMobile() && !isDateInput())
+      ? this._onOpenCalendar()
+      : null);
 
   _value = () => this.input._value();
 

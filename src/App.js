@@ -12,6 +12,7 @@ import InputMoneyExample from "./examples/components/InputMoneyExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
 import isMobileExample from "./examples/utility/isMobileExample";
+import isDateInputExample from "./examples/utility/isDateInputExample";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
 import { links } from "./links.json";
@@ -191,6 +192,10 @@ class App extends Component {
               <Route
                 path="/styleguide/utility/is-mobile"
                 component={isMobileExample}
+              />
+              <Route
+                path="/styleguide/utility/is-date-input"
+                component={isDateInputExample}
               />
               <Route path="/styleguide" component={ColorScheme} />
             </Switch>

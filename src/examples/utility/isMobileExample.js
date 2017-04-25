@@ -6,7 +6,7 @@ const docs = `
   ${"`import isMobile from 'loot-web-kit/utility/isMobile'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/utilities/isMobile.js)
 
-  Function to detect mobile devices, returns true if touch screen is suppordet and screen width is not greater than 800px
+  Function to detect mobile devices, returns true if touch screen is suppordet and screen width is not greater than 800px *Return:* Bool
 `;
 
 class isMobileExample extends Component {

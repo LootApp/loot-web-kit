@@ -154,7 +154,7 @@ class InputDateTime extends Component {
         innerRef={input => {
           this.input = input;
         }}
-        readOnly
+        readOnly={!isMobile()}
         onFocus={this._onCalendarOpen}
       />
     );

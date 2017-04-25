@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var isDateInput=function(){var a=document.createElement("input");a.setAttribute("type","date");var b="not-a-date";return a.setAttribute("value",b),a.value!==b};exports.default=isDateInput;

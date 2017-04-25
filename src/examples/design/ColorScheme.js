@@ -15,6 +15,7 @@ const ColourBlock = styled.div`
   border-radius: 3px;
   padding: 15px 20px 14px;
   width: 20%;
+  min-width: 192px;
   margin: 10px;
   background-color: ${props => props.color || "grey"};
   color: ${props => (props.color === colours.white || props.color === colours.lightGrey ? colours.darkGrey : colours.white)};

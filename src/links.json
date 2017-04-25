@@ -1,0 +1,24 @@
+{
+  "links": [
+    {
+      "title": "Design",
+      "links": [
+        { "to": "/styleguide", "text": "Colour Scheme" }
+      ]
+    },
+    {
+      "title": "Components",
+      "links": [
+        { "to": "/styleguide/components/input", "text": "Input" },
+        { "to": "/styleguide/components/input-money", "text": "InputMoney" },
+        { "to": "/styleguide/components/input-date-time", "text": "InputDateTme" }
+      ]
+    },
+    {
+      "title": "Utility",
+      "links": [
+        { "to": "/styleguide/utility/is-mobile", "text": "isMobile" }
+      ]
+    }
+  ]
+}

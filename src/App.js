@@ -14,6 +14,7 @@ import ColorScheme from "./examples/design/ColorScheme";
 import isMobileExample from "./examples/utility/isMobileExample";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
+import { links } from "./links.json";
 
 // eslint-disable-next-line
 injectGlobal`
@@ -28,7 +29,6 @@ injectGlobal`
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     height: 100%;
-    min-width: 1200px;
     color: ${colours.darkGrey};
   }
 
@@ -56,11 +56,19 @@ const Sidebar = styled.aside`
   background-color: ${colours.white};
   border-right: 1px solid #E0E4E5;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  @media (max-width: 1300px) {
+    z-index: 10;
+    width: 100%;
+    transform: translate3d(${props => (props.open ? "0" : "-100%")}, 0 ,0);
+  }
 `;
 
 const Content = styled.div`
-  margin-left: 300px;
-  padding: 50px 100px;
+  padding: 15px 10px;
+  @media (min-width: 1300px) {
+    padding: 50px 100px;
+    margin-left: 300px;
+  }
 `;
 
 const Branding = styled.div`
@@ -70,6 +78,14 @@ const Branding = styled.div`
 
   img {
     width: 50px;
+  }
+
+  @media (max-width: 1300px) {
+    padding: 15px 0;
+
+    img {
+      width: 30px;
+    }
   }
 
   span {
@@ -93,53 +109,72 @@ const SLink = styled(NavLink)`
   }
 `;
 
+const SMobileMenu = styled.div`
+  background-color: ${colours.white};
+  display: none;
+  margin-bottom: ${props => (props.noMargin ? 0 : "40px")};
+  padding: 10px 10px;
+  border: 2px solid ${colours.blue};
+  color: ${colours.blue};
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${colours.blue};
+    color: ${colours.white};
+  }
+
+  @media (max-width: 1300px) {
+    display: block;
+  }
+`;
+
 class App extends Component {
+  state = {
+    menuOpen: false
+  };
+
   render() {
     return (
       <Router>
         <Main>
-          <Sidebar>
+          <Sidebar open={this.state.menuOpen}>
             <Branding>
-              <SLink to="/styleguide">
+              <SLink
+                to="/styleguide"
+                onClick={() => this.setState({ menuOpen: false })}
+              >
                 <img src={anchor} alt="Loot anchor" />
                 <span>Styleguide</span>
               </SLink>
             </Branding>
-            <Accordion title="Design">
-              <SLink activeStyle={{ color: colours.blue }} to="/styleguide">
-                Colour Scheme
-              </SLink>
-            </Accordion>
-            <Accordion title="Components">
-              <SLink
-                activeStyle={{ color: colours.blue }}
-                to="/styleguide/components/input"
-              >
-                Input
-              </SLink>
-              <SLink
-                activeStyle={{ color: colours.blue }}
-                to="/styleguide/components/input-money"
-              >
-                InputMoney
-              </SLink>
-              <SLink
-                activeStyle={{ color: colours.blue }}
-                to="/styleguide/components/input-date-time"
-              >
-                InputDateTime
-              </SLink>
-            </Accordion>
-            <Accordion title="Utility">
-              <SLink
-                activeStyle={{ color: colours.blue }}
-                to="/styleguide/utility/is-mobile"
-              >
-                isMobile
-              </SLink>
-            </Accordion>
+
+            <SMobileMenu
+              noMargin
+              onClick={() => this.setState({ menuOpen: false })}
+            >
+              Close Menu
+            </SMobileMenu>
+
+            {links.map(section => (
+              <Accordion title={section.title}>
+                {section.links.map(link => (
+                  <SLink
+                    onClick={() => this.setState({ menuOpen: false })}
+                    activeStyle={{ color: colours.blue }}
+                    to={link.to}
+                  >
+                    {link.text}
+                  </SLink>
+                ))}
+              </Accordion>
+            ))}
+
           </Sidebar>
           <Content>
+            <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>
+              Open Menu
+            </SMobileMenu>
             <Switch>
               <Route
                 path="/styleguide/components/input"

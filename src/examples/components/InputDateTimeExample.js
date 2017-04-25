@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import LiveEditor from "../elements/LiveEditor";
-import Description from "../elements/Description";
-import InputDateTime from "../components/InputDateTime";
+import LiveEditor from "../../elements/LiveEditor";
+import Description from "../../elements/Description";
+import InputDateTime from "../../components/InputDateTime";
 
 const docs = `
-  # InputDateTime [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/InputDateTimeExample.js)
+  # InputDateTime [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputDateTimeExample.js)
   ${"`import InputDateTime from 'loot-web-kit/lib/InputDateTime'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputDateTime.js)
 

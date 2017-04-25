@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Input from "../components/Input";
-import LiveEditor from "../elements/LiveEditor";
-import Description from "../elements/Description";
+import Input from "../../components/Input";
+import LiveEditor from "../../elements/LiveEditor";
+import Description from "../../elements/Description";
 
 const docs = `
-  # Input [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/InputExample.js)
+  # Input [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputExample.js)
   ${"`import Input from 'loot-web-kit/lib/Input'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/Input.js)
 

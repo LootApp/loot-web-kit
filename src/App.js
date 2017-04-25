@@ -7,10 +7,11 @@ import {
   Switch
 } from "react-router-dom";
 import Accordion from "./elements/Accordion";
-import InputExample from "./examples/InputExample";
-import InputMoneyExample from "./examples/InputMoneyExample";
-import InputDateTimeExample from "./examples/InputDateTimeExample";
-import ColorScheme from "./examples/ColorScheme";
+import InputExample from "./examples/components/InputExample";
+import InputMoneyExample from "./examples/components/InputMoneyExample";
+import InputDateTimeExample from "./examples/components/InputDateTimeExample";
+import ColorScheme from "./examples/design/ColorScheme";
+import isMobileExample from "./examples/utility/isMobileExample";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
 
@@ -129,7 +130,14 @@ class App extends Component {
                 InputDateTime
               </SLink>
             </Accordion>
-            <Accordion title="Utility" />
+            <Accordion title="Utility">
+              <SLink
+                activeStyle={{ color: colours.blue }}
+                to="/styleguide/utility/is-mobile"
+              >
+                isMobile
+              </SLink>
+            </Accordion>
           </Sidebar>
           <Content>
             <Switch>
@@ -144,6 +152,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input-date-time"
                 component={InputDateTimeExample}
+              />
+              <Route
+                path="/styleguide/utility/is-mobile"
+                component={isMobileExample}
               />
               <Route path="/styleguide" component={ColorScheme} />
             </Switch>

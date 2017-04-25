@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 import ClipboardButton from "react-clipboard.js";
-import Heading from "../elements/Heading";
-import copy from "../assets/copy.svg";
-import copyDark from "../assets/copy-dark.svg";
-import { colours } from "../Constants";
+import Heading from "../../elements/Heading";
+import copy from "../../assets/copy.svg";
+import copyDark from "../../assets/copy-dark.svg";
+import { colours } from "../../Constants";
 
 const success = keyframes`
   from { opacity: 0; transform: translateY(20px); }

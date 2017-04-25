@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var isMobile=exports.isMobile=function(){return"ontouchstart"in window&&800>=Math.max(document.documentElement.clientWidth,window.innerWidth||0)};

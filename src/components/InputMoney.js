@@ -53,6 +53,14 @@ class InputMoney extends Component {
       : formatedValue;
   };
 
+  _onBlur = value => {
+    if (!!value.length && Number(value) < 0.01)
+      this.input.setState({
+        error: true,
+        helperText: "Minimum amount is 0.001"
+      });
+  };
+
   _value = () => this.input._value();
 
   render() {
@@ -65,6 +73,7 @@ class InputMoney extends Component {
           maxLength={maxLength}
           type="tel"
           onChange={this._onChange}
+          onBlur={this._onBlur}
           innerRef={input => (this.input = input)}
         />
       </SContainer>

@@ -4,11 +4,13 @@ import Input from "./Input";
 
 class Card extends Component {
   static propTypes = {
-    maxLength: PropTypes.number
+    maxLength: PropTypes.number,
+    minLength: PropTypes.number
   };
 
   static defaultProps = {
-    maxLength: 19
+    maxLength: 19,
+    minLength: 13
   };
 
   _onChange = value => {
@@ -23,11 +25,12 @@ class Card extends Component {
   _value = () => this.input._value();
 
   render() {
-    const { maxLength, ...props } = this.props;
+    const { maxLength, minLength, ...props } = this.props;
     return (
       <Input
         type="tel"
         maxLength={maxLength}
+        minLength={minLength}
         innerRef={input => (this.input = input)}
         onChange={this._onChange}
         {...props}

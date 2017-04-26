@@ -159,9 +159,10 @@ class App extends Component {
             </SMobileMenu>
 
             {links.map(section => (
-              <Accordion title={section.title}>
+              <Accordion key={section.title} title={section.title}>
                 {section.links.map(link => (
                   <SLink
+                    key={link.text}
                     onClick={() => this.setState({ menuOpen: false })}
                     activeStyle={{ color: colours.blue }}
                     to={link.to}

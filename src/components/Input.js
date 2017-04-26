@@ -101,7 +101,8 @@ class Input extends Component {
     counter: PropTypes.bool,
     disabled: PropTypes.bool,
     type: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
@@ -116,7 +117,8 @@ class Input extends Component {
     counter: false,
     disabled: false,
     type: "text",
-    onChange: null
+    onChange: null,
+    onBlur: null
   };
 
   state = {
@@ -139,6 +141,8 @@ class Input extends Component {
         error: false,
         helperText: this.props.helperText
       });
+    if (typeof this.props.onBlur === "function")
+      this.props.onBlur(target.value);
   };
 
   _onChange = ({ target }) => {

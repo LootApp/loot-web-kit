@@ -97,6 +97,13 @@ const props = `
 
   *Default:* null
 
+  ---
+
+  **onBlur**: func(value)
+
+  Custom onChange handler that can be passed from above InputType component in order to
+  validate value, must take in value that will be passed from default Input. *Default:* null
+
   # Helpers
 
   **_value**: func

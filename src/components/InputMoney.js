@@ -57,7 +57,7 @@ class InputMoney extends Component {
     if (!!value.length && Number(value) < 0.01)
       this.input.setState({
         error: true,
-        helperText: "Minimum amount is 0.001"
+        helperText: "Minimum amount is 0.01"
       });
   };
 

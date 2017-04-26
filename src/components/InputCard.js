@@ -37,15 +37,18 @@ class Card extends Component {
   };
 
   _onChange = value => {
-    let formatedValue = value.toString().replace(/\s/g, "");
-    formatedValue = formatedValue
-      .replace(/[^\dA-Z]/g, "")
-      .replace(/(.{4})/g, "$1 ")
-      .trim();
-    if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
-    else if (formatedValue.match("^5[1-5]"))
-      this.setState({ cardIcon: mastercard });
-    return formatedValue;
+    if (typeof value === "string") {
+      let formatedValue = value.toString().replace(/\s/g, "");
+      formatedValue = formatedValue
+        .replace(/[^\dA-Z]/g, "")
+        .replace(/(.{4})/g, "$1 ")
+        .trim();
+      if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
+      else if (formatedValue.match("^5[1-5]"))
+        this.setState({ cardIcon: mastercard });
+      else this.setState({ cardIcon: null });
+      return formatedValue;
+    }
   };
 
   _value = () => this.input._value();

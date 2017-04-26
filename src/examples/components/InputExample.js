@@ -104,6 +104,13 @@ const props = `
   Custom onChange handler that can be passed from above InputType component in order to
   validate value, must take in value that will be passed from default Input. *Default:* null
 
+  ---
+
+  **colour**: string
+
+  Customisable label and focused underline colour, can be any valid css colour string
+  *Default:* Loot blue
+
   # Helpers
 
   **_value**: func
@@ -163,6 +170,11 @@ const code = `<div>
     label="Disabled field"
     disabled
     placeholder="Disabled"
+  />
+  <Input
+    label="Coloured field"
+    placeholder="Coloured"
+    colour="magenta"
   />
 </div>`;
 

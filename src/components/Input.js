@@ -18,7 +18,7 @@ const SContainer = styled.div`
     position: absolute;
     bottom: -2px;
     z-index: 0;
-    background-color: ${props => (props.error ? colours.red : colours.blue)};
+    background-color: ${props => (props.error ? colours.red : props.colour)};
     transition: ${transitions.long};
     opacity: ${props => (props.focus ? 1 : 0)};
     display: ${props => (props.disabled ? "none" : "block")};
@@ -42,7 +42,7 @@ const SInput = styled.input`
   text-transform: ${props => (props.uppercase ? "uppercase" : props.capitalise ? "capitalize" : "none")};
 
   &::selection {
-    background-color: ${colours.blue};
+    background-color: ${props => props.colour};
     color: ${colours.white};
   }
 
@@ -52,7 +52,7 @@ const SInput = styled.input`
 `;
 
 const SLabel = styled.label`
-  color: ${props => (props.disabled ? colours.darkGrey : props.focus ? props.error ? colours.red : colours.blue : colours.darkGrey)};
+  color: ${props => (props.disabled ? colours.darkGrey : props.focus ? props.error ? colours.red : props.colour : colours.darkGrey)};
   padding-top: 16px;
   pointer-events: none;
   font-size: 12px;
@@ -102,7 +102,8 @@ class Input extends Component {
     disabled: PropTypes.bool,
     type: PropTypes.string,
     onChange: PropTypes.func,
-    onBlur: PropTypes.func
+    onBlur: PropTypes.func,
+    colour: PropTypes.string
   };
 
   static defaultProps = {
@@ -118,7 +119,8 @@ class Input extends Component {
     disabled: false,
     type: "text",
     onChange: null,
-    onBlur: null
+    onBlur: null,
+    colour: colours.blue
   };
 
   state = {
@@ -201,16 +203,19 @@ class Input extends Component {
       counter,
       disabled,
       type,
+      colour,
       ...props
     } = this.props;
     return (
       <div {...props}>
         <SContainer
+          colour={colour}
           focus={!!this.state.value.length || this.state.focus}
           error={this.state.error}
           disabled={disabled}
         >
           <SLabel
+            colour={colour}
             focus={!!this.state.value.length || this.state.focus}
             error={this.state.error}
             disabled={disabled}
@@ -221,6 +226,7 @@ class Input extends Component {
           <SInput
             {...props}
             type={type}
+            colour={colour}
             onFocus={this._onFocus}
             onBlur={this._onBlur}
             onChange={this._onChange}

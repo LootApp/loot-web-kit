@@ -103,7 +103,8 @@ class Input extends Component {
     type: PropTypes.string,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
-    colour: PropTypes.string
+    colour: PropTypes.string,
+    onFocus: PropTypes.func
   };
 
   static defaultProps = {
@@ -120,7 +121,8 @@ class Input extends Component {
     type: "text",
     onChange: null,
     onBlur: null,
-    colour: colours.blue
+    colour: colours.blue,
+    onFocus: null
   };
 
   state = {
@@ -133,6 +135,7 @@ class Input extends Component {
 
   _onFocus = () => {
     this.setState({ focus: true });
+    if (typeof this.props.onFocus === "function") this.props.onFocus();
   };
 
   _onBlur = ({ target }) => {
@@ -204,6 +207,7 @@ class Input extends Component {
       disabled,
       type,
       colour,
+      onFocus,
       ...props
     } = this.props;
     return (

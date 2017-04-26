@@ -11,10 +11,20 @@ const docs = `
   Input for password string formating *Extends:* [Input](/styleguide/components/input)
 `;
 
-const code = `<InputPassword
-  label='Password'
-  placeholder='Smurf'
-/>`;
+const code = `
+<div>
+  <InputPassword
+    label='Password'
+    placeholder='Smurf'
+  />
+  <InputPassword
+    label='Password'
+    placeholder='Smurf'
+    colour="magenta"
+    requirementColour="magenta"
+  />
+</div>
+`;
 
 class InputExample extends Component {
   render() {

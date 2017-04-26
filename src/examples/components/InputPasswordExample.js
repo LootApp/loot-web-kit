@@ -11,6 +11,14 @@ const docs = `
   Input for password string formating *Extends:* [Input](/styleguide/components/input)
 `;
 
+const props = `
+  # Props
+
+  **requirementColour**: string
+
+  Colour for requirement icons. *Default:* Loot blue
+`;
+
 const code = `
 <div>
   <InputPassword
@@ -32,6 +40,7 @@ class InputExample extends Component {
       <div>
         <Description source={docs} />
         <LiveEditor scope={{ InputPassword }} code={code} />
+        <Description source={props} />
       </div>
     );
   }

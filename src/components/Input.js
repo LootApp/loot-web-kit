@@ -164,6 +164,7 @@ class Input extends Component {
         helperText: "This field is required"
       });
     } else if (
+      (value.length > 0 || this.props.required) &&
       this.props.minLength > 0 &&
       value.length < this.props.minLength
     ) {

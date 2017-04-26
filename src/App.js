@@ -11,6 +11,7 @@ import InputExample from "./examples/components/InputExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
+import InputCardExample from "./examples/components/InputCardExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
 import { colours } from "./Constants";
@@ -188,6 +189,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input-date-time"
                 component={InputDateTimeExample}
+              />
+              <Route
+                path="/styleguide/components/input-card"
+                component={InputCardExample}
               />
               <Route
                 path="/styleguide/utility/is-mobile"

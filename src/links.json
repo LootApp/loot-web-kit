@@ -12,7 +12,8 @@
         { "to": "/styleguide/components/input", "text": "Input" },
         { "to": "/styleguide/components/input-money", "text": "InputMoney" },
         { "to": "/styleguide/components/input-date-time", "text": "InputDateTme" },
-        { "to": "/styleguide/components/input-card", "text": "InputCard" }
+        { "to": "/styleguide/components/input-card", "text": "InputCard" },
+        { "to": "/styleguide/components/input-password", "text": "InputPassword" }
       ]
     },
     {

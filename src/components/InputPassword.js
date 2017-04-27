@@ -64,11 +64,13 @@ const SRequirement = styled.div`
 
 class InputPassword extends Component {
   static propTypes = {
-    requirementColour: PropTypes.string
+    requirementColour: PropTypes.string,
+    requirements: PropTypes.bool
   };
 
   static defaultProps = {
-    requirementColour: colours.blue
+    requirementColour: colours.blue,
+    requirements: false
   };
 
   state = {
@@ -88,7 +90,7 @@ class InputPassword extends Component {
   _value = () => this.input._value();
 
   render() {
-    const { requirementColour, ...props } = this.props;
+    const { requirementColour, requirements, ...props } = this.props;
     return (
       <div>
         <Input
@@ -101,44 +103,49 @@ class InputPassword extends Component {
           innerRef={input => (this.input = input)}
           {...props}
         />
-        <SRequirements requirementColour={requirementColour}>
-          <SRequirement
-            valid={this.state.password.length >= 8}
-            icon="8+"
-            text="characters"
-            open={this.state.showRequirements}
-          >
-            <span valid={this.state.password.length >= 8} />
-          </SRequirement>
-          <SRequirement
-            valid={this.state.password.toUpperCase() !== this.state.password}
-            icon="a"
-            text="lower"
-            open={this.state.showRequirements}
-          >
-            <span
+        {this.props.requirements &&
+          <SRequirements requirementColour={requirementColour}>
+            <SRequirement
+              valid={this.state.password.length >= 8}
+              icon="8+"
+              text="characters"
+              open={this.state.showRequirements}
+            >
+              <span valid={this.state.password.length >= 8} />
+            </SRequirement>
+            <SRequirement
               valid={this.state.password.toUpperCase() !== this.state.password}
-            />
-          </SRequirement>
-          <SRequirement
-            valid={this.state.password.toLowerCase() !== this.state.password}
-            icon="A"
-            text="upper"
-            open={this.state.showRequirements}
-          >
-            <span
+              icon="a"
+              text="lower"
+              open={this.state.showRequirements}
+            >
+              <span
+                valid={
+                  this.state.password.toUpperCase() !== this.state.password
+                }
+              />
+            </SRequirement>
+            <SRequirement
               valid={this.state.password.toLowerCase() !== this.state.password}
-            />
-          </SRequirement>
-          <SRequirement
-            valid={/\d/.test(this.state.password)}
-            icon="#"
-            text="number"
-            open={this.state.showRequirements}
-          >
-            <span valid={/\d/.test(this.state.password)} />
-          </SRequirement>
-        </SRequirements>
+              icon="A"
+              text="upper"
+              open={this.state.showRequirements}
+            >
+              <span
+                valid={
+                  this.state.password.toLowerCase() !== this.state.password
+                }
+              />
+            </SRequirement>
+            <SRequirement
+              valid={/\d/.test(this.state.password)}
+              icon="#"
+              text="number"
+              open={this.state.showRequirements}
+            >
+              <span valid={/\d/.test(this.state.password)} />
+            </SRequirement>
+          </SRequirements>}
       </div>
     );
   }

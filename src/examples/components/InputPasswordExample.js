@@ -17,6 +17,12 @@ const props = `
   **requirementColour**: string
 
   Colour for requirement icons. *Default:* Loot blue
+
+  ---
+
+  **requirements**: bool
+
+  Flag to pass if password requirements should be shown. *Default:* false
 `;
 
 const code = `
@@ -28,8 +34,14 @@ const code = `
   <InputPassword
     label='Password'
     placeholder='Smurf'
+    requirements
+  />
+  <InputPassword
+    label='Password'
+    placeholder='Smurf'
     colour="magenta"
     requirementColour="magenta"
+    requirements
   />
 </div>
 `;

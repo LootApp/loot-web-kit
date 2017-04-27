@@ -12,9 +12,43 @@ const docs = `
 `;
 
 const code = `
-<Button>
-  Hello World
-</Button>
+<div>
+  <div style={{ margin: "10px" }}>
+    <Button onClick={() => alert("Hello Darknes My Old Friend!")}>
+      Press me
+    </Button>
+  </div>
+  <div style={{ margin: "10px" }}>
+    <Button fullWidth>
+      Press me
+    </Button>
+  </div>
+  <div style={{ margin: "10px" }}>
+    <Button colour="tomato">
+      Press me
+    </Button>
+  </div>
+</div>
+`;
+
+const props = `
+  # Props
+
+  **onClick**: func
+
+  onClick function to be passed to the button. *Default:* null
+
+  ---
+
+  **fullWidth**: bool
+
+  Specify if button should extend to width 100%. *Default:* false
+
+  ---
+
+  **colour**: css colour string
+
+  Specifies colour of the button. *Default:* Loot blue
 `;
 
 class ButtonExample extends Component {
@@ -23,6 +57,7 @@ class ButtonExample extends Component {
       <div>
         <Description source={docs} />
         <LiveEditor scope={{ Button }} code={code} />
+        <Description source={props} />
       </div>
     );
   }

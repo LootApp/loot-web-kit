@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import { colours, transitions } from "../Constants";
 
@@ -9,6 +10,7 @@ const ripple = keyframes`
 `;
 
 const SButton = styled.button`
+  width: ${props => (props.fullWidth ? "100%" : "auto")};
   appearance: none;
   position: relative;
   display: inline-block;
@@ -22,7 +24,7 @@ const SButton = styled.button`
   line-height: 20px;
   font-weight: 400;
   text-align: center;
-  background-color: ${colours.blue};
+  background-color: ${props => props.colour};
   border: none;
   user-select: none;
   transition: ${transitions.base};
@@ -65,6 +67,20 @@ const SRipple = styled.div`
 `;
 
 class Button extends Component {
+  static propTypes = {
+    children: PropTypes.string,
+    onClick: PropTypes.func,
+    fullWidth: PropTypes.bool,
+    colour: PropTypes.string
+  };
+
+  static defaultProps = {
+    children: "button",
+    onClick: null,
+    fullWidth: false,
+    colour: colours.blue
+  };
+
   state = {
     active: false,
     top: "50%",
@@ -82,13 +98,18 @@ class Button extends Component {
         this.setState({ active: false });
       }, 400);
     }
+    typeof this.props.onClick === "function" && this.props.onClick();
   };
 
   render() {
+    const { children, onClick, fullWidth, colour, ...props } = this.props;
     return (
       <SButton
+        colour={colour}
+        fullWidth={fullWidth}
         onClick={this._onClick}
         innerRef={button => (this.button = button)}
+        {...props}
       >
         <SRipple
           active={this.state.active}
@@ -97,7 +118,7 @@ class Button extends Component {
         >
           <span />
         </SRipple>
-        Hello World
+        {children}
       </SButton>
     );
   }

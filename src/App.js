@@ -13,6 +13,7 @@ import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
 import InputCardExample from "./examples/components/InputCardExample";
 import InputPasswordExample from "./examples/components/InputPasswordExample";
+import InputIncrementExample from "./examples/components/InputIncrementExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
 import { colours } from "./Constants";
@@ -199,6 +200,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input-password"
                 component={InputPasswordExample}
+              />
+              <Route
+                path="/styleguide/components/input-increment"
+                component={InputIncrementExample}
               />
               <Route
                 path="/styleguide/utility/is-mobile"

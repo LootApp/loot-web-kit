@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Input from "./Input";
+import formatAmount from "../utilities/formatAmount";
 import { colours } from "../Constants";
 
 const SContainer = styled.div`
@@ -30,30 +31,7 @@ class InputMoney extends Component {
     maxLength: 10
   };
 
-  _onChange = value => {
-    if (typeof value === "string") {
-      let formatedValue = value.toString();
-      if (formatedValue.length === 1) formatedValue = `0.0${value}`;
-      else {
-        formatedValue = formatedValue.split(".").join("");
-        const length = formatedValue.length;
-        formatedValue = `${formatedValue.substring(0, length - 2)}.${formatedValue.substring(length - 2)}`;
-      }
-      formatedValue = Number(formatedValue).toString();
-      if (formatedValue.indexOf(".") === -1)
-        formatedValue = `${formatedValue}.00`;
-      const decimal = formatedValue.substring(formatedValue.indexOf(".") + 1);
-      if (decimal.length < 2) formatedValue = `${formatedValue}0`;
-      if (formatedValue.indexOf(".") === -1)
-        formatedValue = `${formatedValue}.00`;
-      return formatedValue === "NaN" ||
-        formatedValue === "0" ||
-        formatedValue === "00.00" ||
-        formatedValue === "NaN.00"
-        ? ""
-        : formatedValue;
-    }
-  };
+  _onChange = value => formatAmount(value);
 
   _onBlur = value => {
     if (!!value.length && Number(value) < 0.01)

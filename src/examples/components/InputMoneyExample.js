@@ -25,7 +25,7 @@ const code = `<InputMoney
   prefix="$"
 />`;
 
-class InputExample extends Component {
+class InputMoneyExample extends Component {
   render() {
     return (
       <div>
@@ -37,4 +37,4 @@ class InputExample extends Component {
   }
 }
 
-export default InputExample;
+export default InputMoneyExample;

@@ -14,6 +14,7 @@ import ColorScheme from "./examples/design/ColorScheme";
 import InputCardExample from "./examples/components/InputCardExample";
 import InputPasswordExample from "./examples/components/InputPasswordExample";
 import InputIncrementExample from "./examples/components/InputIncrementExample";
+import ButtonExample from "./examples/components/ButtonExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
 import formatAmountExample from "./examples/utility/formatAmountExample";
@@ -217,6 +218,10 @@ class App extends Component {
               <Route
                 path="/styleguide/utility/format-amount"
                 component={formatAmountExample}
+              />
+              <Route
+                path="/styleguide/components/button"
+                component={ButtonExample}
               />
               <Route path="/styleguide" component={ColorScheme} />
             </Switch>

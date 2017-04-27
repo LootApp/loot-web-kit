@@ -44,7 +44,7 @@ const code = `<InputDateTime
   maxDate={new Date('2017-04-30')}
 />`;
 
-class InputExample extends Component {
+class InputDateTimeExample extends Component {
   render() {
     return (
       <div>
@@ -56,4 +56,4 @@ class InputExample extends Component {
   }
 }
 
-export default InputExample;
+export default InputDateTimeExample;

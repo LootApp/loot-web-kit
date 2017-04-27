@@ -16,7 +16,7 @@ const code = `<InputCard
   placeholder='1234 1234 1234 1234'
 />`;
 
-class InputExample extends Component {
+class InputCardExample extends Component {
   render() {
     return (
       <div>
@@ -27,4 +27,4 @@ class InputExample extends Component {
   }
 }
 
-export default InputExample;
+export default InputCardExample;

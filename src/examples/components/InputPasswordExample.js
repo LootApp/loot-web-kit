@@ -46,7 +46,7 @@ const code = `
 </div>
 `;
 
-class InputExample extends Component {
+class InputPasswordExample extends Component {
   render() {
     return (
       <div>
@@ -58,4 +58,4 @@ class InputExample extends Component {
   }
 }
 
-export default InputExample;
+export default InputPasswordExample;

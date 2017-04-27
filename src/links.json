@@ -14,7 +14,8 @@
         { "to": "/styleguide/components/input-date-time", "text": "InputDateTme" },
         { "to": "/styleguide/components/input-card", "text": "InputCard" },
         { "to": "/styleguide/components/input-password", "text": "InputPassword" },
-        { "to": "/styleguide/components/input-increment", "text": "InputIncrement" }
+        { "to": "/styleguide/components/input-increment", "text": "InputIncrement" },
+        { "to": "/styleguide/components/button", "text": "Button" }
       ]
     },
     {

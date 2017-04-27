@@ -21,7 +21,7 @@ const props = `
   ---
 
   **maxLength**: number
-  
+
   Maximum input length. *Default*: 10
 `;
 
@@ -29,7 +29,7 @@ const code = `<InputIncrement
   prefix="$"
 />`;
 
-class InputExample extends Component {
+class InputIncrementExample extends Component {
   render() {
     return (
       <div>
@@ -41,4 +41,4 @@ class InputExample extends Component {
   }
 }
 
-export default InputExample;
+export default InputIncrementExample;

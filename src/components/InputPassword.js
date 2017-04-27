@@ -11,7 +11,6 @@ const zoomFade = keyframes`
 `;
 
 const SRequirements = styled.div`
-  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,6 +19,7 @@ const SRequirements = styled.div`
 
 const SRequirement = styled.div`
   margin: 0 8px;
+  padding-top: ${props => (props.open ? "10px" : 0)};
   height: ${props => (props.open ? "50px" : 0)};
   transition: ${transitions.long};
   pointer-events: ${props => (props.open ? "auto" : "none")};

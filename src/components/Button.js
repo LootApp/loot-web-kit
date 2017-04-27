@@ -18,20 +18,20 @@ const SButton = styled.button`
   margin: 0;
   vertical-align: middle;
   overflow: visible;
-  color: ${colours.white};
+  color: ${props => (props.outline ? props.colour : colours.white)};
   font-size: 14px;
   text-transform: uppercase;
   line-height: 20px;
   font-weight: 400;
   text-align: center;
-  background-color: ${props => props.colour};
+  background-color: ${props => (props.outline ? "transparent" : props.colour)};
   border: none;
   user-select: none;
   transition: ${transitions.base};
   outline: none;
   cursor: pointer;
   border-radius: 2px;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: ${props => (props.outline ? `0 0 0 2px ${props.colour} inset !important` : "0 2px 2px rgba(0, 0, 0, 0.2)")};
 
   &:hover {
     box-shadow: 0 4px 7px 1px rgba(0, 0, 0, 0.3);
@@ -60,7 +60,7 @@ const SRipple = styled.div`
     width: 0;
     height: 0;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: ${props => props.rippleColour};
     animation: ${props => (props.active ? `${ripple} .4s ease-in` : "none")};
     display: block;
   }
@@ -71,14 +71,18 @@ class Button extends Component {
     children: PropTypes.string,
     onClick: PropTypes.func,
     fullWidth: PropTypes.bool,
-    colour: PropTypes.string
+    colour: PropTypes.string,
+    rippleColour: PropTypes.string,
+    outline: PropTypes.bool
   };
 
   static defaultProps = {
     children: "button",
     onClick: null,
     fullWidth: false,
-    colour: colours.blue
+    colour: colours.blue,
+    rippleColour: "rgba(255, 255, 255, 0.25)",
+    outline: false
   };
 
   state = {
@@ -102,9 +106,18 @@ class Button extends Component {
   };
 
   render() {
-    const { children, onClick, fullWidth, colour, ...props } = this.props;
+    const {
+      children,
+      onClick,
+      fullWidth,
+      colour,
+      outline,
+      rippleColour,
+      ...props
+    } = this.props;
     return (
       <SButton
+        outline={outline}
         colour={colour}
         fullWidth={fullWidth}
         onClick={this._onClick}
@@ -112,6 +125,7 @@ class Button extends Component {
         {...props}
       >
         <SRipple
+          rippleColour={rippleColour}
           active={this.state.active}
           top={this.state.top}
           left={this.state.left}

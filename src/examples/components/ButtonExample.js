@@ -28,6 +28,11 @@ const code = `
       Press me
     </Button>
   </div>
+  <div style={{ margin: "10px" }}>
+    <Button outline rippleColour="rgba(77, 183, 195, 0.25)">
+      Press me
+    </Button>
+  </div>
 </div>
 `;
 
@@ -49,6 +54,18 @@ const props = `
   **colour**: css colour string
 
   Specifies colour of the button. *Default:* Loot blue
+
+  ---
+
+  **outline**: bool
+
+  Gives button outlined style, don't forget to add rippleColour. *Default:* false
+
+  ---
+
+  **rippleColour**: bool
+
+  Specifies ripple effect colour. *Default:* rgba(255, 255, 255, 0.25)
 `;
 
 class ButtonExample extends Component {

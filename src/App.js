@@ -16,6 +16,7 @@ import InputPasswordExample from "./examples/components/InputPasswordExample";
 import InputIncrementExample from "./examples/components/InputIncrementExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
+import formatAmountExample from "./examples/utility/formatAmountExample";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
 import { links } from "./links.json";
@@ -212,6 +213,10 @@ class App extends Component {
               <Route
                 path="/styleguide/utility/is-date-input"
                 component={isDateInputExample}
+              />
+              <Route
+                path="/styleguide/utility/format-amount"
+                component={formatAmountExample}
               />
               <Route path="/styleguide" component={ColorScheme} />
             </Switch>

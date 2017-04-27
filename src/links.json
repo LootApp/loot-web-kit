@@ -21,7 +21,8 @@
       "title": "Utility",
       "links": [
         { "to": "/styleguide/utility/is-mobile", "text": "isMobile" },
-        { "to": "/styleguide/utility/is-date-input", "text": "isDateInput" }
+        { "to": "/styleguide/utility/is-date-input", "text": "isDateInput" },
+        { "to": "/styleguide/utility/format-amount", "text": "formatAmount" }
       ]
     }
   ]

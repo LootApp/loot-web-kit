@@ -9,7 +9,7 @@ const docs = `
   Function to format amount string into 0.00 format. *Return:* String
 `;
 
-class isMobileExample extends Component {
+class formatAmountExample extends Component {
   render() {
     return (
       <div>
@@ -19,4 +19,4 @@ class isMobileExample extends Component {
   }
 }
 
-export default isMobileExample;
+export default formatAmountExample;

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Accordion from "./elements/Accordion";
 import InputExample from "./examples/components/InputExample";
+import InputSortcodeExample from "./examples/components/InputSortcodeExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
@@ -191,6 +192,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input-email"
                 component={InputEmailExample}
+              />
+              <Route
+                path="/styleguide/components/input-sortcode"
+                component={InputSortcodeExample}
               />
               <Route
                 path="/styleguide/components/input-money"

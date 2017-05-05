@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Input from "./Input";
-import isValidEmail from "../utilities/isValidEmail";
+import formatSortcode from "../utilities/formatSortcode";
 
 const SContainer = styled.div`
   display: flex;
@@ -11,15 +11,8 @@ const SInput = styled(Input)`
   flex-grow: 1;
 `;
 
-class InputEmail extends Component {
-
-  _onBlur = value => {
-    if (!!value.length && !isValidEmail(value))
-      this.input.setState({
-        error: true,
-        helperText: "Invalid email address!"
-      });
-  }
+class InputSortcode extends Component {
+  _onChange = value => formatSortcode(value);
 
   _value = () => this.input._value();
 
@@ -28,9 +21,10 @@ class InputEmail extends Component {
       <SContainer>
         <SInput
           {...this.props}
-          type="email"
+          type="tel"
           noValidate
-          onBlur={this._onBlur}
+          maxLength={8}
+          onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
       </SContainer>
@@ -38,4 +32,4 @@ class InputEmail extends Component {
   }
 }
 
-export default InputEmail;
+export default InputSortcode;

@@ -10,6 +10,7 @@ import Accordion from "./elements/Accordion";
 import InputExample from "./examples/components/InputExample";
 import InputSortcodeExample from "./examples/components/InputSortcodeExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
+import InputRadioExample from "./examples/components/InputRadioExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
@@ -192,6 +193,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input-email"
                 component={InputEmailExample}
+              />
+              <Route
+                path="/styleguide/components/input-radio"
+                component={InputRadioExample}
               />
               <Route
                 path="/styleguide/components/input-sortcode"

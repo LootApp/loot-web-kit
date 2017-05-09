@@ -11,14 +11,6 @@ const docs = `
   Input for email string formating *Extends:* [Input](/styleguide/components/input)
 `;
 
-const props = `
-  # Props
-
-  **prefix**: string
-
-  Currency symbol. *Default:* "£"
-`;
-
 const code = `
   <InputEmail
     label='Email'
@@ -31,7 +23,6 @@ class InputEmailExample extends Component {
       <div>
         <Description source={docs} />
         <LiveEditor scope={{ InputEmail }} code={code} />
-        <Description source={props} />
       </div>
     );
   }

@@ -8,15 +8,7 @@ const docs = `
   ${"`import InputSortcode from 'loot-web-kit/lib/InputSortcode'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputSortcode.js)
 
-  Input for email string formating *Extends:* [Input](/styleguide/components/input)
-`;
-
-const props = `
-  # Props
-
-  **prefix**: string
-
-  Currency symbol. *Default:* "£"
+  Input for sort code string formating *Extends:* [Input](/styleguide/components/input)
 `;
 
 const code = `
@@ -31,7 +23,6 @@ class InputSortcodeExample extends Component {
       <div>
         <Description source={docs} />
         <LiveEditor scope={{ InputSortcode }} code={code} />
-        <Description source={props} />
       </div>
     );
   }

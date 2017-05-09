@@ -20,6 +20,8 @@ import InputIncrementExample from "./examples/components/InputIncrementExample";
 import ButtonExample from "./examples/components/ButtonExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
+import formatSortcodeExample from "./examples/utility/formatSortcodeExample";
+import stringFormatterExample from "./examples/utility/stringFormatterExample";
 import formatAmountExample from "./examples/utility/formatAmountExample";
 import isValidEmailExample from "./examples/utility/isValidEmailExample";
 import { colours } from "./Constants";
@@ -237,6 +239,14 @@ class App extends Component {
               <Route
                 path="/styleguide/utility/format-amount"
                 component={formatAmountExample}
+              />
+              <Route
+                path="/styleguide/utility/format-sortcode"
+                component={formatSortcodeExample}
+              />
+              <Route
+                path="/styleguide/utility/string-formatter"
+                component={stringFormatterExample}
               />
               <Route
                 path="/styleguide/components/button"

@@ -27,7 +27,9 @@
         { "to": "/styleguide/utility/is-mobile", "text": "isMobile" },
         { "to": "/styleguide/utility/is-valid-email", "text": "isValidEmail" },
         { "to": "/styleguide/utility/is-date-input", "text": "isDateInput" },
-        { "to": "/styleguide/utility/format-amount", "text": "formatAmount" }
+        { "to": "/styleguide/utility/format-amount", "text": "formatAmount" },
+        { "to": "/styleguide/utility/format-sortcode", "text": "formatSortcode" },
+        { "to": "/styleguide/utility/string-formatter", "text": "stringFormatter" }
       ]
     }
   ]

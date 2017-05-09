@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import Accordion from "./elements/Accordion";
 import InputExample from "./examples/components/InputExample";
+import InputSortcodeExample from "./examples/components/InputSortcodeExample";
+import InputEmailExample from "./examples/components/InputEmailExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
@@ -17,7 +19,10 @@ import InputIncrementExample from "./examples/components/InputIncrementExample";
 import ButtonExample from "./examples/components/ButtonExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
+import formatSortcodeExample from "./examples/utility/formatSortcodeExample";
+import stringFormatterExample from "./examples/utility/stringFormatterExample";
 import formatAmountExample from "./examples/utility/formatAmountExample";
+import isValidEmailExample from "./examples/utility/isValidEmailExample";
 import { colours } from "./Constants";
 import anchor from "./assets/anchor.svg";
 import { links } from "./links.json";
@@ -154,7 +159,6 @@ class App extends Component {
                 <span>Styleguide</span>
               </SLink>
             </Branding>
-
             <SMobileMenu
               noMargin
               onClick={() => this.setState({ menuOpen: false })}
@@ -188,6 +192,14 @@ class App extends Component {
                 component={InputExample}
               />
               <Route
+                path="/styleguide/components/input-email"
+                component={InputEmailExample}
+              />
+              <Route
+                path="/styleguide/components/input-sortcode"
+                component={InputSortcodeExample}
+              />
+              <Route
                 path="/styleguide/components/input-money"
                 component={InputMoneyExample}
               />
@@ -208,6 +220,10 @@ class App extends Component {
                 component={InputIncrementExample}
               />
               <Route
+                path="/styleguide/utility/is-valid-email"
+                component={isValidEmailExample}
+              />
+              <Route
                 path="/styleguide/utility/is-mobile"
                 component={isMobileExample}
               />
@@ -218,6 +234,14 @@ class App extends Component {
               <Route
                 path="/styleguide/utility/format-amount"
                 component={formatAmountExample}
+              />
+              <Route
+                path="/styleguide/utility/format-sortcode"
+                component={formatSortcodeExample}
+              />
+              <Route
+                path="/styleguide/utility/string-formatter"
+                component={stringFormatterExample}
               />
               <Route
                 path="/styleguide/components/button"

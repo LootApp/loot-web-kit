@@ -9,7 +9,7 @@ const docs = `
   Function to detect support for input of type date. *Return:* Bool
 `;
 
-class isMobileExample extends Component {
+class isDateInputExample extends Component {
   render() {
     return (
       <div>
@@ -19,4 +19,4 @@ class isMobileExample extends Component {
   }
 }
 
-export default isMobileExample;
+export default isDateInputExample;

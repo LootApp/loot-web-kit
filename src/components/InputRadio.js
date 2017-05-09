@@ -42,22 +42,22 @@ const StyledWrapper = styled.div`
 
 class InputRadio extends Component {
   static propTypes = {
-    labels: PropTypes.array,
-    name: PropTypes.string.isRequired
+    labels: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired
   };
 
   static defaultProps = {
-    labels: null
+    onChange: null
   };
 
-  _onChange = ({ target }) => console.log(target.id);
+  _onChange = ({ target }) => this.props.onChange(target.id);
 
   render() {
     return (
-      <SContainer>
+      <SContainer {...this.props}>
         {
-          this.props.labels
-          && this.props.labels.map((label, index) => (
+          this.props.labels.map((label, index) => (
             <StyledWrapper key={label}>
               <SInput
                 id={`${label}`}

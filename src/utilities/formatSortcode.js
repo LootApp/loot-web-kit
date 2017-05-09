@@ -7,7 +7,7 @@ import stringFormatter from "./stringFormatter";
 const formatSortcode = (value = "") =>
   stringFormatter({
     value: value.toString().replace(/[^0-9-]/g, ""),
-    delimiter: " ",
+    delimiter: "-",
     occurance: 2
   });
 

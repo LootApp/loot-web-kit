@@ -10,6 +10,7 @@
       "title": "Components",
       "links": [
         { "to": "/styleguide/components/input", "text": "Input" },
+        { "to": "/styleguide/components/form", "text": "Form" },
         { "to": "/styleguide/components/input-email", "text": "InputEmail" },
         { "to": "/styleguide/components/input-radio", "text": "InputRadio" },
         { "to": "/styleguide/components/input-money", "text": "InputMoney" },

@@ -48,7 +48,7 @@ class InputRadio extends Component {
   };
 
   static defaultProps = {
-    onChange: null
+    onChange: () => {}
   };
 
   _onChange = ({ target }) => this.props.onChange(target.id);

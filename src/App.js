@@ -7,6 +7,7 @@ import {
   Switch
 } from "react-router-dom";
 import Accordion from "./elements/Accordion";
+import FormExample from "./examples/components/FormExample";
 import InputExample from "./examples/components/InputExample";
 import InputSortcodeExample from "./examples/components/InputSortcodeExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
@@ -188,6 +189,10 @@ class App extends Component {
               Open Menu
             </SMobileMenu>
             <Switch>
+              <Route
+                path="/styleguide/components/form"
+                component={FormExample}
+              />
               <Route
                 path="/styleguide/components/input"
                 component={InputExample}

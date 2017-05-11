@@ -12,10 +12,6 @@ class Form extends Component {
     onSubmit: PropTypes.func.isRequired
   };
 
-  static defaultProps = {
-    onSubmit: null
-  };
-
   componentWillUnmount() {
     document.activeElement.blur();
   }
@@ -26,7 +22,7 @@ class Form extends Component {
   };
 
   render = () => (
-    <StyledForm onSubmit={this._onSubmit}>
+    <StyledForm {...this.props} onSubmit={this._onSubmit}>
       {this.props.children}
     </StyledForm>
   )

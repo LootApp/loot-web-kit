@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import LiveEditor from "../../elements/LiveEditor";
 import Description from "../../elements/Description";
 import Form from "../../components/Form";
+import Button from "../../components/Button";
+import InputEmail from "../../components/InputEmail";
+import InputPassword from "../../components/InputPassword";
 
 const docs = `
   # Form [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/FormExample.js)
@@ -12,9 +15,27 @@ const docs = `
 `;
 
 const code = `
-  <Form onSubmit={this._onSubmit}>
-    
+  <Form onSubmit={() => { alert('Form Submitted!')}} style={{ height: "100%", "borderRadius": "5px", padding: "20px" }}>
+    <h3 style={{ textAlign: 'center', }}>Login</h3>
+    <InputEmail label="Email" />
+    <InputPassword label="Password" />
+    <Button fullWidth style={{ margin: "20px 0 0" }} />
   </Form>
+`;
+
+const props = `
+  # Props
+
+  **children**: element
+
+  form input elements are expected as children. *Required*
+
+  ---
+
+  **onSubmit**: func
+
+  onSubmit function to be passed the form. *Required*
+
 `;
 
 class InputEmailExample extends Component {
@@ -22,7 +43,8 @@ class InputEmailExample extends Component {
     return (
       <div>
         <Description source={docs} />
-        <LiveEditor scope={{ Form }} code={code} />
+        <LiveEditor scope={{ Form, InputEmail, InputPassword, Button }} code={code} />
+        <Description source={props} />
       </div>
     );
   }

@@ -34,12 +34,16 @@ const SInputVerify = styled.input`
 
 class InputVerify extends Component {
   static propTypes = {
-    fields: PropTypes.number
+    fields: PropTypes.number,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
-    fields: 4
+    fields: 4,
+    onChange: code => typeof code === "string" && console.log(code)
   };
+
+  state = { verifyCode: [] }
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyDown);
@@ -54,6 +58,8 @@ class InputVerify extends Component {
       const field = document.activeElement;
       if (field.value) {
         field.value = "";
+        this.state.verifyCode[field.id] = field.value;
+        this.props.onChange(this.state.verifyCode.join(""));
       } else {
         field.id > 1 && this[`input${parseInt(field.id - 1, 0)}`].focus();
       }
@@ -63,15 +69,16 @@ class InputVerify extends Component {
   _onChange = ({ target }) => {
     const { value, id } = target;
     if (value) {
-      // only use numbers and the last charecter
       this[`input${id}`].value =
         value
         .replace(/[^0-9]/g, "")
         .substring(value.length - 1, value.length);
-      // focus on the next input if available
+
       if (id <= this.props.fields - 1 && !!value.replace(/[^0-9]/g, ""))
         this[`input${parseInt(id, 0) + 1}`].focus();
     }
+    this.state.verifyCode[id] = this[`input${id}`].value;
+    this.props.onChange(this.state.verifyCode.join(""));
   }
 
   _createField = (numberOfFields) => {

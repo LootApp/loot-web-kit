@@ -20,7 +20,7 @@ const props = `
 `;
 
 const code = `
-  <InputVerify fields={5} />
+  <InputVerify fields={5} onChange={(verifyCode) => typeof verifyCode === "string" && console.log(verifyCode) }/>
 `;
 
 class InputVerifyExample extends Component {

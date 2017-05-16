@@ -40,7 +40,7 @@ class InputVerify extends Component {
 
   static defaultProps = {
     fields: 4,
-    onChange: code => typeof code === "string" && console.log(code)
+    onChange: verifyCode => verifyCode
   };
 
   state = { verifyCode: [] }

@@ -43,7 +43,10 @@ class InputVerify extends Component {
     onChange: () => {}
   };
 
-  state = { verifyCode: [] }
+  constructor() {
+    super();
+    this.verifyCode = [];
+  }
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyDown);
@@ -58,8 +61,8 @@ class InputVerify extends Component {
       const field = document.activeElement;
       if (field.value) {
         field.value = "";
-        this.state.verifyCode[field.id] = field.value;
-        this.props.onChange(this.state.verifyCode.join(""));
+        this.verifyCode[field.id] = field.value;
+        this.props.onChange(this.verifyCode.join(""));
       } else {
         field.id > 1 && this[`input${parseInt(field.id - 1, 0)}`].focus();
       }
@@ -77,8 +80,8 @@ class InputVerify extends Component {
       if (id <= this.props.fields - 1 && !!value.replace(/[^0-9]/g, ""))
         this[`input${parseInt(id, 0) + 1}`].focus();
     }
-    this.state.verifyCode[id] = this[`input${id}`].value;
-    this.props.onChange(this.state.verifyCode.join(""));
+    this.verifyCode[id] = this[`input${id}`].value;
+    this.props.onChange(this.verifyCode.join(""));
   }
 
   _createField = (numberOfFields) => {

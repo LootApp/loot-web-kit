@@ -7,11 +7,13 @@
     "url": "https://github.com/LootApp/loot-web-kit.git"
   },
   "dependencies": {
+    "country-code-emoji": "0.0.1",
     "material-datetime-picker": "^2.3.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-clipboard.js": "1.1.1",
     "react-dom": "^15.5.4",
+    "react-easy-emoji": "^1.0.4",
     "react-live": "1.4.4",
     "react-markdown": "^2.5.0",
     "react-router-dom": "^4.1.1",

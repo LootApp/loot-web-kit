@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 import { flag } from "country-code-emoji";
 import emoji from "react-easy-emoji";
-import Input from "../Input";
-import countries from "./lib/countries.json";
-import dropDownIconFill from "./assets/drop_down_fill.svg";
-import dropDownIconNoFill from "./assets/drop_down_no_fill.svg";
-import { colours, transitions } from "../../Constants";
+import Input from "./Input";
+import countries from "../helpers/lib/countries.json";
+import dropDownIconFill from "../assets/drop_down_fill.svg";
+import dropDownIconNoFill from "../assets/drop_down_no_fill.svg";
+import { colours, transitions } from "../Constants";
 
 const fadeIn = keyframes`
   0% { transform: translateY(-10px); opacity: 0;}
@@ -45,7 +45,7 @@ const SSpan = styled.span`
 `;
 
 const FlagPlaceholder = styled.div`
-  max-width: 100px;
+  width: 150px;
   height: 35px;
   display: flex;
   cursor: pointer;
@@ -141,7 +141,7 @@ const SItemText = styled.span`
 `;
 class InputMobileNumber extends Component {
 
-  state = { dialCodeList: "", flag: emoji(flag("GB")), dialCode: "+44" };
+  state = { dialCodeList: "", flag: emoji(flag("GB")), dialCode: "+44", selected: "" };
 
   componentDidMount() {
     document.addEventListener("click", this.onDocClick);
@@ -165,6 +165,18 @@ class InputMobileNumber extends Component {
       this.state.dialCodeList === "open" &&
       this.setState({ dialCodeList: "closed" });
     }
+    let temp = document.getElementById("code-list").children;
+    // for (var i = 0; i < temp.length; i++) {
+    //   const country = temp[i].getAttribute("data-country").substring(0, 1).toLowerCase();
+    //   if (country === event.key.toLowerCase()) {
+    //     temp[i].scrollIntoView();
+    //     this.setState({ selected: i });
+    //     console.log(temp[i].getBoundingClientRect().top);
+    //     return
+    //   }
+    // }
+    if (event.key === "ArrowUp") console.log(temp[this.state.selected - 1]); temp[this.state.selected - 1].scrollIntoView();
+    if (event.key === "ArrowDown") console.log(temp[this.state.selected + 1]); temp[this.state.selected + 1].scrollIntoView();
   }
 
   setCountry = (country) => {
@@ -210,8 +222,9 @@ class InputMobileNumber extends Component {
         />
         <SListContainer id="code-list" isOpen={this.state.dialCodeList}>
           {
-            countries.map(country => (
+            countries.map((country, index) => (
               <SItem
+                data-country={`${country.name}`}
                 className="dial-code-element"
                 key={`${country.dial_code}-${country.name}`}
                 onClick={() => { this.setCountry(country); }}

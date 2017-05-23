@@ -175,7 +175,7 @@ class InputMobileNumber extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList === "open") {
       for (let i = 0; i < countryList.length; i += 1) {
         if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() === event.key.toLowerCase()) {
           this.setCountry(i);
@@ -195,6 +195,12 @@ class InputMobileNumber extends Component {
         selected: index
       });
       countryList[index].scrollIntoView();
+    }
+  }
+
+  _onChange = value => {
+    if (typeof value === "string") {
+      return value.replace(/[^0-9-]/g, "");
     }
   }
 
@@ -232,8 +238,9 @@ class InputMobileNumber extends Component {
         </SFlagInputContainer>
         <SInput
           {...this.props}
-          type="email"
+          type="tel"
           noValidate
+          onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="code-list" isOpen={this.state.dialCodeList}>

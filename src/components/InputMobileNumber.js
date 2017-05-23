@@ -175,7 +175,7 @@ class InputMobileNumber extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "")) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList) {
       for (let i = 0; i < countryList.length; i += 1) {
         if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() === event.key.toLowerCase()) {
           this.setCountry(i);

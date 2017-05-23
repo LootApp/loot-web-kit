@@ -141,7 +141,7 @@ const SItemText = styled.span`
 `;
 class InputMobileNumber extends Component {
 
-  state = { dialCodeList: "", flag: emoji(flag("GB")), dialCode: "+44", selected: "" };
+  state = { dialCodeList: "", flag: emoji(flag("GB")), dialCode: "+44", selected: 0 };
 
   componentDidMount() {
     document.addEventListener("click", this.onDocClick);
@@ -164,19 +164,16 @@ class InputMobileNumber extends Component {
     const temp = document.getElementById("code-list").children;
     switch (event.key) {
       case "Escape":
-        this.state.dialCodeList === "open" &&
-        this.setState({ dialCodeList: "closed" });
+        this.closedList();
         break;
       case "ArrowUp":
-        this.state.selected > 0 &&
         this.setCountry(this.state.selected - 1, false);
         break;
       case "ArrowDown":
-        this.state.selected < temp.length &&
         this.setCountry(this.state.selected + 1, false);
         break;
       case "Enter":
-        this.setState({ dialCodeList: "closed" });
+        this.closedList();
         break;
       default:
     }
@@ -190,7 +187,7 @@ class InputMobileNumber extends Component {
 
   setCountry = (index, shouldClose) => {
     const temp = document.getElementById("code-list").children;
-    if (index > 0 && index < temp.length) {
+    if (index >= 0 && index < temp.length) {
       this.setState({
         flag: emoji(flag(temp[index].getAttribute("data-country-code"))),
         dialCode: temp[index].getAttribute("data-country-dial-code"),
@@ -208,6 +205,11 @@ class InputMobileNumber extends Component {
       }
       return { dialCodeList: "open" };
     });
+  }
+
+  closedList = () => {
+    this.state.dialCodeList === "open" &&
+    this.setState({ dialCodeList: "closed" });
   }
 
   render() {

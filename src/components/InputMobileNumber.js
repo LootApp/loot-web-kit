@@ -155,16 +155,17 @@ class InputMobileNumber extends Component {
 
   onDocClick = ({ target }) => {
     if (target.className.indexOf("dial-code-element") < 0) {
-      this.state.dialCodeList === "open" &&
-      this.setState({ dialCodeList: "closed" });
+      this.closeList();
     }
   }
 
   onKeyDown = (event) => {
-    const temp = document.getElementById("code-list").children;
+    const countryList = document.getElementById("code-list").children;
     switch (event.key) {
       case "Escape":
-        this.closedList();
+      case "Tab":
+      case "Enter":
+        this.closeList();
         break;
       case "ArrowUp":
         this.setCountry(this.state.selected - 1, false);
@@ -172,29 +173,28 @@ class InputMobileNumber extends Component {
       case "ArrowDown":
         this.setCountry(this.state.selected + 1, false);
         break;
-      case "Enter":
-        this.closedList();
-        break;
       default:
     }
-    for (let i = 0; i < temp.length; i += 1) {
-      if (temp[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() === event.key.toLowerCase()) {
-        this.setCountry(i);
-        return;
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "")) {
+      for (let i = 0; i < countryList.length; i += 1) {
+        if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() === event.key.toLowerCase()) {
+          this.setCountry(i);
+          return;
+        }
       }
     }
   }
 
   setCountry = (index, shouldClose) => {
-    const temp = document.getElementById("code-list").children;
-    if (index >= 0 && index < temp.length) {
+    const countryList = document.getElementById("code-list").children;
+    if (index >= 0 && index < countryList.length) {
       this.setState({
-        flag: emoji(flag(temp[index].getAttribute("data-country-code"))),
-        dialCode: temp[index].getAttribute("data-country-dial-code"),
+        flag: emoji(flag(countryList[index].getAttribute("data-country-code"))),
+        dialCode: countryList[index].getAttribute("data-country-dial-code"),
         dialCodeList: shouldClose ? "closed" : "open",
         selected: index
       });
-      temp[index].scrollIntoView();
+      countryList[index].scrollIntoView();
     }
   }
 
@@ -207,7 +207,7 @@ class InputMobileNumber extends Component {
     });
   }
 
-  closedList = () => {
+  closeList = () => {
     this.state.dialCodeList === "open" &&
     this.setState({ dialCodeList: "closed" });
   }

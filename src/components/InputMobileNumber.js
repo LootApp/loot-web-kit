@@ -72,7 +72,6 @@ const FlagPlaceholder = styled.div`
     left: ${({ isOpen }) => (isOpen ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
-    z-index: 0;
     background-color: ${colours.blue};
     transition: ${transitions.long};
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
@@ -187,7 +186,7 @@ class InputMobileNumber extends Component {
 
   setCountry = (index, shouldClose) => {
     const countryList = document.getElementById("code-list").children;
-    if (index >= 0 && index < countryList.length) {
+    if ((index >= 0 && index < countryList.length) && this.state.dialCodeList === "open") {
       this.setState({
         flag: emoji(flag(countryList[index].getAttribute("data-country-code"))),
         dialCode: countryList[index].getAttribute("data-country-dial-code"),

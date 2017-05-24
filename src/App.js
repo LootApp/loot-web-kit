@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Accordion from "./elements/Accordion";
 import FormExample from "./examples/components/FormExample";
+import InputMobileNumber from "./examples/components/InputMobileNumberExample";
 import InputVerify from "./examples/components/InputVerifyExample";
 import InputExample from "./examples/components/InputExample";
 import InputSortcodeExample from "./examples/components/InputSortcodeExample";
@@ -197,6 +198,10 @@ class App extends Component {
               <Route
                 path="/styleguide/components/input"
                 component={InputExample}
+              />
+              <Route
+                path="/styleguide/components/input-mobile-number"
+                component={InputMobileNumber}
               />
               <Route
                 path="/styleguide/components/input-verify"

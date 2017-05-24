@@ -11,6 +11,7 @@
       "links": [
         { "to": "/styleguide/components/input", "text": "Input" },
         { "to": "/styleguide/components/form", "text": "Form" },
+        { "to": "/styleguide/components/input-mobile-number", "text": "InputMobileNumber" },
         { "to": "/styleguide/components/input-verify", "text": "InputVerify" },
         { "to": "/styleguide/components/input-email", "text": "InputEmail" },
         { "to": "/styleguide/components/input-radio", "text": "InputRadio" },

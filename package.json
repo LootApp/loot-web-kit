@@ -1,7 +1,7 @@
 {
   "name": "loot-web-kit",
-  "version": "1.0.0",
-  "description": "loot-web-kit React component",
+  "version": "0.0.1",
+  "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -45,10 +45,12 @@
     "react-router-dom": "^4.1.1"
   },
   "author": "LootApp",
-  "homepage": "https://loot.io/loot-web-kit",
+  "homepage": "https://lootapp.github.io/loot-web-kit",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/LootApp/loot-web-kit",
   "keywords": [
-    "loot-web-kit"
+    "loot-web-kit",
+    "react",
+    "styled-components"
   ]
 }

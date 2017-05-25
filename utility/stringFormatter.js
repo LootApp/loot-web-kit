@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var stringFormatter=function(a){var b=a.occurance,c=a.delimiter,d=a.value,e=new RegExp(""+c,"g"),f=new RegExp("(.{"+b+"})","g"),g=new RegExp(c+"(?!.*[0-9])","g"),h=d.replace(e,"");return h=h.replace(f,"$1"+c).replace(g,""),h};exports.default=stringFormatter;

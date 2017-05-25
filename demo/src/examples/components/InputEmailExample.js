@@ -8,7 +8,7 @@ const docs = `
   ${"`import InputEmail from 'loot-web-kit/lib/InputEmail'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputEmail.js)
 
-  Input for email string formating *Extends:* [Input](/styleguide/components/input)
+  Input for email string formating *Extends:* [Input](/loot-web-kit/components/input)
 `;
 
 const code = `

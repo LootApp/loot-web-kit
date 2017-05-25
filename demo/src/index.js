@@ -156,7 +156,7 @@ class Demo extends Component {
           <Sidebar open={this.state.menuOpen}>
             <Branding>
               <SLink
-                to="/styleguide"
+                to="/loot-web-kit"
                 onClick={() => this.setState({ menuOpen: false })}
               >
                 <img src={anchor} alt="Loot anchor" />
@@ -192,78 +192,78 @@ class Demo extends Component {
             </SMobileMenu>
             <Switch>
               <Route
-                path="/styleguide/components/form"
+                path="/loot-web-kit/components/form"
                 component={FormExample}
               />
               <Route
-                path="/styleguide/components/input"
+                path="/loot-web-kit/components/input"
                 component={InputExample}
               />
               <Route
-                path="/styleguide/components/input-verify"
+                path="/loot-web-kit/components/input-verify"
                 component={InputVerify}
               />
               <Route
-                path="/styleguide/components/input-email"
+                path="/loot-web-kit/components/input-email"
                 component={InputEmailExample}
               />
               <Route
-                path="/styleguide/components/input-radio"
+                path="/loot-web-kit/components/input-radio"
                 component={InputRadioExample}
               />
               <Route
-                path="/styleguide/components/input-sortcode"
+                path="/loot-web-kit/components/input-sortcode"
                 component={InputSortcodeExample}
               />
               <Route
-                path="/styleguide/components/input-money"
+                path="/loot-web-kit/components/input-money"
                 component={InputMoneyExample}
               />
               <Route
-                path="/styleguide/components/input-date-time"
+                path="/loot-web-kit/components/input-date-time"
                 component={InputDateTimeExample}
               />
               <Route
-                path="/styleguide/components/input-card"
+                path="/loot-web-kit/components/input-card"
                 component={InputCardExample}
               />
               <Route
-                path="/styleguide/components/input-password"
+                path="/loot-web-kit/components/input-password"
                 component={InputPasswordExample}
               />
               <Route
-                path="/styleguide/components/input-increment"
+                path="/loot-web-kit/components/input-increment"
                 component={InputIncrementExample}
               />
               <Route
-                path="/styleguide/utility/is-valid-email"
+                path="/loot-web-kit/utility/is-valid-email"
                 component={isValidEmailExample}
               />
               <Route
-                path="/styleguide/utility/is-mobile"
+                path="/loot-web-kit/utility/is-mobile"
                 component={isMobileExample}
               />
               <Route
-                path="/styleguide/utility/is-date-input"
+                path="/loot-web-kit/utility/is-date-input"
                 component={isDateInputExample}
               />
               <Route
-                path="/styleguide/utility/format-amount"
+                path="/loot-web-kit/utility/format-amount"
                 component={formatAmountExample}
               />
               <Route
-                path="/styleguide/utility/format-sortcode"
+                path="/loot-web-kit/utility/format-sortcode"
                 component={formatSortcodeExample}
               />
               <Route
-                path="/styleguide/utility/string-formatter"
+                path="/loot-web-kit/utility/string-formatter"
                 component={stringFormatterExample}
               />
               <Route
-                path="/styleguide/components/button"
+                path="/loot-web-kit/components/button"
                 component={ButtonExample}
               />
-              <Route path="/styleguide" component={ColorScheme} />
+              <Route path="/loot-web-kit" component={ColorScheme} />
             </Switch>
           </Content>
         </Main>

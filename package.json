@@ -45,7 +45,7 @@
     "react-router-dom": "^4.1.1"
   },
   "author": "LootApp",
-  "homepage": "https://loot.io/styleguide",
+  "homepage": "https://loot.io/loot-web-kit",
   "license": "MIT",
   "repository": "",
   "keywords": [

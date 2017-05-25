@@ -8,7 +8,7 @@ const docs = `
   ${"`import InputPassword from 'loot-web-kit/lib/InputPassword'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputPassword.js)
 
-  Input for password string formating *Extends:* [Input](/styleguide/components/input)
+  Input for password string formating *Extends:* [Input](/loot-web-kit/components/input)
 `;
 
 const props = `

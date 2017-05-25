@@ -3,35 +3,35 @@
     {
       "title": "Design",
       "links": [
-        { "to": "/styleguide", "text": "Colour Scheme" }
+        { "to": "/loot-web-kit", "text": "Colour Scheme" }
       ]
     },
     {
       "title": "Components",
       "links": [
-        { "to": "/styleguide/components/input", "text": "Input" },
-        { "to": "/styleguide/components/form", "text": "Form" },
-        { "to": "/styleguide/components/input-verify", "text": "InputVerify" },
-        { "to": "/styleguide/components/input-email", "text": "InputEmail" },
-        { "to": "/styleguide/components/input-radio", "text": "InputRadio" },
-        { "to": "/styleguide/components/input-money", "text": "InputMoney" },
-        { "to": "/styleguide/components/input-sortcode", "text": "InputSortcode" },
-        { "to": "/styleguide/components/input-date-time", "text": "InputDateTme" },
-        { "to": "/styleguide/components/input-card", "text": "InputCard" },
-        { "to": "/styleguide/components/input-password", "text": "InputPassword" },
-        { "to": "/styleguide/components/input-increment", "text": "InputIncrement" },
-        { "to": "/styleguide/components/button", "text": "Button" }
+        { "to": "/loot-web-kit/components/input", "text": "Input" },
+        { "to": "/loot-web-kit/components/form", "text": "Form" },
+        { "to": "/loot-web-kit/components/input-verify", "text": "InputVerify" },
+        { "to": "/loot-web-kit/components/input-email", "text": "InputEmail" },
+        { "to": "/loot-web-kit/components/input-radio", "text": "InputRadio" },
+        { "to": "/loot-web-kit/components/input-money", "text": "InputMoney" },
+        { "to": "/loot-web-kit/components/input-sortcode", "text": "InputSortcode" },
+        { "to": "/loot-web-kit/components/input-date-time", "text": "InputDateTme" },
+        { "to": "/loot-web-kit/components/input-card", "text": "InputCard" },
+        { "to": "/loot-web-kit/components/input-password", "text": "InputPassword" },
+        { "to": "/loot-web-kit/components/input-increment", "text": "InputIncrement" },
+        { "to": "/loot-web-kit/components/button", "text": "Button" }
       ]
     },
     {
       "title": "Utility",
       "links": [
-        { "to": "/styleguide/utility/is-mobile", "text": "isMobile" },
-        { "to": "/styleguide/utility/is-valid-email", "text": "isValidEmail" },
-        { "to": "/styleguide/utility/is-date-input", "text": "isDateInput" },
-        { "to": "/styleguide/utility/format-amount", "text": "formatAmount" },
-        { "to": "/styleguide/utility/format-sortcode", "text": "formatSortcode" },
-        { "to": "/styleguide/utility/string-formatter", "text": "stringFormatter" }
+        { "to": "/loot-web-kit/utility/is-mobile", "text": "isMobile" },
+        { "to": "/loot-web-kit/utility/is-valid-email", "text": "isValidEmail" },
+        { "to": "/loot-web-kit/utility/is-date-input", "text": "isDateInput" },
+        { "to": "/loot-web-kit/utility/format-amount", "text": "formatAmount" },
+        { "to": "/loot-web-kit/utility/format-sortcode", "text": "formatSortcode" },
+        { "to": "/loot-web-kit/utility/string-formatter", "text": "stringFormatter" }
       ]
     }
   ]

@@ -8,7 +8,7 @@ const docs = `
   ${"`import InputSortcode from 'loot-web-kit/lib/InputSortcode'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputSortcode.js)
 
-  Input for sort code string formating *Extends:* [Input](/styleguide/components/input)
+  Input for sort code string formating *Extends:* [Input](/loot-web-kit/components/input)
 `;
 
 const code = `

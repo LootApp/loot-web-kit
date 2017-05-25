@@ -8,7 +8,7 @@ const docs = `
   ${"`import InputDateTime from 'loot-web-kit/lib/InputDateTime'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputDateTime.js)
 
-  Input that displays datepicker *Extends:* [Input](/styleguide/components/input)
+  Input that displays datepicker *Extends:* [Input](/loot-web-kit/components/input)
 `;
 
 const props = `

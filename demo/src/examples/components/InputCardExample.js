@@ -8,7 +8,7 @@ const docs = `
   ${"`import InputCard from 'loot-web-kit/lib/InputCard'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputCard.js)
 
-  Input for card string formating *Extends:* [Input](/styleguide/components/input)
+  Input for card string formating *Extends:* [Input](/loot-web-kit/components/input)
 `;
 
 const code = `<InputCard

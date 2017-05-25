@@ -1,0 +1,54 @@
+{
+  "name": "loot-web-kit",
+  "version": "1.0.0",
+  "description": "loot-web-kit React component",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "build": "nwb build-react-component; rm -rf docs/*; cp -R demo/dist/* docs",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "lint": "eslint src",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
+  },
+  "dependencies": {
+    "material-datetime-picker": "^2.4.0"
+  },
+  "peerDependencies": {
+    "react": "16.x",
+    "styled-components": "2.x"
+  },
+  "devDependencies": {
+    "nwb": "0.15.x",
+    "prop-types": "^15.5.10",
+    "react": "16.0.0-alpha.12",
+    "react-dom": "16.0.0-alpha.12",
+    "styled-components": "2.0.0-19",
+    "babel-eslint": "7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "react-clipboard.js": "1.1.1",
+    "react-live": "1.4.4",
+    "react-markdown": "^2.5.0",
+    "react-router-dom": "^4.1.1"
+  },
+  "author": "LootApp",
+  "homepage": "https://loot.io/styleguide",
+  "license": "MIT",
+  "repository": "",
+  "keywords": [
+    "loot-web-kit"
+  ]
+}

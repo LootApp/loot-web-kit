@@ -5,7 +5,7 @@ import InputVerify from "../../../../src/components/InputVerify";
 
 const docs = `
   # InputVerify [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputVerifyExample.js)
-  ${"`import InputVerify from 'loot-web-kit/lib/InputVerify'`"}
+  ${"`import InputVerify from 'loot-web-kit/es/InputVerify'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputVerify.js)
 `;
 

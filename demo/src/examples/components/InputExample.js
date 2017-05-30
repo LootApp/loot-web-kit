@@ -5,7 +5,7 @@ import Description from "../../components/Description";
 
 const docs = `
   # Input [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputExample.js)
-  ${"`import Input from 'loot-web-kit/lib/Input'`"}
+  ${"`import Input from 'loot-web-kit/es/Input'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/Input.js)
 
   A foundational component for inputting text into the app via a keyboard.

@@ -1,0 +1,29 @@
+## Use node.js v7
+machine:
+  node:
+    version: 7.10.0
+  environment:
+    CONTINUOUS_INTEGRATION: true
+
+## Install node modules
+dependencies:
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+  cache_directories:
+    - node_modules
+  override:
+    - npm install
+
+## Run tests
+test:
+  override:
+    - npm run lint
+    - npm run test
+    - npm run build
+
+# Deployment
+deployment:
+  production:
+    branch: production
+    commands:
+      - npm publish

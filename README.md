@@ -1,16 +1,36 @@
 # loot-web-kit
+[https://lootapp.github.io/loot-web-kit](https://lootapp.github.io/loot-web-kit)
+Set of react UI components used by [loot.io](https://loot.io) front end team.
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+## Usage
+Download package from npm `npm install loot-web-kit` or `yarn add loot-web-kit`
+You have access to compiled es5 files from `lib` or es6 from `es`
 
-Describe loot-web-kit here.
+Example component usage:
+```
+import { Form } from 'loot-web-kit/es'
+/* or */
+import { Form } from 'loot-web-kit/es'
+import React, { Component } from 'react'
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+class Example extends Component {
+  render() {
+    return <Form />
+  }
+}
+```
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+## Docs
+Full documentation and list of components are avaliable at [https://lootapp.github.io/loot-web-kit](https://lootapp.github.io/loot-web-kit)
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+## Development
+Project is based on [nwb component libraries](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb)
+
+`yarn start` - starts demo website from `/demo` at `localhost:3000`
+`yarn build` - builds es5 and es6 modules along `/docs`
+`yarn test` - runs tests
+
+Development files are avaliable within `/src` folder, if you want to include component to build it must be
+exported via `index.js`
+
+[nwb docs](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb)

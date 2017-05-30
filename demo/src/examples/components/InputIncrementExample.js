@@ -5,7 +5,7 @@ import InputIncrement from "../../../../src/components/InputIncrement";
 
 const docs = `
   # InputIncrement [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputIncrementExample.js)
-  ${"`import InputIncrement from 'loot-web-kit/lib/InputIncrement'`"}
+  ${"`import InputIncrement from 'loot-web-kit/es/InputIncrement'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputIncrement.js)
 
   Input for money incrementing

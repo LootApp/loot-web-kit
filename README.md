@@ -10,7 +10,7 @@ Example component usage:
 ```
 import { Form } from 'loot-web-kit/es'
 /* or */
-import { Form } from 'loot-web-kit/es'
+import { Form } from 'loot-web-kit/lib'
 import React, { Component } from 'react'
 
 class Example extends Component {

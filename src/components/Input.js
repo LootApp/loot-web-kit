@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const SContainer = styled.div`
   border-bottom: 1px ${props => (props.disabled ? "dashed" : "solid")} #c6c6c6;
-  transition: all .15s ease;
+  transition: all 0.15s ease;
   position: relative;
   pointer-events: ${props => (props.disabled ? "none" : "auto")};
 
@@ -18,7 +18,7 @@ const SContainer = styled.div`
     bottom: -2px;
     z-index: 0;
     background-color: ${props => (props.error ? "#da6e6e" : props.colour)};
-    transition: all .2s ease;
+    transition: all 0.2s ease;
     opacity: ${props => (props.focus ? 1 : 0)};
     display: ${props => (props.disabled ? "none" : "block")};
   }
@@ -36,7 +36,7 @@ const SInput = styled.input`
   font-size: 16px;
   padding: 8px 0;
   background-color: transparent;
-  transition: all .15s ease;
+  transition: all 0.15s ease;
   opacity: ${props => (props.focus ? 1 : 0)};
   text-transform: ${props => (props.uppercase ? "uppercase" : props.capitalise ? "capitalize" : "none")};
 
@@ -56,7 +56,7 @@ const SLabel = styled.label`
   pointer-events: none;
   font-size: 12px;
   display: block;
-  transition: all .15s base;
+  transition: all 0.15s base;
   transform-origin: top left;
   transform:
     scale(${props => (props.focus ? 1 : 1.3333)})
@@ -73,7 +73,7 @@ const SHelperText = styled.span`
   font-size: 12px;
   color: ${props => (props.error ? "#da6e6e" : "#545454")};
   display: block;
-  transition: all .15s base;
+  transition: all 0.15s base;
   margin-top: 8px;
 `;
 

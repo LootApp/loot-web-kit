@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Input from "../../../../src/components/InputMobileNumber";
+import InputMobileNumber from "../../../../src/components/InputMobileNumber";
 import LiveEditor from "../../components/LiveEditor";
 import Description from "../../components/Description";
 

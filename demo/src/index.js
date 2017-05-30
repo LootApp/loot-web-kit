@@ -206,7 +206,7 @@ class Demo extends Component {
               />
               <Route
                 path="/loot-web-kit/components/input-mobile-number"
-                component={InputMobileNumber}
+                component={InputMobileNumberExample}
               />
               <Route
                 path="/loot-web-kit/components/input-email"

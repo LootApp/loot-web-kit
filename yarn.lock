@@ -1713,6 +1713,10 @@ cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
     parse-json "^2.2.0"
     require-from-string "^1.1.0"
 
+country-code-emoji@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/country-code-emoji/-/country-code-emoji-0.0.1.tgz#de9bc8cfae25aa56c44bae1e18123cbdffba66bb"
+
 create-ecdh@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.0.tgz#888c723596cdf7612f6498233eebd7a35301737d"
@@ -3906,7 +3910,7 @@ lodash._isiterateecall@^3.0.0:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/lodash._isiterateecall/-/lodash._isiterateecall-3.0.9.tgz#5203ad7ba425fae842460e696db9cf3e6aac057c"
 
-lodash.assign@^4.2.0:
+lodash.assign@^4.0.8, lodash.assign@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/lodash.assign/-/lodash.assign-4.2.0.tgz#0d99f3ccd7a6d261d19bdaeb9245005d285808e7"
 
@@ -3926,6 +3930,10 @@ lodash.create@3.1.1:
     lodash._basecreate "^3.0.0"
     lodash._isiterateecall "^3.0.0"
 
+lodash.flatten@^4.2.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
+
 lodash.isarguments@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz#2f573d85c6a24289ff00663b491c1d338ff3458a"
@@ -3937,6 +3945,10 @@ lodash.isarray@^3.0.0:
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+
+lodash.isstring@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
 
 lodash.keys@^3.0.0:
   version "3.1.2"
@@ -5213,6 +5225,13 @@ react-dom@16.0.0-alpha.12:
     object-assign "^4.1.0"
     prop-types "^15.5.6"
 
+react-easy-emoji@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-easy-emoji/-/react-easy-emoji-1.0.4.tgz#ace3cd1e00f4eeed67dfc4b2248dd4781edd9fd3"
+  dependencies:
+    lodash.assign "^4.0.8"
+    string-replace-to-array "^1.0.1"
+
 react-live@1.5.3:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.5.3.tgz#57db04f21abdc4f2eaa7b942424127c9c48b4b80"
@@ -5920,6 +5939,14 @@ stream-http@^2.3.1:
 strict-uri-encode@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
+
+string-replace-to-array@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/string-replace-to-array/-/string-replace-to-array-1.0.2.tgz#e557bb5306f7005cad1869d730f0ee70d649b309"
+  dependencies:
+    invariant "^2.2.1"
+    lodash.flatten "^4.2.0"
+    lodash.isstring "^4.0.1"
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"

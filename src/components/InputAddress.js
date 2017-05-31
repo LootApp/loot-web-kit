@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
-import { flag } from "country-code-emoji";
-import emoji from "react-easy-emoji";
 import Input from "./Input";
 import countries from "../helpers/countries.json";
-import dropDownIconFill from "../assets/drop_down_fill.svg";
-import dropDownIconNoFill from "../assets/drop_down_no_fill.svg";
 
 const fadeIn = keyframes`
   0% { transform: translateY(-10px); opacity: 0;}
@@ -22,61 +18,6 @@ const SInput = styled(Input)`
   padding-left: 10px;
 `;
 
-const SFlagInputContainer = styled.div`
-  display: flex;
-  width: 120px;
-  height: 50px;
-  position: relative;
-  align-items: flex-end;
-  justify-content: center;
-`;
-
-const SSpan = styled.span`
-  width: 20px;
-  height: 15px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  transition: all 0.2s ease;
-  background-position: center;
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-image: ${({ isOpen }) => isOpen ? `url(${dropDownIconNoFill})` : `url(${dropDownIconFill})`};
-`;
-
-const FlagPlaceholder = styled.div`
-  width: 150px;
-  height: 35px;
-  display: flex;
-  cursor: pointer;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  border-bottom: 1px solid #C6C6C6;
-  transition: all 0.15s ease;
-  span { padding: 0 5px; }
-  &:hover { border-color: #7C7C7C; }
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    height: 2px;
-    width: ${({ isOpen }) => (isOpen ? "100%" : "10%")};
-    left: ${({ isOpen }) => (isOpen ? "0%" : "45%")};
-    position: absolute;
-    bottom: -2px;
-    background-color: #4db7c3;
-    transition: all 0.2s ease;
-    opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  }
-`;
-
 const SContainer = styled.div`
   display: flex;
   padding: 15px;
@@ -87,8 +28,8 @@ const SContainer = styled.div`
 
 const SListContainer = styled.div`
   max-height: 160px;
-  width: calc(100% - 30px);
-  left: 15px;
+  width: calc(100% - 40px);
+  left: 25px;
   top: 90px;
   visibility: hidden;
   overflow-y: scroll;
@@ -122,43 +63,26 @@ const SItem = styled.div`
   }
 `;
 
-const SCountryFlag = styled.span`
-  font-size: 1.4em;
-`;
-
-const SCountryDialCode = styled.span`
-  color: #8C8D8F;
-  font-size: 1em;
-  font-weight: 500;
-`;
-
 const SItemText = styled.span`
   font-size: 1.1em;
   text-overflow: ellipsis;
   span { font-Weight: 600 }
 `;
+
 class InputAddress extends Component {
 
-  state = { dialCodeList: "open", flag: emoji(flag("GB")), dialCode: "+44", selected: 0 };
+  state = { addressList: "closed", selected: 0, address: "" };
 
   componentDidMount() {
-    document.addEventListener("click", this.onDocClick);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.onDocClick);
     document.removeEventListener("keydown", this.onKeyDown);
   }
 
-  onDocClick = ({ target }) => {
-    if (target.className.indexOf("dial-code-element") < 0) {
-      this.closeList();
-    }
-  }
-
   onKeyDown = (event) => {
-    const countryList = document.getElementById("code-list").children;
+    const countryList = document.getElementById("address-list").children;
     switch (event.key) {
       case "Escape":
       case "Tab":
@@ -166,63 +90,72 @@ class InputAddress extends Component {
         this.closeList();
         break;
       case "ArrowUp":
-        this.setCountry(this.state.selected - 1, false);
+        this.setAddress(this.state.selected - 1, false);
         break;
       case "ArrowDown":
-        this.setCountry(this.state.selected + 1, false);
+        this.setAddress(this.state.selected + 1, false);
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList === "open") {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressList === "open") {
       for (let i = 0; i < countryList.length; i += 1) {
-        if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() === event.key.toLowerCase()) {
-          this.setCountry(i);
+        if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase().indexOf(this.state.address.toLowerCase()) > -1) {
+          countryList[i].scrollIntoView();
           return;
         }
       }
     }
   }
 
-  setCountry = (index, shouldClose) => {
-    const countryList = document.getElementById("code-list").children;
-    if ((index >= 0 && index < countryList.length) && this.state.dialCodeList === "open") {
+  setAddress = (index, shouldClose) => {
+    const countryList = document.getElementById("address-list").children;
+    if ((index >= 0 && index < countryList.length)) {
       this.setState({
-        flag: emoji(flag(countryList[index].getAttribute("data-country-code"))),
-        dialCode: countryList[index].getAttribute("data-country-dial-code"),
-        dialCodeList: shouldClose ? "closed" : "open",
-        selected: index
+        selected: index,
+        addressList: shouldClose ? "closed" : "open",
+        address: countryList[index].getAttribute("data-country-name")
       });
       countryList[index].scrollIntoView();
     }
+    console.log('QUICK CHECK', this.state.address);
   }
 
-  _onChange = value => value
+  _onFocus = () => this.openList();
+  _onBlur = () => this.closeList();
 
-  toggleList = () => {
-    this.setState((prevState) => {
-      if (prevState.dialCodeList === "open") {
-        return { dialCodeList: "closed" };
-      }
-      return { dialCodeList: "open" };
-    });
+  _onChange = value => {
+    this.openList();
+    if (typeof value === "string") {
+      this.setState({ address: value });
+      this.state.address = value;
+    }
+    return this.state.address;
   }
 
   closeList = () => {
-    this.state.dialCodeList === "open" &&
-    this.setState({ dialCodeList: "closed" });
+    this.state.addressList === "open" &&
+    this.setState({ addressList: "closed" });
+  }
+
+  openList = () => {
+    this.state.addressList === "closed" &&
+    this.setState({ addressList: "open" });
   }
 
   render() {
+    console.log(this.state.address);
     return (
       <SContainer>
         <SInput
           {...this.props}
           type="tel"
+          value={this.state.address}
+          onBlur={this._onBlur}
+          onFocus={this._onFocus}
           noValidate
-          onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
-        <SListContainer id="code-list" isOpen={this.state.dialCodeList}>
+        <SListContainer id="address-list" isOpen={this.state.addressList}>
           {
             countries.map((country, index) => (
               <SItem
@@ -233,10 +166,9 @@ class InputAddress extends Component {
                 data-country-dial-code={`${country.dial_code}`}
                 className="dial-code-element"
                 key={`${country.dial_code}-${country.name}`}
-                onClick={() => { this.setCountry(index, true); }}
+                onClick={() => { this.setAddress(index, true); }}
               >
                 <SItemText>{`${country.name} `} <b>{country.dial_code}</b></SItemText>
-                <SCountryFlag>{emoji(flag(country.code))}</SCountryFlag>
               </SItem>
               )
             )

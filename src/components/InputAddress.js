@@ -139,7 +139,7 @@ const SItemText = styled.span`
 `;
 class InputAddress extends Component {
 
-  state = { dialCodeList: "", flag: emoji(flag("GB")), dialCode: "+44", selected: 0 };
+  state = { dialCodeList: "open", flag: emoji(flag("GB")), dialCode: "+44", selected: 0 };
 
   componentDidMount() {
     document.addEventListener("click", this.onDocClick);

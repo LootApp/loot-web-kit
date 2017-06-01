@@ -26,6 +26,7 @@ const code = `
       }
     ]}
     label='Address'
+    formatAddress={(address) => address.first_line+", "+address.street+", "+address.postcode}
   />
 `;
 

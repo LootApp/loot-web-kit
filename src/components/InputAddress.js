@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import Input from "./Input";
 import countries from "../helpers/countries.json";
@@ -15,7 +16,6 @@ const fadeOut = keyframes`
 
 const SInput = styled(Input)`
   flex-grow: 1;
-  padding-left: 10px;
 `;
 
 const SContainer = styled.div`
@@ -28,8 +28,8 @@ const SContainer = styled.div`
 
 const SListContainer = styled.div`
   max-height: 160px;
-  width: calc(100% - 40px);
-  left: 25px;
+  width: calc(100% - 30px);
+  left: 15px;
   top: 90px;
   visibility: hidden;
   overflow-y: scroll;
@@ -70,8 +70,15 @@ const SItemText = styled.span`
 `;
 
 class InputAddress extends Component {
+  static propTypes = {
+    addresses: PropTypes.array
+  };
 
-  state = { addressList: "closed", selected: 0, address: "" };
+  static defaultProps = {
+    addresses: []
+  };
+
+  state = { addressListStatus: "closed", selected: 0, address: "" };
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyDown);
@@ -82,7 +89,7 @@ class InputAddress extends Component {
   }
 
   onKeyDown = (event) => {
-    const countryList = document.getElementById("address-list").children;
+    const addressList = document.getElementById("address-list").children;
     switch (event.key) {
       case "Escape":
       case "Tab":
@@ -97,10 +104,10 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressList === "open") {
-      for (let i = 0; i < countryList.length; i += 1) {
-        if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase().indexOf(this.state.address.toLowerCase()) > -1) {
-          countryList[i].scrollIntoView();
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
+      for (let i = 0; i < addressList.length; i += 1) {
+        if (addressList[i].getAttribute("data-address").substring(0, 1).toLowerCase().indexOf(this.input._value().toLowerCase()) > -1) {
+          addressList[i].scrollIntoView();
           return;
         }
       }
@@ -108,67 +115,56 @@ class InputAddress extends Component {
   }
 
   setAddress = (index, shouldClose) => {
-    const countryList = document.getElementById("address-list").children;
-    if ((index >= 0 && index < countryList.length)) {
+    const addressList = document.getElementById("address-list").children;
+    if ((index >= 0 && index < addressList.length)) {
       this.setState({
         selected: index,
-        addressList: shouldClose ? "closed" : "open",
-        address: countryList[index].getAttribute("data-country-name")
+        addressListStatus: shouldClose ? "closed" : "open"
       });
-      countryList[index].scrollIntoView();
+      addressList[index].scrollIntoView();
+      this.input.setState({ value: addressList[index].getAttribute("data-address").trim() });
     }
-    console.log('QUICK CHECK', this.state.address);
   }
 
   _onFocus = () => this.openList();
   _onBlur = () => this.closeList();
 
-  _onChange = value => {
-    this.openList();
-    if (typeof value === "string") {
-      this.setState({ address: value });
-      this.state.address = value;
-    }
-    return this.state.address;
-  }
-
   closeList = () => {
-    this.state.addressList === "open" &&
-    this.setState({ addressList: "closed" });
+    this.state.addressListStatus === "open" &&
+    this.setState({ addressListStatus: "closed" });
   }
 
   openList = () => {
-    this.state.addressList === "closed" &&
-    this.setState({ addressList: "open" });
+    this.state.addressListStatus === "closed" &&
+    this.setState({ addressListStatus: "open" });
   }
 
   render() {
-    console.log(this.state.address);
+    const { addresses } = this.props;
     return (
       <SContainer>
         <SInput
           {...this.props}
           type="tel"
-          value={this.state.address}
+          noValidate
           onBlur={this._onBlur}
           onFocus={this._onFocus}
-          noValidate
           innerRef={input => (this.input = input)}
         />
-        <SListContainer id="address-list" isOpen={this.state.addressList}>
+        <SListContainer id="address-list" isOpen={this.state.addressListStatus}>
           {
-            countries.map((country, index) => (
+            addresses.map((address, index) => (
               <SItem
                 selected={index === this.state.selected}
                 data-index={index}
-                data-country-name={`${country.name}`}
-                data-country-code={`${country.code}`}
-                data-country-dial-code={`${country.dial_code}`}
-                className="dial-code-element"
-                key={`${country.dial_code}-${country.name}`}
+                data-address-first-line={`${address.first_line}`}
+                data-address-street={`${address.street}`}
+                data-address-postcode={`${address.postcode}`}
+                data-address={`${address.first_line}, ${address.street}, ${address.postcode}`}
+                key={`${address.first_line}`}
                 onClick={() => { this.setAddress(index, true); }}
               >
-                <SItemText>{`${country.name} `} <b>{country.dial_code}</b></SItemText>
+                <SItemText>{`${address.first_line}, ${address.street}, ${address.postcode}`}</SItemText>
               </SItem>
               )
             )

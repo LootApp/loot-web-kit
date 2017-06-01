@@ -15,15 +15,35 @@ const code = `
   <InputAddress
     addresses={[
       {
-        first_line: "54-56 Flat 7",
-        street: "Hornesy HighStreet",
-        postcode: "N8 7NX"
-      },
-      {
-        first_line: "Flat 9 Hyndman House",
+        first_line: "Flat 1 Hyndman House",
         street: "Brecknock Road",
         postcode: "N19 5AX"
-      }
+      },
+      {
+        first_line: "Flat 2 Hyndman House",
+        street: "Brecknock Road",
+        postcode: "N19 5AX"
+      },
+      {
+        first_line: "Flat 3 Hyndman House",
+        street: "Brecknock Road",
+        postcode: "N19 5AX"
+      },
+      {
+        first_line: "Flat 4 Hyndman House",
+        street: "Brecknock Road",
+        postcode: "N19 5AX"
+      },
+      {
+        first_line: "Flat 5 Hyndman House",
+        street: "Brecknock Road",
+        postcode: "N19 5AX"
+      },
+      {
+        first_line: "Flat 6 Hyndman House",
+        street: "Brecknock Road",
+        postcode: "N19 5AX"
+      },
     ]}
     label='Address'
     formatAddress={(address) => address.first_line+", "+address.street+", "+address.postcode}

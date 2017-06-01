@@ -94,8 +94,10 @@ class InputAddress extends Component {
     switch (event.key) {
       case "Escape":
       case "Tab":
-      case "Enter":
         this.closeList();
+        break;
+      case "Enter":
+        this.setAddress(this.state.selected, false);
         break;
       case "ArrowUp":
         this.setAddress(this.state.selected - 1, false);

@@ -156,10 +156,10 @@ class InputAddress extends Component {
           {
             addresses.map((address, index) => (
               <SItem
-                selected={index === this.state.selected}
+                key={formatAddress(address)}
                 data-index={index}
                 data-address={formatAddress(address)}
-                key={formatAddress(address)}
+                selected={index === this.state.selected}
                 onClick={() => { this.setAddress(index, true); }}
               >
                 <SItemText>{formatAddress(address)}</SItemText>

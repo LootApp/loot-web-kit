@@ -164,7 +164,9 @@ class InputAddress extends Component {
                 key={`${address.first_line}`}
                 onClick={() => { this.setAddress(index, true); }}
               >
-                <SItemText>{`${address.first_line}, ${address.street}, ${address.postcode}`}</SItemText>
+                <SItemText>
+                  {`${address.first_line}, ${address.street}, ${address.postcode}`}
+                </SItemText>
               </SItem>
               )
             )

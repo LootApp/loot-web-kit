@@ -97,7 +97,7 @@ class InputAddress extends Component {
         this.closeList();
         break;
       case "Enter":
-        this.setAddress(this.state.selected, false);
+        this.setAddress(this.state.selected, true);
         break;
       case "ArrowUp":
         this.setAddress(this.state.selected - 1, false);

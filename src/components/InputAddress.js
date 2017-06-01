@@ -79,7 +79,7 @@ class InputAddress extends Component {
     addresses: []
   };
 
-  state = { addressListStatus: "closed", selected: 0, address: "" };
+  state = { addressListStatus: "", selected: 0, address: "" };
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyDown);
@@ -107,8 +107,9 @@ class InputAddress extends Component {
     }
     if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
       for (let i = 0; i < addressList.length; i += 1) {
-        if (addressList[i].getAttribute("data-address").substring(0, 1).toLowerCase().indexOf(this.input._value().toLowerCase()) > -1) {
+        if (addressList[i].getAttribute("data-address").toLowerCase().indexOf(this.input._value().toLowerCase()) > -1) {
           addressList[i].scrollIntoView();
+          this.setState({ selected: i });
           return;
         }
       }
@@ -127,16 +128,24 @@ class InputAddress extends Component {
     }
   }
 
-  _onFocus = () => this.openList();
   _onBlur = () => this.closeList();
+  _onChange = value => {
+    this.openList();
+    if (typeof value === "string") {
+      if (!value) this.closeList();
+      return value;
+    }
+  }
 
   closeList = () => {
-    this.state.addressListStatus === "open" &&
+    (this.state.addressListStatus === "open" ||
+    this.state.addressListStatus === "") &&
     this.setState({ addressListStatus: "closed" });
   }
 
   openList = () => {
-    this.state.addressListStatus === "closed" &&
+    (this.state.addressListStatus === "closed" ||
+    this.state.addressListStatus === "") &&
     this.setState({ addressListStatus: "open" });
   }
 
@@ -149,7 +158,7 @@ class InputAddress extends Component {
           type="tel"
           noValidate
           onBlur={this._onBlur}
-          onFocus={this._onFocus}
+          onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="address-list" isOpen={this.state.addressListStatus}>

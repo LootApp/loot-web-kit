@@ -23,16 +23,6 @@ const code = `
         first_line: "Flat 9 Hyndman House",
         street: "Brecknock Road",
         postcode: "N19 5AX"
-      },
-      {
-        first_line: "54-56 Flat 7",
-        street: "Hornesy HighStreet",
-        postcode: "N8 7NX"
-      },
-      {
-        first_line: "Flat 9 Hyndman House",
-        street: "Brecknock Road",
-        postcode: "N19 5AX"
       }
     ]}
     label='Address'

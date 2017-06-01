@@ -70,10 +70,12 @@ const SItemText = styled.span`
 
 class InputAddress extends Component {
   static propTypes = {
+    formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array
   };
 
   static defaultProps = {
+    formatAddress: address => address.first_line,
     addresses: []
   };
 
@@ -139,7 +141,7 @@ class InputAddress extends Component {
   }
 
   render() {
-    const { addresses } = this.props;
+    const { addresses, formatAddress } = this.props;
     return (
       <SContainer>
         <SInput
@@ -156,16 +158,11 @@ class InputAddress extends Component {
               <SItem
                 selected={index === this.state.selected}
                 data-index={index}
-                data-address-first-line={`${address.first_line}`}
-                data-address-street={`${address.street}`}
-                data-address-postcode={`${address.postcode}`}
-                data-address={`${address.first_line}, ${address.street}, ${address.postcode}`}
-                key={`${address.first_line}`}
+                data-address={formatAddress(address)}
+                key={formatAddress(address)}
                 onClick={() => { this.setAddress(index, true); }}
               >
-                <SItemText>
-                  {`${address.first_line}, ${address.street}, ${address.postcode}`}
-                </SItemText>
+                <SItemText>{formatAddress(address)}</SItemText>
               </SItem>
               )
             )

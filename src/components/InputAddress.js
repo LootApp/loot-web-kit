@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import Input from "./Input";
-import countries from "../helpers/countries.json";
 
 const fadeIn = keyframes`
   0% { transform: translateY(-10px); opacity: 0;}

@@ -56,7 +56,7 @@ const SLabel = styled.label`
   pointer-events: none;
   font-size: 12px;
   display: block;
-  transition: all 0.15s base;
+  transition: all 0.15s ease;
   transform-origin: top left;
   transform:
     scale(${props => (props.focus ? 1 : 1.3333)})
@@ -73,7 +73,7 @@ const SHelperText = styled.span`
   font-size: 12px;
   color: ${props => (props.error ? "#da6e6e" : "#545454")};
   display: block;
-  transition: all 0.15s base;
+  transition: all 0.15s ease;
   margin-top: 8px;
 `;
 

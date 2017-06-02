@@ -1,6 +1,6 @@
 {
   "name": "loot-web-kit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -43,8 +43,7 @@
     "react-dom": "16.0.0-alpha.12",
     "react-live": "1.5.3",
     "react-markdown": "^2.5.0",
-    "react-router-dom": "^4.1.1",
-    "styled-components": "2.0.0"
+    "react-router-dom": "^4.1.1"
   },
   "author": "LootApp",
   "homepage": "https://lootapp.github.io/loot-web-kit",

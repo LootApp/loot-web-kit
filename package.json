@@ -22,11 +22,11 @@
   "dependencies": {
     "country-code-emoji": "0.0.1",
     "material-datetime-picker": "^2.4.0",
-    "react-easy-emoji": "^1.0.4",
-    "styled-components": "^2.0.0"
+    "react-easy-emoji": "^1.0.4"
   },
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x",
+    "styled-components": "2.x"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",

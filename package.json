@@ -1,6 +1,6 @@
 {
   "name": "loot-web-kit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,7 +11,7 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component; rm -rf docs/*; cp -R demo/dist/* docs",
+    "build": "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
@@ -20,7 +20,9 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "material-datetime-picker": "^2.4.0"
+    "country-code-emoji": "0.0.1",
+    "material-datetime-picker": "^2.4.0",
+    "react-easy-emoji": "^1.0.4"
   },
   "peerDependencies": {
     "react": "16.x",

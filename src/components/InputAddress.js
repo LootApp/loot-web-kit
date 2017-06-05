@@ -13,10 +13,6 @@ const fadeOut = keyframes`
   100% { transform: translateY(-10px); opacity: 0; visibility: hidden; }
 `;
 
-const SInput = styled(Input)`
-  flex-grow: 1;
-`;
-
 const SContainer = styled.div`
   display: flex;
   padding: 15px;
@@ -155,7 +151,7 @@ class InputAddress extends Component {
     const { addresses, formatAddress } = this.props;
     return (
       <SContainer>
-        <SInput
+        <Input
           {...this.props}
           type="tel"
           noValidate

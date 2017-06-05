@@ -22,11 +22,11 @@
   "dependencies": {
     "country-code-emoji": "0.0.1",
     "material-datetime-picker": "^2.4.0",
-    "react-easy-emoji": "^1.0.4"
+    "react-easy-emoji": "^1.0.4",
+    "styled-components": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "16.x",
-    "styled-components": "2.x"
+    "react": "15.x"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
@@ -38,7 +38,7 @@
     "eslint-plugin-react": "7.0.1",
     "nwb": "0.16.0",
     "prop-types": "^15.5.10",
-    "react": "16.0.0-alpha.12",
+    "react": "^16.0.0-alpha.12",
     "react-clipboard.js": "1.1.2",
     "react-dom": "16.0.0-alpha.12",
     "react-live": "1.5.3",

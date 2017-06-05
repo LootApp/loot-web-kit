@@ -11,6 +11,7 @@ import Accordion from "./components/Accordion";
 import FormExample from "./examples/components/FormExample";
 import InputVerify from "./examples/components/InputVerifyExample";
 import InputExample from "./examples/components/InputExample";
+import InputAddressExample from "./examples/components/InputAddressExample";
 import InputMobileNumberExample from "./examples/components/InputMobileNumberExample";
 import InputSortcodeExample from "./examples/components/InputSortcodeExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
@@ -203,6 +204,10 @@ class Demo extends Component {
               <Route
                 path="/loot-web-kit/components/input-verify"
                 component={InputVerify}
+              />
+              <Route
+                path="/loot-web-kit/components/input-address"
+                component={InputAddressExample}
               />
               <Route
                 path="/loot-web-kit/components/input-mobile-number"

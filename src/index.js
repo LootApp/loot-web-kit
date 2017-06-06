@@ -10,6 +10,8 @@ import InputPassword from "./components/InputPassword";
 import InputRadio from "./components/InputRadio";
 import InputSortcode from "./components/InputSortcode";
 import InputVerify from "./components/InputVerify";
+import InputMobileNumber from "./components/InputMobileNumber";
+import InputAddress from "./components/InputAddress";
 
 export {
   Button,
@@ -23,5 +25,7 @@ export {
   InputPassword,
   InputRadio,
   InputSortcode,
-  InputVerify
+  InputVerify,
+  InputMobileNumber,
+  InputAddress
 };

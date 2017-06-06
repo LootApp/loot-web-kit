@@ -19,7 +19,6 @@ const SInput = styled(Input)`
 
 const SContainer = styled.div`
   display: flex;
-  padding: 15px;
   position: relative;
   justify-content: center;
   align-items: flex-end;
@@ -27,9 +26,8 @@ const SContainer = styled.div`
 
 const SListContainer = styled.div`
   max-height: 160px;
-  width: calc(100% - 30px);
-  left: 15px;
-  top: 90px;
+  width: 100%;
+  top: 75px;
   visibility: hidden;
   overflow-y: scroll;
   overflow-x: hidden;

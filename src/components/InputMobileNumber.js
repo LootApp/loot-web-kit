@@ -18,7 +18,7 @@ const fadeOut = keyframes`
 `;
 
 const SInput = styled(Input)`
-  flex-grow: 1;
+  width: 100%;
   padding-left: 10px;
 `;
 
@@ -90,6 +90,7 @@ const SListContainer = styled.div`
   width: calc(100% - 30px);
   left: 15px;
   top: 90px;
+  z-index: 2;
   visibility: hidden;
   overflow-y: scroll;
   overflow-x: hidden;

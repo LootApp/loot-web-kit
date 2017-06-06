@@ -54,13 +54,13 @@ const SLabel = styled.label`
   color: ${props => (props.disabled ? "#545454" : props.focus ? (props.error ? "#da6e6e" : props.colour) : "#545454")};
   padding-top: 16px;
   pointer-events: none;
-  font-size: 12px;
+  font-size: 10px;
   display: block;
   transition: all 0.15s ease;
   transform-origin: top left;
   transform:
     scale(${props => (props.focus ? 1 : 1.3333)})
-    translateY(${props => (props.focus ? 0 : "14px")});
+    translateY(${props => (props.focus ? 0 : "12px")});
   will-change: transform;
 
   & span {

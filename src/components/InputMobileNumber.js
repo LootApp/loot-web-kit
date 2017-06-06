@@ -71,7 +71,7 @@ const FlagPlaceholder = styled.div`
     left: ${({ isOpen }) => (isOpen ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
-    background-color: #4db7c3;
+    background-color: #4DB7C3;
     transition: all 0.2s ease;
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   }
@@ -79,7 +79,6 @@ const FlagPlaceholder = styled.div`
 
 const SContainer = styled.div`
   display: flex;
-  padding: 15px;
   position: relative;
   justify-content: center;
   align-items: flex-end;
@@ -87,9 +86,8 @@ const SContainer = styled.div`
 
 const SListContainer = styled.div`
   max-height: 160px;
-  width: calc(100% - 30px);
-  left: 15px;
-  top: 90px;
+  width: 100%;
+  top: 75px;
   z-index: 2;
   visibility: hidden;
   overflow-y: scroll;
@@ -100,7 +98,7 @@ const SListContainer = styled.div`
     if (isOpen === "closed") return `${fadeOut} 0.2s ease 0s 1`;
   }};
   animation-fill-mode: forwards;
-  background: white;
+  background: #FFFFFF;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 `;
 
@@ -108,7 +106,7 @@ const SItem = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
-  color: ${({ selected }) => selected ? "#4db7c3" : "#8C8D8F"};
+  color: ${({ selected }) => selected ? "#4DB7C3" : "#8C8D8F"};
   padding: 0 5px;
   cursor: pointer;
   font-size: 0.8em;
@@ -119,7 +117,7 @@ const SItem = styled.div`
     background: #F7F7F8;
   }
   &:hover {
-    color: #4db7c3;
+    color: #4DB7C3;
   }
 `;
 

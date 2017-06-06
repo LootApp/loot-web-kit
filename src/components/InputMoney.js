@@ -6,17 +6,18 @@ import formatAmount from "../utilities/formatAmount";
 
 const SContainer = styled.div`
   display: flex;
+  height: 57px;
 `;
 
 const SPrefix = styled.div`
-  font-size: 24px;
-  padding-right: 16px;
+  font-size: 20px;
+  padding-right: 11px;
   color: #c6c6c6;
   align-self: flex-end;
 `;
 
 const SInput = styled(Input)`
-  flex-grow: 1;
+  width: 100%;
 `;
 
 class InputMoney extends Component {

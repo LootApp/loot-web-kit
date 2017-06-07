@@ -28,6 +28,7 @@ const SListContainer = styled.div`
   max-height: 160px;
   width: 100%;
   top: 75px;
+  z-index: 2;
   visibility: hidden;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -150,11 +151,10 @@ class InputAddress extends Component {
   }
 
   render() {
-    const { addresses, formatAddress } = this.props;
+    const { addresses, formatAddress, ...props } = this.props;
     return (
-      <SContainer>
+      <SContainer {...props}>
         <SInput
-          {...this.props}
           type="tel"
           noValidate
           onBlur={this._onBlur}

@@ -150,9 +150,9 @@ class InputAddress extends Component {
   }
 
   render() {
-    const { addresses, formatAddress } = this.props;
+    const { addresses, formatAddress, ...otherProps } = this.props;
     return (
-      <SContainer {...this.props}>
+      <SContainer {...otherProps}>
         <SInput
           type="tel"
           noValidate

@@ -152,9 +152,8 @@ class InputAddress extends Component {
   render() {
     const { addresses, formatAddress } = this.props;
     return (
-      <SContainer>
+      <SContainer {...this.props}>
         <SInput
-          {...this.props}
           type="tel"
           noValidate
           onBlur={this._onBlur}

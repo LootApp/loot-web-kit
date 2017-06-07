@@ -217,7 +217,7 @@ class InputMobileNumber extends Component {
 
   render() {
     return (
-      <SContainer>
+      <SContainer {...this.props}>
         <SFlagInputContainer>
           <FlagPlaceholder
             className="dial-code-element"
@@ -234,7 +234,6 @@ class InputMobileNumber extends Component {
           />
         </SFlagInputContainer>
         <SInput
-          {...this.props}
           type="tel"
           noValidate
           onChange={this._onChange}

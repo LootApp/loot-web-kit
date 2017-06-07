@@ -91,7 +91,7 @@ class InputPassword extends Component {
   render() {
     const { requirementColour, requirements, ...props } = this.props;
     return (
-      <div>
+      <div {...props}>
         <Input
           type="password"
           autoComplete="off"
@@ -100,7 +100,6 @@ class InputPassword extends Component {
           onChange={this._onChange}
           minLength={8}
           innerRef={input => (this.input = input)}
-          {...props}
         />
         {this.props.requirements &&
           <SRequirements requirementColour={requirementColour}>

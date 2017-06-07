@@ -28,6 +28,7 @@ const SListContainer = styled.div`
   max-height: 160px;
   width: 100%;
   top: 75px;
+  z-index: 2;
   visibility: hidden;
   overflow-y: scroll;
   overflow-x: hidden;

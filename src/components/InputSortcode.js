@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Input from "./Input";
 import formatSortcode from "../utilities/formatSortcode";
-
-const SInput = styled(Input)`
-  flex-grow: 1;
-`;
 
 class InputSortcode extends Component {
   _onChange = value => formatSortcode(value);
@@ -14,7 +9,7 @@ class InputSortcode extends Component {
 
   render() {
     return (
-      <SInput
+      <Input
         {...this.props}
         type="tel"
         noValidate

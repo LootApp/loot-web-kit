@@ -122,7 +122,7 @@ class InputIncrement extends Component {
   render() {
     const { maxLength, prefix, ...props } = this.props;
     return (
-      <SContainer>
+      <SContainer {...props}>
         <SButton
           onMouseDown={() => this._onMouseDown("DECREMENT")}
           onMouseUp={this._onMouseUp}
@@ -138,7 +138,6 @@ class InputIncrement extends Component {
           type="tel"
           value={this.state.value}
           onChange={this._onChange}
-          {...props}
         />
         <SButton
           onMouseDown={() => this._onMouseDown("INCREMENT")}

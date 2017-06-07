@@ -46,10 +46,9 @@ class InputMoney extends Component {
   render() {
     const { prefix, maxLength, ...props } = this.props;
     return (
-      <SContainer>
+      <SContainer {...props}>
         <SPrefix>{prefix}</SPrefix>
         <SInput
-          {...props}
           maxLength={maxLength}
           type="tel"
           onChange={this._onChange}

@@ -61,6 +61,10 @@ const SRequirement = styled.div`
   }
 `;
 
+const Container = styled.div`
+  width: inherit;
+`;
+
 class InputPassword extends Component {
   static propTypes = {
     requirementColour: PropTypes.string,
@@ -91,7 +95,7 @@ class InputPassword extends Component {
   render() {
     const { requirementColour, requirements, ...props } = this.props;
     return (
-      <div>
+      <Container {...props}>
         <Input
           type="password"
           autoComplete="off"
@@ -100,7 +104,6 @@ class InputPassword extends Component {
           onChange={this._onChange}
           minLength={8}
           innerRef={input => (this.input = input)}
-          {...props}
         />
         {this.props.requirements &&
           <SRequirements requirementColour={requirementColour}>
@@ -145,7 +148,7 @@ class InputPassword extends Component {
               <span valid={/\d/.test(this.state.password)} />
             </SRequirement>
           </SRequirements>}
-      </div>
+      </Container>
     );
   }
 }

@@ -22,6 +22,8 @@ const SButton = styled.button`
   text-transform: uppercase;
   line-height: 20px;
   font-weight: 400;
+  opacity: ${props => (props.disabled ? 0.65 : 1)};
+  pointer-events: ${props => (props.disabled ? "none" : "auto")};
   text-align: center;
   background-color: ${props => (props.outline ? "transparent" : props.colour)};
   border: none;
@@ -37,6 +39,7 @@ const SButton = styled.button`
 
   &:hover {
     box-shadow: 0 4px 7px 1px rgba(0, 0, 0, 0.3);
+    cursor: ${props => (props.disabled ? "not-allowed" : "auto")};
   }
 
   &:active {
@@ -75,7 +78,8 @@ class Button extends Component {
     fullWidth: PropTypes.bool,
     colour: PropTypes.string,
     rippleColour: PropTypes.string,
-    outline: PropTypes.bool
+    outline: PropTypes.bool,
+    disabled: PropTypes.bool
   };
 
   static defaultProps = {
@@ -84,7 +88,8 @@ class Button extends Component {
     fullWidth: false,
     colour: "#4db7c3",
     rippleColour: "rgba(255, 255, 255, 0.25)",
-    outline: false
+    outline: false,
+    disabled: false
   };
 
   state = {
@@ -115,6 +120,7 @@ class Button extends Component {
       colour,
       outline,
       rippleColour,
+      disabled,
       ...props
     } = this.props;
     return (
@@ -124,6 +130,7 @@ class Button extends Component {
         fullWidth={fullWidth}
         onClick={this._onClick}
         innerRef={button => (this.button = button)}
+        disabled={disabled}
         {...props}
       >
         <SRipple

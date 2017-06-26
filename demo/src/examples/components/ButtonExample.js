@@ -33,6 +33,11 @@ const code = `
       Press me
     </Button>
   </div>
+  <div style={{ margin: "10px" }}>
+    <Button disabled>
+      Can't press me
+    </Button>
+  </div>
 </div>
 `;
 
@@ -63,9 +68,15 @@ const props = `
 
   ---
 
-  **rippleColour**: bool
+  **rippleColour**: colour string
 
   Specifies ripple effect colour. *Default:* rgba(255, 255, 255, 0.25)
+
+  ---
+
+  **disabled**: bool
+
+  Disables the button. *Default:* false
 `;
 
 class ButtonExample extends Component {

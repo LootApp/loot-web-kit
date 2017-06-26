@@ -5,7 +5,7 @@ import Description from "../../components/Description";
 
 const docs = `
 # InputAddress [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputAddressExample.js)
-${"`import InputAddress from 'loot-web-kit/es/InputAddress'`"}
+${"`import { InputAddress } from 'loot-web-kit/es'`"}
 [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputAddress.js)
 
 Input for address string formating *Extends:* [Input](/loot-web-kit/components/input)

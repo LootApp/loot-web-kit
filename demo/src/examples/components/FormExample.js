@@ -8,7 +8,7 @@ import InputPassword from "../../../../src/components/InputPassword";
 
 const docs = `
   # Form [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/FormExample.js)
-  ${"`import Form from 'loot-web-kit/es/Form'`"}
+  ${"`import { Form } from 'loot-web-kit/es'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/Form.js)
 
   Component wrapper for form fields

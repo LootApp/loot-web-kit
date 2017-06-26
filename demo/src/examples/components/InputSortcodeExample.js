@@ -5,7 +5,7 @@ import InputSortcode from "../../../../src/components/InputSortcode";
 
 const docs = `
   # InputSortcode [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputSortcodeExample.js)
-  ${"`import InputSortcode from 'loot-web-kit/es/InputSortcode'`"}
+  ${"`import { InputSortcode } from 'loot-web-kit/es'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputSortcode.js)
 
   Input for sort code string formating *Extends:* [Input](/loot-web-kit/components/input)

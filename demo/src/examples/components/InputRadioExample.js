@@ -5,7 +5,7 @@ import InputRadio from "../../../../src/components/InputRadio";
 
 const docs = `
   # InputRadioExample [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/InputRadioExample.js)
-  ${"`import InputRadio from 'loot-web-kit/es/InputRadio'`"}
+  ${"`import { InputRadio } from 'loot-web-kit/es'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputRadio.js)
 `;
 

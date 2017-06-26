@@ -5,7 +5,7 @@ import Button from "../../../../src/components/Button";
 
 const docs = `
   # Button [![EditIcon](https://maxcdn.icons8.com/Android_L/PNG/512/Editing/pencil-512.png)](https://github.com/LootApp/loot-web-kit/blob/master/src/examples/components/Button.js)
-  ${"`import Button from 'loot-web-kit/es/Button'`"}
+  ${"`import { Button } from 'loot-web-kit/es'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/Button.js)
 
   Button to click on
@@ -31,6 +31,16 @@ const code = `
   <div style={{ margin: "10px" }}>
     <Button outline rippleColour="rgba(77, 183, 195, 0.25)">
       Press me
+    </Button>
+  </div>
+  <div style={{ margin: "10px" }}>
+    <Button disabled>
+      Can't press me
+    </Button>
+  </div>
+  <div style={{ margin: "10px" }}>
+    <Button loading>
+      I am loading
     </Button>
   </div>
 </div>
@@ -63,9 +73,21 @@ const props = `
 
   ---
 
-  **rippleColour**: bool
+  **rippleColour**: colour string
 
   Specifies ripple effect colour. *Default:* rgba(255, 255, 255, 0.25)
+
+  ---
+
+  **disabled**: bool
+
+  Disables the button. *Default:* false
+
+  ---
+
+  **loading**: bool
+
+  Puts button into a loading state. *Default:* false
 `;
 
 class ButtonExample extends Component {

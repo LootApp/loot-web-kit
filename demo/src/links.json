@@ -22,7 +22,8 @@
         { "to": "/loot-web-kit/components/input-card", "text": "InputCard" },
         { "to": "/loot-web-kit/components/input-password", "text": "InputPassword" },
         { "to": "/loot-web-kit/components/input-increment", "text": "InputIncrement" },
-        { "to": "/loot-web-kit/components/button", "text": "Button" }
+        { "to": "/loot-web-kit/components/button", "text": "Button" },
+        { "to": "/loot-web-kit/components/spinner", "text": "Spinner" }
       ]
     },
     {

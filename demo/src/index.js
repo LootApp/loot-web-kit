@@ -22,6 +22,7 @@ import ColorScheme from "./examples/design/ColorScheme";
 import InputCardExample from "./examples/components/InputCardExample";
 import InputPasswordExample from "./examples/components/InputPasswordExample";
 import InputIncrementExample from "./examples/components/InputIncrementExample";
+import SpinnerExample from "./examples/components/SpinnerExample";
 import ButtonExample from "./examples/components/ButtonExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
@@ -172,9 +173,9 @@ class Demo extends Component {
               Close Menu
             </SMobileMenu>
 
-            {links.map(section => (
+            {links.map(section =>
               <Accordion key={section.title} title={section.title}>
-                {section.links.map(link => (
+                {section.links.map(link =>
                   <SLink
                     key={link.text}
                     onClick={() => this.setState({ menuOpen: false })}
@@ -183,9 +184,9 @@ class Demo extends Component {
                   >
                     {link.text}
                   </SLink>
-                ))}
+                )}
               </Accordion>
-            ))}
+            )}
 
           </Sidebar>
           <Content>
@@ -272,6 +273,10 @@ class Demo extends Component {
               <Route
                 path="/loot-web-kit/components/button"
                 component={ButtonExample}
+              />
+              <Route
+                path="/loot-web-kit/components/spinner"
+                component={SpinnerExample}
               />
               <Route path="/loot-web-kit" component={ColorScheme} />
             </Switch>

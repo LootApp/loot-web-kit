@@ -97,6 +97,7 @@ class InputPassword extends Component {
     return (
       <Container {...props}>
         <Input
+          {...props}
           type="password"
           autoComplete="off"
           onFocus={this._onFocus}

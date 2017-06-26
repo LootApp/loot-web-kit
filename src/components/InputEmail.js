@@ -14,7 +14,7 @@ class InputEmail extends Component {
         error: true,
         helperText: "Invalid email address!"
       });
-  }
+  };
 
   _value = () => this.input._value();
 

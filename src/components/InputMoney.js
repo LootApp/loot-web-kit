@@ -49,6 +49,7 @@ class InputMoney extends Component {
       <SContainer {...props}>
         <SPrefix>{prefix}</SPrefix>
         <SInput
+          {...props}
           maxLength={maxLength}
           type="tel"
           onChange={this._onChange}

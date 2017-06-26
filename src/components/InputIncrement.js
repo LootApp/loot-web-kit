@@ -99,8 +99,8 @@ class InputIncrement extends Component {
     type === "INCREMENT"
       ? (value = `${+value + 5}.${decimal}`)
       : type === "DECREMENT" && +value > 0
-          ? (value = `${+value - 5}.${decimal}`)
-          : (value = "0.00");
+        ? (value = `${+value - 5}.${decimal}`)
+        : (value = "0.00");
     this.setState({ value }, () => {
       this.input.style.width = `${this.span.offsetWidth}px`;
     });

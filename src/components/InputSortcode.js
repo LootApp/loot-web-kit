@@ -8,9 +8,10 @@ class InputSortcode extends Component {
   _value = () => this.input._value();
 
   render() {
+    const { ...props } = this.props;
     return (
       <Input
-        {...this.props}
+        {...props}
         type="tel"
         noValidate
         maxLength={8}

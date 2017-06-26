@@ -16,16 +16,15 @@ class Form extends Component {
     document.activeElement.blur();
   }
 
-  _onSubmit = (event) => {
+  _onSubmit = event => {
     event.preventDefault();
     this.props.onSubmit(event);
   };
 
-  render = () => (
+  render = () =>
     <StyledForm {...this.props} onSubmit={this._onSubmit}>
       {this.props.children}
-    </StyledForm>
-  )
+    </StyledForm>;
 }
 
 export default Form;

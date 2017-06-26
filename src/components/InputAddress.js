@@ -46,7 +46,7 @@ const SItem = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
-  color: ${({ selected }) => selected ? "#4db7c3" : "#8C8D8F"};
+  color: ${({ selected }) => (selected ? "#4db7c3" : "#8C8D8F")};
   padding: 0 5px;
   cursor: pointer;
   font-size: 0.8em;
@@ -88,7 +88,7 @@ class InputAddress extends Component {
     document.removeEventListener("keydown", this.onKeyDown);
   }
 
-  onKeyDown = (event) => {
+  onKeyDown = event => {
     const addressList = document.getElementById("address-list").children;
     switch (event.key) {
       case "Escape":
@@ -106,55 +106,67 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
+    if (
+      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
+      this.state.addressListStatus === "open"
+    ) {
       for (let i = 0; i < addressList.length; i += 1) {
-        if (addressList[i].getAttribute("data-address").toLowerCase().indexOf(this.input._value().toLowerCase()) > -1) {
+        if (
+          addressList[i]
+            .getAttribute("data-address")
+            .toLowerCase()
+            .indexOf(this.input._value().toLowerCase()) > -1
+        ) {
           addressList[i].scrollIntoView();
           this.setState({ selected: i });
           return;
         }
       }
     }
-  }
+  };
 
   setAddress = (index, shouldClose) => {
     const addressList = document.getElementById("address-list").children;
-    if ((index >= 0 && index < addressList.length)) {
+    if (index >= 0 && index < addressList.length) {
       this.setState({
         selected: index,
         addressListStatus: shouldClose ? "closed" : "open"
       });
       addressList[index].scrollIntoView();
-      this.input.setState({ value: addressList[index].getAttribute("data-address").trim() });
+      this.input.setState({
+        value: addressList[index].getAttribute("data-address").trim()
+      });
     }
-  }
+  };
 
   _onBlur = () => this.closeList();
+
   _onChange = value => {
     this.openList();
     if (typeof value === "string") {
       if (!value) this.closeList();
       return value;
     }
-  }
+  };
 
   closeList = () => {
     (this.state.addressListStatus === "open" ||
-    this.state.addressListStatus === "") &&
-    this.setState({ addressListStatus: "closed" });
-  }
+      this.state.addressListStatus === "") &&
+      this.setState({ addressListStatus: "closed" });
+  };
 
   openList = () => {
     (this.state.addressListStatus === "closed" ||
-    this.state.addressListStatus === "") &&
-    this.setState({ addressListStatus: "open" });
-  }
+      this.state.addressListStatus === "") &&
+      this.setState({ addressListStatus: "open" });
+  };
 
   render() {
     const { addresses, formatAddress, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SInput
+          {...props}
           type="tel"
           noValidate
           onBlur={this._onBlur}
@@ -162,20 +174,19 @@ class InputAddress extends Component {
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="address-list" isOpen={this.state.addressListStatus}>
-          {
-            addresses.map((address, index) => (
-              <SItem
-                key={formatAddress(address)}
-                data-index={index}
-                data-address={formatAddress(address)}
-                selected={index === this.state.selected}
-                onClick={() => { this.setAddress(index, true); }}
-              >
-                <SItemText>{formatAddress(address)}</SItemText>
-              </SItem>
-              )
-            )
-          }
+          {addresses.map((address, index) =>
+            <SItem
+              key={formatAddress(address)}
+              data-index={index}
+              data-address={formatAddress(address)}
+              selected={index === this.state.selected}
+              onClick={() => {
+                this.setAddress(index, true);
+              }}
+            >
+              <SItemText>{formatAddress(address)}</SItemText>
+            </SItem>
+          )}
         </SListContainer>
       </SContainer>
     );

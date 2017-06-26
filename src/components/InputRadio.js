@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 
 const pulse = keyframes`
@@ -22,10 +23,10 @@ const SInput = styled.input`
 `;
 
 const StyledLabel = styled.label`
-  border-top-right-radius: ${({ last }) => last ? "5px" : 0};
-  border-top-left-radius: ${({ first }) => first ? "5px" : 0};
-  border-bottom-right-radius: ${({ last }) => last ? "5px" : 0};
-  border-bottom-left-radius: ${({ first }) => first ? "5px" : 0};
+  border-top-right-radius: ${({ last }) => (last ? "5px" : 0)};
+  border-top-left-radius: ${({ first }) => (first ? "5px" : 0)};
+  border-bottom-right-radius: ${({ last }) => (last ? "5px" : 0)};
+  border-bottom-left-radius: ${({ first }) => (first ? "5px" : 0)};
   text-transform: capitalize;
   position: relative;
   background: white;
@@ -54,23 +55,27 @@ class InputRadio extends Component {
   _onChange = ({ target }) => this.props.onChange(target.id);
 
   render() {
+    const { ...props } = this.props;
     return (
-      <SContainer {...this.props}>
-        {
-          this.props.labels.map((label, index) => (
-            <StyledWrapper key={label}>
-              <SInput
-                id={`${label}`}
-                name={this.props.name}
-                type="radio"
-                onChange={this._onChange}
-              />
-              <StyledLabel first={index === 0} last={index === this.props.labels.length - 1} htmlFor={`${label}`}>
-                {label}
-              </StyledLabel>
-            </StyledWrapper>
-            ))
-          }
+      <SContainer {...props}>
+        {this.props.labels.map((label, index) =>
+          <StyledWrapper key={label}>
+            <SInput
+              {...props}
+              id={`${label}`}
+              name={this.props.name}
+              type="radio"
+              onChange={this._onChange}
+            />
+            <StyledLabel
+              first={index === 0}
+              last={index === this.props.labels.length - 1}
+              htmlFor={`${label}`}
+            >
+              {label}
+            </StyledLabel>
+          </StyledWrapper>
+        )}
       </SContainer>
     );
   }

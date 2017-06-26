@@ -38,6 +38,11 @@ const code = `
       Can't press me
     </Button>
   </div>
+  <div style={{ margin: "10px" }}>
+    <Button loading>
+      I am loading
+    </Button>
+  </div>
 </div>
 `;
 
@@ -77,6 +82,12 @@ const props = `
   **disabled**: bool
 
   Disables the button. *Default:* false
+
+  ---
+
+  **loading**: bool
+
+  Puts button into a loading state. *Default:* false
 `;
 
 class ButtonExample extends Component {

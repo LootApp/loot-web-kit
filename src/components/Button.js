@@ -14,6 +14,7 @@ const SButton = styled.button`
   position: relative;
   display: inline-block;
   padding: 10px 16px;
+  overflow: hidden;
   margin: 0;
   vertical-align: middle;
   overflow: visible;
@@ -23,7 +24,8 @@ const SButton = styled.button`
   line-height: 20px;
   font-weight: 400;
   opacity: ${props => (props.disabled ? 0.65 : 1)};
-  pointer-events: ${props => (props.disabled ? "none" : "auto")};
+  pointer-events: ${props =>
+    props.disabled || props.loading ? "none" : "auto"};
   text-align: center;
   background-color: ${props => (props.outline ? "transparent" : props.colour)};
   border: none;
@@ -39,12 +41,26 @@ const SButton = styled.button`
 
   &:hover {
     box-shadow: 0 4px 7px 1px rgba(0, 0, 0, 0.3);
-    cursor: ${props => (props.disabled ? "not-allowed" : "auto")};
   }
 
   &:active {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
+`;
+
+const SLoading = styled.span`
+  position: absolute;
+  display: block;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: ${props => props.colour};
+  transition: all .2s ease;
+  opacity: ${props => (props.loading ? 1 : 0)};
+  pointer-events: none;
 `;
 
 const SRipple = styled.div`
@@ -79,7 +95,8 @@ class Button extends Component {
     colour: PropTypes.string,
     rippleColour: PropTypes.string,
     outline: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool
   };
 
   static defaultProps = {
@@ -89,7 +106,8 @@ class Button extends Component {
     colour: "#4db7c3",
     rippleColour: "rgba(255, 255, 255, 0.25)",
     outline: false,
-    disabled: false
+    disabled: false,
+    loading: false
   };
 
   state = {
@@ -121,6 +139,7 @@ class Button extends Component {
       outline,
       rippleColour,
       disabled,
+      loading,
       ...props
     } = this.props;
     return (
@@ -131,8 +150,10 @@ class Button extends Component {
         onClick={this._onClick}
         innerRef={button => (this.button = button)}
         disabled={disabled}
+        loading={loading}
         {...props}
       >
+        <SLoading loading={loading} colour={colour} />
         <SRipple
           rippleColour={rippleColour}
           active={this.state.active}

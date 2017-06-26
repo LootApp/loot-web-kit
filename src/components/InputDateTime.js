@@ -5,9 +5,9 @@ import Input from "./Input";
 import isMobile from "../utilities/isMobile";
 import isDateInput from "../utilities/isDateInput";
 
-let MaterialDateTimePicker;
+let MaterialDateTimePicker = null;
 if (!isMobile() || (isMobile() && !isDateInput())) {
-  MaterialDateTimePicker = require("material-datetime-picker");
+  MaterialDateTimePicker = require("material-datetime-picker/dist/material-datetime-picker");
   require("material-datetime-picker/dist/material-datetime-picker.css");
   const arrow = require("../assets/arrow-calendar.svg");
 

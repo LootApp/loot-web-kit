@@ -30,7 +30,10 @@ const SButton = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 2px;
-  box-shadow: ${props => (props.outline ? `0 0 0 2px ${props.colour} inset !important` : "0 2px 2px rgba(0, 0, 0, 0.2)")};
+  box-shadow: ${props =>
+    props.outline
+      ? `0 0 0 2px ${props.colour} inset !important`
+      : "0 2px 2px rgba(0, 0, 0, 0.2)"};
 
   &:hover {
     box-shadow: 0 4px 7px 1px rgba(0, 0, 0, 0.3);

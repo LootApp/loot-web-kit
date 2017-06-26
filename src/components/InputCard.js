@@ -57,13 +57,13 @@ class Card extends Component {
     const { maxLength, minLength, ...props } = this.props;
     return (
       <SInut
+        {...props}
         cardIcon={this.state.cardIcon}
         type="tel"
         maxLength={maxLength}
         minLength={minLength}
         innerRef={input => (this.input = input)}
         onChange={this._onChange}
-        {...props}
       />
     );
   }

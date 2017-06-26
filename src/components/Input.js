@@ -38,7 +38,8 @@ const SInput = styled.input`
   background-color: transparent;
   transition: all 0.15s ease;
   opacity: ${props => (props.focus ? 1 : 0)};
-  text-transform: ${props => (props.uppercase ? "uppercase" : props.capitalise ? "capitalize" : "none")};
+  text-transform: ${props =>
+    props.uppercase ? "uppercase" : props.capitalise ? "capitalize" : "none"};
 
   &::selection {
     background-color: ${props => props.colour};
@@ -51,7 +52,10 @@ const SInput = styled.input`
 `;
 
 const SLabel = styled.label`
-  color: ${props => (props.disabled ? "#545454" : props.focus ? (props.error ? "#da6e6e" : props.colour) : "#545454")};
+  color: ${props =>
+    props.disabled
+      ? "#545454"
+      : props.focus ? (props.error ? "#da6e6e" : props.colour) : "#545454"};
   padding-top: 16px;
   pointer-events: none;
   font-size: 10px;

@@ -55,11 +55,13 @@ class InputRadio extends Component {
   _onChange = ({ target }) => this.props.onChange(target.id);
 
   render() {
+    const { ...props } = this.props;
     return (
-      <SContainer {...this.props}>
+      <SContainer {...props}>
         {this.props.labels.map((label, index) =>
           <StyledWrapper key={label}>
             <SInput
+              {...props}
               id={`${label}`}
               name={this.props.name}
               type="radio"

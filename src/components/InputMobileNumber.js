@@ -40,7 +40,8 @@ const SSpan = styled.span`
   background-position: center;
   background-size: 50%;
   background-repeat: no-repeat;
-  background-image: ${({ isOpen }) => isOpen ? `url(${dropDownIconNoFill})` : `url(${dropDownIconFill})`};
+  background-image: ${({ isOpen }) =>
+    isOpen ? `url(${dropDownIconNoFill})` : `url(${dropDownIconFill})`};
 `;
 
 const FlagPlaceholder = styled.div`
@@ -106,7 +107,7 @@ const SItem = styled.div`
   width: 100%;
   height: 40px;
   display: flex;
-  color: ${({ selected }) => selected ? "#4DB7C3" : "#8C8D8F"};
+  color: ${({ selected }) => (selected ? "#4DB7C3" : "#8C8D8F")};
   padding: 0 5px;
   cursor: pointer;
   font-size: 0.8em;
@@ -137,8 +138,12 @@ const SItemText = styled.span`
   span { font-Weight: 600 }
 `;
 class InputMobileNumber extends Component {
-
-  state = { dialCodeList: "", flag: emoji(flag("GB")), dialCode: "+44", selected: 0 };
+  state = {
+    dialCodeList: "",
+    flag: emoji(flag("GB")),
+    dialCode: "+44",
+    selected: 0
+  };
 
   componentDidMount() {
     document.addEventListener("click", this.onDocClick);
@@ -154,9 +159,9 @@ class InputMobileNumber extends Component {
     if (target.className.indexOf("dial-code-element") < 0) {
       this.closeList();
     }
-  }
+  };
 
-  onKeyDown = (event) => {
+  onKeyDown = event => {
     const countryList = document.getElementById("code-list").children;
     switch (event.key) {
       case "Escape":
@@ -172,19 +177,31 @@ class InputMobileNumber extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList === "open") {
+    if (
+      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
+      this.state.dialCodeList === "open"
+    ) {
       for (let i = 0; i < countryList.length; i += 1) {
-        if (countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() === event.key.toLowerCase()) {
+        if (
+          countryList[i]
+            .getAttribute("data-country-name")
+            .substring(0, 1)
+            .toLowerCase() === event.key.toLowerCase()
+        ) {
           this.setCountry(i);
           return;
         }
       }
     }
-  }
+  };
 
   setCountry = (index, shouldClose) => {
     const countryList = document.getElementById("code-list").children;
-    if ((index >= 0 && index < countryList.length) && this.state.dialCodeList === "open") {
+    if (
+      index >= 0 &&
+      index < countryList.length &&
+      this.state.dialCodeList === "open"
+    ) {
       this.setState({
         flag: emoji(flag(countryList[index].getAttribute("data-country-code"))),
         dialCode: countryList[index].getAttribute("data-country-dial-code"),
@@ -193,27 +210,27 @@ class InputMobileNumber extends Component {
       });
       countryList[index].scrollIntoView();
     }
-  }
+  };
 
   _onChange = value => {
     if (typeof value === "string") {
       return value.replace(/[^0-9-]/g, "");
     }
-  }
+  };
 
   toggleList = () => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       if (prevState.dialCodeList === "open") {
         return { dialCodeList: "closed" };
       }
       return { dialCodeList: "open" };
     });
-  }
+  };
 
   closeList = () => {
     this.state.dialCodeList === "open" &&
-    this.setState({ dialCodeList: "closed" });
-  }
+      this.setState({ dialCodeList: "closed" });
+  };
 
   render() {
     const { ...props } = this.props;
@@ -241,24 +258,25 @@ class InputMobileNumber extends Component {
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="code-list" isOpen={this.state.dialCodeList}>
-          {
-            countries.map((country, index) => (
-              <SItem
-                selected={index === this.state.selected}
-                data-index={index}
-                data-country-name={`${country.name}`}
-                data-country-code={`${country.code}`}
-                data-country-dial-code={`${country.dial_code}`}
-                className="dial-code-element"
-                key={`${country.dial_code}-${country.name}`}
-                onClick={() => { this.setCountry(index, true); }}
-              >
-                <SItemText>{`${country.name} `} <b>{country.dial_code}</b></SItemText>
-                <SCountryFlag>{emoji(flag(country.code))}</SCountryFlag>
-              </SItem>
-              )
-            )
-          }
+          {countries.map((country, index) =>
+            <SItem
+              selected={index === this.state.selected}
+              data-index={index}
+              data-country-name={`${country.name}`}
+              data-country-code={`${country.code}`}
+              data-country-dial-code={`${country.dial_code}`}
+              className="dial-code-element"
+              key={`${country.dial_code}-${country.name}`}
+              onClick={() => {
+                this.setCountry(index, true);
+              }}
+            >
+              <SItemText>
+                {`${country.name} `} <b>{country.dial_code}</b>
+              </SItemText>
+              <SCountryFlag>{emoji(flag(country.code))}</SCountryFlag>
+            </SItem>
+          )}
         </SListContainer>
       </SContainer>
     );

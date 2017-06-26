@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 
 const rotator = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(270deg); }
+  0% { transform: rotate(0deg); opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { transform: rotate(270deg); opacity: 0; }
 `;
 
 const dash = keyframes`
@@ -17,14 +19,16 @@ const SSpiner = styled.svg`
   width: ${props => props.size};
   height: ${props => props.size};
   transform: rotate(0deg);
-  animation: ${rotator} 1.4s linear infinite;
+  opacity: 0;
+  animation: ${rotator} 1.6s linear infinite;
+  transform-origin: center;
 
   circle {
     transform: rotate(0deg);
     stroke-dasharray: 187;
     stroke-dashoffset: 0;
     transform-origin: center;
-    animation: 1.4s ease-in-out ${dash} infinite;
+    animation: 1.6s ease-in-out ${dash} infinite;
     stroke: ${props => props.colour};
   }
 `;

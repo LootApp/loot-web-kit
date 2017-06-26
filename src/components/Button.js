@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
+import Spinner from "./Spinner";
 
 const ripple = keyframes`
   0% { opacity: 0;}
@@ -14,7 +15,6 @@ const SButton = styled.button`
   position: relative;
   display: inline-block;
   padding: 10px 16px;
-  overflow: hidden;
   margin: 0;
   vertical-align: middle;
   overflow: visible;
@@ -52,6 +52,7 @@ const SLoading = styled.span`
   position: absolute;
   display: block;
   content: "";
+  border-radius: 2px;
   top: 0;
   left: 0;
   right: 0;
@@ -61,6 +62,7 @@ const SLoading = styled.span`
   transition: all .2s ease;
   opacity: ${props => (props.loading ? 1 : 0)};
   pointer-events: none;
+  padding-top: 8px;
 `;
 
 const SRipple = styled.div`
@@ -153,7 +155,9 @@ class Button extends Component {
         loading={loading}
         {...props}
       >
-        <SLoading loading={loading} colour={colour} />
+        <SLoading loading={loading} colour={colour}>
+          <Spinner colour="rgba(255,255,255, 0.9)" size="24px" />
+        </SLoading>
         <SRipple
           rippleColour={rippleColour}
           active={this.state.active}

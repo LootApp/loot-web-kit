@@ -12,6 +12,7 @@ import InputSortcode from "./components/InputSortcode";
 import InputVerify from "./components/InputVerify";
 import InputMobileNumber from "./components/InputMobileNumber";
 import InputAddress from "./components/InputAddress";
+import Spinner from "./components/Spinner";
 
 export {
   Button,
@@ -27,5 +28,6 @@ export {
   InputSortcode,
   InputVerify,
   InputMobileNumber,
-  InputAddress
+  InputAddress,
+  Spinner
 };

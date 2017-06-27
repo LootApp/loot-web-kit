@@ -98,7 +98,8 @@ class Button extends Component {
     rippleColour: PropTypes.string,
     outline: PropTypes.bool,
     disabled: PropTypes.bool,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    spinnerColour: PropTypes.bool
   };
 
   static defaultProps = {
@@ -109,7 +110,8 @@ class Button extends Component {
     rippleColour: "rgba(255, 255, 255, 0.25)",
     outline: false,
     disabled: false,
-    loading: false
+    loading: false,
+    spinnerColour: "rgba(255,255,255, 0.9)"
   };
 
   state = {
@@ -142,6 +144,7 @@ class Button extends Component {
       rippleColour,
       disabled,
       loading,
+      spinnerColour,
       ...props
     } = this.props;
     return (
@@ -156,7 +159,7 @@ class Button extends Component {
         {...props}
       >
         <SLoading loading={loading} colour={colour}>
-          <Spinner colour="rgba(255,255,255, 0.9)" size="24px" />
+          <Spinner colour={spinnerColour} size="24px" />
         </SLoading>
         <SRipple
           rippleColour={rippleColour}

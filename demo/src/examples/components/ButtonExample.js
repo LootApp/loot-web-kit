@@ -43,6 +43,11 @@ const code = `
       I am loading
     </Button>
   </div>
+  <div style={{ margin: "10px" }}>
+    <Button loading colour="white" spinnerColour="black">
+      I am loading
+    </Button>
+  </div>
 </div>
 `;
 
@@ -88,6 +93,12 @@ const props = `
   **loading**: bool
 
   Puts button into a loading state. *Default:* false
+
+  ---
+
+  **spinnerColour**: colour string
+
+  Change spinner colour. *Default:* white
 `;
 
 class ButtonExample extends Component {

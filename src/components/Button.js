@@ -99,7 +99,7 @@ class Button extends Component {
     outline: PropTypes.bool,
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
-    spinnerColour: PropTypes.bool
+    spinnerColour: PropTypes.string
   };
 
   static defaultProps = {

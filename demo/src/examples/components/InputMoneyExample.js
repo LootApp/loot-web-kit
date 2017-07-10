@@ -28,7 +28,7 @@ const props = `
 const code = `<InputMoney
   label='Amount'
   placeholder='0.00'
-  prefix="$"
+  prefix="£"
 />`;
 
 class InputMoneyExample extends Component {

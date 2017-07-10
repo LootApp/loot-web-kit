@@ -61,11 +61,11 @@ const SLabel = styled.label`
   font-size: 10px;
   display: block;
   transition: all 0.15s ease;
-  transform-origin: top left;
-  transform:
-    scale(${props => (props.focus ? 1 : 1.3333)})
+  transform-origin: left top;
+  transform: scale(${props => (props.focus ? 1 : 1.3333)})
     translateY(${props => (props.focus ? 0 : "12px")});
   will-change: transform;
+  text-align: left;
 
   & span {
     margin-left: 3px;
@@ -197,7 +197,6 @@ class Input extends Component {
 
   render() {
     const {
-      value,
       label,
       placeholder,
       required,

@@ -17,6 +17,12 @@ const props = `
   **prefix**: string
 
   Currency symbol. *Default:* "£"
+
+  ---
+
+  **getRef**: function
+
+  Function executed by the component where ref to original input is passed.
 `;
 
 const code = `<InputMoney

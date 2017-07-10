@@ -10,8 +10,9 @@ const SContainer = styled.div`
 `;
 
 const SPrefix = styled.div`
-  font-size: 20px;
-  padding-right: 11px;
+  font-size: 18px;
+  padding-right: 10px;
+  margin-bottom: -2px;
   color: #c6c6c6;
   align-self: flex-end;
 `;

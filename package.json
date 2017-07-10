@@ -1,6 +1,6 @@
 {
   "name": "loot-web-kit",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",

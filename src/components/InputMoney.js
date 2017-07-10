@@ -23,13 +23,19 @@ const SInput = styled(Input)`
 class InputMoney extends Component {
   static propTypes = {
     prefix: PropTypes.string,
-    maxLength: PropTypes.number
+    maxLength: PropTypes.number,
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     prefix: "£",
-    maxLength: 10
+    maxLength: 10,
+    getRef: null
   };
+
+  componentDidMount() {
+    this.props.getRef(this.input);
+  }
 
   _onChange = value => formatAmount(value);
 
@@ -44,12 +50,15 @@ class InputMoney extends Component {
   _value = () => this.input._value();
 
   render() {
-    const { prefix, maxLength, ...props } = this.props;
+    const { prefix, maxLength, getRef, ...props } = this.props;
     return (
       <SContainer {...props}>
-        <SPrefix>{prefix}</SPrefix>
+        <SPrefix>
+          {prefix}
+        </SPrefix>
         <SInput
           {...props}
+          getRef={getRef}
           maxLength={maxLength}
           type="tel"
           onChange={this._onChange}

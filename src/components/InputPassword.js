@@ -61,25 +61,29 @@ const SRequirement = styled.div`
   }
 `;
 
-const Container = styled.div`
-  width: inherit;
-`;
+const Container = styled.div`width: inherit;`;
 
 class InputPassword extends Component {
   static propTypes = {
     requirementColour: PropTypes.string,
-    requirements: PropTypes.bool
+    requirements: PropTypes.bool,
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     requirementColour: "4db7c3",
-    requirements: false
+    requirements: false,
+    getRef: null
   };
 
   state = {
     showRequirements: false,
     password: ""
   };
+
+  componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
+  }
 
   _onChange = value => {
     if (typeof value === "string") this.setState({ password: value });

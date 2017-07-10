@@ -34,7 +34,7 @@ class InputMoney extends Component {
   };
 
   componentDidMount() {
-    this.props.getRef(this.input);
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
   _onChange = value => formatAmount(value);
@@ -50,7 +50,7 @@ class InputMoney extends Component {
   _value = () => this.input._value();
 
   render() {
-    const { prefix, maxLength, getRef, ...props } = this.props;
+    const { prefix, maxLength, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix>
@@ -58,7 +58,6 @@ class InputMoney extends Component {
         </SPrefix>
         <SInput
           {...props}
-          getRef={getRef}
           maxLength={maxLength}
           type="tel"
           onChange={this._onChange}

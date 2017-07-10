@@ -68,12 +68,14 @@ const SSpan = styled.span`
 class InputIncrement extends Component {
   static propTypes = {
     maxLength: PropTypes.number,
-    prefix: PropTypes.string
+    prefix: PropTypes.string,
+    getRef: PropTypes.fucn
   };
 
   static defaultProps = {
     maxLength: 10,
-    prefix: "£"
+    prefix: "£",
+    getRef: null
   };
 
   state = {
@@ -82,6 +84,7 @@ class InputIncrement extends Component {
 
   componentDidMount() {
     this.input.style.width = `${this.span.offsetWidth}px`;
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
   _onChange = ({ target }) => {
@@ -130,7 +133,9 @@ class InputIncrement extends Component {
           colour="#4db7c3"
           icon="-"
         />
-        <SPrefix>{prefix}</SPrefix>
+        <SPrefix>
+          {prefix}
+        </SPrefix>
         <SInput
           disabled={isMobile()}
           maxLength={maxLength}
@@ -146,7 +151,9 @@ class InputIncrement extends Component {
           colour="#4db7c3"
           icon="+"
         />
-        <SSpan innerRef={span => (this.span = span)}>{this.state.value}</SSpan>
+        <SSpan innerRef={span => (this.span = span)}>
+          {this.state.value}
+        </SSpan>
       </SContainer>
     );
   }

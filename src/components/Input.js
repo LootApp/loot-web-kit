@@ -79,6 +79,7 @@ const SHelperText = styled.span`
   display: block;
   transition: all 0.15s ease;
   margin-top: 8px;
+  text-align: left;
 `;
 
 const SCounter = styled.span`

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import { flag } from "country-code-emoji";
 import emoji from "react-easy-emoji";
@@ -53,10 +54,14 @@ const FlagPlaceholder = styled.div`
   justify-content: center;
   align-items: center;
   user-select: none;
-  border-bottom: 1px solid #C6C6C6;
+  border-bottom: 1px solid #c6c6c6;
   transition: all 0.15s ease;
-  span { padding: 0 5px; }
-  &:hover { border-color: #7C7C7C; }
+  span {
+    padding: 0 5px;
+  }
+  &:hover {
+    border-color: #7c7c7c;
+  }
   &::before {
     content: '';
     position: absolute;
@@ -72,7 +77,7 @@ const FlagPlaceholder = styled.div`
     left: ${({ isOpen }) => (isOpen ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
-    background-color: #4DB7C3;
+    background-color: #4db7c3;
     transition: all 0.2s ease;
     opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
   }
@@ -99,7 +104,7 @@ const SListContainer = styled.div`
     if (isOpen === "closed") return `${fadeOut} 0.2s ease 0s 1`;
   }};
   animation-fill-mode: forwards;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 `;
 
@@ -115,19 +120,17 @@ const SItem = styled.div`
   transition: all 0.05s ease;
   justify-content: space-between;
   &:nth-child(even) {
-    background: #F7F7F8;
+    background: #f7f7f8;
   }
   &:hover {
-    color: #4DB7C3;
+    color: #4db7c3;
   }
 `;
 
-const SCountryFlag = styled.span`
-  font-size: 1.4em;
-`;
+const SCountryFlag = styled.span`font-size: 1.4em;`;
 
 const SCountryDialCode = styled.span`
-  color: #8C8D8F;
+  color: #8c8d8f;
   font-size: 1em;
   font-weight: 500;
 `;
@@ -135,9 +138,19 @@ const SCountryDialCode = styled.span`
 const SItemText = styled.span`
   font-size: 1.1em;
   text-overflow: ellipsis;
-  span { font-Weight: 600 }
+  span {
+    font-Weight: 600;
+  }
 `;
 class InputMobileNumber extends Component {
+  static propTypes = {
+    getRef: PropTypes.func
+  };
+
+  static defaultProps = {
+    getRef: null
+  };
+
   state = {
     dialCodeList: "",
     flag: emoji(flag("GB")),
@@ -148,6 +161,7 @@ class InputMobileNumber extends Component {
   componentDidMount() {
     document.addEventListener("click", this.onDocClick);
     document.addEventListener("keydown", this.onKeyDown);
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
   componentWillUnmount() {
@@ -242,8 +256,12 @@ class InputMobileNumber extends Component {
             onClick={this.toggleList}
             isOpen={this.state.dialCodeList === "open"}
           >
-            <SCountryFlag>{this.state.flag}</SCountryFlag>
-            <SCountryDialCode>{this.state.dialCode}</SCountryDialCode>
+            <SCountryFlag>
+              {this.state.flag}
+            </SCountryFlag>
+            <SCountryDialCode>
+              {this.state.dialCode}
+            </SCountryDialCode>
           </FlagPlaceholder>
           <SSpan
             className="dial-code-element"
@@ -274,7 +292,9 @@ class InputMobileNumber extends Component {
               <SItemText>
                 {`${country.name} `} <b>{country.dial_code}</b>
               </SItemText>
-              <SCountryFlag>{emoji(flag(country.code))}</SCountryFlag>
+              <SCountryFlag>
+                {emoji(flag(country.code))}
+              </SCountryFlag>
             </SItem>
           )}
         </SListContainer>

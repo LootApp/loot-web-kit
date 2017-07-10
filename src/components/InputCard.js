@@ -24,17 +24,23 @@ const SInut = styled(Input)`
 class Card extends Component {
   static propTypes = {
     maxLength: PropTypes.number,
-    minLength: PropTypes.number
+    minLength: PropTypes.number,
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     maxLength: 19,
-    minLength: 13
+    minLength: 13,
+    getRef: null
   };
 
   state = {
     cardIcon: null
   };
+
+  componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
+  }
 
   _onChange = value => {
     if (typeof value === "string") {

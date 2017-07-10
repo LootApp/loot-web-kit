@@ -54,7 +54,7 @@ const SItem = styled.div`
   transition: all 0.05s ease;
   justify-content: space-between;
   &:nth-child(even) {
-    background: #F7F7F8;
+    background: #f7f7f8;
   }
   &:hover {
     color: #4db7c3;
@@ -64,23 +64,28 @@ const SItem = styled.div`
 const SItemText = styled.span`
   font-size: 1.1em;
   text-overflow: ellipsis;
-  span { font-Weight: 600 }
+  span {
+    font-Weight: 600;
+  }
 `;
 
 class InputAddress extends Component {
   static propTypes = {
     formatAddress: PropTypes.func.isRequired,
-    addresses: PropTypes.array
+    addresses: PropTypes.array,
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
-    addresses: []
+    addresses: [],
+    getRef: null
   };
 
   state = { addressListStatus: "", selected: 0, address: "" };
 
   componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
@@ -184,7 +189,9 @@ class InputAddress extends Component {
                 this.setAddress(index, true);
               }}
             >
-              <SItemText>{formatAddress(address)}</SItemText>
+              <SItemText>
+                {formatAddress(address)}
+              </SItemText>
             </SItem>
           )}
         </SListContainer>

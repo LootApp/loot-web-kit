@@ -25,20 +25,27 @@ class InputMoney extends Component {
   static propTypes = {
     prefix: PropTypes.string,
     maxLength: PropTypes.number,
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     prefix: "£",
     maxLength: 10,
-    getRef: null
+    getRef: null,
+    onChange: null
   };
 
   componentDidMount() {
     if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
-  _onChange = value => formatAmount(value);
+  _onChange = value => {
+    const formatedValue = formatAmount(value);
+    typeof this.props.onChange === "function" &&
+      this.props.onChange(formatedValue);
+    return formatedValue;
+  };
 
   _onBlur = value => {
     if (!!value.length && Number(value) < 0.01)

@@ -34,7 +34,7 @@ class InputMoney extends Component {
   static propTypes = {
     prefix: PropTypes.string,
     maxLength: PropTypes.number,
-    balance: PropTypes.number,
+    balance: PropTypes.string,
     getRef: PropTypes.func,
     onChange: PropTypes.func
   };
@@ -42,9 +42,13 @@ class InputMoney extends Component {
   static defaultProps = {
     prefix: "£",
     maxLength: 10,
-    balance: 0,
+    balance: "",
     getRef: null,
     onChange: null
+  };
+
+  state = {
+    remaining: ""
   };
 
   componentDidMount() {
@@ -53,11 +57,7 @@ class InputMoney extends Component {
 
   _onChange = value => {
     const formatedValue = formatAmount(value);
-    if (typeof value === "string") {
-      console.log("value", Number(value));
-      console.log("this.props.balance", this.props.balance);
-      this.setState({ remaining: formatAmount(this.props.balance - Number(value)) });
-    }
+    if (this.props.balance) this.updateRemaining(value);
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };
@@ -68,9 +68,28 @@ class InputMoney extends Component {
         error: true,
         helperText: "Minimum amount is 0.01"
       });
+    if (typeof value === "string" && !value.length && this.props.balance)
+      this.setState({ remaining: "" });
+  };
+
+  _onFocus = value => {
+    const inputValue = value || "";
+    if (this.props.balance) this.updateRemaining(inputValue);
   };
 
   _value = () => this.input._value();
+
+  updateRemaining = value => {
+    const formatedValue = formatAmount(value);
+    if (typeof value === "string" && Number(this.props.balance)) {
+      const remaining = value
+        ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
+        : formatAmount(this.props.balance);
+      this.setState({
+        remaining
+      });
+    }
+  };
 
   render() {
     const { prefix, maxLength, balance, ...props } = this.props;
@@ -88,9 +107,11 @@ class InputMoney extends Component {
           onFocus={this._onFocus}
           innerRef={input => (this.input = input)}
         />
-        {!!this.state.remaining &&
-          !!balance &&
-          <SDifference>{`${prefix}${this.state.remaining}`}</SDifference>}
+        {!!Number(balance) &&
+          !!this.state.remaining &&
+          <SDifference red={this.state.remaining < 0}>
+            {`${prefix}${this.state.remaining}`}
+          </SDifference>}
       </SContainer>
     );
   }

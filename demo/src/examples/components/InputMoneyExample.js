@@ -20,17 +20,30 @@ const props = `
 
   ---
 
+  **balance**: string
+
+  Balance amount for displaying remaining amount. *Default:* ""
+
+  ---
+
   **getRef**: function
 
   Function executed by the component where ref to original input is passed.
 `;
 
-const code = `<InputMoney
-  label='Amount'
-  placeholder='0.00'
-  prefix="£"
-  balance={10000}
-/>`;
+const code = `<div>
+  <InputMoney
+    label='Amount'
+    placeholder='0.00'
+    prefix="£"
+  />
+  <InputMoney
+    label='Amount with remaining balance'
+    placeholder='0.00'
+    prefix="£"
+    balance="100.00"
+  />
+</div>`;
 
 class InputMoneyExample extends Component {
   render() {

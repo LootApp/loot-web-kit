@@ -29,6 +29,7 @@ const code = `<InputMoney
   label='Amount'
   placeholder='0.00'
   prefix="£"
+  balance={10000}
 />`;
 
 class InputMoneyExample extends Component {

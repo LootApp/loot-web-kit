@@ -7,6 +7,7 @@ import formatAmount from "../utilities/formatAmount";
 const SContainer = styled.div`
   display: flex;
   height: 57px;
+  position: relative;
 `;
 
 const SPrefix = styled.div`
@@ -21,10 +22,19 @@ const SInput = styled(Input)`
   width: 100%;
 `;
 
+const SDifference = styled.span`
+  font-weight: 400;
+  position: absolute;
+  top: 34px;
+  right: 8px;
+  color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
+`;
+
 class InputMoney extends Component {
   static propTypes = {
     prefix: PropTypes.string,
     maxLength: PropTypes.number,
+    balance: PropTypes.number,
     getRef: PropTypes.func,
     onChange: PropTypes.func
   };
@@ -32,6 +42,7 @@ class InputMoney extends Component {
   static defaultProps = {
     prefix: "£",
     maxLength: 10,
+    balance: 0,
     getRef: null,
     onChange: null
   };
@@ -42,8 +53,12 @@ class InputMoney extends Component {
 
   _onChange = value => {
     const formatedValue = formatAmount(value);
-    typeof this.props.onChange === "function" &&
-      this.props.onChange(formatedValue);
+    if (typeof value === "string") {
+      console.log("value", Number(value));
+      console.log("this.props.balance", this.props.balance);
+      this.setState({ remaining: formatAmount(this.props.balance - Number(value)) });
+    }
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
@@ -58,7 +73,7 @@ class InputMoney extends Component {
   _value = () => this.input._value();
 
   render() {
-    const { prefix, maxLength, ...props } = this.props;
+    const { prefix, maxLength, balance, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix>
@@ -70,8 +85,12 @@ class InputMoney extends Component {
           type="tel"
           onChange={this._onChange}
           onBlur={this._onBlur}
+          onFocus={this._onFocus}
           innerRef={input => (this.input = input)}
         />
+        {!!this.state.remaining &&
+          !!balance &&
+          <SDifference>{`${prefix}${this.state.remaining}`}</SDifference>}
       </SContainer>
     );
   }

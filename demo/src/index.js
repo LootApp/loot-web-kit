@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled, { injectGlobal } from "styled-components";
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Switch
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import Accordion from "./components/Accordion";
 import FormExample from "./examples/components/FormExample";
 import InputVerify from "./examples/components/InputVerifyExample";
@@ -14,6 +9,7 @@ import InputExample from "./examples/components/InputExample";
 import InputAddressExample from "./examples/components/InputAddressExample";
 import InputMobileNumberExample from "./examples/components/InputMobileNumberExample";
 import InputSortcodeExample from "./examples/components/InputSortcodeExample";
+import InputAccountNumberExample from "./examples/components/InputAccountNumberExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
 import InputRadioExample from "./examples/components/InputRadioExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
@@ -72,12 +68,12 @@ const Sidebar = styled.aside`
   width: 300px;
   overflow: scroll;
   background-color: ${colours.white};
-  border-right: 1px solid #E0E4E5;
+  border-right: 1px solid #e0e4e5;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   @media (max-width: 1300px) {
     z-index: 10;
     width: 100%;
-    transform: translate3d(${props => (props.open ? "0" : "-100%")}, 0 ,0);
+    transform: translate3d(${props => (props.open ? "0" : "-100%")}, 0, 0);
   }
 `;
 
@@ -90,7 +86,7 @@ const Content = styled.div`
 `;
 
 const Branding = styled.div`
-  border-bottom: 1px solid #E0E4E5;
+  border-bottom: 1px solid #e0e4e5;
   text-align: center;
   padding: 40px 0;
 
@@ -158,18 +154,12 @@ class Demo extends Component {
         <Main>
           <Sidebar open={this.state.menuOpen}>
             <Branding>
-              <SLink
-                to="/loot-web-kit"
-                onClick={() => this.setState({ menuOpen: false })}
-              >
+              <SLink to="/loot-web-kit" onClick={() => this.setState({ menuOpen: false })}>
                 <img src={anchor} alt="Loot anchor" />
                 <span>Styleguide</span>
               </SLink>
             </Branding>
-            <SMobileMenu
-              noMargin
-              onClick={() => this.setState({ menuOpen: false })}
-            >
+            <SMobileMenu noMargin onClick={() => this.setState({ menuOpen: false })}>
               Close Menu
             </SMobileMenu>
 
@@ -187,25 +177,13 @@ class Demo extends Component {
                 )}
               </Accordion>
             )}
-
           </Sidebar>
           <Content>
-            <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>
-              Open Menu
-            </SMobileMenu>
+            <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>Open Menu</SMobileMenu>
             <Switch>
-              <Route
-                path="/loot-web-kit/components/form"
-                component={FormExample}
-              />
-              <Route
-                path="/loot-web-kit/components/input"
-                component={InputExample}
-              />
-              <Route
-                path="/loot-web-kit/components/input-verify"
-                component={InputVerify}
-              />
+              <Route path="/loot-web-kit/components/form" component={FormExample} />
+              <Route path="/loot-web-kit/components/input" component={InputExample} />
+              <Route path="/loot-web-kit/components/input-verify" component={InputVerify} />
               <Route
                 path="/loot-web-kit/components/input-address"
                 component={InputAddressExample}
@@ -214,30 +192,22 @@ class Demo extends Component {
                 path="/loot-web-kit/components/input-mobile-number"
                 component={InputMobileNumberExample}
               />
-              <Route
-                path="/loot-web-kit/components/input-email"
-                component={InputEmailExample}
-              />
-              <Route
-                path="/loot-web-kit/components/input-radio"
-                component={InputRadioExample}
-              />
+              <Route path="/loot-web-kit/components/input-email" component={InputEmailExample} />
+              <Route path="/loot-web-kit/components/input-radio" component={InputRadioExample} />
               <Route
                 path="/loot-web-kit/components/input-sortcode"
                 component={InputSortcodeExample}
               />
               <Route
-                path="/loot-web-kit/components/input-money"
-                component={InputMoneyExample}
+                path="/loot-web-kit/components/input-account-number"
+                component={InputAccountNumberExample}
               />
+              <Route path="/loot-web-kit/components/input-money" component={InputMoneyExample} />
               <Route
                 path="/loot-web-kit/components/input-date-time"
                 component={InputDateTimeExample}
               />
-              <Route
-                path="/loot-web-kit/components/input-card"
-                component={InputCardExample}
-              />
+              <Route path="/loot-web-kit/components/input-card" component={InputCardExample} />
               <Route
                 path="/loot-web-kit/components/input-password"
                 component={InputPasswordExample}
@@ -246,22 +216,10 @@ class Demo extends Component {
                 path="/loot-web-kit/components/input-increment"
                 component={InputIncrementExample}
               />
-              <Route
-                path="/loot-web-kit/utility/is-valid-email"
-                component={isValidEmailExample}
-              />
-              <Route
-                path="/loot-web-kit/utility/is-mobile"
-                component={isMobileExample}
-              />
-              <Route
-                path="/loot-web-kit/utility/is-date-input"
-                component={isDateInputExample}
-              />
-              <Route
-                path="/loot-web-kit/utility/format-amount"
-                component={formatAmountExample}
-              />
+              <Route path="/loot-web-kit/utility/is-valid-email" component={isValidEmailExample} />
+              <Route path="/loot-web-kit/utility/is-mobile" component={isMobileExample} />
+              <Route path="/loot-web-kit/utility/is-date-input" component={isDateInputExample} />
+              <Route path="/loot-web-kit/utility/format-amount" component={formatAmountExample} />
               <Route
                 path="/loot-web-kit/utility/format-sortcode"
                 component={formatSortcodeExample}
@@ -270,14 +228,8 @@ class Demo extends Component {
                 path="/loot-web-kit/utility/string-formatter"
                 component={stringFormatterExample}
               />
-              <Route
-                path="/loot-web-kit/components/button"
-                component={ButtonExample}
-              />
-              <Route
-                path="/loot-web-kit/components/spinner"
-                component={SpinnerExample}
-              />
+              <Route path="/loot-web-kit/components/button" component={ButtonExample} />
+              <Route path="/loot-web-kit/components/spinner" component={SpinnerExample} />
               <Route path="/loot-web-kit" component={ColorScheme} />
             </Switch>
           </Content>

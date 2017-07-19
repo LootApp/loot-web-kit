@@ -4,7 +4,7 @@
   "rules": {
     "curly": 0,
     "no-mixed-operators": 0,
-    "comma-dangle": 0,
+    "comma-dangle": ["error", "never"],
     "global-require": 0,
     "no-confusing-arrow": 0,
     "no-underscore-dangle": 0,

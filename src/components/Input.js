@@ -150,8 +150,7 @@ class Input extends Component {
         error: false,
         helperText: this.props.helperText
       });
-    if (typeof this.props.onBlur === "function")
-      this.props.onBlur(target.value);
+    if (typeof this.props.onBlur === "function") this.props.onBlur(target.value);
   };
 
   _onChange = ({ target }) => {
@@ -159,8 +158,7 @@ class Input extends Component {
     typeof this.props.onChange === "function"
       ? (value = this.props.onChange(target.value))
       : (value = target.value);
-    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength)
-      return false;
+    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
     this.setState({ value });
   };
 

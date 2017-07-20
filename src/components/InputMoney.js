@@ -25,7 +25,7 @@ const SInput = styled(Input)`
 const SDifference = styled.span`
   font-weight: 400;
   position: absolute;
-  top: 34px;
+  top: 36px;
   right: 8px;
   color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
 `;

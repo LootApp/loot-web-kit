@@ -9,6 +9,7 @@ import InputMoney from "./components/InputMoney";
 import InputPassword from "./components/InputPassword";
 import InputRadio from "./components/InputRadio";
 import InputSortcode from "./components/InputSortcode";
+import InputAccountNumber from "./components/InputAccountNumber";
 import InputVerify from "./components/InputVerify";
 import InputMobileNumber from "./components/InputMobileNumber";
 import InputAddress from "./components/InputAddress";
@@ -26,6 +27,7 @@ export {
   InputPassword,
   InputRadio,
   InputSortcode,
+  InputAccountNumber,
   InputVerify,
   InputMobileNumber,
   InputAddress,

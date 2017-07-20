@@ -2,9 +2,7 @@
   "links": [
     {
       "title": "Design",
-      "links": [
-        { "to": "/loot-web-kit", "text": "Colour Scheme" }
-      ]
+      "links": [{ "to": "/loot-web-kit", "text": "Colour Scheme" }]
     },
     {
       "title": "Components",
@@ -18,6 +16,7 @@
         { "to": "/loot-web-kit/components/input-radio", "text": "InputRadio" },
         { "to": "/loot-web-kit/components/input-money", "text": "InputMoney" },
         { "to": "/loot-web-kit/components/input-sortcode", "text": "InputSortcode" },
+        { "to": "/loot-web-kit/components/input-account-number", "text": "InputAccountNumber" },
         { "to": "/loot-web-kit/components/input-date-time", "text": "InputDateTme" },
         { "to": "/loot-web-kit/components/input-card", "text": "InputCard" },
         { "to": "/loot-web-kit/components/input-password", "text": "InputPassword" },

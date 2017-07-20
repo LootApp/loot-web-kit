@@ -7,6 +7,7 @@ import formatAmount from "../utilities/formatAmount";
 const SContainer = styled.div`
   display: flex;
   height: 57px;
+  position: relative;
 `;
 
 const SPrefix = styled.div`
@@ -21,10 +22,19 @@ const SInput = styled(Input)`
   width: 100%;
 `;
 
+const SDifference = styled.span`
+  font-weight: 400;
+  position: absolute;
+  top: 34px;
+  right: 8px;
+  color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
+`;
+
 class InputMoney extends Component {
   static propTypes = {
     prefix: PropTypes.string,
     maxLength: PropTypes.number,
+    balance: PropTypes.string,
     getRef: PropTypes.func,
     onChange: PropTypes.func
   };
@@ -32,8 +42,13 @@ class InputMoney extends Component {
   static defaultProps = {
     prefix: "£",
     maxLength: 10,
+    balance: "",
     getRef: null,
     onChange: null
+  };
+
+  state = {
+    remaining: ""
   };
 
   componentDidMount() {
@@ -42,8 +57,8 @@ class InputMoney extends Component {
 
   _onChange = value => {
     const formatedValue = formatAmount(value);
-    typeof this.props.onChange === "function" &&
-      this.props.onChange(formatedValue);
+    if (this.props.balance) this.updateRemaining(value);
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
@@ -53,12 +68,31 @@ class InputMoney extends Component {
         error: true,
         helperText: "Minimum amount is 0.01"
       });
+    if (typeof value === "string" && !value.length && this.props.balance)
+      this.setState({ remaining: "" });
+  };
+
+  _onFocus = value => {
+    const inputValue = value || "";
+    if (this.props.balance) this.updateRemaining(inputValue);
   };
 
   _value = () => this.input._value();
 
+  updateRemaining = value => {
+    const formatedValue = formatAmount(value);
+    if (typeof value === "string" && Number(this.props.balance)) {
+      const remaining = value
+        ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
+        : formatAmount(this.props.balance);
+      this.setState({
+        remaining
+      });
+    }
+  };
+
   render() {
-    const { prefix, maxLength, ...props } = this.props;
+    const { prefix, maxLength, balance, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix>
@@ -70,8 +104,14 @@ class InputMoney extends Component {
           type="tel"
           onChange={this._onChange}
           onBlur={this._onBlur}
+          onFocus={this._onFocus}
           innerRef={input => (this.input = input)}
         />
+        {!!Number(balance) &&
+          !!this.state.remaining &&
+          <SDifference red={this.state.remaining < 0}>
+            {`${prefix}${this.state.remaining}`}
+          </SDifference>}
       </SContainer>
     );
   }

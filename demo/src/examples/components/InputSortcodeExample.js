@@ -13,6 +13,7 @@ const docs = `
 
 const code = `
   <InputSortcode
+    placeholder="12-34-56"
     label='Sort Code'
   />
 `;

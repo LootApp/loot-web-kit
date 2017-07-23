@@ -49,7 +49,7 @@ const code = `
   />
   <InputFormat
     placeholder="12/19"
-    label='Exp Date'
+    label='MM/YY'
     maxLength={5}
     numbersOnly
     delimiter="/"

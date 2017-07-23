@@ -15,8 +15,7 @@
         { "to": "/loot-web-kit/components/input-mobile-number", "text": "InputMobileNumber" },
         { "to": "/loot-web-kit/components/input-radio", "text": "InputRadio" },
         { "to": "/loot-web-kit/components/input-money", "text": "InputMoney" },
-        { "to": "/loot-web-kit/components/input-sortcode", "text": "InputSortcode" },
-        { "to": "/loot-web-kit/components/input-account-number", "text": "InputAccountNumber" },
+        { "to": "/loot-web-kit/components/input-format", "text": "InputFormat" },
         { "to": "/loot-web-kit/components/input-date-time", "text": "InputDateTme" },
         { "to": "/loot-web-kit/components/input-card", "text": "InputCard" },
         { "to": "/loot-web-kit/components/input-password", "text": "InputPassword" },
@@ -32,7 +31,6 @@
         { "to": "/loot-web-kit/utility/is-valid-email", "text": "isValidEmail" },
         { "to": "/loot-web-kit/utility/is-date-input", "text": "isDateInput" },
         { "to": "/loot-web-kit/utility/format-amount", "text": "formatAmount" },
-        { "to": "/loot-web-kit/utility/format-sortcode", "text": "formatSortcode" },
         { "to": "/loot-web-kit/utility/string-formatter", "text": "stringFormatter" }
       ]
     }

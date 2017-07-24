@@ -1,9 +1,6 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "env": {
-    "jest": true
-  },
   "rules": {
     "curly": 0,
     "no-mixed-operators": 0,

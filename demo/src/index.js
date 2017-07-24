@@ -8,8 +8,7 @@ import InputVerify from "./examples/components/InputVerifyExample";
 import InputExample from "./examples/components/InputExample";
 import InputAddressExample from "./examples/components/InputAddressExample";
 import InputMobileNumberExample from "./examples/components/InputMobileNumberExample";
-import InputSortcodeExample from "./examples/components/InputSortcodeExample";
-import InputAccountNumberExample from "./examples/components/InputAccountNumberExample";
+import InputFormatExample from "./examples/components/InputFormatExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
 import InputRadioExample from "./examples/components/InputRadioExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
@@ -22,7 +21,6 @@ import SpinnerExample from "./examples/components/SpinnerExample";
 import ButtonExample from "./examples/components/ButtonExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
-import formatSortcodeExample from "./examples/utility/formatSortcodeExample";
 import stringFormatterExample from "./examples/utility/stringFormatterExample";
 import formatAmountExample from "./examples/utility/formatAmountExample";
 import isValidEmailExample from "./examples/utility/isValidEmailExample";
@@ -194,14 +192,7 @@ class Demo extends Component {
               />
               <Route path="/loot-web-kit/components/input-email" component={InputEmailExample} />
               <Route path="/loot-web-kit/components/input-radio" component={InputRadioExample} />
-              <Route
-                path="/loot-web-kit/components/input-sortcode"
-                component={InputSortcodeExample}
-              />
-              <Route
-                path="/loot-web-kit/components/input-account-number"
-                component={InputAccountNumberExample}
-              />
+              <Route path="/loot-web-kit/components/input-format" component={InputFormatExample} />
               <Route path="/loot-web-kit/components/input-money" component={InputMoneyExample} />
               <Route
                 path="/loot-web-kit/components/input-date-time"
@@ -220,10 +211,6 @@ class Demo extends Component {
               <Route path="/loot-web-kit/utility/is-mobile" component={isMobileExample} />
               <Route path="/loot-web-kit/utility/is-date-input" component={isDateInputExample} />
               <Route path="/loot-web-kit/utility/format-amount" component={formatAmountExample} />
-              <Route
-                path="/loot-web-kit/utility/format-sortcode"
-                component={formatSortcodeExample}
-              />
               <Route
                 path="/loot-web-kit/utility/string-formatter"
                 component={stringFormatterExample}

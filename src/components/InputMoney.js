@@ -22,7 +22,7 @@ const SInput = styled(Input)`
   width: 100%;
 `;
 
-const SDifference = styled.span`
+const SRemaining = styled.span`
   font-weight: 400;
   position: absolute;
   top: 36px;
@@ -109,9 +109,9 @@ class InputMoney extends Component {
         />
         {!!Number(balance) &&
           !!this.state.remaining &&
-          <SDifference red={this.state.remaining < 0}>
+          <SRemaining red={this.state.remaining < 0}>
             {`${prefix}${this.state.remaining}`}
-          </SDifference>}
+          </SRemaining>}
       </SContainer>
     );
   }

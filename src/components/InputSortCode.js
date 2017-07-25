@@ -24,6 +24,7 @@ class InputSortCode extends Component {
   }
 
   _onBlur = ({ target }) => {
+    if (!target) return null;
     if (target.value.length && target.value) {
       if (this.props.required && !target.value.length) {
         this.input.setState({

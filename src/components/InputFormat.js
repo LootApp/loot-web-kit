@@ -41,7 +41,7 @@ class InputFormat extends Component {
           error: true,
           helperText: "This field is required"
         });
-      } else if (target.value.length < this.props.maxLength) {
+      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
           helperText: `Minimum ${minChar} characters`

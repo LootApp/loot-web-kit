@@ -62,16 +62,14 @@ class InputFormat extends Component {
   render() {
     const { maxLength, required, ...props } = this.props;
     return (
-      <div>
-        <SInput
-          {...props}
-          onChange={this._onChange}
-          required={required}
-          onBlur={this._onBlur}
-          maxLength={maxLength}
-          innerRef={input => (this.input = input)}
-        />
-      </div>
+      <SInput
+        {...props}
+        onChange={this._onChange}
+        required={required}
+        onBlur={this._onBlur}
+        maxLength={maxLength}
+        innerRef={input => (this.input = input)}
+      />
     );
   }
 }

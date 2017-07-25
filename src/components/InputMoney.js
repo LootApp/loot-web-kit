@@ -63,11 +63,17 @@ class InputMoney extends Component {
   };
 
   _onBlur = value => {
-    if (!!value.length && Number(value) < 0.01)
+    if (!!value.length && Number(value) < 0.01) {
       this.input.setState({
         error: true,
         helperText: "Minimum amount is 0.01"
       });
+    } else if (Number(this.state.remaining) < 0) {
+      this.input.setState({
+        error: true,
+        helperText: "Amount exceeds balance"
+      });
+    }
     if (typeof value === "string" && !value.length && this.props.balance)
       this.setState({ remaining: "" });
   };

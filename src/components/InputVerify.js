@@ -91,6 +91,7 @@ class InputVerify extends Component {
           key={`Field-${i}`}
           type="tel"
           id={i}
+          noValidate
           onChange={this._onChange}
           innerRef={input => (this[`input${i}`] = input)}
         />

@@ -108,6 +108,7 @@ class InputMoney extends Component {
           {...props}
           maxLength={maxLength}
           type="tel"
+          noValidate
           onChange={this._onChange}
           onBlur={this._onBlur}
           onFocus={this._onFocus}

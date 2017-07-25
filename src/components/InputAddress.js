@@ -173,6 +173,7 @@ class InputAddress extends Component {
         <SInput
           {...props}
           type="tel"
+          noValidate
           onBlur={this._onBlur}
           onChange={this._onChange}
           innerRef={input => (this.input = input)}

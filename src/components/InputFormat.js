@@ -64,6 +64,7 @@ class InputFormat extends Component {
     return (
       <SInput
         {...props}
+        noValidate
         onChange={this._onChange}
         required={required}
         onBlur={this._onBlur}

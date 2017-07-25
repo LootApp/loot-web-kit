@@ -87,13 +87,11 @@ class InputMoney extends Component {
 
   updateRemaining = value => {
     const formatedValue = formatAmount(value);
-    if (typeof value === "string" && Number(this.props.balance)) {
+    if (typeof value === "string" && this.props.balance.length) {
       const remaining = value
         ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
         : formatAmount(this.props.balance);
-      this.setState({
-        remaining
-      });
+      this.setState({ remaining });
     }
   };
 
@@ -114,8 +112,8 @@ class InputMoney extends Component {
           onFocus={this._onFocus}
           innerRef={input => (this.input = input)}
         />
-        {!!Number(balance) &&
-          !!this.state.remaining &&
+        {!!this.props.balance.length &&
+          !!this.state.remaining.length &&
           <SRemaining red={this.state.remaining < 0}>
             {`${prefix}${this.state.remaining}`}
           </SRemaining>}

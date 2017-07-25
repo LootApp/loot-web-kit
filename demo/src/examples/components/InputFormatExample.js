@@ -22,7 +22,8 @@ const props = `
 
   **delimiter**: string
 
-  Defines what delimiter will be appended for every occurance. *Default:* ""
+  Defines what delimiter will be appended for every occurance. **One Character Only** *Default:* ""
+
 
   ---
 

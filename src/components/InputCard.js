@@ -25,13 +25,15 @@ class Card extends Component {
   static propTypes = {
     maxLength: PropTypes.number,
     minLength: PropTypes.number,
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    required: PropTypes.bool
   };
 
   static defaultProps = {
     maxLength: 19,
-    minLength: 13,
-    getRef: null
+    minLength: 19,
+    getRef: null,
+    required: false
   };
 
   state = {
@@ -45,15 +47,27 @@ class Card extends Component {
   _onChange = value => {
     if (typeof value === "string") {
       let formatedValue = value.toString().replace(/\s/g, "");
-      formatedValue = formatedValue
-        .replace(/[^\dA-Z]/g, "")
-        .replace(/(.{4})/g, "$1 ")
-        .trim();
+      formatedValue = formatedValue.replace(/[^\dA-Z]/g, "").replace(/(.{4})/g, "$1 ").trim();
       if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
-      else if (formatedValue.match("^5[1-5]"))
-        this.setState({ cardIcon: mastercard });
+      else if (formatedValue.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
       else this.setState({ cardIcon: null });
       return formatedValue;
+    }
+  };
+
+  _onBlur = ({ target }) => {
+    if (target.value.length && target.value) {
+      if (this.props.required && !target.value.length) {
+        this.input.setState({
+          error: true,
+          helperText: "This field is required"
+        });
+      } else if (target.value.length < 19) {
+        this.input.setState({
+          error: true,
+          helperText: "Debit Card Number needs 16 digits"
+        });
+      }
     }
   };
 
@@ -68,6 +82,7 @@ class Card extends Component {
         type="tel"
         maxLength={maxLength}
         minLength={minLength}
+        onBlur={this._onBlur}
         innerRef={input => (this.input = input)}
         onChange={this._onChange}
       />

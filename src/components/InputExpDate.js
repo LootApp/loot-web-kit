@@ -8,22 +8,14 @@ const SInput = styled(Input)`
   width: 100%;
 `;
 
-class InputFormat extends Component {
+class InputExpDate extends Component {
   static propTypes = {
     getRef: PropTypes.func,
-    numbersOnly: PropTypes.bool,
-    delimiter: PropTypes.string,
-    occurance: PropTypes.number,
-    maxLength: PropTypes.number,
     required: PropTypes.bool
   };
 
   static defaultProps = {
     getRef: null,
-    numbersOnly: false,
-    delimiter: "",
-    occurance: 0,
-    maxLength: 9999,
     required: false
   };
 
@@ -32,19 +24,16 @@ class InputFormat extends Component {
   }
 
   _onBlur = ({ target }) => {
-    const minChar = this.props.occurance
-      ? this.props.maxLength - (this.props.occurance - this.props.maxLength % this.props.occurance)
-      : this.props.maxLength;
     if (target.value.length && target.value) {
       if (this.props.required && !target.value.length) {
         this.input.setState({
           error: true,
           helperText: "This field is required"
         });
-      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
+      } else if (target.value.length < 5) {
         this.input.setState({
           error: true,
-          helperText: `Minimum ${minChar} characters`
+          helperText: "Expiry date needs MM/YY format"
         });
       }
     }
@@ -52,27 +41,27 @@ class InputFormat extends Component {
 
   _onChange = value =>
     stringFormatter({
-      value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
-      delimiter: this.props.delimiter,
-      occurance: this.props.occurance
+      value: value.toString().replace(/[^0-9-]/g, ""),
+      delimiter: "/",
+      occurance: 2
     });
 
   _value = () => this.input._value();
 
   render() {
-    const { maxLength, required, ...props } = this.props;
+    const { required, ...props } = this.props;
     return (
       <SInput
         {...props}
         noValidate
         onChange={this._onChange}
+        maxLength={5}
         required={required}
         onBlur={this._onBlur}
-        maxLength={maxLength}
         innerRef={input => (this.input = input)}
       />
     );
   }
 }
 
-export default InputFormat;
+export default InputExpDate;

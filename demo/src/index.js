@@ -9,6 +9,10 @@ import InputExample from "./examples/components/InputExample";
 import InputAddressExample from "./examples/components/InputAddressExample";
 import InputMobileNumberExample from "./examples/components/InputMobileNumberExample";
 import InputFormatExample from "./examples/components/InputFormatExample";
+import InputSortCodeExample from "./examples/components/InputSortCodeExample";
+import InputAccountNumberExample from "./examples/components/InputAccountNumberExample";
+import InputExpDateExample from "./examples/components/InputExpDateExample";
+import InputCVVExample from "./examples/components/InputCVVExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
 import InputRadioExample from "./examples/components/InputRadioExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
@@ -193,6 +197,19 @@ class Demo extends Component {
               <Route path="/loot-web-kit/components/input-email" component={InputEmailExample} />
               <Route path="/loot-web-kit/components/input-radio" component={InputRadioExample} />
               <Route path="/loot-web-kit/components/input-format" component={InputFormatExample} />
+              <Route
+                path="/loot-web-kit/components/input-sort-code"
+                component={InputSortCodeExample}
+              />
+              <Route
+                path="/loot-web-kit/components/input-account-number"
+                component={InputAccountNumberExample}
+              />
+              <Route
+                path="/loot-web-kit/components/input-exp-date"
+                component={InputExpDateExample}
+              />
+              <Route path="/loot-web-kit/components/input-cvv" component={InputCVVExample} />
               <Route path="/loot-web-kit/components/input-money" component={InputMoneyExample} />
               <Route
                 path="/loot-web-kit/components/input-date-time"

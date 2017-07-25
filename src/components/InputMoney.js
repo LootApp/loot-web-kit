@@ -80,7 +80,7 @@ class InputMoney extends Component {
 
   _onFocus = value => {
     const inputValue = value || "";
-    if (this.props.balance) this.updateRemaining(inputValue);
+    if (this.props.balance && !this.state.remaining.length) this.updateRemaining(inputValue);
   };
 
   _value = () => this.input._value();

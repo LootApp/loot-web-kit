@@ -42,7 +42,7 @@ class InputExpDate extends Component {
   _onChange = value =>
     stringFormatter({
       value: value.toString().replace(/[^0-9-]/g, ""),
-      delimiter: "-",
+      delimiter: "/",
       occurance: 2
     });
 

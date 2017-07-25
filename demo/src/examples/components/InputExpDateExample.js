@@ -13,7 +13,7 @@ const docs = `
 
 const code = `
   <InputExpDate
-    label='Exp Date'
+    label='MM/YY'
     placeholder="12/19"
   />
 `;

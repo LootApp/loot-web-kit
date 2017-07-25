@@ -271,7 +271,6 @@ class InputMobileNumber extends Component {
         </SFlagInputContainer>
         <SInput
           type="tel"
-          noValidate
           onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />

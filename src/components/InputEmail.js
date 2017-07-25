@@ -36,7 +36,6 @@ class InputEmail extends Component {
       <SInput
         {...this.props}
         type="email"
-        noValidate
         onBlur={this._onBlur}
         innerRef={input => (this.input = input)}
       />

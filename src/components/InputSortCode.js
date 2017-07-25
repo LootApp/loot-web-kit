@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Input from "./Input";
+import stringFormatter from "../utilities/stringFormatter";
 
 const SInput = styled(Input)`
   width: 100%;
 `;
 
-class InputAccountNumber extends Component {
+class InputSortCode extends Component {
   static propTypes = {
     getRef: PropTypes.func,
     required: PropTypes.bool
@@ -32,13 +33,18 @@ class InputAccountNumber extends Component {
       } else if (target.value.length < 8) {
         this.input.setState({
           error: true,
-          helperText: "Account number has 8 digits"
+          helperText: "Sort code has 6 digits"
         });
       }
     }
   };
 
-  _onChange = value => value.toString().replace(/[^0-9-]/g, "");
+  _onChange = value =>
+    stringFormatter({
+      value: value.toString().replace(/[^0-9-]/g, ""),
+      delimiter: "-",
+      occurance: 2
+    });
 
   _value = () => this.input._value();
 
@@ -58,4 +64,4 @@ class InputAccountNumber extends Component {
   }
 }
 
-export default InputAccountNumber;
+export default InputSortCode;

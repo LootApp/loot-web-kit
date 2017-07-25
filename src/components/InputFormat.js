@@ -2,19 +2,28 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Input from "./Input";
+import stringFormatter from "../utilities/stringFormatter";
 
 const SInput = styled(Input)`
   width: 100%;
 `;
 
-class InputAccountNumber extends Component {
+class InputFormat extends Component {
   static propTypes = {
     getRef: PropTypes.func,
+    numbersOnly: PropTypes.bool,
+    delimiter: PropTypes.string,
+    occurance: PropTypes.number,
+    maxLength: PropTypes.number,
     required: PropTypes.bool
   };
 
   static defaultProps = {
     getRef: null,
+    numbersOnly: false,
+    delimiter: "",
+    occurance: 0,
+    maxLength: 9999,
     required: false
   };
 
@@ -23,39 +32,47 @@ class InputAccountNumber extends Component {
   }
 
   _onBlur = ({ target }) => {
+    const minChar = this.props.occurance
+      ? this.props.maxLength - (this.props.occurance - this.props.maxLength % this.props.occurance)
+      : this.props.maxLength;
     if (target.value.length && target.value) {
       if (this.props.required && !target.value.length) {
         this.input.setState({
           error: true,
           helperText: "This field is required"
         });
-      } else if (target.value.length < 8) {
+      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
-          helperText: "Account number has 8 digits"
+          helperText: `Minimum ${minChar} characters`
         });
       }
     }
   };
 
-  _onChange = value => value.toString().replace(/[^0-9-]/g, "");
+  _onChange = value =>
+    stringFormatter({
+      value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
+      delimiter: this.props.delimiter,
+      occurance: this.props.occurance
+    });
 
   _value = () => this.input._value();
 
   render() {
-    const { required, ...props } = this.props;
+    const { maxLength, required, ...props } = this.props;
     return (
       <SInput
         {...props}
         noValidate
         onChange={this._onChange}
-        maxLength={8}
         required={required}
         onBlur={this._onBlur}
+        maxLength={maxLength}
         innerRef={input => (this.input = input)}
       />
     );
   }
 }
 
-export default InputAccountNumber;
+export default InputFormat;

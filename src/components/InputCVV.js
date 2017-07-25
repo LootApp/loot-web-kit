@@ -7,7 +7,7 @@ const SInput = styled(Input)`
   width: 100%;
 `;
 
-class InputAccountNumber extends Component {
+class InputCVV extends Component {
   static propTypes = {
     getRef: PropTypes.func,
     required: PropTypes.bool
@@ -29,10 +29,10 @@ class InputAccountNumber extends Component {
           error: true,
           helperText: "This field is required"
         });
-      } else if (target.value.length < 8) {
+      } else if (target.value.length < 3) {
         this.input.setState({
           error: true,
-          helperText: "Account number has 8 digits"
+          helperText: "CVV has 3 digits"
         });
       }
     }
@@ -49,7 +49,7 @@ class InputAccountNumber extends Component {
         {...props}
         noValidate
         onChange={this._onChange}
-        maxLength={8}
+        maxLength={3}
         required={required}
         onBlur={this._onBlur}
         innerRef={input => (this.input = input)}
@@ -58,4 +58,4 @@ class InputAccountNumber extends Component {
   }
 }
 
-export default InputAccountNumber;
+export default InputCVV;

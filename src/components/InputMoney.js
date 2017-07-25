@@ -22,7 +22,7 @@ const SInput = styled(Input)`
   width: 100%;
 `;
 
-const SDifference = styled.span`
+const SRemaining = styled.span`
   font-weight: 400;
   position: absolute;
   top: 36px;
@@ -63,11 +63,17 @@ class InputMoney extends Component {
   };
 
   _onBlur = value => {
-    if (!!value.length && Number(value) < 0.01)
+    if (!!value.length && Number(value) < 0.01) {
       this.input.setState({
         error: true,
         helperText: "Minimum amount is 0.01"
       });
+    } else if (Number(this.state.remaining) < 0) {
+      this.input.setState({
+        error: true,
+        helperText: "Amount exceeds balance"
+      });
+    }
     if (typeof value === "string" && !value.length && this.props.balance)
       this.setState({ remaining: "" });
   };
@@ -102,6 +108,7 @@ class InputMoney extends Component {
           {...props}
           maxLength={maxLength}
           type="tel"
+          noValidate
           onChange={this._onChange}
           onBlur={this._onBlur}
           onFocus={this._onFocus}
@@ -109,9 +116,9 @@ class InputMoney extends Component {
         />
         {!!Number(balance) &&
           !!this.state.remaining &&
-          <SDifference red={this.state.remaining < 0}>
+          <SRemaining red={this.state.remaining < 0}>
             {`${prefix}${this.state.remaining}`}
-          </SDifference>}
+          </SRemaining>}
       </SContainer>
     );
   }

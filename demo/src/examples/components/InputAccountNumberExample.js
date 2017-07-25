@@ -13,8 +13,8 @@ const docs = `
 
 const code = `
   <InputAccountNumber
-    placeholder="00329840"
-    label='Account Number'
+    label='Account number'
+    placeholder="34343436"
   />
 `;
 

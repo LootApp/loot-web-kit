@@ -11,12 +11,14 @@ const SInput = styled(Input)`
 class InputSortCode extends Component {
   static propTypes = {
     getRef: PropTypes.func,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     getRef: null,
-    required: false
+    required: false,
+    onChange: null
   };
 
   componentDidMount() {
@@ -40,12 +42,15 @@ class InputSortCode extends Component {
     }
   };
 
-  _onChange = value =>
-    stringFormatter({
+  _onChange = value => {
+    const formatedValue = stringFormatter({
       value: value.toString().replace(/[^0-9-]/g, ""),
       delimiter: "-",
       occurance: 2
     });
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    return formatedValue;
+  };
 
   _value = () => this.input._value();
 

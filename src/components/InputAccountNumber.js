@@ -10,12 +10,14 @@ const SInput = styled(Input)`
 class InputAccountNumber extends Component {
   static propTypes = {
     getRef: PropTypes.func,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     getRef: null,
-    required: false
+    required: false,
+    onChange: null
   };
 
   componentDidMount() {
@@ -39,7 +41,11 @@ class InputAccountNumber extends Component {
     }
   };
 
-  _onChange = value => value.toString().replace(/[^0-9-]/g, "");
+  _onChange = value => {
+    const formatedValue = value.toString().replace(/[^0-9-]/g, "");
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    return formatedValue;
+  };
 
   _value = () => this.input._value();
 

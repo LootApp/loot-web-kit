@@ -56,14 +56,13 @@ const SLabel = styled.label`
     props.disabled
       ? "#545454"
       : props.focus ? (props.error ? "#da6e6e" : props.colour) : "#545454"};
-  padding-top: 16px;
   pointer-events: none;
-  font-size: 10px;
+  font-size: 12px;
   display: block;
   transition: all 0.15s ease;
   transform-origin: left top;
   transform: scale(${props => (props.focus ? 1 : 1.3333)})
-    translateY(${props => (props.focus ? 0 : "12px")});
+    translateY(${props => (props.focus ? 0 : "17px")});
   will-change: transform;
   text-align: left;
 
@@ -77,9 +76,14 @@ const SHelperText = styled.span`
   font-size: 12px;
   color: ${props => (props.error ? "#da6e6e" : "#545454")};
   display: block;
+  opacity: ${props => (props.show ? 1 : 0)};
+  visibility: ${props => (props.show ? "visible" : "hidden")};
+  pointer-events: ${props => (props.show ? "auto" : "none")};
   transition: all 0.15s ease;
   margin-top: 8px;
   text-align: left;
+  line-height: 1;
+  height: 12px;
 `;
 
 const SCounter = styled.span`
@@ -104,6 +108,7 @@ class Input extends Component {
     capitalise: PropTypes.bool,
     counter: PropTypes.bool,
     disabled: PropTypes.bool,
+    noHelperText: PropTypes.bool,
     type: PropTypes.string,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
@@ -118,6 +123,7 @@ class Input extends Component {
     minLength: 0,
     maxLength: 9999,
     helperText: "",
+    noHelperText: false,
     uppercase: false,
     capitalise: false,
     counter: false,
@@ -202,6 +208,7 @@ class Input extends Component {
       minLength,
       maxLength,
       helperText,
+      noHelperText,
       uppercase,
       capitalise,
       counter,
@@ -246,8 +253,8 @@ class Input extends Component {
               {`${this.state.value.length} / ${maxLength}`}
             </SCounter>}
         </SContainer>
-        {(this.state.error || !!helperText.length) &&
-          <SHelperText error={this.state.error}>
+        {!noHelperText &&
+          <SHelperText error={this.state.error} show={this.state.error || !!helperText.length}>
             {this.state.helperText}
           </SHelperText>}
       </div>

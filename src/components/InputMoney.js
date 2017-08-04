@@ -11,7 +11,7 @@ const SContainer = styled.div`
 
 const SPrefix = styled.div`
   font-size: 18px;
-  padding-top: 35px;
+  padding-top: 20px;
   padding-right: 8px;
   margin-bottom: -2px;
   color: #c6c6c6;
@@ -25,7 +25,7 @@ const SInput = styled(Input)`
 const SRemaining = styled.span`
   font-weight: 400;
   position: absolute;
-  top: 36px;
+  top: 20px;
   right: 8px;
   color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
 `;

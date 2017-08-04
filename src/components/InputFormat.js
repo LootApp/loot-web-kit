@@ -15,7 +15,8 @@ class InputFormat extends Component {
     delimiter: PropTypes.string,
     occurance: PropTypes.number,
     maxLength: PropTypes.number,
-    required: PropTypes.bool
+    required: PropTypes.bool,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -24,7 +25,8 @@ class InputFormat extends Component {
     delimiter: "",
     occurance: 0,
     maxLength: 9999,
-    required: false
+    required: false,
+    onChange: null
   };
 
   componentDidMount() {
@@ -51,12 +53,15 @@ class InputFormat extends Component {
     }
   };
 
-  _onChange = value =>
-    stringFormatter({
+  _onChange = value => {
+    const formatedValue = stringFormatter({
       value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
     });
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    return formatedValue;
+  };
 
   _value = () => this.input._value();
 

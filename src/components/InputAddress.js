@@ -27,7 +27,7 @@ const SContainer = styled.div`
 const SListContainer = styled.div`
   max-height: 160px;
   width: 100%;
-  top: 75px;
+  top: 60px;
   z-index: 2;
   visibility: hidden;
   overflow-y: scroll;
@@ -111,10 +111,7 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (
-      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
-      this.state.addressListStatus === "open"
-    ) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
       for (let i = 0; i < addressList.length; i += 1) {
         if (
           addressList[i]
@@ -155,14 +152,12 @@ class InputAddress extends Component {
   };
 
   closeList = () => {
-    (this.state.addressListStatus === "open" ||
-      this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "open" || this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "closed" });
   };
 
   openList = () => {
-    (this.state.addressListStatus === "closed" ||
-      this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "closed" || this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "open" });
   };
 

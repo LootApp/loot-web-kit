@@ -118,7 +118,7 @@ class InputPassword extends Component {
               text="characters"
               open={this.state.showRequirements}
             >
-              <span valid={this.state.password.length >= 8} />
+              <span />
             </SRequirement>
             <SRequirement
               valid={this.state.password.toUpperCase() !== this.state.password}
@@ -126,7 +126,7 @@ class InputPassword extends Component {
               text="lower"
               open={this.state.showRequirements}
             >
-              <span valid={this.state.password.toUpperCase() !== this.state.password} />
+              <span />
             </SRequirement>
             <SRequirement
               valid={this.state.password.toLowerCase() !== this.state.password}
@@ -134,7 +134,7 @@ class InputPassword extends Component {
               text="upper"
               open={this.state.showRequirements}
             >
-              <span valid={this.state.password.toLowerCase() !== this.state.password} />
+              <span />
             </SRequirement>
             <SRequirement
               valid={/\d/.test(this.state.password)}
@@ -142,7 +142,7 @@ class InputPassword extends Component {
               text="number"
               open={this.state.showRequirements}
             >
-              <span valid={/\d/.test(this.state.password)} />
+              <span />
             </SRequirement>
           </SRequirements>}
       </Container>

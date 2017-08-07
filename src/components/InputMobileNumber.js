@@ -93,7 +93,7 @@ const SContainer = styled.div`
 const SListContainer = styled.div`
   max-height: 160px;
   width: 100%;
-  top: 75px;
+  top: 60px;
   z-index: 2;
   visibility: hidden;
   overflow-y: scroll;
@@ -191,16 +191,11 @@ class InputMobileNumber extends Component {
         break;
       default:
     }
-    if (
-      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
-      this.state.dialCodeList === "open"
-    ) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList === "open") {
       for (let i = 0; i < countryList.length; i += 1) {
         if (
-          countryList[i]
-            .getAttribute("data-country-name")
-            .substring(0, 1)
-            .toLowerCase() === event.key.toLowerCase()
+          countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() ===
+          event.key.toLowerCase()
         ) {
           this.setCountry(i);
           return;
@@ -211,11 +206,7 @@ class InputMobileNumber extends Component {
 
   setCountry = (index, shouldClose) => {
     const countryList = document.getElementById("code-list").children;
-    if (
-      index >= 0 &&
-      index < countryList.length &&
-      this.state.dialCodeList === "open"
-    ) {
+    if (index >= 0 && index < countryList.length && this.state.dialCodeList === "open") {
       this.setState({
         flag: emoji(flag(countryList[index].getAttribute("data-country-code"))),
         dialCode: countryList[index].getAttribute("data-country-dial-code"),
@@ -242,8 +233,7 @@ class InputMobileNumber extends Component {
   };
 
   closeList = () => {
-    this.state.dialCodeList === "open" &&
-      this.setState({ dialCodeList: "closed" });
+    this.state.dialCodeList === "open" && this.setState({ dialCodeList: "closed" });
   };
 
   render() {
@@ -272,6 +262,7 @@ class InputMobileNumber extends Component {
         <SInput
           type="tel"
           noValidate
+          noHelperText
           onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />

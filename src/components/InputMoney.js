@@ -6,16 +6,16 @@ import formatAmount from "../utilities/formatAmount";
 
 const SContainer = styled.div`
   display: flex;
-  height: 57px;
   position: relative;
 `;
 
 const SPrefix = styled.div`
   font-size: 18px;
-  padding-right: 10px;
+  padding-top: 20px;
+  padding-right: 8px;
   margin-bottom: -2px;
   color: #c6c6c6;
-  align-self: flex-end;
+  align-self: flex-start;
 `;
 
 const SInput = styled(Input)`
@@ -25,7 +25,7 @@ const SInput = styled(Input)`
 const SRemaining = styled.span`
   font-weight: 400;
   position: absolute;
-  top: 36px;
+  top: 20px;
   right: 8px;
   color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
 `;

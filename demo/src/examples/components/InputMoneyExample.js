@@ -47,11 +47,6 @@ const props = `
   **pennies**: bool
 
   Boolean value passed through to disable pennies. *Default:* true
-
-
-  percentage: 0,
-  progress: false,
-  pennies: true
 `;
 
 const code = `<div>

@@ -20,15 +20,16 @@ const SPrefix = styled.div`
 
 const SInput = styled(Input)`
   width: 100%;
-  input {padding-left: 10px;}
+  input {padding-left: 12px;}
 `;
 
 const SRemaining = styled.span`
   font-weight: 400;
+  font-size: 14px;
   position: absolute;
-  top: 20px;
-  right: 8px;
-  color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
+  bottom: -5px;
+  right: 0;
+  color: ${({ error }) => (error ? "#da6e6e" : "#c6c6c6")};
 `;
 
 class InputMoney extends Component {
@@ -83,6 +84,7 @@ class InputMoney extends Component {
         helperText: "Amount exceeds balance"
       });
     }
+
     if (typeof value === "string" && !value.length && this.props.balance)
       this.setState({ remaining: "" });
   };
@@ -126,7 +128,7 @@ class InputMoney extends Component {
         />
         {!!this.props.balance.length &&
           !!this.state.remaining.length &&
-          <SRemaining red={this.state.remaining < 0}>
+          <SRemaining error={this.state.remaining < 0}>
             {`${prefix}${this.state.remaining}`}
           </SRemaining>}
       </SContainer>

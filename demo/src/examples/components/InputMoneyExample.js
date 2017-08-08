@@ -38,6 +38,13 @@ const code = `<div>
     prefix="£"
   />
   <InputMoney
+    label='Amount with amount left'
+    placeholder='0.00'
+    prefix="£"
+    progress
+    percentage={40}
+  />
+  <InputMoney
     label='Amount with remaining balance'
     placeholder='0.00'
     prefix="£"

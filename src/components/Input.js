@@ -66,8 +66,8 @@ const SLabel = styled.label`
   display: block;
   transition: all 0.15s ease;
   transform-origin: left top;
-  transform: scale(${props => (props.focus ? 1 : 1.3333)})
-    translateY(${props => (props.focus ? 0 : "17px")});
+  transform: scale(${props => (props.focus ? 1 : 1.1666666667)})
+    translateY(${props => (props.focus ? 0 : "20px")});
   will-change: transform;
   text-align: left;
 

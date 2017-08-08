@@ -110,7 +110,8 @@ const ProgressBar = styled.div`
   }};
   width: ${props => {
     if (!props.focused) return "100%";
-    if (props.focused) return props.percentage < 0 ? "0%" : `${props.percentage}%`;
+    if (props.focused)
+      return props.percentage < 0 || props.percentage > 100 ? "0%" : `${props.percentage}%`;
   }};
   transition: all 0.2s ease;
 `;

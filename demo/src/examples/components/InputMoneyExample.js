@@ -32,12 +32,6 @@ const props = `
 
   ---
 
-  **percentage**: number
-
-  Number passed through to specify the width of the progrss bar 0 - 100. *Default:* 0
-
-  ---
-
   **pennies**: bool
 
   Boolean value passed through to disable pennies. *Default:* true
@@ -50,10 +44,10 @@ const code = `<div>
     prefix="£"
   />
   <InputMoney
-    label='Amount with amount left'
-    placeholder='0.00'
+    label='Amount without pennies'
+    placeholder='0'
     prefix="£"
-    percentage={40}
+    pennies={false}
   />
   <InputMoney
     label='Amount with remaining balance'

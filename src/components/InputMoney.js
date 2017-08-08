@@ -39,7 +39,6 @@ class InputMoney extends Component {
     balance: PropTypes.string,
     getRef: PropTypes.func,
     onChange: PropTypes.func,
-    percentage: PropTypes.number,
     pennies: PropTypes.bool
   };
 
@@ -49,7 +48,6 @@ class InputMoney extends Component {
     balance: "",
     getRef: null,
     onChange: null,
-    percentage: 0,
     pennies: true
   };
 
@@ -67,7 +65,7 @@ class InputMoney extends Component {
     let formatedValue;
     if (typeof value === "string") {
       formatedValue = !this.props.pennies
-        ? value && `${parseInt(value.replace(/[^0-9]/g, ""), 0)}`
+        ? value && `${parseInt(value.replace(/[^0-9]/g, "") || 0, 0)}`
         : formatAmount(value);
       this.setState({ active: !!formatedValue });
     }
@@ -120,7 +118,7 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, maxLength, balance, percentage, ...props } = this.props;
+    const { prefix, maxLength, balance, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix focus={this.state.focus} active={this.state.active}>
@@ -130,7 +128,6 @@ class InputMoney extends Component {
           {...props}
           type="tel"
           noValidate
-          percentage={percentage}
           maxLength={maxLength}
           onChange={this._onChange}
           onBlur={this._onBlur}

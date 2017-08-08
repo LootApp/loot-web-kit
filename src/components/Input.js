@@ -16,15 +16,15 @@ const SContainer = styled.div`
   &::after {
     content: '';
     position: absolute;
-    height: ${props => (props.percentage ? "1px" : "2px")};
-    width: ${props => (props.focus || props.percentage ? "100%" : "10%")};
-    left: ${props => (props.focus || props.percentage ? "0%" : "45%")};
+    height: 2px;
+    width: ${props => (props.focus ? "100%" : "10%")};
+    left: ${props => (props.focus ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
     z-index: 0;
     background-color: ${props => (props.error ? "#da6e6e" : props.colour)};
     transition: all 0.2s ease;
-    opacity: ${props => (props.focus ? (props.percentage ? 0.5 : 1) : 0)};
+    opacity: ${props => (props.focus ? 1 : 0)};
     display: ${props => (props.disabled ? "none" : "block")};
   }
 
@@ -100,22 +100,6 @@ const SCounter = styled.span`
   bottom: -22px;
 `;
 
-const ProgressBar = styled.div`
-  top: 49px;
-  position: absolute;
-  border: ${props => {
-    if (!props.focused) return "1px solid transparent";
-    if (props.focused && props.error) return "1px solid #DA6E6E";
-    if (props.focused) return "1px solid #4db7c3";
-  }};
-  width: ${props => {
-    if (!props.focused) return "100%";
-    if (props.focused)
-      return props.percentage < 0 || props.percentage > 100 ? "0%" : `${props.percentage}%`;
-  }};
-  transition: all 0.2s ease;
-`;
-
 class Input extends Component {
   static propTypes = {
     value: PropTypes.string,
@@ -134,8 +118,7 @@ class Input extends Component {
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
     colour: PropTypes.string,
-    onFocus: PropTypes.func,
-    percentage: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+    onFocus: PropTypes.func
   };
 
   static defaultProps = {
@@ -154,8 +137,7 @@ class Input extends Component {
     onChange: null,
     onBlur: null,
     colour: "#4db7c3",
-    onFocus: null,
-    percentage: false
+    onFocus: null
   };
 
   state = {
@@ -239,7 +221,6 @@ class Input extends Component {
       type,
       colour,
       onFocus,
-      percentage,
       ...props
     } = this.props;
     return (
@@ -249,7 +230,6 @@ class Input extends Component {
           focus={!!this.state.value.length || this.state.focus}
           error={this.state.error}
           disabled={disabled}
-          percentage={!!percentage && percentage}
         >
           <SLabel
             colour={colour}
@@ -273,12 +253,6 @@ class Input extends Component {
             uppercase={uppercase}
             capitalise={capitalise}
           />
-          {!!percentage &&
-            <ProgressBar
-              error={this.state.error}
-              focused={!!this.state.value.length || this.state.focus}
-              percentage={percentage}
-            />}
           {counter &&
             <SCounter>
               {`${this.state.value.length} / ${maxLength}`}

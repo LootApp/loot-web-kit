@@ -38,12 +38,6 @@ const props = `
 
   ---
 
-  **progress**: bool
-
-  Boolean value passed through to enable the progress bar input. *Default:* false
-
-  ---
-
   **pennies**: bool
 
   Boolean value passed through to disable pennies. *Default:* true
@@ -59,7 +53,6 @@ const code = `<div>
     label='Amount with amount left'
     placeholder='0.00'
     prefix="£"
-    progress
     percentage={40}
   />
   <InputMoney

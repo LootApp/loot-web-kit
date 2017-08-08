@@ -40,7 +40,6 @@ class InputMoney extends Component {
     getRef: PropTypes.func,
     onChange: PropTypes.func,
     percentage: PropTypes.number,
-    progress: PropTypes.bool,
     pennies: PropTypes.bool
   };
 
@@ -51,7 +50,6 @@ class InputMoney extends Component {
     getRef: null,
     onChange: null,
     percentage: 0,
-    progress: false,
     pennies: true
   };
 
@@ -122,7 +120,7 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, maxLength, balance, progress, percentage, ...props } = this.props;
+    const { prefix, maxLength, balance, percentage, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix focus={this.state.focus} active={this.state.active}>
@@ -132,7 +130,6 @@ class InputMoney extends Component {
           {...props}
           type="tel"
           noValidate
-          progress={progress}
           percentage={percentage}
           maxLength={maxLength}
           onChange={this._onChange}

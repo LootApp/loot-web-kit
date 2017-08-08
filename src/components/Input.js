@@ -16,15 +16,15 @@ const SContainer = styled.div`
   &::after {
     content: '';
     position: absolute;
-    height: ${props => (props.progress ? "1px" : "2px")};
-    width: ${props => (props.focus || props.progress ? "100%" : "10%")};
-    left: ${props => (props.focus || props.progress ? "0%" : "45%")};
+    height: ${props => (props.percentage ? "1px" : "2px")};
+    width: ${props => (props.focus || props.percentage ? "100%" : "10%")};
+    left: ${props => (props.focus || props.percentage ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
     z-index: 0;
     background-color: ${props => (props.error ? "#da6e6e" : props.colour)};
     transition: all 0.2s ease;
-    opacity: ${props => (props.focus ? (props.progress ? 0.5 : 1) : 0)};
+    opacity: ${props => (props.focus ? (props.percentage ? 0.5 : 1) : 0)};
     display: ${props => (props.disabled ? "none" : "block")};
   }
 
@@ -135,8 +135,7 @@ class Input extends Component {
     onBlur: PropTypes.func,
     colour: PropTypes.string,
     onFocus: PropTypes.func,
-    percentage: PropTypes.number,
-    progress: PropTypes.bool
+    percentage: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
   };
 
   static defaultProps = {
@@ -156,8 +155,7 @@ class Input extends Component {
     onBlur: null,
     colour: "#4db7c3",
     onFocus: null,
-    percentage: 0,
-    progress: false
+    percentage: false
   };
 
   state = {
@@ -242,7 +240,6 @@ class Input extends Component {
       colour,
       onFocus,
       percentage,
-      progress,
       ...props
     } = this.props;
     return (
@@ -252,7 +249,7 @@ class Input extends Component {
           focus={!!this.state.value.length || this.state.focus}
           error={this.state.error}
           disabled={disabled}
-          progress={progress}
+          percentage={!!percentage && percentage}
         >
           <SLabel
             colour={colour}
@@ -276,7 +273,7 @@ class Input extends Component {
             uppercase={uppercase}
             capitalise={capitalise}
           />
-          {progress &&
+          {!!percentage &&
             <ProgressBar
               error={this.state.error}
               focused={!!this.state.value.length || this.state.focus}

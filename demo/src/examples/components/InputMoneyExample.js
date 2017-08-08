@@ -28,7 +28,30 @@ const props = `
 
   **getRef**: function
 
-  Function executed by the component where ref to original input is passed.
+  Function executed by the component where ref to original input is passed. *Default:* null
+
+  ---
+
+  **percentage**: number
+
+  Number passed through to specify the width of the progrss bar 0 - 100. *Default:* 0
+
+  ---
+
+  **progress**: bool
+
+  Boolean value passed through to enable the progress bar input. *Default:* false
+
+  ---
+
+  **pennies**: bool
+
+  Boolean value passed through to disable pennies. *Default:* true
+
+
+  percentage: 0,
+  progress: false,
+  pennies: true
 `;
 
 const code = `<div>

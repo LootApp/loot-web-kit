@@ -36,7 +36,9 @@ class InputMoney extends Component {
     maxLength: PropTypes.number,
     balance: PropTypes.string,
     getRef: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    percentage: PropTypes.number,
+    progress: PropTypes.bool
   };
 
   static defaultProps = {
@@ -44,7 +46,9 @@ class InputMoney extends Component {
     maxLength: 10,
     balance: "",
     getRef: null,
-    onChange: null
+    onChange: null,
+    percentage: 0,
+    progress: false
   };
 
   state = {
@@ -96,7 +100,7 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, maxLength, balance, ...props } = this.props;
+    const { prefix, maxLength, balance, progress, percentage, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix>
@@ -104,9 +108,11 @@ class InputMoney extends Component {
         </SPrefix>
         <SInput
           {...props}
-          maxLength={maxLength}
           type="tel"
           noValidate
+          progress={progress}
+          percentage={percentage}
+          maxLength={maxLength}
           onChange={this._onChange}
           onBlur={this._onBlur}
           onFocus={this._onFocus}

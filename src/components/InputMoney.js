@@ -10,16 +10,17 @@ const SContainer = styled.div`
 `;
 
 const SPrefix = styled.div`
-  font-size: 18px;
-  padding-top: 20px;
+  font-size: 16px;
+  padding-top: 22px;
   padding-right: 8px;
-  margin-bottom: -2px;
-  color: #c6c6c6;
-  align-self: flex-start;
+  color: ${props => (props.active ? "#545454" : "#c6c6c6")};
+  opacity: ${props => (props.focus ? 1 : 0)};
+  position: absolute;
 `;
 
 const SInput = styled(Input)`
   width: 100%;
+  input {padding-left: 10px;}
 `;
 
 const SRemaining = styled.span`
@@ -52,7 +53,9 @@ class InputMoney extends Component {
   };
 
   state = {
-    remaining: ""
+    remaining: "",
+    acitve: false,
+    focus: false
   };
 
   componentDidMount() {
@@ -63,10 +66,12 @@ class InputMoney extends Component {
     const formatedValue = formatAmount(value);
     if (this.props.balance) this.updateRemaining(value);
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    typeof value === "string" && this.setState({ active: !!formatedValue });
     return formatedValue;
   };
 
   _onBlur = value => {
+    if (!this.state.active) this.setState({ focus: false });
     if (!!value.length && Number(value) < 0.01) {
       this.input.setState({
         error: true,
@@ -83,6 +88,7 @@ class InputMoney extends Component {
   };
 
   _onFocus = value => {
+    this.setState({ focus: true });
     const inputValue = value || "";
     if (this.props.balance && !this.state.remaining.length) this.updateRemaining(inputValue);
   };
@@ -103,7 +109,7 @@ class InputMoney extends Component {
     const { prefix, maxLength, balance, progress, percentage, ...props } = this.props;
     return (
       <SContainer {...props}>
-        <SPrefix>
+        <SPrefix focus={this.state.focus} active={this.state.active}>
           {prefix}
         </SPrefix>
         <SInput

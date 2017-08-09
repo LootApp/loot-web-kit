@@ -3,12 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const SContainer = styled.div`
-  border-bottom: 1px
-    ${props => {
-      if (props.focus) return "solid transparent";
-      if (props.disabled) return "dashed #c6c6c6";
-      if (!props.disabled) return "solid #c6c6c6";
-    }};
+  border-bottom: 1px ${props => (props.disabled ? "dashed" : "solid")} #c6c6c6;
   transition: all 0.15s ease;
   position: relative;
   pointer-events: ${props => (props.disabled ? "none" : "auto")};

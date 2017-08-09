@@ -48,7 +48,7 @@ class InputMoney extends Component {
     balance: "",
     getRef: null,
     onChange: null,
-    pennies: true
+    pennies: false
   };
 
   state = {

@@ -34,7 +34,7 @@ const props = `
 
   **pennies**: bool
 
-  Boolean value passed through to disable pennies. *Default:* true
+  Boolean value passed through to disable pennies. *Default:* false
 `;
 
 const code = `<div>
@@ -42,18 +42,19 @@ const code = `<div>
     label='Amount'
     placeholder='0.00'
     prefix="£"
+    pennies
   />
   <InputMoney
     label='Amount without pennies'
     placeholder='0'
     prefix="£"
-    pennies={false}
   />
   <InputMoney
     label='Amount with remaining balance'
     placeholder='0.00'
     prefix="£"
     balance="100.00"
+    pennies
   />
 </div>`;
 

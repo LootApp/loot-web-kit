@@ -7,6 +7,7 @@ import formatAmount from "../utilities/formatAmount";
 const SContainer = styled.div`
   display: flex;
   position: relative;
+  border: 1px solid black;
 `;
 
 const SPrefix = styled.div`

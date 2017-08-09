@@ -13,7 +13,7 @@ const SInut = styled(Input)`
     display: block;
     position: absolute;
     right: 0;
-    top: 36px;
+    top: 22px;
     width: 30px;
     height: 20px;
     background-image: url(${props => props.cardIcon || "none"});

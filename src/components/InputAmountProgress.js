@@ -92,19 +92,16 @@ const StyledLabel = styled.label`
 `;
 
 class AmountLeftInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      amount: "",
-      focus: false,
-      error: false,
-      amountLeft: props.remaining,
-      percentage: this.getPercentage(props.remaining)
-    };
-  }
-
+  // eslint-disable-next-line
   getPercentage = amount => amount / this.props.limit * 100;
+
+  state = {
+    amount: "",
+    focus: false,
+    error: false,
+    amountLeft: this.props.remaining,
+    percentage: this.getPercentage(this.props.remaining)
+  };
 
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;

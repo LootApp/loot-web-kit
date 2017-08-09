@@ -5,14 +5,17 @@ import styled from "styled-components";
 const StyledAmountLeftInput = styled.input`
   border: none;
   color: #545459;
-  font-size: 1.1em;
-  padding: 5px 10px 5px 0;
+  font-size: 16px;
+  padding: 8px 10px 8px 12px;
   transition: border 0.2s ease;
   border-bottom: 1px solid transparent;
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
   &:focus {
     outline: none;
     border-color: ${props => (props.error ? "rgba(221, 69, 65,0.3)" : "rgba(77, 183, 195, 0.3)")};
+  }
+  &::placeholder {
+    color: #c6c6c6;
   }
   transition: all 0.3s ease;
 `;
@@ -32,7 +35,7 @@ const Container = styled.div`
 `;
 
 const Span = styled.span`
-  top: 41px;
+  top: 45px;
   position: absolute;
   background: ${props => {
     if (props.error) return "#DA6E6E";
@@ -93,6 +96,16 @@ const StyledLabel = styled.label`
   }
 `;
 
+const SPrefix = styled.div`
+  font-size: 16px;
+  padding-top: 19px;
+  padding-right: 8px;
+  color: ${props => (props.active ? "#545454" : "#c6c6c6")};
+  opacity: ${props => (props.focus ? 1 : 0)};
+  position: absolute;
+  z-index: 1;
+`;
+
 class AmountLeftInput extends Component {
   // eslint-disable-next-line
   getPercentage = amount => amount / this.props.limit * 100;
@@ -107,13 +120,12 @@ class AmountLeftInput extends Component {
 
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;
-    const prefix = value ? this.props.prefix : "";
 
     const percentage = this.getPercentage(this.props.remaining) - this.getPercentage(value || 0);
     const amountLeft = `${parseInt(percentage / 100 * this.props.limit, 0)}`;
 
     this.setState({
-      amount: `${prefix}${value}`,
+      amount: value,
       percentage,
       amountLeft,
       error: amountLeft < 0
@@ -121,7 +133,7 @@ class AmountLeftInput extends Component {
 
     if (onChange) {
       onChange({
-        value: `${prefix}${value}`,
+        value,
         amountLeft,
         percentage
       });
@@ -137,6 +149,9 @@ class AmountLeftInput extends Component {
 
     return (
       <Container error={error} focus={focus}>
+        <SPrefix focus={amount.length || focus} active={!!amount.length}>
+          {prefix}
+        </SPrefix>
         <StyledLabel focus={amount.length || focus} error={error}>
           {label}
         </StyledLabel>
@@ -149,7 +164,7 @@ class AmountLeftInput extends Component {
           error={error}
           value={amount}
           name={label}
-          placeholder={`${prefix}0`}
+          placeholder="0"
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
           onChange={e => this.handleAmountChange(e, onChange)}

@@ -7,7 +7,6 @@ const SContainer = styled.div`
   transition: all 0.15s ease;
   position: relative;
   pointer-events: ${props => (props.disabled ? "none" : "auto")};
-
   &::after {
     content: '';
     position: absolute;
@@ -24,7 +23,7 @@ const SContainer = styled.div`
   }
 
   &:hover {
-    border-bottom-color: #545454;
+    border-bottom-color: ${props => (props.focus ? "none" : "#545454")};
   }
 `;
 
@@ -57,12 +56,12 @@ const SLabel = styled.label`
       ? "#545454"
       : props.focus ? (props.error ? "#da6e6e" : props.colour) : "#545454"};
   pointer-events: none;
-  font-size: 12px;
+  font-size: 10px;
   display: block;
   transition: all 0.15s ease;
   transform-origin: left top;
-  transform: scale(${props => (props.focus ? 1 : 1.3333)})
-    translateY(${props => (props.focus ? 0 : "17px")});
+  transform: scale(${props => (props.focus ? 1 : 1.4)})
+    translateY(${props => (props.focus ? 0 : "15px")});
   will-change: transform;
   text-align: left;
 
@@ -73,7 +72,7 @@ const SLabel = styled.label`
 `;
 
 const SHelperText = styled.span`
-  font-size: 12px;
+  font-size: 10px;
   color: ${props => (props.error ? "#da6e6e" : "#545454")};
   display: block;
   opacity: ${props => (props.show ? 1 : 0)};

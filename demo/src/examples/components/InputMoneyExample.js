@@ -28,7 +28,8 @@ const props = `
 
   **getRef**: function
 
-  Function executed by the component where ref to original input is passed.
+  Function executed by the component where ref to original input is passed. *Default:* null
+
 `;
 
 const code = `<div>

@@ -16,6 +16,7 @@ import InputCVV from "./components/InputCVV";
 import InputVerify from "./components/InputVerify";
 import InputMobileNumber from "./components/InputMobileNumber";
 import InputAddress from "./components/InputAddress";
+import InputAmountProgress from "./components/InputAmountProgress";
 import Spinner from "./components/Spinner";
 
 export {
@@ -37,5 +38,6 @@ export {
   InputVerify,
   InputMobileNumber,
   InputAddress,
-  Spinner
+  Spinner,
+  InputAmountProgress
 };

@@ -15,6 +15,7 @@
         { "to": "/loot-web-kit/components/input-mobile-number", "text": "InputMobileNumber" },
         { "to": "/loot-web-kit/components/input-radio", "text": "InputRadio" },
         { "to": "/loot-web-kit/components/input-money", "text": "InputMoney" },
+        { "to": "/loot-web-kit/components/input-amount-progress", "text": "InputAmountProgress" },
         { "to": "/loot-web-kit/components/input-format", "text": "InputFormat" },
         { "to": "/loot-web-kit/components/input-sort-code", "text": "InputSortCode" },
         { "to": "/loot-web-kit/components/input-account-number", "text": "InputAccountNumber" },

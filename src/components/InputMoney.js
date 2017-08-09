@@ -38,8 +38,7 @@ class InputMoney extends Component {
     maxLength: PropTypes.number,
     balance: PropTypes.string,
     getRef: PropTypes.func,
-    onChange: PropTypes.func,
-    pennies: PropTypes.bool
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
@@ -47,8 +46,7 @@ class InputMoney extends Component {
     maxLength: 10,
     balance: "",
     getRef: null,
-    onChange: null,
-    pennies: false
+    onChange: null
   };
 
   state = {
@@ -64,9 +62,7 @@ class InputMoney extends Component {
   _onChange = value => {
     let formatedValue;
     if (typeof value === "string") {
-      formatedValue = !this.props.pennies
-        ? value && `${parseInt(value.replace(/[^0-9]/g, "") || 0, 0)}`
-        : formatAmount(value);
+      formatedValue = formatAmount(value);
       this.setState({ active: !!formatedValue });
     }
     if (this.props.balance) this.updateRemaining(value);
@@ -79,7 +75,7 @@ class InputMoney extends Component {
     if (!!value.length && Number(value) < 0.01) {
       this.input.setState({
         error: true,
-        helperText: `Minimum amount is ${!this.props.pennies ? "1" : "0.01"}`
+        helperText: "Minimum amount is 0.01"
       });
     } else if (Number(this.state.remaining) < 0) {
       this.input.setState({
@@ -103,17 +99,10 @@ class InputMoney extends Component {
   updateRemaining = value => {
     if (typeof value === "string" && this.props.balance.length) {
       const formatedValue = formatAmount(value);
-      if (this.props.pennies) {
-        const remaining = value
-          ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
-          : formatAmount(this.props.balance);
-        this.setState({ remaining });
-      } else {
-        const remaining = value
-          ? `${Number(this.props.balance) - Number(value)}`
-          : `${Number(this.props.balance)}`;
-        this.setState({ remaining });
-      }
+      const remaining = value
+        ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
+        : formatAmount(this.props.balance);
+      this.setState({ remaining });
     }
   };
 

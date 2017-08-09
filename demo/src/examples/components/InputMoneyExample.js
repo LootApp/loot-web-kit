@@ -30,11 +30,6 @@ const props = `
 
   Function executed by the component where ref to original input is passed. *Default:* null
 
-  ---
-
-  **pennies**: bool
-
-  Boolean value passed through to disable pennies. *Default:* false
 `;
 
 const code = `<div>
@@ -42,19 +37,12 @@ const code = `<div>
     label='Amount'
     placeholder='0.00'
     prefix="£"
-    pennies
-  />
-  <InputMoney
-    label='Amount without pennies'
-    placeholder='0'
-    prefix="£"
   />
   <InputMoney
     label='Amount with remaining balance'
     placeholder='0.00'
     prefix="£"
     balance="100.00"
-    pennies
   />
 </div>`;
 

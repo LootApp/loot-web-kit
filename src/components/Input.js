@@ -7,7 +7,6 @@ const SContainer = styled.div`
   transition: all 0.15s ease;
   position: relative;
   pointer-events: ${props => (props.disabled ? "none" : "auto")};
-
   &::after {
     content: '';
     position: absolute;

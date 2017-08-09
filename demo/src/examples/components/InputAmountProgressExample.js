@@ -40,7 +40,7 @@ const props = `
 
   **onChange**: function
 
-  Function executed by the component within its onChange handler and passes through formatted string value. *Default:* null
+  Function executed by the component within its onChange handler and passes through object with { value, amountLeft, percentage }. *Default:* null
 `;
 
 const code = `<div>

@@ -43,11 +43,8 @@ const code = `<div>
     label='Amount'
     placeholder='0.00'
     prefix="£"
-<<<<<<< HEAD
     onChange={(value) => console.log(value) }
-=======
     minAmount={5.00}
->>>>>>> 5eed0e5e66ba743cf0ee8a0538d30f47d2821abf
   />
   <InputMoney
     label='Amount with remaining balance'

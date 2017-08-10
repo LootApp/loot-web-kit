@@ -48,7 +48,7 @@ class InputSortCode extends Component {
       delimiter: "-",
       occurance: 2
     });
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    !!this.props.onChange && this.props.onChange(formatedValue);
     return formatedValue;
   };
 

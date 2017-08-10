@@ -41,12 +41,14 @@ const code = `
     numbersOnly
     delimiter="-"
     occurance={2}
+    onChange={(value) => console.log(value) }
   />
   <InputFormat
     placeholder="35679876"
     label='Account Number'
     maxLength={8}
     numbersOnly
+    onChange={(value) => console.log(value) }
   />
   <InputFormat
     placeholder="12/19"
@@ -55,12 +57,14 @@ const code = `
     numbersOnly
     delimiter="/"
     occurance={2}
+    onChange={(value) => console.log(value) }
   />
   <InputFormat
     placeholder="347"
     label='CVV'
     maxLength={3}
     numbersOnly
+    onChange={(value) => console.log(value) }
   />
 </div>
 `;

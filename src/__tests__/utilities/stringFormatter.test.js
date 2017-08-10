@@ -1,17 +1,18 @@
-var stringFormatter = require("../../utilities/stringFormatter");
+import stringFormatter from "../../utilities/stringFormatter";
 
-var defaultOptions = {
+const defaultOptions = {
   value: "34strings",
-  delimiter: ""
+  delimiter: "",
+  occurance: 0
 };
 
-var numericOptions = {
+const numericOptions = {
   value: "34strings".replace(/[^0-9-]/g, ""),
   delimiter: "",
   occurance: 0
 };
 
-var sortCodeOptions = {
+const sortCodeOptions = {
   value: "233434",
   delimiter: "-",
   occurance: 2

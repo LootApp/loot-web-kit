@@ -14,13 +14,8 @@
     "build": "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
-    "test": "jest src",
+    "test": "jest --watch",
     "lint": "eslint src"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.js?$": "<rootDir>/node_modules/babel-jest"
-    }
   },
   "dependencies": {
     "country-code-emoji": "0.0.1",
@@ -41,7 +36,7 @@
     "eslint-plugin-jsx-a11y": "5.0.3",
     "eslint-plugin-react": "7.1.0",
     "jest": "^20.0.4",
-    "nwb": "0.17.1",
+    "nwb": "0.17.x",
     "prop-types": "^15.5.10",
     "react": "^16.0.0-alpha.12",
     "react-clipboard.js": "1.1.2",

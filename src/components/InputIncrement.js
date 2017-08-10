@@ -89,8 +89,7 @@ class InputIncrement extends Component {
 
   _onChange = ({ target }) => {
     const value = formatAmount(target.value);
-    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength)
-      return false;
+    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
     this.setState({ value: value.length ? value : "0.00" }, () => {
       this.input.style.width = `${this.span.offsetWidth}px`;
     });

@@ -10,20 +10,14 @@ const SInput = styled(Input)`
 
 class InputExpDate extends Component {
   static propTypes = {
-    getRef: PropTypes.func,
     required: PropTypes.bool,
     onChange: PropTypes.func
   };
 
   static defaultProps = {
-    getRef: null,
     required: false,
     onChange: null
   };
-
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
 
   _onBlur = ({ target }) => {
     if (!target) return null;
@@ -48,29 +42,20 @@ class InputExpDate extends Component {
       delimiter: "/",
       occurance: 2
     });
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    !!this.props.onChange && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
-  _onChange = value =>
-    stringFormatter({
-      value: value.toString().replace(/[^0-9-]/g, ""),
-      delimiter: "/",
-      occurance: 2
-    });
-
-  _value = () => this.input._value();
-
   render() {
-    const { required, ...props } = this.props;
+    const { required, onChange, ...props } = this.props;
     return (
       <SInput
         {...props}
         noValidate
-        onChange={this._onChange}
         maxLength={5}
         required={required}
         onBlur={this._onBlur}
+        onChange={this._onChange}
         innerRef={input => (this.input = input)}
       />
     );

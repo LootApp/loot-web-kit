@@ -5,7 +5,7 @@ import Input from "./Input";
 import visa from "../assets/visa-icon.svg";
 import mastercard from "../assets/mastercard-icon.svg";
 
-const SInut = styled(Input)`
+const SInput = styled(Input)`
   position: relative;
 
   &::after {
@@ -25,14 +25,12 @@ class Card extends Component {
   static propTypes = {
     maxLength: PropTypes.number,
     minLength: PropTypes.number,
-    getRef: PropTypes.func,
     required: PropTypes.bool
   };
 
   static defaultProps = {
     maxLength: 19,
     minLength: 19,
-    getRef: null,
     required: false
   };
 
@@ -40,19 +38,13 @@ class Card extends Component {
     cardIcon: null
   };
 
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
-
   _onChange = value => {
-    if (typeof value === "string") {
-      let formatedValue = value.toString().replace(/\s/g, "");
-      formatedValue = formatedValue.replace(/[^\dA-Z]/g, "").replace(/(.{4})/g, "$1 ").trim();
-      if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
-      else if (formatedValue.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
-      else this.setState({ cardIcon: null });
-      return formatedValue;
-    }
+    let formatedValue = value.toString().replace(/\s/g, "");
+    formatedValue = formatedValue.replace(/[^\dA-Z]/g, "").replace(/(.{4})/g, "$1 ").trim();
+    if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
+    else if (formatedValue.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
+    else this.setState({ cardIcon: null });
+    return formatedValue;
   };
 
   _onBlur = ({ target }) => {
@@ -72,12 +64,10 @@ class Card extends Component {
     }
   };
 
-  _value = () => this.input._value();
-
   render() {
     const { maxLength, minLength, ...props } = this.props;
     return (
-      <SInut
+      <SInput
         {...props}
         cardIcon={this.state.cardIcon}
         type="tel"

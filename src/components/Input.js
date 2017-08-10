@@ -159,13 +159,12 @@ class Input extends Component {
     if (typeof this.props.onBlur === "function") this.props.onBlur(target.value);
   };
 
-  _onChange = ({ target }) => {
-    let value;
-    typeof this.props.onChange === "function"
-      ? (value = this.props.onChange(target.value))
-      : (value = target.value);
+  _onChange = ({ target }, onChange) => {
+    let value = target.value;
+    if (onChange) value = onChange(target.value) || target.value;
     if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
     this.setState({ value });
+    return value;
   };
 
   _validate = value => {
@@ -200,6 +199,11 @@ class Input extends Component {
 
   _value = () => this.state.value;
 
+  _updateValue = value => {
+    this.props.onChange(value);
+    this.setState({ value });
+  };
+
   render() {
     const {
       label,
@@ -216,6 +220,7 @@ class Input extends Component {
       type,
       colour,
       onFocus,
+      onChange,
       ...props
     } = this.props;
     return (
@@ -241,7 +246,7 @@ class Input extends Component {
             colour={colour}
             onFocus={this._onFocus}
             onBlur={this._onBlur}
-            onChange={this._onChange}
+            onChange={e => this._onChange(e, onChange)}
             focus={!!this.state.value.length || this.state.focus}
             value={this.state.value}
             placeholder={placeholder}

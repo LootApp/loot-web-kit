@@ -73,19 +73,18 @@ class InputAddress extends Component {
   static propTypes = {
     formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array,
-    getRef: PropTypes.func
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
     addresses: [],
-    getRef: null
+    onChange: null
   };
 
   state = { addressListStatus: "", selected: 0, address: "" };
 
   componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
@@ -135,20 +134,16 @@ class InputAddress extends Component {
         addressListStatus: shouldClose ? "closed" : "open"
       });
       addressList[index].scrollIntoView();
-      this.input.setState({
-        value: addressList[index].getAttribute("data-address").trim()
-      });
+      this.input._updateValue(addressList[index].getAttribute("data-address").trim());
     }
   };
 
   _onBlur = () => this.closeList();
 
   _onChange = value => {
-    this.openList();
-    if (typeof value === "string") {
-      if (!value) this.closeList();
-      return value;
-    }
+    if (!value) this.closeList();
+    !!this.props.onChange && this.props.onChange(value);
+    return value;
   };
 
   closeList = () => {
@@ -162,7 +157,7 @@ class InputAddress extends Component {
   };
 
   render() {
-    const { addresses, formatAddress, ...props } = this.props;
+    const { addresses, formatAddress, onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SInput
@@ -171,6 +166,7 @@ class InputAddress extends Component {
           noValidate
           onBlur={this._onBlur}
           onChange={this._onChange}
+          onKeyDown={() => this.openList()}
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="address-list" isOpen={this.state.addressListStatus}>

@@ -59,22 +59,20 @@ class InputFormat extends Component {
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
     });
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    !!this.props.onChange && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
-  _value = () => this.input._value();
-
   render() {
-    const { maxLength, required, ...props } = this.props;
+    const { maxLength, required, onChange, ...props } = this.props;
     return (
       <SInput
         {...props}
         noValidate
-        onChange={this._onChange}
         required={required}
         onBlur={this._onBlur}
         maxLength={maxLength}
+        onChange={this._onChange}
         innerRef={input => (this.input = input)}
       />
     );

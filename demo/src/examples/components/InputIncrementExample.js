@@ -25,9 +25,12 @@ const props = `
   Maximum input length. *Default*: 10
 `;
 
-const code = `<InputIncrement
-  prefix="$"
-/>`;
+const code = `
+  <InputIncrement
+    prefix="$"
+    onChange={(value) => console.log(value) }
+  />
+`;
 
 class InputIncrementExample extends Component {
   render() {

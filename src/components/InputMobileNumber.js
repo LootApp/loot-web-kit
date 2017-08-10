@@ -144,11 +144,13 @@ const SItemText = styled.span`
 `;
 class InputMobileNumber extends Component {
   static propTypes = {
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
-    getRef: null
+    getRef: null,
+    onChange: null
   };
 
   state = {
@@ -218,9 +220,8 @@ class InputMobileNumber extends Component {
   };
 
   _onChange = value => {
-    if (typeof value === "string") {
-      return value.replace(/[^0-9-]/g, "");
-    }
+    !!this.props.onChange && this.props.onChange(value.replace(/[^0-9-]/g, ""));
+    return value.replace(/[^0-9-]/g, "");
   };
 
   toggleList = () => {
@@ -235,9 +236,9 @@ class InputMobileNumber extends Component {
   closeList = () => {
     this.state.dialCodeList === "open" && this.setState({ dialCodeList: "closed" });
   };
-
+  // onChange={(e) => {console.log(e)}}
   render() {
-    const { ...props } = this.props;
+    const { onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SFlagInputContainer>

@@ -9,20 +9,14 @@ const SInput = styled(Input)`
 
 class InputAccountNumber extends Component {
   static propTypes = {
-    getRef: PropTypes.func,
     required: PropTypes.bool,
     onChange: PropTypes.func
   };
 
   static defaultProps = {
-    getRef: null,
     required: false,
     onChange: null
   };
-
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
 
   _onBlur = ({ target }) => {
     if (!target) return null;
@@ -43,7 +37,7 @@ class InputAccountNumber extends Component {
 
   _onChange = value => {
     const formatedValue = value.toString().replace(/[^0-9-]/g, "");
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    !!this.props.onChange && this.props.onChange(formatedValue);
     return formatedValue;
   };
 

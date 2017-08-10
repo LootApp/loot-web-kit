@@ -37,7 +37,6 @@ class InputMoney extends Component {
     prefix: PropTypes.string,
     maxLength: PropTypes.number,
     balance: PropTypes.string,
-    getRef: PropTypes.func,
     onChange: PropTypes.func
   };
 
@@ -45,7 +44,6 @@ class InputMoney extends Component {
     prefix: "£",
     maxLength: 10,
     balance: "",
-    getRef: null,
     onChange: null
   };
 
@@ -55,18 +53,11 @@ class InputMoney extends Component {
     focus: false
   };
 
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
-
   _onChange = value => {
-    let formatedValue;
-    if (typeof value === "string") {
-      formatedValue = formatAmount(value);
-      this.setState({ active: !!formatedValue });
-    }
+    const formatedValue = formatAmount(value);
+    this.setState({ active: !!formatedValue });
     if (this.props.balance) this.updateRemaining(value);
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    !!this.props.onChange && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
@@ -84,8 +75,7 @@ class InputMoney extends Component {
       });
     }
 
-    if (typeof value === "string" && !value.length && this.props.balance)
-      this.setState({ remaining: "" });
+    if (!value.length && this.props.balance) this.setState({ remaining: "" });
   };
 
   _onFocus = value => {
@@ -94,10 +84,8 @@ class InputMoney extends Component {
     if (this.props.balance && !this.state.remaining.length) this.updateRemaining(inputValue);
   };
 
-  _value = () => this.input._value();
-
   updateRemaining = value => {
-    if (typeof value === "string" && this.props.balance.length) {
+    if (this.props.balance.length) {
       const formatedValue = formatAmount(value);
       const remaining = value
         ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
@@ -107,7 +95,7 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, maxLength, balance, ...props } = this.props;
+    const { prefix, maxLength, balance, onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SPrefix focus={this.state.focus} active={this.state.active}>
@@ -118,9 +106,9 @@ class InputMoney extends Component {
           type="tel"
           noValidate
           maxLength={maxLength}
-          onChange={this._onChange}
           onBlur={this._onBlur}
           onFocus={this._onFocus}
+          onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
         {!!this.props.balance.length &&

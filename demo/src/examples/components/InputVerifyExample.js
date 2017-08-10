@@ -22,7 +22,7 @@ const props = `
 const code = `
   <InputVerify
     fields={5}
-    onChange={(verifyCode) => typeof verifyCode === "string" && console.log(verifyCode) }
+    onChange={(verifyCode) => console.log(verifyCode) }
   />
 `;
 

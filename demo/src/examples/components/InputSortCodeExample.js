@@ -15,6 +15,7 @@ const code = `
   <InputSortCode
     label='Sort Code'
     placeholder="23-43-36"
+    onChange={(value) => console.log(value) }
   />
 `;
 

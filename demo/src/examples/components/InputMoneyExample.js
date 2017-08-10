@@ -37,12 +37,14 @@ const code = `<div>
     label='Amount'
     placeholder='0.00'
     prefix="£"
+    onChange={(value) => console.log(value) }
   />
   <InputMoney
     label='Amount with remaining balance'
     placeholder='0.00'
     prefix="£"
     balance="100.00"
+    onChange={(value) => console.log(value) }
   />
 </div>`;
 

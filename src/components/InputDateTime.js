@@ -90,6 +90,7 @@ class InputDateTime extends Component {
     defaultDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
+    getRef: PropTypes.func,
     onChange: PropTypes.func
   };
 
@@ -97,10 +98,12 @@ class InputDateTime extends Component {
     defaultDate: new Date(),
     minDate: null,
     maxDate: null,
+    getRef: null,
     onChange: null
   };
 
   componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     if (!isMobile() || (isMobile() && !isDateInput())) {
       this.picker = new MaterialDateTimePicker({
         default: this.props.defaultDate,

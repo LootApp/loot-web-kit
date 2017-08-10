@@ -57,6 +57,10 @@ class InputMoney extends Component {
     focus: false
   };
 
+  componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
+  }
+
   _onChange = value => {
     const formatedValue = formatAmount(value);
     this.setState({ active: !!formatedValue });

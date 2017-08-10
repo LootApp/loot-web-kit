@@ -37,14 +37,18 @@ class InputMoney extends Component {
     prefix: PropTypes.string,
     maxLength: PropTypes.number,
     balance: PropTypes.string,
-    onChange: PropTypes.func
+    getRef: PropTypes.func,
+    onChange: PropTypes.func,
+    minAmount: PropTypes.number
   };
 
   static defaultProps = {
     prefix: "£",
     maxLength: 10,
     balance: "",
-    onChange: null
+    getRef: null,
+    onChange: null,
+    minAmount: null
   };
 
   state = {
@@ -63,11 +67,18 @@ class InputMoney extends Component {
 
   _onBlur = value => {
     if (!this.state.active) this.setState({ focus: false });
-    if (!!value.length && Number(value) < 0.01) {
-      this.input.setState({
-        error: true,
-        helperText: "Minimum amount is 0.01"
-      });
+    if (value.length) {
+      if (typeof this.props.minAmount === "number" && Number(value) < this.props.minAmount) {
+        this.input.setState({
+          error: true,
+          helperText: `Minimum amount is ${this.props.minAmount}`
+        });
+      } else if (Number(value) < 0.01) {
+        this.input.setState({
+          error: true,
+          helperText: "Minimum amount is 0.01"
+        });
+      }
     } else if (Number(this.state.remaining) < 0) {
       this.input.setState({
         error: true,

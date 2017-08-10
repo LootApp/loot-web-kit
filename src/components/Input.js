@@ -161,8 +161,8 @@ class Input extends Component {
 
   _onChange = ({ target }, onChange) => {
     let value = target.value;
-    if (onChange) value = onChange(target.value);
     if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
+    if (onChange) value = onChange(target.value);
     if (typeof value === "undefined") value = target.value;
     this.setState({ value });
     return value;

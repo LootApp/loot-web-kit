@@ -64,7 +64,7 @@ const P = styled.p`
 const TextAbove = styled(P)`
   position: absolute;
   right: 0;
-  top: 14px;
+  top: 16px;
   z-index: 1;
 `;
 

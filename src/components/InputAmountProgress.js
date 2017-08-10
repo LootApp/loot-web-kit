@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledAmountLeftInput = styled.input`
+const StyledInputAmountProgress = styled.input`
   border: none;
   color: #545459;
   font-size: 16px;
@@ -106,9 +106,17 @@ const SPrefix = styled.div`
   z-index: 1;
 `;
 
-class AmountLeftInput extends Component {
+class InputAmountProgress extends Component {
   // eslint-disable-next-line
   getPercentage = amount => amount / this.props.limit * 100;
+
+  static propTypes = {
+    getRef: PropTypes.func
+  };
+
+  static defaultProps = {
+    getRef: null
+  };
 
   state = {
     amount: "",
@@ -117,6 +125,10 @@ class AmountLeftInput extends Component {
     amountLeft: this.props.remaining,
     percentage: this.getPercentage(this.props.remaining)
   };
+
+  componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
+  }
 
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;
@@ -132,7 +144,7 @@ class AmountLeftInput extends Component {
     });
 
     if (onChange) {
-      onChange({
+      onChange(value, {
         value,
         amountLeft,
         percentage
@@ -158,7 +170,7 @@ class AmountLeftInput extends Component {
         <TextAbove error={error} hide={!focus}>
           {textAbove}
         </TextAbove>
-        <StyledAmountLeftInput
+        <StyledInputAmountProgress
           {...otherProps}
           focus={focus}
           error={error}
@@ -167,6 +179,7 @@ class AmountLeftInput extends Component {
           placeholder="0"
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
+          innerRef={input => (this.input = input)}
           onChange={e => this.handleAmountChange(e, onChange)}
         />
         <Span error={error} focus={focus} percentage={percentage} />
@@ -178,7 +191,7 @@ class AmountLeftInput extends Component {
   }
 }
 
-AmountLeftInput.propTypes = {
+InputAmountProgress.propTypes = {
   limit: PropTypes.number.isRequired,
   remaining: PropTypes.number.isRequired,
   prefix: PropTypes.string.isRequired,
@@ -188,11 +201,11 @@ AmountLeftInput.propTypes = {
   textBelow: PropTypes.string
 };
 
-AmountLeftInput.defaultProps = {
+InputAmountProgress.defaultProps = {
   prefix: "£",
   textAbove: "",
   textBelow: "",
   onChange: null
 };
 
-export default AmountLeftInput;
+export default InputAmountProgress;

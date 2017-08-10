@@ -61,7 +61,6 @@ const code = `
     label='CVV'
     maxLength={3}
     numbersOnly
-
   />
 </div>
 `;

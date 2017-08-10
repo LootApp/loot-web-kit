@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import isMobile from "../utilities/isMobile";
 import Button from "./Button";
 
 const SContainer = styled.div`
@@ -138,7 +137,7 @@ class InputIncrement extends Component {
         </SPrefix>
         <SInput
           type="tel"
-          disabled={isMobile()}
+          disabled
           value={this.state.value}
           onChange={this._onChange}
           innerRef={input => (this.input = input)}

@@ -45,12 +45,18 @@ class InputRadio extends Component {
   static propTypes = {
     labels: PropTypes.array.isRequired,
     name: PropTypes.string.isRequired,
+    getRef: PropTypes.func,
     onChange: PropTypes.func
   };
 
   static defaultProps = {
+    getRef: null,
     onChange: null
   };
+
+  componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
+  }
 
   _onChange = ({ target }) => !!this.props.onChange && this.props.onChange(target.id);
 

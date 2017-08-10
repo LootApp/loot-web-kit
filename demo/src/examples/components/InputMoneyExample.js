@@ -30,6 +30,12 @@ const props = `
 
   Function executed by the component where ref to original input is passed. *Default:* null
 
+  ---
+
+  **minAmount**: number
+
+  Minimum required amount. *Default:* null
+
 `;
 
 const code = `<div>
@@ -37,6 +43,7 @@ const code = `<div>
     label='Amount'
     placeholder='0.00'
     prefix="£"
+    minAmount={5.00}
   />
   <InputMoney
     label='Amount with remaining balance'

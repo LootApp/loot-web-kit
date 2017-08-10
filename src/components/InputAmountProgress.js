@@ -6,7 +6,7 @@ const StyledInputAmountProgress = styled.input`
   border: none;
   color: #545459;
   font-size: 16px;
-  padding: 8px 10px 8px 12px;
+  padding: 8px 10px 10px 12px;
   transition: border 0.2s ease;
   border-bottom: 1px solid transparent;
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
@@ -35,7 +35,7 @@ const Container = styled.div`
 `;
 
 const Span = styled.span`
-  top: 45px;
+  top: 46px;
   position: absolute;
   background: ${props => {
     if (props.error) return "#DA6E6E";
@@ -98,8 +98,8 @@ const StyledLabel = styled.label`
 
 const SPrefix = styled.div`
   font-size: 16px;
-  padding-top: 19px;
-  padding-right: 8px;
+  margin-top: 19px;
+  margin-right: 8px;
   color: ${props => (props.active ? "#545454" : "#c6c6c6")};
   opacity: ${props => (props.focus ? 1 : 0)};
   position: absolute;

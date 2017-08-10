@@ -14,7 +14,6 @@ Input for mobile number string formating *Extends:* [Input](/loot-web-kit/compon
 const code = `
   <InputMobileNumber
     label='Mobile Number'
-    onChange={(value) => console.log(value) }
   />
 `;
 

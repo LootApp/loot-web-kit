@@ -30,13 +30,11 @@ const code = `
   <InputPassword
     label='Password'
     placeholder='Smurf'
-    onChange={(value) => console.log(value) }
   />
   <InputPassword
     label='Password'
     placeholder='Smurf'
     requirements
-    onChange={(value) => console.log(value) }
   />
   <InputPassword
     label='Password'
@@ -44,7 +42,6 @@ const code = `
     colour="magenta"
     requirementColour="magenta"
     requirements
-    onChange={(value) => console.log(value) }
   />
 </div>
 `;

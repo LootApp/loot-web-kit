@@ -28,7 +28,6 @@ const props = `
 const code = `
   <InputIncrement
     prefix="$"
-    onChange={(value) => console.log(value) }
   />
 `;
 

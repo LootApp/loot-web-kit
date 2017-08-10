@@ -129,7 +129,6 @@ const code = `<div>
   <Input
     label="Default field"
     placeholder="Default"
-    onChange={(value) => console.log(value) }
   />
   <Input
     label="Required field"

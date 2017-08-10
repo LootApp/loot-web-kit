@@ -11,6 +11,7 @@ const SInput = styled(Input)`
 class InputFormat extends Component {
   static propTypes = {
     getRef: PropTypes.func,
+    label: PropTypes.string.isRequired,
     numbersOnly: PropTypes.bool,
     delimiter: PropTypes.string,
     occurance: PropTypes.number,
@@ -47,7 +48,9 @@ class InputFormat extends Component {
       } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
-          helperText: `Minimum ${minChar} characters`
+          helperText: `${this.props.label} needs ${minChar} ${this.props.numbersOnly
+            ? "digits"
+            : "characters"}`
         });
       }
     }
@@ -58,17 +61,18 @@ class InputFormat extends Component {
       value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
-    });
+    }).substr(0, this.props.maxLength);
     !!this.props.onChange && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
   render() {
-    const { maxLength, required, onChange, ...props } = this.props;
+    const { maxLength, label, required, onChange, ...props } = this.props;
     return (
       <SInput
         {...props}
         noValidate
+        label={label}
         required={required}
         onBlur={this._onBlur}
         maxLength={maxLength}

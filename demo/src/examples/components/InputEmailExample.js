@@ -14,7 +14,6 @@ const docs = `
 const code = `
   <InputEmail
     label='Email'
-    onChange={(value) => console.log(value) }
   />
 `;
 

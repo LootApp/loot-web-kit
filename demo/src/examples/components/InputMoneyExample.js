@@ -43,7 +43,6 @@ const code = `<div>
     label='Amount'
     placeholder='0.00'
     prefix="£"
-    onChange={(value) => console.log(value) }
     minAmount={5.00}
   />
   <InputMoney
@@ -51,7 +50,6 @@ const code = `<div>
     placeholder='0.00'
     prefix="£"
     balance="100.00"
-    onChange={(value) => console.log(value) }
   />
 </div>`;
 

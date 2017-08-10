@@ -42,7 +42,6 @@ const code = `<InputDateTime
   value="2017-04-20"
   minDate={new Date('2017-04-10')}
   maxDate={new Date('2017-04-30')}
-  onChange={(value) => console.log(value) }
 />`;
 
 class InputDateTimeExample extends Component {

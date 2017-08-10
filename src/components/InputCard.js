@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Input from "./Input";
+import Input from "./InputFormat";
 import visa from "../assets/visa-icon.svg";
 import mastercard from "../assets/mastercard-icon.svg";
 
@@ -23,15 +23,11 @@ const SInput = styled(Input)`
 
 class Card extends Component {
   static propTypes = {
-    maxLength: PropTypes.number,
-    minLength: PropTypes.number,
-    required: PropTypes.bool
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
-    maxLength: 19,
-    minLength: 19,
-    required: false
+    onChange: null
   };
 
   state = {
@@ -39,43 +35,24 @@ class Card extends Component {
   };
 
   _onChange = value => {
-    let formatedValue = value.toString().replace(/\s/g, "");
-    formatedValue = formatedValue.replace(/[^\dA-Z]/g, "").replace(/(.{4})/g, "$1 ").trim();
-    if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
-    else if (formatedValue.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
+    if (value.match("^4")) this.setState({ cardIcon: visa });
+    else if (value.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
     else this.setState({ cardIcon: null });
-    return formatedValue;
-  };
-
-  _onBlur = ({ target }) => {
-    if (!target) return null;
-    if (target.value.length && target.value) {
-      if (this.props.required && !target.value.length) {
-        this.input.setState({
-          error: true,
-          helperText: "This field is required"
-        });
-      } else if (target.value.length < 19) {
-        this.input.setState({
-          error: true,
-          helperText: "Debit Card Number needs 16 digits"
-        });
-      }
-    }
+    !!this.props.onChange && this.props.onChange(value);
+    return value;
   };
 
   render() {
-    const { maxLength, minLength, ...props } = this.props;
     return (
       <SInput
-        {...props}
-        cardIcon={this.state.cardIcon}
+        {...this.props}
         type="tel"
-        maxLength={maxLength}
-        minLength={minLength}
-        onBlur={this._onBlur}
-        innerRef={input => (this.input = input)}
+        delimiter=" "
+        maxLength={20}
+        occurance={4}
+        numbersOnly
         onChange={this._onChange}
+        cardIcon={this.state.cardIcon}
       />
     );
   }

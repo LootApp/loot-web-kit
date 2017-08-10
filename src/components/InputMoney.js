@@ -38,7 +38,8 @@ class InputMoney extends Component {
     maxLength: PropTypes.number,
     balance: PropTypes.string,
     getRef: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    minAmount: PropTypes.number
   };
 
   static defaultProps = {
@@ -46,7 +47,8 @@ class InputMoney extends Component {
     maxLength: 10,
     balance: "",
     getRef: null,
-    onChange: null
+    onChange: null,
+    minAmount: null
   };
 
   state = {
@@ -66,17 +68,28 @@ class InputMoney extends Component {
       this.setState({ active: !!formatedValue });
     }
     if (this.props.balance) this.updateRemaining(value);
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" &&
+      this.props.onChange(formatedValue);
     return formatedValue;
   };
 
   _onBlur = value => {
     if (!this.state.active) this.setState({ focus: false });
-    if (!!value.length && Number(value) < 0.01) {
-      this.input.setState({
-        error: true,
-        helperText: "Minimum amount is 0.01"
-      });
+    if (value.length) {
+      if (
+        typeof this.props.minAmount === "number" &&
+        Number(value) < this.props.minAmount
+      ) {
+        this.input.setState({
+          error: true,
+          helperText: `Minimum amount is ${this.props.minAmount}`
+        });
+      } else if (Number(value) < 0.01) {
+        this.input.setState({
+          error: true,
+          helperText: "Minimum amount is 0.01"
+        });
+      }
     } else if (Number(this.state.remaining) < 0) {
       this.input.setState({
         error: true,
@@ -91,7 +104,8 @@ class InputMoney extends Component {
   _onFocus = value => {
     this.setState({ focus: true });
     const inputValue = value || "";
-    if (this.props.balance && !this.state.remaining.length) this.updateRemaining(inputValue);
+    if (this.props.balance && !this.state.remaining.length)
+      this.updateRemaining(inputValue);
   };
 
   _value = () => this.input._value();
@@ -100,7 +114,9 @@ class InputMoney extends Component {
     if (typeof value === "string" && this.props.balance.length) {
       const formatedValue = formatAmount(value);
       const remaining = value
-        ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
+        ? formatAmount(
+            (Number(this.props.balance) - Number(formatedValue)).toFixed(2)
+          )
         : formatAmount(this.props.balance);
       this.setState({ remaining });
     }

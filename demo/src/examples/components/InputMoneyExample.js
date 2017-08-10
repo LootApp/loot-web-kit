@@ -20,31 +20,23 @@ const props = `
 
   ---
 
-  **balance**: string
+  **getRef**: function
 
-  Balance amount for displaying remaining amount. *Default:* ""
+  Function executed by the component where ref to original input is passed.
 
   ---
 
-  **getRef**: function
+  **minAmount**: string
 
-  Function executed by the component where ref to original input is passed. *Default:* null
-
+  Minimum required amount
 `;
 
-const code = `<div>
-  <InputMoney
-    label='Amount'
-    placeholder='0.00'
-    prefix="£"
-  />
-  <InputMoney
-    label='Amount with remaining balance'
-    placeholder='0.00'
-    prefix="£"
-    balance="100.00"
-  />
-</div>`;
+const code = `<InputMoney
+  label='Amount'
+  placeholder='0.00'
+  prefix="£"
+  minAmount="5.00"
+/>`;
 
 class InputMoneyExample extends Component {
   render() {

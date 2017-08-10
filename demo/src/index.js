@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import styled, { injectGlobal } from "styled-components";
-import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink,
+  Switch
+} from "react-router-dom";
 import Accordion from "./components/Accordion";
 import FormExample from "./examples/components/FormExample";
 import InputVerify from "./examples/components/InputVerifyExample";
 import InputExample from "./examples/components/InputExample";
 import InputAddressExample from "./examples/components/InputAddressExample";
 import InputMobileNumberExample from "./examples/components/InputMobileNumberExample";
-import InputFormatExample from "./examples/components/InputFormatExample";
 import InputSortCodeExample from "./examples/components/InputSortCodeExample";
-import InputAccountNumberExample from "./examples/components/InputAccountNumberExample";
-import InputExpDateExample from "./examples/components/InputExpDateExample";
-import InputCVVExample from "./examples/components/InputCVVExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
 import InputRadioExample from "./examples/components/InputRadioExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
-import InputAmountProgressExample from "./examples/components/InputAmountProgressExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
 import InputCardExample from "./examples/components/InputCardExample";
@@ -26,6 +26,7 @@ import SpinnerExample from "./examples/components/SpinnerExample";
 import ButtonExample from "./examples/components/ButtonExample";
 import isMobileExample from "./examples/utility/isMobileExample";
 import isDateInputExample from "./examples/utility/isDateInputExample";
+import formatSortcodeExample from "./examples/utility/formatSortcodeExample";
 import stringFormatterExample from "./examples/utility/stringFormatterExample";
 import formatAmountExample from "./examples/utility/formatAmountExample";
 import isValidEmailExample from "./examples/utility/isValidEmailExample";
@@ -157,12 +158,18 @@ class Demo extends Component {
         <Main>
           <Sidebar open={this.state.menuOpen}>
             <Branding>
-              <SLink to="/loot-web-kit" onClick={() => this.setState({ menuOpen: false })}>
+              <SLink
+                to="/loot-web-kit"
+                onClick={() => this.setState({ menuOpen: false })}
+              >
                 <img src={anchor} alt="Loot anchor" />
                 <span>Styleguide</span>
               </SLink>
             </Branding>
-            <SMobileMenu noMargin onClick={() => this.setState({ menuOpen: false })}>
+            <SMobileMenu
+              noMargin
+              onClick={() => this.setState({ menuOpen: false })}
+            >
               Close Menu
             </SMobileMenu>
 
@@ -182,11 +189,22 @@ class Demo extends Component {
             )}
           </Sidebar>
           <Content>
-            <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>Open Menu</SMobileMenu>
+            <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>
+              Open Menu
+            </SMobileMenu>
             <Switch>
-              <Route path="/loot-web-kit/components/form" component={FormExample} />
-              <Route path="/loot-web-kit/components/input" component={InputExample} />
-              <Route path="/loot-web-kit/components/input-verify" component={InputVerify} />
+              <Route
+                path="/loot-web-kit/components/form"
+                component={FormExample}
+              />
+              <Route
+                path="/loot-web-kit/components/input"
+                component={InputExample}
+              />
+              <Route
+                path="/loot-web-kit/components/input-verify"
+                component={InputVerify}
+              />
               <Route
                 path="/loot-web-kit/components/input-address"
                 component={InputAddressExample}
@@ -195,32 +213,30 @@ class Demo extends Component {
                 path="/loot-web-kit/components/input-mobile-number"
                 component={InputMobileNumberExample}
               />
-              <Route path="/loot-web-kit/components/input-email" component={InputEmailExample} />
-              <Route path="/loot-web-kit/components/input-radio" component={InputRadioExample} />
-              <Route path="/loot-web-kit/components/input-format" component={InputFormatExample} />
               <Route
-                path="/loot-web-kit/components/input-sort-code"
+                path="/loot-web-kit/components/input-email"
+                component={InputEmailExample}
+              />
+              <Route
+                path="/loot-web-kit/components/input-radio"
+                component={InputRadioExample}
+              />
+              <Route
+                path="/loot-web-kit/components/input-sortcode"
                 component={InputSortCodeExample}
               />
               <Route
-                path="/loot-web-kit/components/input-account-number"
-                component={InputAccountNumberExample}
-              />
-              <Route
-                path="/loot-web-kit/components/input-exp-date"
-                component={InputExpDateExample}
-              />
-              <Route path="/loot-web-kit/components/input-cvv" component={InputCVVExample} />
-              <Route path="/loot-web-kit/components/input-money" component={InputMoneyExample} />
-              <Route
-                path="/loot-web-kit/components/input-amount-progress"
-                component={InputAmountProgressExample}
+                path="/loot-web-kit/components/input-money"
+                component={InputMoneyExample}
               />
               <Route
                 path="/loot-web-kit/components/input-date-time"
                 component={InputDateTimeExample}
               />
-              <Route path="/loot-web-kit/components/input-card" component={InputCardExample} />
+              <Route
+                path="/loot-web-kit/components/input-card"
+                component={InputCardExample}
+              />
               <Route
                 path="/loot-web-kit/components/input-password"
                 component={InputPasswordExample}
@@ -229,16 +245,38 @@ class Demo extends Component {
                 path="/loot-web-kit/components/input-increment"
                 component={InputIncrementExample}
               />
-              <Route path="/loot-web-kit/utility/is-valid-email" component={isValidEmailExample} />
-              <Route path="/loot-web-kit/utility/is-mobile" component={isMobileExample} />
-              <Route path="/loot-web-kit/utility/is-date-input" component={isDateInputExample} />
-              <Route path="/loot-web-kit/utility/format-amount" component={formatAmountExample} />
+              <Route
+                path="/loot-web-kit/utility/is-valid-email"
+                component={isValidEmailExample}
+              />
+              <Route
+                path="/loot-web-kit/utility/is-mobile"
+                component={isMobileExample}
+              />
+              <Route
+                path="/loot-web-kit/utility/is-date-input"
+                component={isDateInputExample}
+              />
+              <Route
+                path="/loot-web-kit/utility/format-amount"
+                component={formatAmountExample}
+              />
+              <Route
+                path="/loot-web-kit/utility/format-sortcode"
+                component={formatSortcodeExample}
+              />
               <Route
                 path="/loot-web-kit/utility/string-formatter"
                 component={stringFormatterExample}
               />
-              <Route path="/loot-web-kit/components/button" component={ButtonExample} />
-              <Route path="/loot-web-kit/components/spinner" component={SpinnerExample} />
+              <Route
+                path="/loot-web-kit/components/button"
+                component={ButtonExample}
+              />
+              <Route
+                path="/loot-web-kit/components/spinner"
+                component={SpinnerExample}
+              />
               <Route path="/loot-web-kit" component={ColorScheme} />
             </Switch>
           </Content>

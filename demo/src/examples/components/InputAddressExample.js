@@ -47,6 +47,7 @@ const code = `
     ]}
     label='Address'
     formatAddress={(address) => address.first_line+", "+address.street+", "+address.postcode}
+    onChange={(value) => console.log(value) }
   />
 `;
 

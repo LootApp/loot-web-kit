@@ -32,6 +32,7 @@ const code = `
       <InputRadio
         name="title"
         labels={["mr", "mrs", "ms", "miss"]}
+        onChange={(value) => console.log(value) }
       />
 
     </div>
@@ -40,6 +41,7 @@ const code = `
       <InputRadio
         name="gender"
         labels={["male", "female"]}
+        onChange={(value) => console.log(value) }
       />
 
     </div>

@@ -73,18 +73,21 @@ class InputAddress extends Component {
   static propTypes = {
     formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
     addresses: [],
-    onChange: null
+    onChange: null,
+    getRef: null
   };
 
   state = { addressListStatus: "", selected: 0, address: "" };
 
   componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     document.addEventListener("keydown", this.onKeyDown);
   }
 

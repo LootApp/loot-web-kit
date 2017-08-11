@@ -160,12 +160,12 @@ class Input extends Component {
   };
 
   _onChange = ({ target }) => {
-    let value;
-    typeof this.props.onChange === "function"
-      ? (value = this.props.onChange(target.value))
-      : (value = target.value);
+    let value = target.value;
     if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
+    if (this.props.onChange) value = this.props.onChange(target.value);
+    if (typeof value === "undefined") value = target.value;
     this.setState({ value });
+    return value;
   };
 
   _validate = value => {
@@ -200,6 +200,11 @@ class Input extends Component {
 
   _value = () => this.state.value;
 
+  _updateValue = value => {
+    this.props.onChange(value);
+    this.setState({ value });
+  };
+
   render() {
     const {
       label,
@@ -216,6 +221,7 @@ class Input extends Component {
       type,
       colour,
       onFocus,
+      onChange,
       ...props
     } = this.props;
     return (

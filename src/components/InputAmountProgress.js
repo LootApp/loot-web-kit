@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledAmountLeftInput = styled.input`
+const StyledInputAmountProgress = styled.input`
   border: none;
   color: #545459;
   font-size: 16px;
-  padding: 8px 10px 8px 12px;
+  padding: 8px 10px 10px 12px;
   transition: border 0.2s ease;
   border-bottom: 1px solid transparent;
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
@@ -35,7 +35,7 @@ const Container = styled.div`
 `;
 
 const Span = styled.span`
-  top: 45px;
+  top: 46px;
   position: absolute;
   background: ${props => {
     if (props.error) return "#DA6E6E";
@@ -64,7 +64,7 @@ const P = styled.p`
 const TextAbove = styled(P)`
   position: absolute;
   right: 0;
-  top: 14px;
+  top: 16px;
   z-index: 1;
 `;
 
@@ -98,17 +98,25 @@ const StyledLabel = styled.label`
 
 const SPrefix = styled.div`
   font-size: 16px;
-  padding-top: 19px;
-  padding-right: 8px;
+  margin-top: 19px;
+  margin-right: 8px;
   color: ${props => (props.active ? "#545454" : "#c6c6c6")};
   opacity: ${props => (props.focus ? 1 : 0)};
   position: absolute;
   z-index: 1;
 `;
 
-class AmountLeftInput extends Component {
+class InputAmountProgress extends Component {
   // eslint-disable-next-line
   getPercentage = amount => amount / this.props.limit * 100;
+
+  static propTypes = {
+    getRef: PropTypes.func
+  };
+
+  static defaultProps = {
+    getRef: null
+  };
 
   state = {
     amount: "",
@@ -117,6 +125,10 @@ class AmountLeftInput extends Component {
     amountLeft: this.props.remaining,
     percentage: this.getPercentage(this.props.remaining)
   };
+
+  componentDidMount() {
+    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
+  }
 
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;
@@ -131,8 +143,8 @@ class AmountLeftInput extends Component {
       error: amountLeft < 0
     });
 
-    if (onChange) {
-      onChange({
+    if (typeof onChange === "function") {
+      onChange(value, {
         value,
         amountLeft,
         percentage
@@ -158,7 +170,7 @@ class AmountLeftInput extends Component {
         <TextAbove error={error} hide={!focus}>
           {textAbove}
         </TextAbove>
-        <StyledAmountLeftInput
+        <StyledInputAmountProgress
           {...otherProps}
           focus={focus}
           error={error}
@@ -167,6 +179,7 @@ class AmountLeftInput extends Component {
           placeholder="0"
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
+          innerRef={input => (this.input = input)}
           onChange={e => this.handleAmountChange(e, onChange)}
         />
         <Span error={error} focus={focus} percentage={percentage} />
@@ -178,7 +191,7 @@ class AmountLeftInput extends Component {
   }
 }
 
-AmountLeftInput.propTypes = {
+InputAmountProgress.propTypes = {
   limit: PropTypes.number.isRequired,
   remaining: PropTypes.number.isRequired,
   prefix: PropTypes.string.isRequired,
@@ -188,11 +201,11 @@ AmountLeftInput.propTypes = {
   textBelow: PropTypes.string
 };
 
-AmountLeftInput.defaultProps = {
+InputAmountProgress.defaultProps = {
   prefix: "£",
   textAbove: "",
   textBelow: "",
   onChange: null
 };
 
-export default AmountLeftInput;
+export default InputAmountProgress;

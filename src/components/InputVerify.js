@@ -7,9 +7,7 @@ const pulse = keyframes`
   100% { border: 2px solid #00C9C4; }
 `;
 
-const SContainer = styled.div`
-  flex: 1;
-`;
+const SContainer = styled.div`flex: 1;`;
 
 const SInputVerify = styled.input`
   padding: 20px 15px;
@@ -21,9 +19,9 @@ const SInputVerify = styled.input`
   border: none;
   text-align: center;
   border-radius: 3px;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0, 0, 0, 0.6);
   transition: all .2s ease;
-  box-shadow: 0 10px 50px rgba(50,50,93,0.12), 0 10px 20px rgba(50,50,93,0.1);
+  box-shadow: 0 10px 50px rgba(50, 50, 93, 0.12), 0 10px 20px rgba(50, 50, 93, 0.1);
 
   &:focus {
     outline: none;
@@ -102,8 +100,9 @@ class InputVerify extends Component {
   };
 
   render() {
+    const { onChange, ...props } = this.props;
     return (
-      <SContainer {...this.props}>
+      <SContainer {...props}>
         {this._createField(this.props.fields)}
       </SContainer>
     );

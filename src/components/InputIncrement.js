@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import formatAmount from "../utilities/formatAmount";
-import isMobile from "../utilities/isMobile";
 import Button from "./Button";
 
 const SContainer = styled.div`
@@ -69,12 +67,14 @@ class InputIncrement extends Component {
   static propTypes = {
     maxLength: PropTypes.number,
     prefix: PropTypes.string,
-    getRef: PropTypes.fucn
+    onChange: PropTypes.func,
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     maxLength: 10,
     prefix: "£",
+    onChange: null,
     getRef: null
   };
 
@@ -88,9 +88,7 @@ class InputIncrement extends Component {
   }
 
   _onChange = ({ target }) => {
-    const value = formatAmount(target.value);
-    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength)
-      return false;
+    const { value } = target;
     this.setState({ value: value.length ? value : "0.00" }, () => {
       this.input.style.width = `${this.span.offsetWidth}px`;
     });
@@ -107,6 +105,7 @@ class InputIncrement extends Component {
     this.setState({ value }, () => {
       this.input.style.width = `${this.span.offsetWidth}px`;
     });
+    typeof this.props.onChange === "function" && this.props.onChange(value);
   };
 
   _onMouseDown = type => {
@@ -123,7 +122,7 @@ class InputIncrement extends Component {
   };
 
   render() {
-    const { maxLength, prefix, ...props } = this.props;
+    const { prefix, onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SButton
@@ -137,12 +136,11 @@ class InputIncrement extends Component {
           {prefix}
         </SPrefix>
         <SInput
-          disabled={isMobile()}
-          maxLength={maxLength}
-          innerRef={input => (this.input = input)}
           type="tel"
+          disabled
           value={this.state.value}
           onChange={this._onChange}
+          innerRef={input => (this.input = input)}
         />
         <SButton
           onMouseDown={() => this._onMouseDown("INCREMENT")}

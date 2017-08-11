@@ -21,6 +21,7 @@ const fadeOut = keyframes`
 const SInput = styled(Input)`
   width: 100%;
   padding-left: 10px;
+  color: ${props => (props.active ? "initial" : "#545454")};
 `;
 
 const SFlagInputContainer = styled.div`
@@ -144,11 +145,13 @@ const SItemText = styled.span`
 `;
 class InputMobileNumber extends Component {
   static propTypes = {
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
-    getRef: null
+    getRef: null,
+    onChange: null
   };
 
   state = {
@@ -218,9 +221,9 @@ class InputMobileNumber extends Component {
   };
 
   _onChange = value => {
-    if (typeof value === "string") {
-      return value.replace(/[^0-9-]/g, "");
-    }
+    const val = value.replace(/[^0-9-]/g, "");
+    typeof this.props.onChange === "function" && this.props.onChange(`${this.state.dialCode}${val}`);
+    return val;
   };
 
   toggleList = () => {
@@ -235,9 +238,8 @@ class InputMobileNumber extends Component {
   closeList = () => {
     this.state.dialCodeList === "open" && this.setState({ dialCodeList: "closed" });
   };
-
   render() {
-    const { ...props } = this.props;
+    const { onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SFlagInputContainer>

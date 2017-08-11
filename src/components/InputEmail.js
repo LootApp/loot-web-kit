@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import Input from "./Input";
 import isValidEmail from "../utilities/isValidEmail";
 
@@ -28,8 +28,6 @@ class InputEmail extends Component {
         helperText: "Invalid email address!"
       });
   };
-
-  _value = () => this.input._value();
 
   render() {
     return (

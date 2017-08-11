@@ -90,14 +90,16 @@ class InputDateTime extends Component {
     defaultDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     defaultDate: new Date(),
     minDate: null,
     maxDate: null,
-    getRef: null
+    getRef: null,
+    onChange: null
   };
 
   componentDidMount() {
@@ -122,9 +124,7 @@ class InputDateTime extends Component {
           this.overlay.removeEventListener("click", this._onCloseCalendar);
         })
         .on("submit", value => {
-          this.input.setState({
-            value: value.toDate().toISOString().substring(0, 10)
-          });
+          this.input._updateValue(value.toDate().toISOString().substring(0, 10));
         });
 
       this._onOpenCalendar = () => this.picker.open();
@@ -139,23 +139,27 @@ class InputDateTime extends Component {
   }
 
   _onCalendarOpen = () =>
-    !isMobile() || (isMobile() && !isDateInput())
-      ? this._onOpenCalendar()
-      : null;
+    !isMobile() || (isMobile() && !isDateInput()) ? this._onOpenCalendar() : null;
 
   _value = () => this.input._value();
 
+  _onChange = value => {
+    typeof this.props.onChange === "function" && this.props.onChange(value);
+    return value;
+  };
+
   render() {
-    const { ...props } = this.props;
+    const { onChange, ...props } = this.props;
     return (
       <SInput
         {...props}
         type="date"
         label="Date"
-        placeholder="DD/MM/YYYY"
-        innerRef={input => (this.input = input)}
         readOnly={!isMobile()}
+        placeholder="DD/MM/YYYY"
+        onChange={this._onChange}
         onFocus={this._onCalendarOpen}
+        innerRef={input => (this.input = input)}
       />
     );
   }

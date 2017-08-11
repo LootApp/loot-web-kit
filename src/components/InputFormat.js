@@ -34,7 +34,8 @@ class InputFormat extends Component {
     if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
-  _onBlur = ({ target }) => {
+  _onBlur = ({ target }, onBlur) => {
+    onBlur && onBlur(target.value);
     if (!target) return null;
     const minChar = this.props.occurance
       ? this.props.maxLength - (this.props.occurance - this.props.maxLength % this.props.occurance)

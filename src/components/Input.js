@@ -159,10 +159,10 @@ class Input extends Component {
     if (typeof this.props.onBlur === "function") this.props.onBlur(target.value);
   };
 
-  _onChange = ({ target }, onChange) => {
+  _onChange = ({ target }) => {
     let value = target.value;
     if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
-    if (onChange) value = onChange(target.value);
+    if (this.props.onChange) value = this.props.onChange(target.value);
     if (typeof value === "undefined") value = target.value;
     this.setState({ value });
     return value;
@@ -247,7 +247,7 @@ class Input extends Component {
             colour={colour}
             onFocus={this._onFocus}
             onBlur={this._onBlur}
-            onChange={e => this._onChange(e, onChange)}
+            onChange={this._onChange}
             focus={!!this.state.value.length || this.state.focus}
             value={this.state.value}
             placeholder={placeholder}

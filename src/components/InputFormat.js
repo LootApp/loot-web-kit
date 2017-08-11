@@ -63,7 +63,7 @@ class InputFormat extends Component {
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
     }).substr(0, this.props.maxLength);
-    !!this.props.onChange && this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };
 

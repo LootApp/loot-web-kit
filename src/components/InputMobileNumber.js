@@ -222,7 +222,7 @@ class InputMobileNumber extends Component {
 
   _onChange = value => {
     const val = value.replace(/[^0-9-]/g, "");
-    !!this.props.onChange && this.props.onChange(`${this.state.dialCode}${val}`);
+    typeof this.props.onChange === "function" && this.props.onChange(`${this.state.dialCode}${val}`);
     return val;
   };
 

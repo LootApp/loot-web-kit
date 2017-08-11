@@ -105,7 +105,7 @@ class InputIncrement extends Component {
     this.setState({ value }, () => {
       this.input.style.width = `${this.span.offsetWidth}px`;
     });
-    !!this.props.onChange && this.props.onChange(value);
+    typeof this.props.onChange === "function" && this.props.onChange(value);
   };
 
   _onMouseDown = type => {

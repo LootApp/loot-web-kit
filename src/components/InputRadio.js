@@ -58,7 +58,7 @@ class InputRadio extends Component {
     if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
-  _onChange = ({ target }) => !!this.props.onChange && this.props.onChange(target.id);
+  _onChange = ({ target }) => typeof this.props.onChange === "function" && this.props.onChange(target.id);
 
   render() {
     const { onChange, ...props } = this.props;

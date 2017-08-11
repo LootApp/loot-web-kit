@@ -65,7 +65,7 @@ class InputMoney extends Component {
     const formatedValue = formatAmount(value);
     this.setState({ active: !!formatedValue });
     if (this.props.balance) this.updateRemaining(value);
-    !!this.props.onChange && this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };
 

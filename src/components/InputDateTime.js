@@ -144,7 +144,7 @@ class InputDateTime extends Component {
   _value = () => this.input._value();
 
   _onChange = value => {
-    !!this.props.onChange && this.props.onChange(value);
+    typeof this.props.onChange === "function" && this.props.onChange(value);
     return value;
   };
 

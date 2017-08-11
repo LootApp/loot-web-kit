@@ -145,7 +145,7 @@ class InputAddress extends Component {
 
   _onChange = value => {
     if (!value) this.closeList();
-    !!this.props.onChange && this.props.onChange(value);
+    typeof this.props.onChange === "function" && this.props.onChange(value);
     return value;
   };
 

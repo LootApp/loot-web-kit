@@ -143,7 +143,7 @@ class InputAmountProgress extends Component {
       error: amountLeft < 0
     });
 
-    if (onChange) {
+    if (typeof onChange === "function") {
       onChange(value, {
         value,
         amountLeft,

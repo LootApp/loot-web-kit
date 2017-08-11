@@ -89,7 +89,7 @@ class InputPassword extends Component {
 
   _onChange = value => {
     this.setState({ password: value });
-    !!this.props.onChange && this.props.onChange(value);
+    typeof this.props.onChange === "function" && this.props.onChange(value);
     return value;
   };
 

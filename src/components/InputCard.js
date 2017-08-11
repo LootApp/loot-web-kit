@@ -38,7 +38,7 @@ class Card extends Component {
     if (value.match("^4")) this.setState({ cardIcon: visa });
     else if (value.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
     else this.setState({ cardIcon: null });
-    !!this.props.onChange && this.props.onChange(value);
+    typeof this.props.onChange === "function" && this.props.onChange(value);
     return value;
   };
 

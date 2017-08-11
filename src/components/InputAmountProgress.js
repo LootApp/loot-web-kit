@@ -66,8 +66,9 @@ const P = styled.p`
 const TextAbove = styled(P)`
   position: absolute;
   right: 0;
-  bottom: 23px;
+  bottom: 0;
   z-index: 1;
+  padding-bottom: 5px;
 `;
 
 const TextBelow = styled(P)`
@@ -106,6 +107,7 @@ const SPrefix = styled.div`
   opacity: ${props => (props.focus ? 1 : 0)};
   position: absolute;
   z-index: 1;
+  margin-bottom: 8px;
 `;
 
 const InputWrapper = styled.div`position: relative;`;
@@ -168,10 +170,10 @@ class InputAmountProgress extends Component {
         <StyledLabel focus={amount.length || focus} error={error}>
           {label}
         </StyledLabel>
-        <TextAbove error={error} hide={!focus}>
-          {textAbove}
-        </TextAbove>
         <InputWrapper>
+          <TextAbove error={error} hide={!focus}>
+            {textAbove}
+          </TextAbove>
           <SPrefix focus={amount.length || focus} active={!!amount.length}>
             {prefix}
           </SPrefix>

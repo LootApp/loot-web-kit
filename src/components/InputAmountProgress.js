@@ -68,7 +68,7 @@ const TextAbove = styled(P)`
   right: 0;
   bottom: 0;
   z-index: 1;
-  padding-bottom: 5px;
+  padding-bottom: 4px;
 `;
 
 const TextBelow = styled(P)`

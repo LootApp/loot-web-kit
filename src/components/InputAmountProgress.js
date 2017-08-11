@@ -6,7 +6,8 @@ const StyledInputAmountProgress = styled.input`
   border: none;
   color: #545459;
   font-size: 16px;
-  padding: 8px 10px 10px 12px;
+  width: 100%;
+  padding: 8px 0 8px 12px;
   transition: border 0.2s ease;
   border-bottom: 1px solid transparent;
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
@@ -35,7 +36,8 @@ const Container = styled.div`
 `;
 
 const Span = styled.span`
-  top: 46px;
+  left: 0;
+  bottom: 0;
   position: absolute;
   background: ${props => {
     if (props.error) return "#DA6E6E";
@@ -64,7 +66,7 @@ const P = styled.p`
 const TextAbove = styled(P)`
   position: absolute;
   right: 0;
-  top: 16px;
+  bottom: 23px;
   z-index: 1;
 `;
 
@@ -98,13 +100,15 @@ const StyledLabel = styled.label`
 
 const SPrefix = styled.div`
   font-size: 16px;
-  margin-top: 19px;
+  margin-top: 8px;
   margin-right: 8px;
   color: ${props => (props.active ? "#545454" : "#c6c6c6")};
   opacity: ${props => (props.focus ? 1 : 0)};
   position: absolute;
   z-index: 1;
 `;
+
+const InputWrapper = styled.div`position: relative;`;
 
 class InputAmountProgress extends Component {
   // eslint-disable-next-line
@@ -161,28 +165,30 @@ class InputAmountProgress extends Component {
 
     return (
       <Container error={error} focus={focus}>
-        <SPrefix focus={amount.length || focus} active={!!amount.length}>
-          {prefix}
-        </SPrefix>
         <StyledLabel focus={amount.length || focus} error={error}>
           {label}
         </StyledLabel>
         <TextAbove error={error} hide={!focus}>
           {textAbove}
         </TextAbove>
-        <StyledInputAmountProgress
-          {...otherProps}
-          focus={focus}
-          error={error}
-          value={amount}
-          name={label}
-          placeholder="0"
-          onBlur={this.handleBlur}
-          onFocus={this.handleFocus}
-          innerRef={input => (this.input = input)}
-          onChange={e => this.handleAmountChange(e, onChange)}
-        />
-        <Span error={error} focus={focus} percentage={percentage} />
+        <InputWrapper>
+          <SPrefix focus={amount.length || focus} active={!!amount.length}>
+            {prefix}
+          </SPrefix>
+          <StyledInputAmountProgress
+            {...otherProps}
+            focus={focus}
+            error={error}
+            value={amount}
+            name={label}
+            placeholder="0"
+            onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
+            innerRef={input => (this.input = input)}
+            onChange={e => this.handleAmountChange(e, onChange)}
+          />
+          <Span error={error} focus={focus} percentage={percentage} />
+        </InputWrapper>
         <TextBelow error={error} hide={!focus}>
           {textBelow}
         </TextBelow>

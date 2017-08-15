@@ -7,6 +7,11 @@ const SContainer = styled.div`
   transition: all 0.15s ease;
   position: relative;
   pointer-events: ${props => (props.disabled ? "none" : "auto")};
+  font-family: 'Roboto', sans-serif;
+
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
 
   &::after {
     content: '';
@@ -156,12 +161,14 @@ class Input extends Component {
         error: false,
         helperText: this.props.helperText
       });
-    if (typeof this.props.onBlur === "function") this.props.onBlur(target.value);
+    if (typeof this.props.onBlur === "function")
+      this.props.onBlur(target.value);
   };
 
   _onChange = ({ target }) => {
     let value = target.value;
-    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength) return false;
+    if (this.props.maxLength !== 9999 && value.length > this.props.maxLength)
+      return false;
     if (this.props.onChange) value = this.props.onChange(target.value);
     if (typeof value === "undefined") value = target.value;
     this.setState({ value });
@@ -260,7 +267,10 @@ class Input extends Component {
             </SCounter>}
         </SContainer>
         {!noHelperText &&
-          <SHelperText error={this.state.error} show={this.state.error || !!helperText.length}>
+          <SHelperText
+            error={this.state.error}
+            show={this.state.error || !!helperText.length}
+          >
             {this.state.helperText}
           </SHelperText>}
       </div>

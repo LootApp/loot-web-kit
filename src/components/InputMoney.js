@@ -16,7 +16,6 @@ const SPrefix = styled.div`
   color: ${props => (props.active ? "#545454" : "#c6c6c6")};
   opacity: ${props => (props.focus ? 1 : 0)};
   position: absolute;
-  font-family: 'Roboto', sans-serif;
 `;
 
 const SInput = styled(Input)`

@@ -26,6 +26,12 @@ if (!isMobile() || (isMobile() && !isDateInput())) {
       }
     }
 
+    .c-datepicker {
+      border-radius: 3px;
+      overflow: hidden;
+      min-height: 460px !important;
+    }
+
     .c-datepicker__header-day {
       display: none;
     }
@@ -51,17 +57,13 @@ if (!isMobile() || (isMobile() && !isDateInput())) {
       font-size: 16px;
     }
 
-    .c-datepicker {
-      min-height: 460px !important;
-    }
+    .c-datepicker__day-body {
+      padding: 10px !important;
+      margin: 2px !important;
+      border: none !important;
 
-    .c-datepicker__day--selected {
-      padding: 0 !important;
-    }
-
-    .c-datepicker__day-body:hover {
       &::before {
-        background-color: #4db7c3 !important;
+        background-color: #4db7c3;
       }
     }
 

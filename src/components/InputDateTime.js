@@ -26,12 +26,37 @@ if (!isMobile() || (isMobile() && !isDateInput())) {
       }
     }
 
-    .c-datepicker__header {
+    .c-datepicker__header-day {
       display: none;
     }
 
+    .c-datepicker__header-date__time {
+      display: none !important;
+    }
+
+    .c-datepicker__header-date {
+      text-align: left;
+      padding-left: 15px;
+      max-height: 82px;
+    }
+
+    .c-datepicker__header-date__day {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: left;
+      padding-top: 5px;
+    }
+
+    .c-datepicker__header-date__month {
+      font-size: 16px;
+    }
+
     .c-datepicker {
-      min-height: 380px !important;
+      min-height: 460px !important;
+    }
+
+    .c-datepicker__day--selected {
+      padding: 0 !important;
     }
 
     .c-datepicker__day-body:hover {
@@ -67,6 +92,13 @@ if (!isMobile() || (isMobile() && !isDateInput())) {
       pointer-events: none;
       opacity: 0.35;
       cursor: not-allowed;
+    }
+
+    .modal-btns {
+      padding: 10px;
+      font-size: 12px;
+      color: #4db7c3;
+      font-weight: bold;
     }
   `;
 }
@@ -107,6 +139,7 @@ class InputDateTime extends Component {
     if (!isMobile() || (isMobile() && !isDateInput())) {
       this.picker = new MaterialDateTimePicker({
         default: this.props.defaultDate,
+        format: "DD/MM/YYYY",
         dateValidator: d => {
           if (this.props.minDate && this.props.maxDate) {
             return d >= this.props.minDate && d <= this.props.maxDate;
@@ -124,7 +157,9 @@ class InputDateTime extends Component {
           this.overlay.removeEventListener("click", this._onCloseCalendar);
         })
         .on("submit", value => {
-          this.input._updateValue(value.toDate().toISOString().substring(0, 10));
+          this.input._updateValue(
+            value.toDate().toISOString().substring(0, 10)
+          );
         });
 
       this._onOpenCalendar = () => this.picker.open();
@@ -139,7 +174,9 @@ class InputDateTime extends Component {
   }
 
   _onCalendarOpen = () =>
-    !isMobile() || (isMobile() && !isDateInput()) ? this._onOpenCalendar() : null;
+    !isMobile() || (isMobile() && !isDateInput())
+      ? this._onOpenCalendar()
+      : null;
 
   _value = () => this.input._value();
 

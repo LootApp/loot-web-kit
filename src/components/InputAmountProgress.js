@@ -13,7 +13,8 @@ const StyledInputAmountProgress = styled.input`
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
   &:focus {
     outline: none;
-    border-color: ${props => (props.error ? "rgba(221, 69, 65,0.3)" : "rgba(77, 183, 195, 0.3)")};
+    border-color: ${props =>
+      props.error ? "rgba(221, 69, 65,0.3)" : "rgba(77, 183, 195, 0.3)"};
   }
   &::placeholder {
     color: #c6c6c6;
@@ -27,10 +28,16 @@ const Container = styled.div`
   position: relative;
   pointer-events: auto;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
 
   &:hover {
     span {
-      background-color: ${props => (props.focus || props.error ? "none" : "#545454")};
+      background-color: ${props =>
+        props.focus || props.error ? "none" : "#545454"};
     }
   }
 `;
@@ -46,7 +53,8 @@ const Span = styled.span`
   }};
   width: ${props => {
     if (!props.focus || props.error) return "100%";
-    if (props.focus) return props.percentage < 0 ? "0%" : `${props.percentage}%`;
+    if (props.focus)
+      return props.percentage < 0 ? "0%" : `${props.percentage}%`;
   }};
   height: ${props => (props.focus || props.error ? "2px" : "1px")};
   transition: all 0.2s ease;
@@ -139,7 +147,8 @@ class InputAmountProgress extends Component {
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;
 
-    const percentage = this.getPercentage(this.props.remaining) - this.getPercentage(value || 0);
+    const percentage =
+      this.getPercentage(this.props.remaining) - this.getPercentage(value || 0);
     const amountLeft = `${parseInt(percentage / 100 * this.props.limit, 0)}`;
 
     this.setState({
@@ -163,7 +172,14 @@ class InputAmountProgress extends Component {
 
   render() {
     const { focus, amount, percentage, error } = this.state;
-    const { label, onChange, prefix, textAbove, textBelow, ...otherProps } = this.props;
+    const {
+      label,
+      onChange,
+      prefix,
+      textAbove,
+      textBelow,
+      ...otherProps
+    } = this.props;
 
     return (
       <Container error={error} focus={focus}>

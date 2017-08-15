@@ -113,7 +113,10 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
+    if (
+      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
+      this.state.addressListStatus === "open"
+    ) {
       for (let i = 0; i < addressList.length; i += 1) {
         if (
           addressList[i]
@@ -137,7 +140,9 @@ class InputAddress extends Component {
         addressListStatus: shouldClose ? "closed" : "open"
       });
       addressList[index].scrollIntoView();
-      this.input._updateValue(addressList[index].getAttribute("data-address").trim());
+      this.input._updateValue(
+        addressList[index].getAttribute("data-address").trim()
+      );
     }
   };
 
@@ -150,12 +155,14 @@ class InputAddress extends Component {
   };
 
   closeList = () => {
-    (this.state.addressListStatus === "open" || this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "open" ||
+      this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "closed" });
   };
 
   openList = () => {
-    (this.state.addressListStatus === "closed" || this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "closed" ||
+      this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "open" });
   };
 

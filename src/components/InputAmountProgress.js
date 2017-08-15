@@ -28,6 +28,11 @@ const Container = styled.div`
   position: relative;
   pointer-events: auto;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+
+  * {
+    font-family: 'Roboto', sans-serif;
+  }
 
   &:hover {
     span {

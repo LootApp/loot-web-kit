@@ -11,7 +11,7 @@ const SContainer = styled.div`
 
 const SPrefix = styled.div`
   font-size: 16px;
-  padding-top: 21px;
+  padding-top: 20px;
   padding-right: 8px;
   color: ${props => (props.active ? "#545454" : "#c6c6c6")};
   opacity: ${props => (props.focus ? 1 : 0)};

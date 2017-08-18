@@ -7,8 +7,7 @@
 const formatLength = (rchar, occur) => {
   if (!occur) return rchar;
   const length = rchar + (rchar + (occur - 1)) / occur - 1;
-  const floor = Math.floor(length);
-  return floor;
+  return Math.floor(length);
 };
 
 export default formatLength;

@@ -67,12 +67,14 @@ class InputPassword extends Component {
   static propTypes = {
     requirementColour: PropTypes.string,
     requirements: PropTypes.bool,
+    onChange: PropTypes.func,
     getRef: PropTypes.func
   };
 
   static defaultProps = {
     requirementColour: "4db7c3",
     requirements: false,
+    onChange: null,
     getRef: null
   };
 
@@ -86,7 +88,8 @@ class InputPassword extends Component {
   }
 
   _onChange = value => {
-    if (typeof value === "string") this.setState({ password: value });
+    this.setState({ password: value });
+    typeof this.props.onChange === "function" && this.props.onChange(value);
     return value;
   };
 
@@ -97,7 +100,7 @@ class InputPassword extends Component {
   _value = () => this.input._value();
 
   render() {
-    const { requirementColour, requirements, ...props } = this.props;
+    const { requirementColour, requirements, onChange, ...props } = this.props;
     return (
       <Container {...props}>
         <Input

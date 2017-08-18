@@ -73,12 +73,14 @@ class InputAddress extends Component {
   static propTypes = {
     formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array,
+    onChange: PropTypes.func,
     getRef: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
     addresses: [],
+    onChange: null,
     getRef: null
   };
 
@@ -111,7 +113,10 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
+    if (
+      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
+      this.state.addressListStatus === "open"
+    ) {
       for (let i = 0; i < addressList.length; i += 1) {
         if (
           addressList[i]
@@ -135,34 +140,34 @@ class InputAddress extends Component {
         addressListStatus: shouldClose ? "closed" : "open"
       });
       addressList[index].scrollIntoView();
-      this.input.setState({
-        value: addressList[index].getAttribute("data-address").trim()
-      });
+      this.input._updateValue(
+        addressList[index].getAttribute("data-address").trim()
+      );
     }
   };
 
   _onBlur = () => this.closeList();
 
   _onChange = value => {
-    this.openList();
-    if (typeof value === "string") {
-      if (!value) this.closeList();
-      return value;
-    }
+    if (!value) this.closeList();
+    typeof this.props.onChange === "function" && this.props.onChange(value);
+    return value;
   };
 
   closeList = () => {
-    (this.state.addressListStatus === "open" || this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "open" ||
+      this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "closed" });
   };
 
   openList = () => {
-    (this.state.addressListStatus === "closed" || this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "closed" ||
+      this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "open" });
   };
 
   render() {
-    const { addresses, formatAddress, ...props } = this.props;
+    const { addresses, formatAddress, onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SInput
@@ -171,6 +176,7 @@ class InputAddress extends Component {
           noValidate
           onBlur={this._onBlur}
           onChange={this._onChange}
+          onKeyDown={() => this.openList()}
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="address-list" isOpen={this.state.addressListStatus}>

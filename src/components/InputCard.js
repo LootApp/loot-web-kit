@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Input from "./Input";
+import InputFormat from "./InputFormat";
 import visa from "../assets/visa-icon.svg";
 import mastercard from "../assets/mastercard-icon.svg";
 
-const SInut = styled(Input)`
+const SInput = styled(InputFormat)`
   position: relative;
 
   &::after {
@@ -13,7 +13,7 @@ const SInut = styled(Input)`
     display: block;
     position: absolute;
     right: 0;
-    top: 25px;
+    top: 19px;
     width: 30px;
     height: 20px;
     background-image: url(${props => props.cardIcon || "none"});
@@ -23,69 +23,36 @@ const SInut = styled(Input)`
 
 class Card extends Component {
   static propTypes = {
-    maxLength: PropTypes.number,
-    minLength: PropTypes.number,
-    getRef: PropTypes.func,
-    required: PropTypes.bool
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
-    maxLength: 19,
-    minLength: 19,
-    getRef: null,
-    required: false
+    onChange: null
   };
 
   state = {
     cardIcon: null
   };
 
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
-
   _onChange = value => {
-    if (typeof value === "string") {
-      let formatedValue = value.toString().replace(/\s/g, "");
-      formatedValue = formatedValue.replace(/[^\dA-Z]/g, "").replace(/(.{4})/g, "$1 ").trim();
-      if (formatedValue.match("^4")) this.setState({ cardIcon: visa });
-      else if (formatedValue.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
-      else this.setState({ cardIcon: null });
-      return formatedValue;
-    }
+    if (value.match("^4")) this.setState({ cardIcon: visa });
+    else if (value.match("^5[1-5]")) this.setState({ cardIcon: mastercard });
+    else this.setState({ cardIcon: null });
+    typeof this.props.onChange === "function" && this.props.onChange(value);
+    return value;
   };
-
-  _onBlur = ({ target }) => {
-    if (!target) return null;
-    if (target.value.length && target.value) {
-      if (this.props.required && !target.value.length) {
-        this.input.setState({
-          error: true,
-          helperText: "This field is required"
-        });
-      } else if (target.value.length < 19) {
-        this.input.setState({
-          error: true,
-          helperText: "Debit Card Number needs 16 digits"
-        });
-      }
-    }
-  };
-
-  _value = () => this.input._value();
 
   render() {
-    const { maxLength, minLength, ...props } = this.props;
     return (
-      <SInut
-        {...props}
-        cardIcon={this.state.cardIcon}
+      <SInput
+        {...this.props}
         type="tel"
-        maxLength={maxLength}
-        minLength={minLength}
-        onBlur={this._onBlur}
-        innerRef={input => (this.input = input)}
+        delimiter=" "
+        maxLength={19}
+        occurance={4}
+        numbersOnly
         onChange={this._onChange}
+        cardIcon={this.state.cardIcon}
       />
     );
   }

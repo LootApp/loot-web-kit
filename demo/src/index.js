@@ -16,6 +16,7 @@ import InputCVVExample from "./examples/components/InputCVVExample";
 import InputEmailExample from "./examples/components/InputEmailExample";
 import InputRadioExample from "./examples/components/InputRadioExample";
 import InputMoneyExample from "./examples/components/InputMoneyExample";
+import InputAmountProgressExample from "./examples/components/InputAmountProgressExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
 import InputCardExample from "./examples/components/InputCardExample";
@@ -211,6 +212,10 @@ class Demo extends Component {
               />
               <Route path="/loot-web-kit/components/input-cvv" component={InputCVVExample} />
               <Route path="/loot-web-kit/components/input-money" component={InputMoneyExample} />
+              <Route
+                path="/loot-web-kit/components/input-amount-progress"
+                component={InputAmountProgressExample}
+              />
               <Route
                 path="/loot-web-kit/components/input-date-time"
                 component={InputDateTimeExample}

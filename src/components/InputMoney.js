@@ -10,24 +10,26 @@ const SContainer = styled.div`
 `;
 
 const SPrefix = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   padding-top: 20px;
   padding-right: 8px;
-  margin-bottom: -2px;
-  color: #c6c6c6;
-  align-self: flex-start;
+  color: ${props => (props.active ? "#545454" : "#c6c6c6")};
+  opacity: ${props => (props.focus ? 1 : 0)};
+  position: absolute;
 `;
 
 const SInput = styled(Input)`
   width: 100%;
+  input {padding-left: 12px;}
 `;
 
 const SRemaining = styled.span`
   font-weight: 400;
+  font-size: 14px;
   position: absolute;
-  top: 20px;
-  right: 8px;
-  color: ${({ red }) => (red ? "#da6e6e" : "#c6c6c6")};
+  bottom: -5px;
+  right: 0;
+  color: ${({ error }) => (error ? "#da6e6e" : "#c6c6c6")};
 `;
 
 class InputMoney extends Component {
@@ -36,7 +38,8 @@ class InputMoney extends Component {
     maxLength: PropTypes.number,
     balance: PropTypes.string,
     getRef: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    minAmount: PropTypes.number
   };
 
   static defaultProps = {
@@ -44,11 +47,14 @@ class InputMoney extends Component {
     maxLength: 10,
     balance: "",
     getRef: null,
-    onChange: null
+    onChange: null,
+    minAmount: null
   };
 
   state = {
-    remaining: ""
+    remaining: "",
+    acitve: false,
+    focus: false
   };
 
   componentDidMount() {
@@ -57,64 +63,79 @@ class InputMoney extends Component {
 
   _onChange = value => {
     const formatedValue = formatAmount(value);
+    this.setState({ active: !!formatedValue });
     if (this.props.balance) this.updateRemaining(value);
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" &&
+      this.props.onChange(formatedValue);
     return formatedValue;
   };
 
   _onBlur = value => {
-    if (!!value.length && Number(value) < 0.01) {
-      this.input.setState({
-        error: true,
-        helperText: "Minimum amount is 0.01"
-      });
+    if (!this.state.active) this.setState({ focus: false });
+    if (value.length) {
+      if (
+        typeof this.props.minAmount === "number" &&
+        Number(value) < this.props.minAmount
+      ) {
+        this.input.setState({
+          error: true,
+          helperText: `Minimum amount is ${this.props.minAmount}`
+        });
+      } else if (Number(value) < 0.01) {
+        this.input.setState({
+          error: true,
+          helperText: "Minimum amount is 0.01"
+        });
+      }
     } else if (Number(this.state.remaining) < 0) {
       this.input.setState({
         error: true,
         helperText: "Amount exceeds balance"
       });
     }
-    if (typeof value === "string" && !value.length && this.props.balance)
-      this.setState({ remaining: "" });
+
+    if (!value.length && this.props.balance) this.setState({ remaining: "" });
   };
 
   _onFocus = value => {
+    this.setState({ focus: true });
     const inputValue = value || "";
-    if (this.props.balance && !this.state.remaining.length) this.updateRemaining(inputValue);
+    if (this.props.balance && !this.state.remaining.length)
+      this.updateRemaining(inputValue);
   };
 
-  _value = () => this.input._value();
-
   updateRemaining = value => {
-    const formatedValue = formatAmount(value);
-    if (typeof value === "string" && this.props.balance.length) {
+    if (this.props.balance.length) {
+      const formatedValue = formatAmount(value);
       const remaining = value
-        ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
+        ? formatAmount(
+            (Number(this.props.balance) - Number(formatedValue)).toFixed(2)
+          )
         : formatAmount(this.props.balance);
       this.setState({ remaining });
     }
   };
 
   render() {
-    const { prefix, maxLength, balance, ...props } = this.props;
+    const { prefix, maxLength, balance, onChange, ...props } = this.props;
     return (
       <SContainer {...props}>
-        <SPrefix>
+        <SPrefix focus={this.state.focus} active={this.state.active}>
           {prefix}
         </SPrefix>
         <SInput
           {...props}
-          maxLength={maxLength}
           type="tel"
           noValidate
-          onChange={this._onChange}
+          maxLength={maxLength}
           onBlur={this._onBlur}
           onFocus={this._onFocus}
+          onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
         {!!this.props.balance.length &&
           !!this.state.remaining.length &&
-          <SRemaining red={this.state.remaining < 0}>
+          <SRemaining error={this.state.remaining < 0}>
             {`${prefix}${this.state.remaining}`}
           </SRemaining>}
       </SContainer>

@@ -26,17 +26,44 @@ if (!isMobile() || (isMobile() && !isDateInput())) {
       }
     }
 
-    .c-datepicker__header {
+    .c-datepicker {
+      border-radius: 3px;
+      overflow: hidden;
+      min-height: 460px !important;
+    }
+
+    .c-datepicker__header-day {
       display: none;
     }
 
-    .c-datepicker {
-      min-height: 380px !important;
+    .c-datepicker__header-date__time {
+      display: none !important;
     }
 
-    .c-datepicker__day-body:hover {
+    .c-datepicker__header-date {
+      text-align: left;
+      padding-left: 15px;
+      max-height: 82px;
+    }
+
+    .c-datepicker__header-date__day {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: left;
+      padding-top: 5px;
+    }
+
+    .c-datepicker__header-date__month {
+      font-size: 16px;
+    }
+
+    .c-datepicker__day-body {
+      padding: 10px !important;
+      margin: 2px !important;
+      border: none !important;
+
       &::before {
-        background-color: #4db7c3 !important;
+        background-color: #4db7c3;
       }
     }
 
@@ -68,6 +95,13 @@ if (!isMobile() || (isMobile() && !isDateInput())) {
       opacity: 0.35;
       cursor: not-allowed;
     }
+
+    .modal-btns {
+      padding: 10px;
+      font-size: 12px;
+      color: #4db7c3;
+      font-weight: bold;
+    }
   `;
 }
 
@@ -90,14 +124,16 @@ class InputDateTime extends Component {
     defaultDate: PropTypes.instanceOf(Date),
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     defaultDate: new Date(),
     minDate: null,
     maxDate: null,
-    getRef: null
+    getRef: null,
+    onChange: null
   };
 
   componentDidMount() {
@@ -105,6 +141,7 @@ class InputDateTime extends Component {
     if (!isMobile() || (isMobile() && !isDateInput())) {
       this.picker = new MaterialDateTimePicker({
         default: this.props.defaultDate,
+        format: "DD/MM/YYYY",
         dateValidator: d => {
           if (this.props.minDate && this.props.maxDate) {
             return d >= this.props.minDate && d <= this.props.maxDate;
@@ -122,9 +159,9 @@ class InputDateTime extends Component {
           this.overlay.removeEventListener("click", this._onCloseCalendar);
         })
         .on("submit", value => {
-          this.input.setState({
-            value: value.toDate().toISOString().substring(0, 10)
-          });
+          this.input._updateValue(
+            value.toDate().toISOString().substring(0, 10)
+          );
         });
 
       this._onOpenCalendar = () => this.picker.open();
@@ -145,17 +182,23 @@ class InputDateTime extends Component {
 
   _value = () => this.input._value();
 
+  _onChange = value => {
+    typeof this.props.onChange === "function" && this.props.onChange(value);
+    return value;
+  };
+
   render() {
-    const { ...props } = this.props;
+    const { onChange, ...props } = this.props;
     return (
       <SInput
         {...props}
         type="date"
         label="Date"
-        placeholder="DD/MM/YYYY"
-        innerRef={input => (this.input = input)}
         readOnly={!isMobile()}
+        placeholder="DD/MM/YYYY"
+        onChange={this._onChange}
         onFocus={this._onCalendarOpen}
+        innerRef={input => (this.input = input)}
       />
     );
   }

@@ -6,8 +6,7 @@
  */
 const formatLength = (maxLength, occurance) => {
   if (occurance) {
-    const newLength =
-      this.props.maxLength - (this.props.occurance - this.props.maxLength % this.props.occurance);
+    const newLength = maxLength - (occurance - maxLength % occurance);
     return newLength;
   }
   return maxLength;

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Input from "./InputFormat";
+import InputFormat from "./InputFormat";
 import visa from "../assets/visa-icon.svg";
 import mastercard from "../assets/mastercard-icon.svg";
 
-const SInput = styled(Input)`
+const SInput = styled(InputFormat)`
   position: relative;
 
   &::after {
@@ -48,7 +48,7 @@ class Card extends Component {
         {...this.props}
         type="tel"
         delimiter=" "
-        maxLength={20}
+        maxLength={19}
         occurance={4}
         numbersOnly
         onChange={this._onChange}

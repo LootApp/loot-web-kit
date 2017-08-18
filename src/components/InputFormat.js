@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Input from "./Input";
 import stringFormatter from "../utilities/stringFormatter";
+import formatLength from "../utilities/formatLength";
 
 const SInput = styled(Input)`
   width: 100%;
@@ -36,9 +37,7 @@ class InputFormat extends Component {
 
   _onBlur = ({ target }) => {
     if (!target) return null;
-    const minChar = this.props.occurance
-      ? this.props.maxLength - (this.props.occurance - this.props.maxLength % this.props.occurance)
-      : this.props.maxLength;
+    const minChar = formatLength(this.props.maxLength, this.props.occurance);
     if (target.value.length && target.value) {
       if (this.props.required && !target.value.length) {
         this.input.setState({

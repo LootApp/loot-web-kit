@@ -30,7 +30,7 @@ const code = `
   <InputFormat
     placeholder="12-34-56"
     label='Sort Code'
-    maxLength={-8}
+    maxLength={8}
     delimiter="-"
     occurance={2}
   />

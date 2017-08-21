@@ -20,6 +20,7 @@ const SInputVerify = styled.input`
   text-align: center;
   border-radius: 3px;
   color: rgba(0, 0, 0, 0.6);
+  background: rgb(255, 255, 255);
   transition: all .2s ease;
   box-shadow: 0 10px 50px rgba(50, 50, 93, 0.12), 0 10px 20px rgba(50, 50, 93, 0.1);
 

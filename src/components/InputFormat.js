@@ -30,8 +30,7 @@ class InputFormat extends Component {
   };
 
   state = {
-    requiredChar:
-      formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter) || 0
+    requiredChar: formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter)
   };
 
   componentDidMount() {

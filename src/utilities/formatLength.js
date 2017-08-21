@@ -7,8 +7,8 @@ import stringFormatter from "./stringFormatter";
  * @return {Number}
  */
 const formatLength = (maxLength, occurance, delimiter) => {
+  if (!maxLength) return null;
   if (!occurance || !delimiter) return maxLength;
-
   const value = new Array(maxLength + 1).join("1");
   const formatedValue = stringFormatter({
     occurance,

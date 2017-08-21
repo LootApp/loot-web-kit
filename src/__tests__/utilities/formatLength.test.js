@@ -49,4 +49,10 @@ describe("formatLength", () => {
   it("for maxLength 8 and occurance 0 should return 8", () => {
     expect(formatLength(8, 0, "-")).toEqual(8);
   });
+  it("for only maxLength 8 should return 8", () => {
+    expect(formatLength(8)).toEqual(8);
+  });
+  it("for no arguments should return null", () => {
+    expect(formatLength()).toEqual(null);
+  });
 });

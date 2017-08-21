@@ -8,23 +8,11 @@ const docs = `
   ${"`import { InputFormat } from 'loot-web-kit/es'`"}
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputFormat.js)
 
-  Input for custom string formating *Extends:* [Input](/loot-web-kit/components/input)
+  Input for custom string formating (numbers only) *Extends:* [Input](/loot-web-kit/components/input)
 `;
 
 const props = `
   # Props
-
-  **numbersOnly**: boolean
-
-  Only allows numeric values. *Default:* "false"
-
-  ---
-
-  **requiredChar**: string
-
-  Required characters or digits for user to input. *Default:* "null"
-
-  ---
 
   **delimiter**: string
 
@@ -42,30 +30,26 @@ const code = `
   <InputFormat
     placeholder="12-34-56"
     label='Sort Code'
-    requiredChar={6}
-    numbersOnly
+    maxLength={8}
     delimiter="-"
     occurance={2}
   />
   <InputFormat
     placeholder="35679876"
     label='Account Number'
-    requiredChar={8}
-    numbersOnly
+    maxLength={8}
   />
   <InputFormat
     placeholder="12/19"
     label='MM/YY'
-    requiredChar={4}
-    numbersOnly
+    maxLength={5}
     delimiter="/"
     occurance={2}
   />
   <InputFormat
     placeholder="347"
     label='CVV'
-    requiredChar={3}
-    numbersOnly
+    maxLength={3}
   />
 </div>
 `;

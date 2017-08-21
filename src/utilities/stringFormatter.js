@@ -6,6 +6,7 @@ const stringFormatter = ({ occurance, delimiter, value }) => {
   const _occurance = occurance || 0;
   const _delimiter = delimiter || "";
   if (!value) return "";
+  if (!_occurance || !_delimiter) return value;
   // create a regex with the delimiter, as a value to remove
   const regex = new RegExp(`${delimiter}`, "g");
 

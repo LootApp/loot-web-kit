@@ -1,13 +1,20 @@
+import stringFormatter from "./stringFormatter";
+
 /**
  * @desc Returns length for Input Format with delimiters
  * @param  {Number} rchar
  * @param  {Number} occur
  * @return {Number}
  */
-const formatLength = (rchar, occur) => {
-  if (!occur) return rchar;
-  const length = (rchar - 1) / occur + rchar;
-  return Math.floor(length);
+const formatLength = (maxLength, occurance, delimiter) => {
+  const value = new Array(maxLength + 1).join("1");
+  const formatedValue = stringFormatter({
+    occurance,
+    delimiter,
+    value
+  }).substring(0, maxLength);
+  const requiredChar = formatedValue.split(delimiter).join("");
+  return requiredChar.length;
 };
 
 export default formatLength;

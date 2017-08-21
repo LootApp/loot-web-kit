@@ -13,8 +13,7 @@ class InputFormat extends Component {
   static propTypes = {
     getRef: PropTypes.func,
     label: PropTypes.string.isRequired,
-    requiredChar: PropTypes.number,
-    numbersOnly: PropTypes.bool,
+    maxLength: PropTypes.number,
     delimiter: PropTypes.string,
     occurance: PropTypes.number,
     required: PropTypes.bool,
@@ -23,8 +22,7 @@ class InputFormat extends Component {
 
   static defaultProps = {
     getRef: null,
-    requiredChar: null,
-    numbersOnly: false,
+    maxLength: 9999,
     delimiter: "",
     occurance: 0,
     required: false,
@@ -32,9 +30,8 @@ class InputFormat extends Component {
   };
 
   state = {
-    maxLength: this.props.requiredChar
-      ? formatLength(this.props.requiredChar, this.props.occurance)
-      : 9999
+    requiredChar:
+      formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter) || 0
   };
 
   componentDidMount() {
@@ -49,12 +46,10 @@ class InputFormat extends Component {
           error: true,
           helperText: "This field is required"
         });
-      } else if (this.state.maxLength !== 9999 && target.value.length < this.state.maxLength) {
+      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
-          helperText: `${this.props.label} needs ${this.props.requiredChar} ${this.props.numbersOnly
-            ? "digits"
-            : "characters"}`
+          helperText: `${this.props.label} needs ${this.state.requiredChar} digits`
         });
       }
     }
@@ -62,10 +57,10 @@ class InputFormat extends Component {
 
   _onChange = value => {
     const formatedValue = stringFormatter({
-      value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
+      value: value.toString().replace(/[^0-9-]/g, ""),
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
-    }).substr(0, this.state.maxLength);
+    }).substr(0, this.props.maxLength);
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };

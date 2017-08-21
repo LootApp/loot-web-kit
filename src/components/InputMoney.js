@@ -53,7 +53,7 @@ class InputMoney extends Component {
 
   state = {
     remaining: "",
-    acitve: false,
+    active: false,
     focus: false
   };
 
@@ -93,7 +93,7 @@ class InputMoney extends Component {
         helperText: "Amount exceeds balance"
       });
     }
-
+    console.log(value);
     if (!value.length && this.props.balance) this.setState({ remaining: "" });
   };
 

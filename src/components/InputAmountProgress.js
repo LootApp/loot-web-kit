@@ -9,7 +9,7 @@ const StyledInputAmountProgress = styled.input`
   width: 100%;
   padding: 8px 0 8px 12px;
   transition: border 0.2s ease;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(77, 183, 195, 0.3);
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
   &:focus {
     outline: none;
@@ -48,15 +48,17 @@ const Span = styled.span`
   position: absolute;
   background: ${props => {
     if (props.error) return "#DA6E6E";
+    if (props.value) return "#4db7c3";
     if (!props.focus) return "#bbbcbe";
     if (props.focus) return "#4db7c3";
   }};
   width: ${props => {
-    if (!props.focus || props.error) return "100%";
-    if (props.focus)
+    if (props.focus || props.value)
       return props.percentage < 0 ? "0%" : `${props.percentage}%`;
+    if (!props.focus || props.error) return "100%";
   }};
-  height: ${props => (props.focus || props.error ? "2px" : "1px")};
+  height: ${props =>
+    props.focus || props.error || props.value ? "2px" : "1px"};
   transition: all 0.2s ease;
 `;
 
@@ -205,7 +207,12 @@ class InputAmountProgress extends Component {
             innerRef={input => (this.input = input)}
             onChange={e => this.handleAmountChange(e, onChange)}
           />
-          <Span error={error} focus={focus} percentage={percentage} />
+          <Span
+            value={amount}
+            error={error}
+            focus={focus}
+            percentage={percentage}
+          />
         </InputWrapper>
         <TextBelow error={error} hide={!focus}>
           {textBelow}

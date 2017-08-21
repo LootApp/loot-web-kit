@@ -42,6 +42,9 @@
     "react-markdown": "^2.5.0",
     "react-router-dom": "^4.1.1"
   },
+  "babel": {
+    "presets": ["es2015"]
+  },
   "author": "LootApp",
   "homepage": "https://lootapp.github.io/loot-web-kit",
   "license": "MIT",

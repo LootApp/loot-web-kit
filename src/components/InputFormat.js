@@ -66,7 +66,7 @@ class InputFormat extends Component {
   };
 
   render() {
-    const { label, required, onChange, ...props } = this.props;
+    const { maxLength, label, required, onChange, ...props } = this.props;
     return (
       <SInput
         {...props}
@@ -74,7 +74,7 @@ class InputFormat extends Component {
         label={label}
         required={required}
         onBlur={this._onBlur}
-        maxLength={this.state.maxLength}
+        maxLength={maxLength}
         onChange={this._onChange}
         innerRef={input => (this.input = input)}
       />

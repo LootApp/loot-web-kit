@@ -93,8 +93,7 @@ class InputMoney extends Component {
         helperText: "Amount exceeds balance"
       });
     }
-    console.log(value);
-    if (!value.length && this.props.balance) this.setState({ remaining: "" });
+    if (typeof value === "string" && !value.length && this.props.balance) this.setState({ remaining: "" });
   };
 
   _onFocus = value => {

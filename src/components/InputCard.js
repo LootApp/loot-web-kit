@@ -50,7 +50,6 @@ class Card extends Component {
         delimiter=" "
         maxLength={19}
         occurance={4}
-        numbersOnly
         onChange={this._onChange}
         cardIcon={this.state.cardIcon}
       />

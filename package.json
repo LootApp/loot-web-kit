@@ -1,6 +1,6 @@
 {
   "name": "loot-web-kit",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -9,10 +9,9 @@
     "build": "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
-    "lint": "eslint src",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src"
   },
   "dependencies": {
     "country-code-emoji": "0.0.1",
@@ -25,12 +24,15 @@
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
+    "babel-jest": "^20.0.3",
     "eslint": "4.4.1",
     "eslint-config-airbnb": "15.1.0",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
     "eslint-plugin-react": "7.2.1",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "nwb": "0.18.10",
     "prop-types": "^15.5.10",
     "react": "^16.0.0-alpha.12",
@@ -39,6 +41,9 @@
     "react-live": "1.7.0",
     "react-markdown": "^2.5.0",
     "react-router-dom": "^4.1.1"
+  },
+  "babel": {
+    "presets": ["es2015"]
   },
   "author": "LootApp",
   "homepage": "https://lootapp.github.io/loot-web-kit",

@@ -8,7 +8,6 @@ const InputExpDate = props =>
     maxLength={5}
     delimiter="/"
     occurance={2}
-    numbersOnly
     getRef={input => (this.input = input)}
   />;
 

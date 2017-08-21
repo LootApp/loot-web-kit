@@ -22,7 +22,7 @@ const props = `
 
   **requiredChar**: string
 
-  Required characters or digits for user to input. *Default:* "9999"
+  Required characters or digits for user to input. *Default:* "null"
 
   ---
 

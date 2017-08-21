@@ -23,7 +23,7 @@ class InputFormat extends Component {
 
   static defaultProps = {
     getRef: null,
-    requiredChar: 9999,
+    requiredChar: null,
     numbersOnly: false,
     delimiter: "",
     occurance: 0,
@@ -32,8 +32,10 @@ class InputFormat extends Component {
   };
 
   state = {
-    maxLength: formatLength(this.props.requiredChar, this.props.occurance) || 0
-  }
+    maxLength: this.props.requiredChar
+      ? formatLength(this.props.requiredChar, this.props.occurance)
+      : 9999
+  };
 
   componentDidMount() {
     if (typeof this.props.getRef === "function") this.props.getRef(this.input);

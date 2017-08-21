@@ -2,7 +2,7 @@ import formatLength from "../../utilities/formatLength";
 
 describe("formatLength", () => {
   it("for maxLength 11 and occurance 3 should return 9", () => {
-    expect(formatLength(11, "-", 3)).toEqual(9);
+    expect(formatLength(11, 3, "-")).toEqual(9);
   });
   it("for maxLength 19 and occurance 4 should return 16", () => {
     expect(formatLength(19, 4, "-")).toEqual(16);

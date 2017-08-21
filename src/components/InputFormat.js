@@ -13,7 +13,7 @@ class InputFormat extends Component {
   static propTypes = {
     getRef: PropTypes.func,
     label: PropTypes.string.isRequired,
-    requiredChar: PropTypes.number,
+    maxLength: PropTypes.number,
     numbersOnly: PropTypes.bool,
     delimiter: PropTypes.string,
     occurance: PropTypes.number,
@@ -23,7 +23,7 @@ class InputFormat extends Component {
 
   static defaultProps = {
     getRef: null,
-    requiredChar: 9999,
+    maxLength: 9999,
     numbersOnly: false,
     delimiter: "",
     occurance: 0,
@@ -32,8 +32,9 @@ class InputFormat extends Component {
   };
 
   state = {
-    maxLength: formatLength(this.props.requiredChar, this.props.occurance) || 0
-  }
+    requiredChar:
+      formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter) || 0
+  };
 
   componentDidMount() {
     if (typeof this.props.getRef === "function") this.props.getRef(this.input);
@@ -47,10 +48,10 @@ class InputFormat extends Component {
           error: true,
           helperText: "This field is required"
         });
-      } else if (this.state.maxLength !== 9999 && target.value.length < this.state.maxLength) {
+      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
-          helperText: `${this.props.label} needs ${this.props.requiredChar} ${this.props.numbersOnly
+          helperText: `${this.props.label} needs ${this.state.requiredChar} ${this.props.numbersOnly
             ? "digits"
             : "characters"}`
         });
@@ -63,7 +64,7 @@ class InputFormat extends Component {
       value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
-    }).substr(0, this.state.maxLength);
+    }).substr(0, this.props.maxLength);
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };

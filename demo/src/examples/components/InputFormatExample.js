@@ -20,12 +20,6 @@ const props = `
 
   ---
 
-  **requiredChar**: string
-
-  Required characters or digits for user to input. *Default:* "9999"
-
-  ---
-
   **delimiter**: string
 
   Defines what delimiter will be appended for every occurance. **One Character Only** *Default:* ""
@@ -42,7 +36,7 @@ const code = `
   <InputFormat
     placeholder="12-34-56"
     label='Sort Code'
-    requiredChar={6}
+    maxLength={8}
     numbersOnly
     delimiter="-"
     occurance={2}
@@ -50,13 +44,13 @@ const code = `
   <InputFormat
     placeholder="35679876"
     label='Account Number'
-    requiredChar={8}
+    maxLength={8}
     numbersOnly
   />
   <InputFormat
     placeholder="12/19"
     label='MM/YY'
-    requiredChar={4}
+    maxLength={5}
     numbersOnly
     delimiter="/"
     occurance={2}
@@ -64,7 +58,7 @@ const code = `
   <InputFormat
     placeholder="347"
     label='CVV'
-    requiredChar={3}
+    maxLength={3}
     numbersOnly
   />
 </div>

@@ -22,7 +22,7 @@ class InputFormat extends Component {
 
   static defaultProps = {
     getRef: null,
-    maxLength: 9999,
+    maxLength: 0,
     delimiter: "",
     occurance: 0,
     required: false,
@@ -45,7 +45,7 @@ class InputFormat extends Component {
           error: true,
           helperText: "This field is required"
         });
-      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
+      } else if (this.props.maxLength && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
           helperText: `${this.props.label} needs ${this.state.requiredChar} digits`
@@ -59,7 +59,7 @@ class InputFormat extends Component {
       value: value.toString().replace(/[^0-9-]/g, ""),
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
-    }).substr(0, this.props.maxLength);
+    });
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };

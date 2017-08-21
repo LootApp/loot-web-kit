@@ -48,7 +48,7 @@ class Card extends Component {
         {...this.props}
         type="tel"
         delimiter=" "
-        maxLength={19}
+        requiredChar={16}
         occurance={4}
         numbersOnly
         onChange={this._onChange}

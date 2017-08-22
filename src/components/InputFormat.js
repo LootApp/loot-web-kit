@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Input from "./Input";
 import stringFormatter from "../utilities/stringFormatter";
+import formatLength from "../utilities/formatLength";
 
 const SInput = styled(Input)`
   width: 100%;
@@ -12,22 +13,24 @@ class InputFormat extends Component {
   static propTypes = {
     getRef: PropTypes.func,
     label: PropTypes.string.isRequired,
-    numbersOnly: PropTypes.bool,
+    maxLength: PropTypes.number,
     delimiter: PropTypes.string,
     occurance: PropTypes.number,
-    maxLength: PropTypes.number,
     required: PropTypes.bool,
     onChange: PropTypes.func
   };
 
   static defaultProps = {
     getRef: null,
-    numbersOnly: false,
+    maxLength: 0,
     delimiter: "",
     occurance: 0,
-    maxLength: 9999,
     required: false,
     onChange: null
+  };
+
+  state = {
+    requiredChar: formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter)
   };
 
   componentDidMount() {
@@ -36,21 +39,16 @@ class InputFormat extends Component {
 
   _onBlur = ({ target }) => {
     if (!target) return null;
-    const minChar = this.props.occurance
-      ? this.props.maxLength - (this.props.occurance - this.props.maxLength % this.props.occurance)
-      : this.props.maxLength;
     if (target.value.length && target.value) {
       if (this.props.required && !target.value.length) {
         this.input.setState({
           error: true,
           helperText: "This field is required"
         });
-      } else if (this.props.maxLength !== 9999 && target.value.length < this.props.maxLength) {
+      } else if (this.props.maxLength && target.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
-          helperText: `${this.props.label} needs ${minChar} ${this.props.numbersOnly
-            ? "digits"
-            : "characters"}`
+          helperText: `${this.props.label} needs ${this.state.requiredChar} digits`
         });
       }
     }
@@ -58,10 +56,10 @@ class InputFormat extends Component {
 
   _onChange = value => {
     const formatedValue = stringFormatter({
-      value: this.props.numbersOnly ? value.toString().replace(/[^0-9-]/g, "") : value,
+      value: value.toString().replace(/[^0-9-]/g, ""),
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
-    }).substr(0, this.props.maxLength);
+    });
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };

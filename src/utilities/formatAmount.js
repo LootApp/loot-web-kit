@@ -3,9 +3,10 @@
  * @param  {String} value
  * @return {String}
  */
+
 const formatAmount = value => {
   if (typeof value === "string") {
-    let formatedValue = value.toString().replace(/[^0-9]/g, "");
+    let formatedValue = value.toString().replace(/[^0-9-]/g, "");
     if (formatedValue.length === 1) formatedValue = `0.0${value}`;
     else {
       formatedValue = formatedValue.split(".").join("");

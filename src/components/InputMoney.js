@@ -11,11 +11,12 @@ const SContainer = styled.div`
 
 const SPrefix = styled.div`
   font-size: 16px;
-  padding-top: 20px;
+  padding-top: 19px;
   padding-right: 8px;
-  color: ${props => (props.active ? "#545454" : "#c6c6c6")};
-  opacity: ${props => (props.focus ? 1 : 0)};
+  color: ${props => (props.hasValue ? "#545454" : "#c6c6c6")};
+  opacity: ${props => (props.focus || props.hasValue ? 1 : 0)};
   position: absolute;
+  font-family: 'Roboto', sans-serif;
 `;
 
 const SInput = styled(Input)`
@@ -54,8 +55,8 @@ class InputMoney extends Component {
   state = {
     remaining: "",
     showRemaining: false,
-    active: false,
-    focus: false
+    focus: false,
+    hasValue: false
   };
 
   componentDidMount() {
@@ -64,9 +65,11 @@ class InputMoney extends Component {
 
   _onChange = value => {
     const formatedValue = formatAmount(value);
-    this.setState({ active: !!formatedValue });
     if (this.props.balance) this.updateRemaining(value);
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" &&
+      this.props.onChange(formatedValue);
+    if (value.length) this.setState({ hasValue: true });
+    else this.setState({ hasValue: false });
     return formatedValue;
   };
 
@@ -74,7 +77,10 @@ class InputMoney extends Component {
     this.setState({ showRemaining: false });
     if (!this.state.active) this.setState({ focus: false });
     if (value.length) {
-      if (typeof this.props.minAmount === "number" && Number(value) < this.props.minAmount) {
+      if (
+        typeof this.props.minAmount === "number" &&
+        Number(value) < this.props.minAmount
+      ) {
         this.input.setState({
           error: true,
           helperText: `Minimum amount is ${this.props.minAmount}`
@@ -98,14 +104,17 @@ class InputMoney extends Component {
   _onFocus = value => {
     this.setState({ focus: true, showRemaining: true });
     const inputValue = value || "";
-    if (this.props.balance && !this.state.remaining.length) this.updateRemaining(inputValue);
+    if (this.props.balance && !this.state.remaining.length)
+      this.updateRemaining(inputValue);
   };
 
   updateRemaining = value => {
     if (this.props.balance.length) {
       const formatedValue = formatAmount(value);
       const remaining = value
-        ? formatAmount((Number(this.props.balance) - Number(formatedValue)).toFixed(2))
+        ? formatAmount(
+            (Number(this.props.balance) - Number(formatedValue)).toFixed(2)
+          )
         : formatAmount(this.props.balance);
       this.setState({ remaining });
     }
@@ -114,10 +123,12 @@ class InputMoney extends Component {
   render() {
     const { prefix, maxLength, balance, onChange, ...props } = this.props;
     const showRemainingBalance =
-      !!this.props.balance.length && !!this.state.remaining.length && !!this.state.showRemaining;
+      !!this.props.balance.length &&
+      !!this.state.remaining.length &&
+      !!this.state.showRemaining;
     return (
       <SContainer {...props}>
-        <SPrefix focus={this.state.focus} active={this.state.active}>
+        <SPrefix focus={this.state.focus} hasValue={this.state.hasValue}>
           {prefix}
         </SPrefix>
         <SInput

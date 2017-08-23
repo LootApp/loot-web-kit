@@ -51,6 +51,13 @@ class InputVerify extends Component {
     document.addEventListener("keydown", this.onKeyDown);
   }
 
+  componentDidUpdate() {
+    if (this.verifyCode.length <= this.props.fields) {
+      const input = document.getElementById(String(this.verifyCode.length));
+      input.focus();
+    }
+  }
+
   componentWillUnmount() {
     document.removeEventListener("keydown", this.onKeyDown);
   }

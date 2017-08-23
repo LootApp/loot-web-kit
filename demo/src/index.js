@@ -8,9 +8,9 @@ import {
   Switch
 } from "react-router-dom";
 import Accordion from "./components/Accordion";
-import FormExample from "./examples/components/FormExample";
-import InputVerify from "./examples/components/InputVerifyExample";
 import InputExample from "./examples/components/InputExample";
+import FormExample from "./examples/components/FormExample";
+import InputVerifyExample from "./examples/components/InputVerifyExample";
 import InputAddressExample from "./examples/components/InputAddressExample";
 import InputMobileNumberExample from "./examples/components/InputMobileNumberExample";
 import InputFormatExample from "./examples/components/InputFormatExample";
@@ -209,7 +209,7 @@ class Demo extends Component {
               />
               <Route
                 path="/loot-web-kit/components/input-verify"
-                component={InputVerify}
+                component={InputVerifyExample}
               />
               <Route
                 path="/loot-web-kit/components/input-address"

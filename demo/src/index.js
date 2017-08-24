@@ -187,6 +187,7 @@ class Demo extends Component {
           <Content>
             <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>Open Menu</SMobileMenu>
             <Switch>
+              <Route path="/loot-web-kit/design/icons" component={Icons} />
               <Route path="/loot-web-kit/components/form" component={FormExample} />
               <Route path="/loot-web-kit/components/input" component={InputExample} />
               <Route path="/loot-web-kit/components/input-verify" component={InputVerify} />
@@ -242,7 +243,6 @@ class Demo extends Component {
               />
               <Route path="/loot-web-kit/components/button" component={ButtonExample} />
               <Route path="/loot-web-kit/components/spinner" component={SpinnerExample} />
-              <Route path="/loot-web-kit" component={Icons} />
               <Route path="/loot-web-kit" component={ColorScheme} />
             </Switch>
           </Content>

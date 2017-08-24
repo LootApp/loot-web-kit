@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="64px" viewBox="0 0 90 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>close-envelope</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-1261.000000, -601.000000)" fill="#4DB7C3">
+            <g id="close-envelope" sketch:type="MSLayerGroup" transform="translate(1261.000000, 601.000000)">
+                <g id="Capa_1" sketch:type="MSShapeGroup">
+                    <g id="Group">
+                        <path d="M45,44.8 L33.8657143,35.0976 L2.03142857,62.2656 C3.18857143,63.3344 4.75071429,64 6.47357143,64 L83.5264286,64 C85.2428571,64 86.7985714,63.3344 87.9492857,62.2656 L56.1342857,35.0976 L45,44.8 L45,44.8 Z" id="Shape"></path>
+                        <path d="M87.9685714,1.7344 C86.8114286,0.6592 85.2557143,0 83.5264286,0 L6.47357143,0 C4.75714286,0 3.20142857,0.6656 2.04428571,1.7472 L45,38.4 L87.9685714,1.7344 L87.9685714,1.7344 Z" id="Shape"></path>
+                        <path d="M0,5.6192 L0,58.7904 L31.0692857,32.5056 L0,5.6192 Z" id="Shape"></path>
+                        <path d="M58.9307143,32.5056 L90,58.7904 L90,5.6 L58.9307143,32.5056 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

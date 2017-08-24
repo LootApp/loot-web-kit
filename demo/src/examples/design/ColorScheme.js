@@ -18,7 +18,10 @@ const ColourBlock = styled.div`
   min-width: 192px;
   margin: 10px;
   background-color: ${props => props.color || "grey"};
-  color: ${props => (props.color === colours.white || props.color === colours.lightGrey ? colours.darkGrey : colours.white)};
+  color: ${props =>
+    props.color === colours.white || props.color === colours.lightGrey
+      ? colours.darkGrey
+      : colours.white};
   border: ${props => (props.color === colours.white ? `1px solid ${colours.darkGrey}` : "none")};
   position: relative;
 
@@ -26,12 +29,16 @@ const ColourBlock = styled.div`
     margin-top: 3px;
     margin-bottom: 0;
     text-transform: uppercase;
-    color: ${props => (props.color === colours.white || props.color === colours.lightGrey ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.7)")};
+    color: ${props =>
+      props.color === colours.white || props.color === colours.lightGrey
+        ? "rgba(0, 0, 0, 0.5)"
+        : "rgba(255, 255, 255, 0.7)"};
   }
 
   button {
     background-color: transparent !important;
-    background-image: url(${props => (props.color === colours.white || props.color === colours.lightGrey ? copyDark : copy)});
+    background-image: url(${props =>
+      props.color === colours.white || props.color === colours.lightGrey ? copyDark : copy});
     background-size: 100%;
     color: inherit;
     border: none;
@@ -129,16 +136,10 @@ class ColorScheme extends Component {
     return (
       <div>
         <ToggleContainer>
-          <Toggle
-            selected={this.state.type === "HEX"}
-            onClick={() => this._onToggle("HEX")}
-          >
+          <Toggle selected={this.state.type === "HEX"} onClick={() => this._onToggle("HEX")}>
             HEX
           </Toggle>
-          <Toggle
-            selected={this.state.type === "RGB"}
-            onClick={() => this._onToggle("RGB")}
-          >
+          <Toggle selected={this.state.type === "RGB"} onClick={() => this._onToggle("RGB")}>
             RGB
           </Toggle>
         </ToggleContainer>
@@ -180,7 +181,6 @@ class ColorScheme extends Component {
               data-clipboard-text={this._getColor(colours.pink)}
             />
           </ColourBlock>
-
         </Container>
         <h3>Grey Colours</h3>
         <Container>
@@ -228,7 +228,6 @@ class ColorScheme extends Component {
               data-clipboard-text={this._getColor(colours.black)}
             />
           </ColourBlock>
-
         </Container>
         <h3>UI Colours</h3>
         <Container>
@@ -258,10 +257,12 @@ class ColorScheme extends Component {
               data-clipboard-text={this._getColor(colours.green)}
             />
           </ColourBlock>
-
         </Container>
-
-        <Toast show={this.state.showToast}>👍</Toast>
+        <Toast show={this.state.showToast}>
+          <span role="img" aria-label="thumbs up">
+            👍
+          </span>
+        </Toast>
       </div>
     );
   }

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Heading from "../../components/Heading";
-import copy from "../../assets/copy.svg";
-import copyDark from "../../assets/copy-dark.svg";
 import { colours } from "../../Constants";
 
 const Container = styled.div`

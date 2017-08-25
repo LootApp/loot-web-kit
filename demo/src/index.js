@@ -19,7 +19,7 @@ import InputMoneyExample from "./examples/components/InputMoneyExample";
 import InputAmountProgressExample from "./examples/components/InputAmountProgressExample";
 import InputDateTimeExample from "./examples/components/InputDateTimeExample";
 import ColorScheme from "./examples/design/ColorScheme";
-import Icons from "./examples/design/Icons";
+import IconsSample from "./examples/design/IconsSample";
 import InputCardExample from "./examples/components/InputCardExample";
 import InputPasswordExample from "./examples/components/InputPasswordExample";
 import InputIncrementExample from "./examples/components/InputIncrementExample";
@@ -187,7 +187,7 @@ class Demo extends Component {
           <Content>
             <SMobileMenu onClick={() => this.setState({ menuOpen: true })}>Open Menu</SMobileMenu>
             <Switch>
-              <Route path="/loot-web-kit/design/icons" component={Icons} />
+              <Route path="/loot-web-kit/design/icons-sample" component={IconsSample} />
               <Route path="/loot-web-kit/components/form" component={FormExample} />
               <Route path="/loot-web-kit/components/input" component={InputExample} />
               <Route path="/loot-web-kit/components/input-verify" component={InputVerify} />

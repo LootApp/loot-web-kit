@@ -29,6 +29,7 @@ import twitter from "./twitter.svg";
 import editTool from "./edit-tool.svg";
 import deleteIcon from "./delete-icon.svg";
 import rotate from "./rotate.svg";
+import plusIcon from "./plus-icon.svg";
 import tickBlack from "./tick-black.svg";
 import tickWhite from "./tick-white.svg";
 
@@ -39,6 +40,8 @@ import tickCircle from "./tick-circle.svg";
 import crossWhite from "./cross-white.svg";
 import crossBlue from "./cross-blue.svg";
 import crossGrey from "./cross-grey.svg";
+import paused from "./paused.svg";
+import blocked from "./blocked.svg";
 
 import portrait from "./portrait.svg";
 import responsiveIcon from "./responsive-icon.svg";
@@ -66,7 +69,6 @@ const Icons = {
   key,
   fingerprint,
   debitSpeedIcon,
-  debitSpeedIcon,
   bankSpeedIcon,
   addMoneyRequest,
   addMoneyBank,
@@ -78,6 +80,7 @@ const Icons = {
   editTool,
   deleteIcon,
   rotate,
+  plusIcon,
   tickBlack,
   tickWhite,
   triangle,
@@ -87,6 +90,8 @@ const Icons = {
   crossWhite,
   crossBlue,
   crossGrey,
+  paused,
+  blocked,
   portrait,
   responsiveIcon,
   goalsTransfer,

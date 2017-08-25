@@ -181,6 +181,10 @@ const IconsSample = () =>
         <span>rotate</span>
       </IconWrapper>
       <IconWrapper>
+        <img src={Icons.plusIcon} alt="plusIcon" />
+        <span>plusIcon</span>
+      </IconWrapper>
+      <IconWrapper>
         <img src={Icons.tickBlack} alt="tickBlack" />
         <span>tickBlack</span>
       </IconWrapper>
@@ -219,6 +223,14 @@ const IconsSample = () =>
       <IconWrapper>
         <img src={Icons.crossGrey} alt="crossGrey" />
         <span>crossGrey</span>
+      </IconWrapper>
+      <IconWrapper>
+        <img src={Icons.paused} alt="paused" />
+        <span>paused</span>
+      </IconWrapper>
+      <IconWrapper>
+        <img src={Icons.blocked} alt="blocked" />
+        <span>blocked</span>
       </IconWrapper>
     </Container>
 

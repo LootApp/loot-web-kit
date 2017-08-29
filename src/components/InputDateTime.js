@@ -125,7 +125,9 @@ class InputDateTime extends Component {
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
     getRef: PropTypes.func,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    label: PropTypes.string,
+    placeholder: PropTypes.string
   };
 
   static defaultProps = {
@@ -133,7 +135,9 @@ class InputDateTime extends Component {
     minDate: null,
     maxDate: null,
     getRef: null,
-    onChange: null
+    onChange: null,
+    label: "Date",
+    placeholder: "DD/MM/YYYY"
   };
 
   componentDidMount() {
@@ -171,7 +175,7 @@ class InputDateTime extends Component {
   }
 
   componentWillUnmount() {
-    if (!isMobile() || (isMobile() && !isDateInput()))
+    if (!isMobile() || (isMobile() && !isDateInput()) || this.overlay)
       this.overlay.removeEventListener("click", this._onCloseCalendar);
   }
 
@@ -188,14 +192,14 @@ class InputDateTime extends Component {
   };
 
   render() {
-    const { onChange, ...props } = this.props;
+    const { onChange, label, placeholder, ...props } = this.props;
     return (
       <SInput
         {...props}
         type="date"
-        label="Date"
+        label={label}
         readOnly={!isMobile()}
-        placeholder="DD/MM/YYYY"
+        placeholder={placeholder}
         onChange={this._onChange}
         onFocus={this._onCalendarOpen}
         innerRef={input => (this.input = input)}

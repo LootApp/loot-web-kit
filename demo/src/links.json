@@ -2,7 +2,10 @@
   "links": [
     {
       "title": "Design",
-      "links": [{ "to": "/loot-web-kit", "text": "Colour Scheme" }]
+      "links": [
+        { "to": "/loot-web-kit", "text": "Colour Scheme" },
+        { "to": "/loot-web-kit/design/icons-sample", "text": "Icons Sample" }
+      ]
     },
     {
       "title": "Components",

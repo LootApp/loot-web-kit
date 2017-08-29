@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="72px" height="72px" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>reported</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-733.000000, -445.000000)" fill="#FEFEFE">
+            <g id="reported" sketch:type="MSLayerGroup" transform="translate(733.000000, 445.000000)">
+                <g id="Reported" sketch:type="MSShapeGroup">
+                    <g id="iOS">
+                        <g id="Card_error-Copy-5">
+                            <g id="Group">
+                                <path d="M35.8709118,65.17044 C29.3583847,65.17044 23.3386086,63.031079 18.4672164,59.4230458 L59.4230458,18.4672165 C63.0324477,23.3372399 65.17044,29.3583847 65.17044,35.8709118 C65.17044,52.027673 52.0290418,65.17044 35.8709118,65.17044 M6.57138356,35.8709118 C6.57138356,19.7127818 19.7127817,6.57001475 35.8709118,6.57001475 C43.1526781,6.57001475 49.8157681,9.24455824 54.943117,13.6546806 L13.6560495,54.9417482 C9.24455833,49.8143994 6.57138356,43.1526781 6.57138356,35.8709118 M35.8709118,0 C16.0937986,0 0,16.0924299 0,35.8709118 C0,55.6535 16.0937986,71.7418235 35.8709118,71.7418235 C55.6535,71.7418235 71.7418235,55.6535 71.7418235,35.8709118 C71.7418235,16.0924299 55.648025,0 35.8709118,0" id="Reported"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

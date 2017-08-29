@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="75px" height="75px" viewBox="0 0 75 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>cross-grey</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-559.000000, -443.000000)" fill="#8C8D8F">
+            <g id="cross-grey" sketch:type="MSLayerGroup" transform="translate(559.000000, 443.000000)">
+                <g id="cross" sketch:type="MSShapeGroup">
+                    <g id="Page-1">
+                        <g id="cross">
+                            <path d="M33.9152344,37.2492187 L0.718359375,70.4460937 C-0.20390625,71.3683594 -0.20390625,72.8625 0.718359375,73.7847656 C1.17890625,74.2464844 1.78359375,74.4761719 2.38710938,74.4761719 C2.99179688,74.4761719 3.5953125,74.2464844 4.05585938,73.7847656 L37.5023438,40.3382812 L70.9488281,73.7847656 C71.4105469,74.2464844 72.0140625,74.4761719 72.6175781,74.4761719 C73.2210938,74.4761719 73.8257813,74.2464844 74.2863281,73.7847656 C75.2085938,72.8625 75.2085938,71.3683594 74.2863281,70.4460937 L41.090625,37.2492187 L74.3085938,4.02890625 C75.2308594,3.10664062 75.2308594,1.6125 74.3085938,0.690234375 C73.3863281,-0.230859375 71.8921875,-0.230859375 70.9710938,0.690234375 L37.5035156,34.1601562 L4.03242188,0.69140625 C3.11015625,-0.2296875 1.6171875,-0.2296875 0.694921875,0.69140625 C-0.22734375,1.61367187 -0.22734375,3.1078125 0.694921875,4.03007812 L33.9152344,37.2492187 L33.9152344,37.2492187 L33.9152344,37.2492187 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -4,12 +4,7 @@
   "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",
-  "files": [
-    "css",
-    "es",
-    "lib",
-    "umd"
-  ],
+  "files": ["css", "es", "lib", "umd"],
   "scripts": {
     "build": "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
     "clean": "nwb clean-module && nwb clean-demo",
@@ -25,7 +20,7 @@
     "styled-components": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "15.x"
+    "react": "16.x"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
@@ -49,17 +44,11 @@
     "url-loader": "^0.5.9"
   },
   "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "presets": ["es2015"]
   },
   "author": "LootApp",
   "homepage": "https://lootapp.github.io/loot-web-kit",
   "license": "MIT",
   "repository": "https://github.com/LootApp/loot-web-kit",
-  "keywords": [
-    "loot-web-kit",
-    "react",
-    "styled-components"
-  ]
+  "keywords": ["loot-web-kit", "react", "styled-components"]
 }

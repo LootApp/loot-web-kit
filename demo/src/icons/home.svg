@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="93px" height="78px" viewBox="0 0 93 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.1 (25234) - http://www.bohemiancoding.com/sketch -->
+    <title>home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-343.000000, -903.000000)" fill="#4DB7C3">
+            <g id="home" sketch:type="MSLayerGroup" transform="translate(343.000000, 903.000000)">
+                <g id="Capa_1" sketch:type="MSShapeGroup">
+                    <path d="M93,46.2222222 L75.5625,28.8888889 L75.5625,2.88888889 L63.9375,2.88888889 L63.9375,17.3333333 L46.5,0 L0,46.2222222 L0,49.1111111 L11.625,49.1111111 L11.625,78 L40.6875,78 L40.6875,60.6666667 L52.3125,60.6666667 L52.3125,78 L81.375,78 L81.375,49.1111111 L93,49.1111111 L93,46.2222222 L93,46.2222222 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

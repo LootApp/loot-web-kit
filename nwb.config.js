@@ -17,7 +17,12 @@ if (process.env.NODE_ENV === "production") {
     },
     extra: {
       module: {
-        rules: []
+        rules: [
+          {
+            test: /\.(gif|png|jpe?g|svg)$/i,
+            loaders: ["url-loader"]
+          }
+        ]
       }
     }
   });

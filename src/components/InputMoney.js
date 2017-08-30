@@ -14,14 +14,16 @@ const SPrefix = styled.div`
   padding-top: 19px;
   padding-right: 8px;
   color: ${props => (props.hasValue ? "#545454" : "#c6c6c6")};
-  opacity: ${props => (props.focus || props.hasValue ? 1 : 0)};
+  opacity: ${props => (props.focus || props.hasValue || props.error ? 1 : 0)};
   position: absolute;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 `;
 
 const SInput = styled(Input)`
   width: 100%;
-  input {padding-left: 12px;}
+  input {
+    padding-left: 12px;
+  }
 `;
 
 const SRemaining = styled.span`
@@ -56,7 +58,8 @@ class InputMoney extends Component {
     remaining: "",
     showRemaining: false,
     focus: false,
-    hasValue: false
+    hasValue: false,
+    error: false
   };
 
   componentDidMount() {
@@ -74,7 +77,7 @@ class InputMoney extends Component {
   };
 
   _onBlur = value => {
-    this.setState({ showRemaining: false });
+    this.setState({ showRemaining: false, error: false });
     if (!this.state.active) this.setState({ focus: false });
     if (value.length) {
       if (
@@ -85,17 +88,20 @@ class InputMoney extends Component {
           error: true,
           helperText: `Minimum amount is ${this.props.minAmount}`
         });
+        this.setState({ error: true });
       } else if (Number(value) < 0.01) {
         this.input.setState({
           error: true,
           helperText: "Minimum amount is 0.01"
         });
+        this.setState({ error: true });
       }
     } else if (Number(this.state.remaining) < 0) {
       this.input.setState({
         error: true,
         helperText: "Amount exceeds balance"
       });
+      this.setState({ error: true });
     }
     if (typeof value === "string" && !value.length && this.props.balance)
       this.setState({ remaining: "" });
@@ -128,7 +134,11 @@ class InputMoney extends Component {
       !!this.state.showRemaining;
     return (
       <SContainer {...props}>
-        <SPrefix focus={this.state.focus} hasValue={this.state.hasValue}>
+        <SPrefix
+          focus={this.state.focus}
+          hasValue={this.state.hasValue}
+          error={this.state.error}
+        >
           {prefix}
         </SPrefix>
         <SInput
@@ -141,10 +151,11 @@ class InputMoney extends Component {
           onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />
-        {showRemainingBalance &&
+        {showRemainingBalance && (
           <SRemaining error={this.state.remaining < 0}>
             {`${prefix}${this.state.remaining}`}
-          </SRemaining>}
+          </SRemaining>
+        )}
       </SContainer>
     );
   }

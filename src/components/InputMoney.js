@@ -42,7 +42,8 @@ class InputMoney extends Component {
     balance: PropTypes.string,
     getRef: PropTypes.func,
     onChange: PropTypes.func,
-    minAmount: PropTypes.number
+    minAmount: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
 
   static defaultProps = {
@@ -51,14 +52,15 @@ class InputMoney extends Component {
     balance: "",
     getRef: null,
     onChange: null,
-    minAmount: null
+    minAmount: null,
+    value: null
   };
 
   state = {
     remaining: "",
     showRemaining: false,
     focus: false,
-    hasValue: false,
+    hasValue: this.props.value,
     error: false
   };
 

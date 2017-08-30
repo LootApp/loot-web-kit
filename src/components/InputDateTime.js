@@ -175,7 +175,7 @@ class InputDateTime extends Component {
   }
 
   componentWillUnmount() {
-    if (!isMobile() || (isMobile() && !isDateInput()) || this.overlay)
+    if ((!isMobile() || isMobile() && !isDateInput()) && this.overlay)
       this.overlay.removeEventListener("click", this._onCloseCalendar);
   }
 

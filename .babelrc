@@ -1,0 +1,32 @@
+{
+  "presets": [
+    [
+      "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-preset-es2015/lib/index.js",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ],
+    "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-preset-es2016/lib/index.js",
+    "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-preset-react/lib/index.js",
+    "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-preset-stage-1/lib/index.js"
+  ],
+  "plugins": [
+    "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-plugin-transform-decorators-legacy/lib/index.js",
+    [
+      "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-plugin-transform-react-remove-prop-types/lib/index.js",
+      {
+        "mode": "wrap"
+      }
+    ],
+    [
+      "/Users/loot-pedro/Documents/Repositories/loot-web-kit/node_modules/babel-plugin-transform-runtime/lib/index.js",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ],
+  "ignore": [".spec.js", ".test.js", "-test.js", "/__tests__/"]
+}

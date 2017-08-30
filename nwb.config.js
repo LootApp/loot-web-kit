@@ -1,12 +1,5 @@
 let webpack = {};
 
-// -- webpack all config ---------------------------------------------------- //
-webpack = {
-  html: {
-    template: "docs/index.html"
-  }
-};
-
 // -- webpack production config --------------------------------------------- //
 if (process.env.NODE_ENV === "production") {
   webpack = Object.assign({}, webpack, {

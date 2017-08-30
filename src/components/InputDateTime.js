@@ -164,7 +164,10 @@ class InputDateTime extends Component {
         })
         .on("submit", value => {
           this.input._updateValue(
-            value.toDate().toISOString().substring(0, 10)
+            value
+              .toDate()
+              .toISOString()
+              .substring(0, 10)
           );
         });
 
@@ -175,7 +178,7 @@ class InputDateTime extends Component {
   }
 
   componentWillUnmount() {
-    if (!isMobile() || (isMobile() && !isDateInput()) || this.overlay)
+    if ((!isMobile() || (isMobile() && !isDateInput())) && this.overlay)
       this.overlay.removeEventListener("click", this._onCloseCalendar);
   }
 

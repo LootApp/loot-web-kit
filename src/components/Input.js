@@ -142,10 +142,10 @@ class Input extends Component {
 
   state = {
     focus: false,
-    value: this.props.value,
+    value: this.props.value || "",
     error: false,
     touched: false,
-    helperText: this.props.helperText
+    helperText: this.props.helperText || ""
   };
 
   _onFocus = () => {

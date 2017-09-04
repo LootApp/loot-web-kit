@@ -5,9 +5,7 @@ import Input from "./Input";
 import stringFormatter from "../utilities/stringFormatter";
 import formatLength from "../utilities/formatLength";
 
-const SInput = styled(Input)`
-  width: 100%;
-`;
+const SInput = styled(Input)`width: 100%;`;
 
 class InputFormat extends Component {
   static propTypes = {
@@ -30,7 +28,11 @@ class InputFormat extends Component {
   };
 
   state = {
-    requiredChar: formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter)
+    requiredChar: formatLength(
+      this.props.maxLength,
+      this.props.occurance,
+      this.props.delimiter
+    )
   };
 
   componentDidMount() {
@@ -45,10 +47,14 @@ class InputFormat extends Component {
           error: true,
           helperText: "This field is required"
         });
-      } else if (this.props.maxLength && target.value.length < this.props.maxLength) {
+      } else if (
+        this.props.maxLength &&
+        target.value.length < this.props.maxLength
+      ) {
         this.input.setState({
           error: true,
-          helperText: `${this.props.label} needs ${this.state.requiredChar} digits`
+          helperText: `${this.props.label} needs ${this.state
+            .requiredChar} digits`
         });
       }
     }
@@ -60,7 +66,8 @@ class InputFormat extends Component {
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
     });
-    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" &&
+      this.props.onChange(formatedValue);
     return formatedValue;
   };
 

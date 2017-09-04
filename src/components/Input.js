@@ -73,7 +73,7 @@ const SLabel = styled.label`
 
   & span {
     margin-left: 3px;
-    color: "#da6e6e";
+    color: #da6e6e;
   }
 `;
 
@@ -148,24 +148,13 @@ class Input extends Component {
     helperText: this.props.helperText || ""
   };
 
-  componentDidMount() {
-    document.addEventListener("visibilitychange", this._clearFocus, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("visibilitychange", this._clearFocus, false);
-  }
-
-  _clearFocus = () => {
-    if (document.visibilityState === "hidden") this.setState({ focus: false });
-  };
-
   _onFocus = () => {
     this.setState({ focus: true });
     if (typeof this.props.onFocus === "function") this.props.onFocus();
   };
 
   _onBlur = ({ target }) => {
+    target.blur();
     this._validate(target.value) === true &&
       this.setState({
         focus: false,

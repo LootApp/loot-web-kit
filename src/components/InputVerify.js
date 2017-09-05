@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled, { keyframes } from "styled-components";
-
-const pulse = keyframes`
-  0% { border: 2px solid transparent; }
-  100% { border: 2px solid #00C9C4; }
-`;
+import styled from "styled-components";
 
 const SContainer = styled.div`flex: 1;`;
 
@@ -16,7 +11,7 @@ const SInputVerify = styled.input`
   height: 50px;
   font-size: 1.2em;
   margin: 10px;
-  border: none;
+  border: 1px solid #dedede;
   text-align: center;
   border-radius: 3px;
   color: rgba(0, 0, 0, 0.6);
@@ -27,8 +22,7 @@ const SInputVerify = styled.input`
 
   &:focus {
     outline: none;
-    animation: ${pulse} 0.8s ease 0s 1;
-    animation-fill-mode: forwards;
+    border: 1px solid #00c9c4;
   }
 `;
 

@@ -122,11 +122,26 @@ class InputAmountProgress extends Component {
   getPercentage = amount => amount / this.props.limit * 100;
 
   static propTypes = {
-    getRef: PropTypes.func
+    getRef: PropTypes.func,
+    innerRef: PropTypes.func,
+    limit: PropTypes.number.isRequired,
+    remaining: PropTypes.number.isRequired,
+    prefix: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    textAbove: PropTypes.string,
+    textBelow: PropTypes.string
   };
 
   static defaultProps = {
-    getRef: null
+    getRef: null,
+    innerRef: null,
+    prefix: "£",
+    textAbove: "",
+    textBelow: "",
+    onChange: null,
+    onBlur: null
   };
 
   state = {
@@ -164,11 +179,32 @@ class InputAmountProgress extends Component {
   };
 
   handleFocus = () => this.setState({ focus: true });
-  handleBlur = () => this.setState({ focus: false });
+  handleBlur = ({ target }) => {
+    typeof this.props.onBlur === "function" &&
+      this.props.onBlur({ value: target.value, error: this.state.error });
+    this.setState({ focus: false });
+  };
+  _reset = () => this.setState({ amount: "" });
+
+  _error = () => this.state.error;
+
+  _getRef = elm =>
+    typeof this.props.innerRef === "function"
+      ? this.props.innerRef({ _reset: this._reset, _error: this._error, element: elm })
+      : elm;
 
   render() {
     const { focus, amount, percentage, error } = this.state;
-    const { label, onChange, prefix, textAbove, textBelow, ...otherProps } = this.props;
+    const {
+      label,
+      onChange,
+      prefix,
+      textAbove,
+      textBelow,
+      innerRef,
+      onBlur,
+      ...otherProps
+    } = this.props;
 
     return (
       <Container error={error} focus={focus}>
@@ -191,7 +227,7 @@ class InputAmountProgress extends Component {
             placeholder="0"
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
-            innerRef={input => (this.input = input)}
+            innerRef={elm => this._getRef(elm)}
             onChange={e => this.handleAmountChange(e, onChange)}
           />
           <Span value={amount} error={error} focus={focus} percentage={percentage} />
@@ -203,22 +239,5 @@ class InputAmountProgress extends Component {
     );
   }
 }
-
-InputAmountProgress.propTypes = {
-  limit: PropTypes.number.isRequired,
-  remaining: PropTypes.number.isRequired,
-  prefix: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  textAbove: PropTypes.string,
-  textBelow: PropTypes.string
-};
-
-InputAmountProgress.defaultProps = {
-  prefix: "£",
-  textAbove: "",
-  textBelow: "",
-  onChange: null
-};
 
 export default InputAmountProgress;

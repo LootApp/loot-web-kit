@@ -218,12 +218,10 @@ class Input extends Component {
 
   _error = () => this.state.error;
 
-  _getRef = elm => {
-    console.log(elm);
-    typeof innerRef === "function"
+  _getRef = elm =>
+    typeof this.props.innerRef === "function"
       ? this.props.innerRef({ _reset: this._reset, _error: this._error, element: elm })
       : elm;
-  };
 
   _updateValue = value => {
     this.props.onChange(value);
@@ -271,11 +269,7 @@ class Input extends Component {
           </SLabel>
           <SInput
             {...props}
-            innerRef={elm => {
-              typeof innerRef === "function"
-                ? innerRef({ _reset: this._reset, _error: this._error, element: elm })
-                : elm;
-            }}
+            innerRef={elm => this._getRef(elm)}
             type={type}
             colour={colour}
             onFocus={this._onFocus}

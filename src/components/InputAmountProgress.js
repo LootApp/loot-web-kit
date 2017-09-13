@@ -13,8 +13,7 @@ const StyledInputAmountProgress = styled.input`
   opacity: ${({ focus, value }) => (focus || value ? 1 : 0)};
   &:focus {
     outline: none;
-    border-color: ${props =>
-      props.error ? "rgba(221, 69, 65,0.3)" : "rgba(77, 183, 195, 0.3)"};
+    border-color: ${props => (props.error ? "rgba(221, 69, 65,0.3)" : "rgba(77, 183, 195, 0.3)")};
   }
   &::placeholder {
     color: #c6c6c6;
@@ -36,8 +35,7 @@ const Container = styled.div`
 
   &:hover {
     span {
-      background-color: ${props =>
-        props.focus || props.error ? "none" : "#545454"};
+      background-color: ${props => (props.focus || props.error ? "none" : "#545454")};
     }
   }
 `;
@@ -48,17 +46,14 @@ const Span = styled.span`
   position: absolute;
   background: ${props => {
     if (props.error) return "#DA6E6E";
-    if (props.value) return "#4db7c3";
     if (!props.focus) return "#bbbcbe";
     if (props.focus) return "#4db7c3";
   }};
   width: ${props => {
-    if (props.focus || props.value)
-      return props.percentage < 0 ? "0%" : `${props.percentage}%`;
+    if (props.focus) return props.percentage < 0 ? "0%" : `${props.percentage}%`;
     if (!props.focus || props.error) return "100%";
   }};
-  height: ${props =>
-    props.focus || props.error || props.value ? "2px" : "1px"};
+  height: ${props => (props.focus || props.error ? "2px" : "1px")};
   transition: all 0.2s ease;
 `;
 
@@ -98,8 +93,8 @@ const StyledLabel = styled.label`
   display: block;
   transition: all 0.15s ease;
   transform-origin: left top;
-  transform: scale(${props => (props.focus ? 1 : 1.4)})
-    translateY(${props => (props.focus ? 0 : "15px")});
+  transform: scale(${props => (props.focus || props.active ? 1 : 1.4)})
+    translateY(${props => (props.focus || props.active ? 0 : "15px")});
   will-change: transform;
   text-align: left;
 
@@ -149,8 +144,7 @@ class InputAmountProgress extends Component {
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;
 
-    const percentage =
-      this.getPercentage(this.props.remaining) - this.getPercentage(value || 0);
+    const percentage = this.getPercentage(this.props.remaining) - this.getPercentage(value || 0);
     const amountLeft = `${parseInt(percentage / 100 * this.props.limit, 0)}`;
 
     this.setState({
@@ -174,18 +168,11 @@ class InputAmountProgress extends Component {
 
   render() {
     const { focus, amount, percentage, error } = this.state;
-    const {
-      label,
-      onChange,
-      prefix,
-      textAbove,
-      textBelow,
-      ...otherProps
-    } = this.props;
+    const { label, onChange, prefix, textAbove, textBelow, ...otherProps } = this.props;
 
     return (
       <Container error={error} focus={focus}>
-        <StyledLabel focus={amount.length || focus} error={error}>
+        <StyledLabel focus={focus} error={error} active={!!amount.length}>
           {label}
         </StyledLabel>
         <InputWrapper>
@@ -207,12 +194,7 @@ class InputAmountProgress extends Component {
             innerRef={input => (this.input = input)}
             onChange={e => this.handleAmountChange(e, onChange)}
           />
-          <Span
-            value={amount}
-            error={error}
-            focus={focus}
-            percentage={percentage}
-          />
+          <Span value={amount} error={error} focus={focus} percentage={percentage} />
         </InputWrapper>
         <TextBelow error={error} hide={!focus}>
           {textBelow}

@@ -22,7 +22,8 @@ const SContainer = styled.div`
     position: absolute;
     bottom: -2px;
     z-index: 0;
-    background-color: ${props => (props.error ? "#da6e6e" : props.colour)};
+    background-color: ${props =>
+      props.error ? "#da6e6e" : !props.focus ? "#545454" : props.colour};
     transition: all 0.2s ease;
     opacity: ${props => (props.focus ? 1 : 0)};
     display: ${props => (props.disabled ? "none" : "block")};
@@ -66,8 +67,8 @@ const SLabel = styled.label`
   display: block;
   transition: all 0.15s ease;
   transform-origin: left top;
-  transform: scale(${props => (props.focus ? 1 : 1.4)})
-    translateY(${props => (props.focus ? 0 : "15px")});
+  transform: scale(${props => (props.focus || props.active ? 1 : 1.4)})
+    translateY(${props => (props.focus || props.active ? 0 : "15px")});
   will-change: transform;
   text-align: left;
 
@@ -162,14 +163,12 @@ class Input extends Component {
         error: false,
         helperText: this.props.helperText
       });
-    if (typeof this.props.onBlur === "function")
-      this.props.onBlur(target.value);
+    if (typeof this.props.onBlur === "function") this.props.onBlur(target.value);
   };
 
   _onChange = ({ target }) => {
     let value = target.value;
-    if (this.props.maxLength && value.length > this.props.maxLength)
-      return false;
+    if (this.props.maxLength && value.length > this.props.maxLength) return false;
     if (this.props.onChange) value = this.props.onChange(target.value);
     if (typeof value === "undefined") value = target.value;
     this.setState({ value });
@@ -236,15 +235,16 @@ class Input extends Component {
       <div {...props}>
         <SContainer
           colour={colour}
-          focus={!!this.state.value.length || this.state.focus}
+          focus={this.state.focus}
           error={this.state.error}
           disabled={disabled}
         >
           <SLabel
             colour={colour}
-            focus={!!this.state.value.length || this.state.focus}
+            focus={this.state.focus}
             error={this.state.error}
             disabled={disabled}
+            active={!!this.state.value.length}
           >
             {label}
             {required && <span>*</span>}
@@ -262,18 +262,12 @@ class Input extends Component {
             uppercase={uppercase}
             capitalise={capitalise}
           />
-          {counter && (
-            <SCounter>{`${this.state.value.length} / ${maxLength}`}</SCounter>
-          )}
+          {counter && <SCounter>{`${this.state.value.length} / ${maxLength}`}</SCounter>}
         </SContainer>
-        {!noHelperText && (
-          <SHelperText
-            error={this.state.error}
-            show={this.state.error || !!helperText.length}
-          >
+        {!noHelperText &&
+          <SHelperText error={this.state.error} show={this.state.error || !!helperText.length}>
             {this.state.helperText}
-          </SHelperText>
-        )}
+          </SHelperText>}
       </div>
     );
   }

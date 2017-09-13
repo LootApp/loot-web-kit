@@ -43,7 +43,7 @@ const SInput = styled.input`
   padding: 8px 0;
   background-color: transparent;
   transition: all 0.15s ease;
-  opacity: ${props => (props.focus ? 1 : 0)};
+  opacity: ${props => (props.focus || props.active ? 1 : 0)};
   text-transform: ${props =>
     props.uppercase ? "uppercase" : props.capitalise ? "capitalize" : "none"};
 
@@ -119,7 +119,8 @@ class Input extends Component {
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
     colour: PropTypes.string,
-    onFocus: PropTypes.func
+    onFocus: PropTypes.func,
+    innerRef: PropTypes.func
   };
 
   static defaultProps = {
@@ -138,7 +139,8 @@ class Input extends Component {
     onChange: null,
     onBlur: null,
     colour: "#4db7c3",
-    onFocus: null
+    onFocus: null,
+    innerRef: null
   };
 
   state = {
@@ -156,14 +158,16 @@ class Input extends Component {
 
   _onBlur = ({ target }) => {
     target.blur();
-    this._validate(target.value) === true &&
+    const validation = this._isValid(target.value);
+    validation === true &&
       this.setState({
         focus: false,
         touched: true,
         error: false,
         helperText: this.props.helperText
       });
-    if (typeof this.props.onBlur === "function") this.props.onBlur(target.value);
+    if (typeof this.props.onBlur === "function")
+      this.props.onBlur(validation !== true ? validation : { value: target.value, error: false });
   };
 
   _onChange = ({ target }) => {
@@ -175,37 +179,51 @@ class Input extends Component {
     return value;
   };
 
-  _validate = value => {
+  _isValid = value => {
     if (this.props.required && !value.length) {
-      return this.setState({
+      this.setState({
         focus: true,
         touched: true,
         error: true,
         helperText: "This field is required"
       });
+      return { value, error: true };
     } else if (
       (value.length > 0 || this.props.required) &&
       this.props.minLength > 0 &&
       value.length < this.props.minLength
     ) {
-      return this.setState({
+      this.setState({
         focus: true,
         touched: true,
         error: true,
         helperText: `Minimum ${this.props.minLength} characters`
       });
+      return { value, error: true };
     } else if (this.props.maxLength && value.length > this.props.maxLength) {
-      return this.setState({
+      this.setState({
         focus: true,
         touched: true,
         error: true,
         helperText: `Maximum ${this.props.maxLength} characters`
       });
+      return { value, error: true };
     }
     return true;
   };
 
   _value = () => this.state.value;
+
+  _reset = () => this.setState({ value: "" });
+
+  _error = () => this.state.error;
+
+  _getRef = elm => {
+    console.log(elm);
+    typeof innerRef === "function"
+      ? this.props.innerRef({ _reset: this._reset, _error: this._error, element: elm })
+      : elm;
+  };
 
   _updateValue = value => {
     this.props.onChange(value);
@@ -229,6 +247,8 @@ class Input extends Component {
       colour,
       onFocus,
       onChange,
+      onBlur,
+      innerRef,
       ...props
     } = this.props;
     return (
@@ -251,12 +271,18 @@ class Input extends Component {
           </SLabel>
           <SInput
             {...props}
+            innerRef={elm => {
+              typeof innerRef === "function"
+                ? innerRef({ _reset: this._reset, _error: this._error, element: elm })
+                : elm;
+            }}
             type={type}
             colour={colour}
             onFocus={this._onFocus}
             onBlur={this._onBlur}
             onChange={this._onChange}
-            focus={!!this.state.value.length || this.state.focus}
+            focus={this.state.focus}
+            active={!!this.state.value.length}
             value={this.state.value}
             placeholder={placeholder}
             uppercase={uppercase}

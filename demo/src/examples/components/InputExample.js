@@ -82,9 +82,9 @@ const props = `
 
   ---
 
-  **onChange**: func(value)
+  **onBlur**: func(value)
 
-  Custom onChange handler that can be passed from above InputType component in order to
+  Custom onBlur handler that can be passed from above InputType component in order to
   format value, must take in value that will be passed from default Input. *Default:* null
 
   ---
@@ -101,7 +101,7 @@ const props = `
 
   **onBlur**: func(value)
 
-  Custom onChange handler that can be passed from above InputType component in order to
+  Custom onBlur handler that can be passed from above InputType component in order to
   validate value, must take in value that will be passed from default Input. *Default:* null
 
   ---
@@ -113,32 +113,42 @@ const props = `
 
   # Helpers
 
-  **_value**: func
+  when importing component into the project add ref to it like this:
 
-  Helper function to get value of the component i.e. when importing component
-  into the project add ref to it like this:
-
-  ${"`<Input ref={input => this.input = input}`"}
+  ${"`<Input innerRef={input => this.input = input}`"}
 
   And you can now get inputs value on form submission using
 
-  ${"`this.input._value()`"}
+  **_reset**: func
+
+  A helper function that allows you to clear the input reseting it back to ""
+
+  **_error**: func
+
+  A helper function that allows you to check whether the input currently has an error
+
+  ${"`this.input._reset()`"}
+  ${"`this.input._error()`"}
 `;
 
 const code = `<div>
   <Input
     label="Default field"
     placeholder="Default"
+    onBlur={e => console.log(e)}
+    innerRef={input => console.log("YOL", input)}
   />
   <Input
     label="Required field"
     required
     placeholder="Required"
+    onBlur={e => console.log(e)}
   />
   <Input
     label="Minimum length field"
     minLength={5}
     placeholder="Minimum length"
+    onBlur={e => console.log(e)}
   />
   <Input
     label="Maximum length field"

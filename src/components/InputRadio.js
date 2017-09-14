@@ -54,34 +54,69 @@ class InputRadio extends Component {
     onChange: null
   };
 
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
+  state = {
+    inputs: {},
+    error: true
+  };
 
-  _onChange = ({ target }) => typeof this.props.onChange === "function" && this.props.onChange(target.id);
+  _onChange = ({ target }) => {
+    this.setState({ error: false });
+    typeof this.props.onChange === "function" && this.props.onChange(target.id);
+  };
+
+  _setInput = (input, i) => {
+    this[`input${i + 1}`] = input;
+    this.state.inputs[`input${i + 1}`] = input;
+  };
+
+  _createInputs = labels => {
+    const inputs = [];
+    for (let i = 0; i < labels.length; i += 1) {
+      inputs.push(
+        <StyledWrapper key={labels[i]}>
+          <SInput
+            id={`${labels[i]}`}
+            name={this.props.name}
+            type="radio"
+            onChange={this._onChange}
+            innerRef={input => this._setInput(input, i)}
+          />
+          <StyledLabel
+            first={i === 0}
+            last={i === this.props.labels.length - 1}
+            htmlFor={`${labels[i]}`}
+          >
+            {labels[i]}
+          </StyledLabel>
+        </StyledWrapper>
+      );
+    }
+
+    return inputs;
+  };
+
+  _reset = () => {
+    for (let i = 0; i < Object.keys(this.state.inputs).length; i += 1) {
+      this.state.inputs[Object.keys(this.state.inputs)[i]].checked = false;
+    }
+    this.setState({ error: true });
+  };
+
+  _error = () => this.state.error;
+
+  ref = getRef =>
+    typeof getRef === "function" &&
+    getRef({
+      element: this.state.inputs,
+      _reset: this._reset,
+      _error: this._error
+    });
 
   render() {
-    const { onChange, ...props } = this.props;
+    const { onChange, getRef, labels, ...props } = this.props;
     return (
-      <SContainer {...props}>
-        {this.props.labels.map((label, index) =>
-          <StyledWrapper key={label}>
-            <SInput
-              {...props}
-              id={`${label}`}
-              name={this.props.name}
-              type="radio"
-              onChange={this._onChange}
-            />
-            <StyledLabel
-              first={index === 0}
-              last={index === this.props.labels.length - 1}
-              htmlFor={`${label}`}
-            >
-              {label}
-            </StyledLabel>
-          </StyledWrapper>
-        )}
+      <SContainer {...props} getRef={this.ref(getRef)}>
+        {this._createInputs(labels)}
       </SContainer>
     );
   }

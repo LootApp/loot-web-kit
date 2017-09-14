@@ -73,21 +73,18 @@ class InputAddress extends Component {
   static propTypes = {
     formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array,
-    onChange: PropTypes.func,
-    getRef: PropTypes.func
+    onChange: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
     addresses: [],
-    onChange: null,
-    getRef: null
+    onChange: null
   };
 
   state = { addressListStatus: "", selected: 0, address: "" };
 
   componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
@@ -113,10 +110,7 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (
-      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
-      this.state.addressListStatus === "open"
-    ) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
       for (let i = 0; i < addressList.length; i += 1) {
         if (
           addressList[i]
@@ -140,9 +134,7 @@ class InputAddress extends Component {
         addressListStatus: shouldClose ? "closed" : "open"
       });
       addressList[index].scrollIntoView();
-      this.input._updateValue(
-        addressList[index].getAttribute("data-address").trim()
-      );
+      this.input._updateValue(addressList[index].getAttribute("data-address").trim());
     }
   };
 
@@ -155,14 +147,12 @@ class InputAddress extends Component {
   };
 
   closeList = () => {
-    (this.state.addressListStatus === "open" ||
-      this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "open" || this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "closed" });
   };
 
   openList = () => {
-    (this.state.addressListStatus === "closed" ||
-      this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "closed" || this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "open" });
   };
 

@@ -18,11 +18,54 @@ const props = `
 
   ---
 
-  # Props
-
   **name**: string
 
   defines the name of the group of radio buttons. *Required:*
+
+  ---
+
+  **getRef**: func
+
+  Refference to original inputs in DOM i.e. to get value. written as
+
+  ${"`getRef={input => this._nameInput = input}`"}
+  ${"`console.log(this._nameInput) // { element:object, _reset:func, _error:func }`"}
+
+  *Default:* null
+
+  ---
+
+  # Helpers
+
+  when importing component into the project add ref to it like this:
+
+  ${"`<Input getRef={input => this.input = input}`"}
+
+  ---
+
+  **element**: func
+
+  A reference to all the inputs that have been generated
+
+  ${"`this.input.element.input[number]`"}
+
+  ---
+
+  **_reset**: func
+
+  A helper function that allows you to clear the radio buttons reseting it back to ${"`checked: false`"}
+
+  ${"`this.input._reset()`"}
+
+  ---
+
+  **_error**: func
+
+  A helper function that allows you to check whether the input currently has an error
+
+  i.e if all inputs have not been completed
+
+  ${"`this.input._error()`"}
 `;
 
 const code = `
@@ -32,6 +75,8 @@ const code = `
       <InputRadio
         name="title"
         labels={["mr", "mrs", "ms", "miss"]}
+        onChange={e => console.log("onChange", e)}
+        getRef={e => console.log("getRef", e)}
       />
 
     </div>

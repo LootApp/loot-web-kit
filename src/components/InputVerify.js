@@ -17,8 +17,7 @@ const SInputVerify = styled.input`
   color: rgba(0, 0, 0, 0.6);
   background: rgb(255, 255, 255);
   transition: all 0.2s ease;
-  box-shadow: 0 10px 50px rgba(50, 50, 93, 0.12),
-    0 10px 20px rgba(50, 50, 93, 0.1);
+  box-shadow: 0 10px 50px rgba(50, 50, 93, 0.12), 0 10px 20px rgba(50, 50, 93, 0.1);
 
   &:focus {
     outline: none;
@@ -40,6 +39,7 @@ class InputVerify extends Component {
   constructor() {
     super();
     this.verifyCode = [];
+    this.inputs = [];
   }
 
   componentDidMount() {
@@ -77,6 +77,11 @@ class InputVerify extends Component {
     this.props.onChange(this.verifyCode.join(""));
   };
 
+  _setInput = (input, i) => {
+    this[`input${i}`] = input;
+    this.inputs.push(this[`input${i}`]);
+  };
+
   _createField = numberOfFields => {
     const fields = [];
     for (let i = 1; i <= numberOfFields; i += 1) {
@@ -87,7 +92,7 @@ class InputVerify extends Component {
           id={i}
           noValidate
           onChange={this._onChange}
-          innerRef={input => (this[`input${i}`] = input)}
+          innerRef={input => this._setInput(input, i)}
         />
       );
     }
@@ -95,10 +100,16 @@ class InputVerify extends Component {
     return fields;
   };
 
+  _reset = () => this.inputs.map(input => (input.value = ""));
+
   render() {
+    this._reset();
+    console.log(this);
     const { onChange, ...props } = this.props;
     return (
-      <SContainer {...props}>{this._createField(this.props.fields)}</SContainer>
+      <SContainer {...props}>
+        {this._createField(this.props.fields)}
+      </SContainer>
     );
   }
 }

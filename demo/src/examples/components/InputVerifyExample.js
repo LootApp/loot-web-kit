@@ -20,10 +20,10 @@ const props = `
 
   **innerRef**: func
 
-  Refference to original input in DOM i.e. to get value. written as
+  Refference to original inputs in DOM i.e. to get value. written as
 
   ${"`innerRef={input => this._nameInput = input}`"}
-  ${"`console.log(this._nameInput) // { element:array, _reset:func, _error:func }`"}
+  ${"`console.log(this._nameInput) // { element:object, _reset:func, _error:func }`"}
 
   *Default:* null
 
@@ -35,15 +35,30 @@ const props = `
 
   ${"`<Input innerRef={input => this.input = input}`"}
 
+  ---
+
+  **element**: func
+
+  A reference to all the inputs that have been generated
+
+  ${"`this.input.element.input[number]`"}
+
+  ---
+
   **_reset**: func
 
-  A helper function that allows you to clear the input reseting it back to ""
+  A helper function that allows you to clear the input reseting it back to ${"`''`"}
+
+  ${"`this.input._reset()`"}
+
+  ---
 
   **_error**: func
 
   A helper function that allows you to check whether the input currently has an error
 
-  ${"`this.input._reset()`"}
+  i.e if all inputs have not been completed
+
   ${"`this.input._error()`"}
 
 `;

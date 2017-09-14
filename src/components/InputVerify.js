@@ -39,8 +39,9 @@ class InputVerify extends Component {
   };
 
   state = {
-    inputs: [],
-    verifyCode: []
+    inputs: {},
+    verifyCode: [],
+    error: true
   };
 
   componentDidMount() {
@@ -78,11 +79,14 @@ class InputVerify extends Component {
     }
     this.state.verifyCode[id] = this[`input${id}`].value;
     this.props.onChange(this.state.verifyCode.join(""));
+    this.setState({
+      error: !(this.state.verifyCode.join("").length === this.props.fields)
+    });
   };
 
   _setInput = (input, i) => {
     this[`input${i}`] = input;
-    this.state.inputs.push(this[`input${i}`]);
+    this.state.inputs[`input${i}`] = input;
   };
 
   _createField = numberOfFields => {
@@ -104,19 +108,25 @@ class InputVerify extends Component {
   };
 
   // eslint-disable-next-line
-  _reset = () => this.state.inputs.map(input => (input.value = ""));
+  _reset = () => {
+    for (let i = 0; i < Object.keys(this.state.inputs).length; i += 1) {
+      this.state.inputs[Object.keys(this.state.inputs)[i]].value = "";
+    }
+  };
+
+  _error = () => this.state.error;
 
   _getRef = elm => {
     typeof this.props.innerRef === "function"
       ? this.props.innerRef({
           _reset: this._reset,
+          _error: this._error,
           element: this.state.inputs
         })
       : elm;
   };
 
   render() {
-    console.log(this);
     const { onChange, innerRef, ...props } = this.props;
     return (
       <SContainer innerRef={this._getRef} {...props}>

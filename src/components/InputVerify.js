@@ -107,7 +107,6 @@ class InputVerify extends Component {
     return fields;
   };
 
-  // eslint-disable-next-line
   _reset = () => {
     for (let i = 0; i < Object.keys(this.state.inputs).length; i += 1) {
       this.state.inputs[Object.keys(this.state.inputs)[i]].value = "";

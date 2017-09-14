@@ -14,15 +14,15 @@ class Form extends Component {
     document.activeElement && document.activeElement.blur();
   }
 
-  _onSubmit = event => {
+  _onSubmit = (event, onSubmit) => {
     event.preventDefault();
-    this.props.onSubmit(event);
+    onSubmit(event);
   };
 
   render = () => {
     const { onSubmit, children, ...props } = this.props;
     return (
-      <StyledForm {...props} onSubmit={this._onSubmit}>
+      <StyledForm {...props} onSubmit={e => this._onSubmit(e, onSubmit)}>
         {children}
       </StyledForm>
     );

@@ -28,19 +28,20 @@ const SInputVerify = styled.input`
 class InputVerify extends Component {
   static propTypes = {
     fields: PropTypes.number,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    innerRef: PropTypes.func
   };
 
   static defaultProps = {
     fields: 4,
-    onChange: null
+    onChange: null,
+    innerRef: null
   };
 
-  constructor() {
-    super();
-    this.verifyCode = [];
-    this.inputs = [];
-  }
+  state = {
+    inputs: [],
+    verifyCode: []
+  };
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyDown);
@@ -55,8 +56,10 @@ class InputVerify extends Component {
       const field = document.activeElement;
       if (field.value) {
         field.value = "";
-        this.verifyCode[field.id] = field.value;
-        this.props.onChange(this.verifyCode.join(""));
+        this.setState({
+          verifyCode: [...this.state.verifyCode, ([field.id]: field.value)]
+        });
+        this.props.onChange(this.state.verifyCode.join(""));
       } else {
         field.id > 1 && this[`input${parseInt(field.id - 1, 0)}`].focus();
       }
@@ -73,13 +76,13 @@ class InputVerify extends Component {
       if (id <= this.props.fields - 1 && !!value.replace(/[^0-9]/g, ""))
         this[`input${parseInt(id, 0) + 1}`].focus();
     }
-    this.verifyCode[id] = this[`input${id}`].value;
-    this.props.onChange(this.verifyCode.join(""));
+    this.state.verifyCode[id] = this[`input${id}`].value;
+    this.props.onChange(this.state.verifyCode.join(""));
   };
 
   _setInput = (input, i) => {
     this[`input${i}`] = input;
-    this.inputs.push(this[`input${i}`]);
+    this.state.inputs.push(this[`input${i}`]);
   };
 
   _createField = numberOfFields => {
@@ -100,14 +103,23 @@ class InputVerify extends Component {
     return fields;
   };
 
-  _reset = () => this.inputs.map(input => (input.value = ""));
+  // eslint-disable-next-line
+  _reset = () => this.state.inputs.map(input => (input.value = ""));
+
+  _getRef = elm => {
+    typeof this.props.innerRef === "function"
+      ? this.props.innerRef({
+          _reset: this._reset,
+          element: this.state.inputs
+        })
+      : elm;
+  };
 
   render() {
-    this._reset();
     console.log(this);
-    const { onChange, ...props } = this.props;
+    const { onChange, innerRef, ...props } = this.props;
     return (
-      <SContainer {...props}>
+      <SContainer innerRef={this._getRef} {...props}>
         {this._createField(this.props.fields)}
       </SContainer>
     );

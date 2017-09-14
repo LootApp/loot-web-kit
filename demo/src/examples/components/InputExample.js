@@ -94,6 +94,7 @@ const props = `
   Refference to original input in DOM i.e. to get value. written as
 
   ${"`innerRef={input => this._nameInput = input}`"}
+  ${"`console.log(this._nameInput) // { element:object, _reset:func, _error:func }`"}
 
   *Default:* null
 
@@ -111,13 +112,12 @@ const props = `
   Customisable label and focused underline colour, can be any valid css colour string
   *Default:* Loot blue
 
+
   # Helpers
 
   when importing component into the project add ref to it like this:
 
   ${"`<Input innerRef={input => this.input = input}`"}
-
-  And you can now get inputs value on form submission using
 
   **_reset**: func
 

@@ -16,12 +16,42 @@ const props = `
 
   number of fields required. *Default:* 4
 
+  ---
+
+  **innerRef**: func
+
+  Refference to original input in DOM i.e. to get value. written as
+
+  ${"`innerRef={input => this._nameInput = input}`"}
+  ${"`console.log(this._nameInput) // { element:array, _reset:func, _error:func }`"}
+
+  *Default:* null
+
+  ---
+
+  # Helpers
+
+  when importing component into the project add ref to it like this:
+
+  ${"`<Input innerRef={input => this.input = input}`"}
+
+  **_reset**: func
+
+  A helper function that allows you to clear the input reseting it back to ""
+
+  **_error**: func
+
+  A helper function that allows you to check whether the input currently has an error
+
+  ${"`this.input._reset()`"}
+  ${"`this.input._error()`"}
 
 `;
 
 const code = `
   <InputVerify
     fields={5}
+    innerRef={(ref) => console.log(ref) }
     onChange={(verifyCode) => console.log(verifyCode) }
   />
 `;

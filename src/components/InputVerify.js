@@ -29,13 +29,13 @@ class InputVerify extends Component {
   static propTypes = {
     fields: PropTypes.number,
     onChange: PropTypes.func,
-    innerRef: PropTypes.func
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
     fields: 4,
     onChange: null,
-    innerRef: null
+    getRef: null
   };
 
   state = {
@@ -57,13 +57,14 @@ class InputVerify extends Component {
       const field = document.activeElement;
       if (field.value) {
         field.value = "";
-        this.setState({
-          verifyCode: [...this.state.verifyCode, ([field.id]: field.value)]
-        });
+        this.state.verifyCode[field.id] = field.value;
         this.props.onChange(this.state.verifyCode.join(""));
       } else {
         field.id > 1 && this[`input${parseInt(field.id - 1, 0)}`].focus();
       }
+      this.setState({
+        error: !(this.state.verifyCode.join("").length === this.props.fields)
+      });
     }
   };
 
@@ -111,24 +112,23 @@ class InputVerify extends Component {
     for (let i = 0; i < Object.keys(this.state.inputs).length; i += 1) {
       this.state.inputs[Object.keys(this.state.inputs)[i]].value = "";
     }
+    this.setState({ error: true });
   };
 
   _error = () => this.state.error;
 
-  _getRef = elm => {
-    typeof this.props.innerRef === "function"
-      ? this.props.innerRef({
-          _reset: this._reset,
-          _error: this._error,
-          element: this.state.inputs
-        })
-      : elm;
-  };
+  _getRef = getRef =>
+    typeof getRef === "function" &&
+    this.props.getRef({
+      _reset: this._reset,
+      _error: this._error,
+      element: this.state.inputs
+    });
 
   render() {
-    const { onChange, innerRef, ...props } = this.props;
+    const { onChange, getRef, ...props } = this.props;
     return (
-      <SContainer innerRef={this._getRef} {...props}>
+      <SContainer getRef={this._getRef(getRef)} {...props}>
         {this._createField(this.props.fields)}
       </SContainer>
     );

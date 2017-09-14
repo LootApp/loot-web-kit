@@ -18,11 +18,11 @@ const props = `
 
   ---
 
-  **innerRef**: func
+  **getRef**: func
 
   Refference to original inputs in DOM i.e. to get value. written as
 
-  ${"`innerRef={input => this._nameInput = input}`"}
+  ${"`getRef={input => this._nameInput = input}`"}
   ${"`console.log(this._nameInput) // { element:object, _reset:func, _error:func }`"}
 
   *Default:* null
@@ -33,7 +33,7 @@ const props = `
 
   when importing component into the project add ref to it like this:
 
-  ${"`<Input innerRef={input => this.input = input}`"}
+  ${"`<Input getRef={input => this.input = input}`"}
 
   ---
 
@@ -66,7 +66,7 @@ const props = `
 const code = `
   <InputVerify
     fields={5}
-    innerRef={(ref) => console.log(ref) }
+    getRef={(ref) => console.log(ref) }
     onChange={(verifyCode) => console.log(verifyCode) }
   />
 `;

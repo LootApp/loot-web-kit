@@ -17,15 +17,15 @@ const SContainer = styled.div`
     content: "";
     position: absolute;
     height: 2px;
-    width: ${props => (props.focus ? "100%" : "10%")};
-    left: ${props => (props.focus ? "0%" : "45%")};
+    width: ${props => (props.focus || props.error ? "100%" : "10%")};
+    left: ${props => (props.focus || props.error ? "0%" : "45%")};
     position: absolute;
     bottom: -2px;
     z-index: 0;
     background-color: ${props =>
       props.error ? "#da6e6e" : !props.focus ? "#545454" : props.colour};
     transition: all 0.2s ease;
-    opacity: ${props => (props.focus ? 1 : 0)};
+    opacity: ${props => (props.focus || props.error ? 1 : 0)};
     display: ${props => (props.disabled ? "none" : "block")};
   }
 
@@ -61,7 +61,9 @@ const SLabel = styled.label`
   color: ${props =>
     props.disabled
       ? "#545454"
-      : props.focus ? (props.error ? "#da6e6e" : props.colour) : "#545454"};
+      : props.focus
+        ? props.error ? "#da6e6e" : props.colour
+        : props.error ? "#da6e6e" : "#545454"};
   pointer-events: none;
   font-size: 10px;
   display: block;
@@ -120,7 +122,7 @@ class Input extends Component {
     onBlur: PropTypes.func,
     colour: PropTypes.string,
     onFocus: PropTypes.func,
-    innerRef: PropTypes.func
+    getRef: PropTypes.func
   };
 
   static defaultProps = {
@@ -140,7 +142,7 @@ class Input extends Component {
     onBlur: null,
     colour: "#4db7c3",
     onFocus: null,
-    innerRef: null
+    getRef: null
   };
 
   state = {
@@ -149,6 +151,10 @@ class Input extends Component {
     error: false,
     touched: false,
     helperText: this.props.helperText || ""
+  };
+
+  componentDidMount = () => {
+    this._getRef(this.input);
   };
 
   _onFocus = () => {
@@ -214,14 +220,24 @@ class Input extends Component {
 
   _value = () => this.state.value;
 
-  _reset = () => this.setState({ value: "" });
+  _reset = () => this.setState({ value: "", error: "" });
 
   _error = () => this.state.error;
 
+  _setError = helperText => {
+    this.setState({
+      error: true,
+      helperText
+    });
+  };
+
   _getRef = elm =>
-    typeof this.props.innerRef === "function"
-      ? this.props.innerRef({ _reset: this._reset, _error: this._error, element: elm })
-      : elm;
+    typeof this.props.getRef === "function" &&
+    this.props.getRef({
+      _reset: this._reset,
+      _error: this._error,
+      element: elm
+    });
 
   _updateValue = value => {
     this.props.onChange(value);
@@ -246,7 +262,6 @@ class Input extends Component {
       onFocus,
       onChange,
       onBlur,
-      innerRef,
       ...props
     } = this.props;
     return (
@@ -269,7 +284,7 @@ class Input extends Component {
           </SLabel>
           <SInput
             {...props}
-            innerRef={elm => this._getRef(elm)}
+            innerRef={input => (this.input = input)}
             type={type}
             colour={colour}
             onFocus={this._onFocus}

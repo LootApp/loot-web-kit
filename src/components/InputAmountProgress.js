@@ -184,7 +184,7 @@ class InputAmountProgress extends Component {
       this.props.onBlur({ value: target.value, error: this.state.error });
     this.setState({ focus: false });
   };
-  _reset = () => this.setState({ amount: "" });
+  _reset = () => this.setState({ amount: "", error: "" });
 
   _error = () => this.state.error;
 

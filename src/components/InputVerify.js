@@ -41,11 +41,7 @@ class InputVerify extends Component {
   state = {
     inputs: {},
     verifyCode: [],
-    error: true
-  };
-
-  state = {
-    inputs: [],
+    error: true,
     value: {}
   };
 

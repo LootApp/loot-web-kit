@@ -123,7 +123,6 @@ class InputAmountProgress extends Component {
 
   static propTypes = {
     getRef: PropTypes.func,
-    innerRef: PropTypes.func,
     limit: PropTypes.number.isRequired,
     remaining: PropTypes.number.isRequired,
     prefix: PropTypes.string.isRequired,
@@ -136,7 +135,6 @@ class InputAmountProgress extends Component {
 
   static defaultProps = {
     getRef: null,
-    innerRef: null,
     prefix: "£",
     textAbove: "",
     textBelow: "",
@@ -151,10 +149,6 @@ class InputAmountProgress extends Component {
     amountLeft: this.props.remaining,
     percentage: this.getPercentage(this.props.remaining)
   };
-
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
 
   handleAmountChange = (e, onChange) => {
     const value = `${parseInt(e.target.value.replace(/[^0-9]/g, ""), 0) || ""}`;
@@ -184,14 +178,13 @@ class InputAmountProgress extends Component {
       this.props.onBlur({ value: target.value, error: this.state.error });
     this.setState({ focus: false });
   };
-  _reset = () => this.setState({ amount: "", error: "" });
+  _reset = () => this.setState({ amount: "", error: false });
 
   _error = () => this.state.error;
 
   _getRef = elm =>
-    typeof this.props.innerRef === "function"
-      ? this.props.innerRef({ _reset: this._reset, _error: this._error, element: elm })
-      : elm;
+    typeof this.props.getRef === "function" &&
+    this.props.getRef({ _reset: this._reset, _error: this._error, element: elm });
 
   render() {
     const { focus, amount, percentage, error } = this.state;
@@ -201,7 +194,7 @@ class InputAmountProgress extends Component {
       prefix,
       textAbove,
       textBelow,
-      innerRef,
+      getRef,
       onBlur,
       ...otherProps
     } = this.props;
@@ -227,7 +220,7 @@ class InputAmountProgress extends Component {
             placeholder="0"
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
-            innerRef={elm => this._getRef(elm)}
+            innerRef={this._getRef}
             onChange={e => this.handleAmountChange(e, onChange)}
           />
           <Span value={amount} error={error} focus={focus} percentage={percentage} />

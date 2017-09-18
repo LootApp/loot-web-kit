@@ -73,7 +73,8 @@ const code = `<div>
     textAbove="New bal. ..."
     textBelow="... of £250 weekly limit remaining"
     onChange={(e) => { console.log(e) }}
-    innerRef={e => console.log(e)}
+    getRef={e => console.log(e)}
+    onBlur={e => console.log(e)}
   />
 </div>`;
 

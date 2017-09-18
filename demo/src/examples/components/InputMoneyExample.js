@@ -40,6 +40,7 @@ const code = `<div>
     minAmount={5.00}
     onChange={e => console.log(e)}
     getRef={e => console.log(e)}
+    onBlur={e => console.log(e)}
   />
   <InputMoney
     label='Amount with remaining balance'

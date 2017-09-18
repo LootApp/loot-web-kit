@@ -136,7 +136,7 @@ const code = `<div>
     label="Default field"
     placeholder="Default"
     onBlur={e => console.log(e)}
-    getRef={input => console.log("YOL", input)}
+    getRef={input => console.log("Default Input", input)}
   />
   <Input
     label="Required field"

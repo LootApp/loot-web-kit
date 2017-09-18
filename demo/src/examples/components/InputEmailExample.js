@@ -17,6 +17,7 @@ const docs = `
 const code = `
   <InputEmail
     label='Email'
+    onBlur={e => console.log(e)}
     getRef={input => console.log("YOL", input)}
   />
 `;

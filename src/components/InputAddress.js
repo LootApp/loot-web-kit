@@ -73,13 +73,15 @@ class InputAddress extends Component {
   static propTypes = {
     formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
     addresses: [],
-    onChange: null
+    onChange: null,
+    onBlur: null
   };
 
   state = { addressListStatus: "", selected: 0, address: "" };
@@ -138,7 +140,10 @@ class InputAddress extends Component {
     }
   };
 
-  _onBlur = () => this.closeList();
+  _onBlur = elm => {
+    this.closeList();
+    typeof this.props.onBlur === "function" && this.props.onBlur(elm);
+  };
 
   _onChange = value => {
     if (!value) this.closeList();
@@ -157,7 +162,7 @@ class InputAddress extends Component {
   };
 
   render() {
-    const { addresses, formatAddress, onChange, ...props } = this.props;
+    const { addresses, formatAddress, onChange, onBlur, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SInput

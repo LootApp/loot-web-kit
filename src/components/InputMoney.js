@@ -41,6 +41,7 @@ class InputMoney extends Component {
     maxLength: PropTypes.number,
     balance: PropTypes.string,
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
     minAmount: PropTypes.number,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   };
@@ -50,6 +51,7 @@ class InputMoney extends Component {
     maxLength: 10,
     balance: "",
     onChange: null,
+    onBlur: null,
     minAmount: null,
     value: null
   };
@@ -63,7 +65,7 @@ class InputMoney extends Component {
   };
 
   _onChange = value => {
-    const formatedValue = formatAmount(value.length);
+    const formatedValue = formatAmount(value);
     if (this.props.balance) this.updateRemaining(value);
     typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     if (value.length) this.setState({ hasValue: true });
@@ -71,33 +73,36 @@ class InputMoney extends Component {
     return formatedValue;
   };
 
-  _onBlur = ({ value }) => {
-    if (!value.length) this.setState({ hasValue: false });
+  _onBlur = elm => {
+    let valueObj = elm;
+    if (!elm.value.length) this.setState({ hasValue: false });
     this.setState({ showRemaining: false, error: false });
     if (!this.state.active) this.setState({ focus: false });
-    if (value.length) {
-      if (typeof this.props.minAmount === "number" && Number(value) < this.props.minAmount) {
+    if (elm.value.length) {
+      if (typeof this.props.minAmount === "number" && Number(elm.value) < this.props.minAmount) {
         this.input.setState({
           error: true,
           helperText: `Minimum amount is ${this.props.minAmount}`
         });
-        this.setState({ error: true });
-      } else if (Number(value) < 0.01) {
+        valueObj = { ...valueObj, error: true };
+      } else if (Number(elm.value) < 0.01) {
         this.input.setState({
           error: true,
           helperText: "Minimum amount is 0.01"
         });
-        this.setState({ error: true });
+        valueObj = { ...valueObj, error: true };
       }
     } else if (Number(this.state.remaining) < 0) {
       this.input.setState({
         error: true,
         helperText: "Amount exceeds balance"
       });
-      this.setState({ error: true });
+      valueObj = { ...valueObj, error: true };
     }
-    if (typeof value === "string" && !value.length && this.props.balance)
+    if (typeof elm.value === "string" && !elm.value.length && this.props.balance)
       this.setState({ remaining: "" });
+
+    typeof this.props.onBlur === "function" && this.props.onBlur(valueObj);
   };
 
   _onFocus = value => {
@@ -117,7 +122,7 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, maxLength, balance, onChange, ...props } = this.props;
+    const { prefix, maxLength, balance, onChange, onBlur, ...props } = this.props;
     const showRemainingBalance =
       !!this.props.balance.length && !!this.state.remaining.length && !!this.state.showRemaining;
     return (

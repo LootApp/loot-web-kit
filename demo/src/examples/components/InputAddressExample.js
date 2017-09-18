@@ -46,6 +46,7 @@ const code = `
       },
     ]}
     label='Address'
+    onBlur={e => console.log(e)}
     onChange={e => console.log(e)}
     getRef={e => console.log(e)}
     formatAddress={(address) => address.first_line+", "+address.street+", "+address.postcode}

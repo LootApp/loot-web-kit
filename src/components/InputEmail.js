@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import Input from "./Input";
 import isValidEmail from "../utilities/isValidEmail";
 
@@ -8,12 +9,24 @@ const SInput = styled(Input)`
 `;
 
 class InputEmail extends Component {
+  static propTypes = {
+    onBlur: PropTypes.func
+  };
+
+  static defaultProps = {
+    onBlur: null
+  };
+
   _onBlur = elm => {
-    if (!!elm.value.length && !isValidEmail(elm.value))
+    let valueObj = elm;
+    if (!!elm.value.length && !isValidEmail(elm.value)) {
       this.input.setState({
         error: true,
         helperText: "Invalid email address!"
       });
+      valueObj = { ...elm, error: true };
+    }
+    this.props.onBlur(valueObj);
   };
 
   render() {

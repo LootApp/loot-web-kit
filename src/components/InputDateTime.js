@@ -187,7 +187,7 @@ class InputDateTime extends Component {
   };
 
   render() {
-    const { onChange, label, placeholder, ...props } = this.props;
+    const { onChange, label, placeholder, defaultDate, minDate, maxDate, ...props } = this.props;
     return (
       <SInput
         {...props}

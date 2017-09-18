@@ -51,7 +51,7 @@ const SRequirement = styled.div`
   }
 
   &::before {
-    content: "${props => props.icon}";
+    content: "${({ icon }) => icon}";
     font-size: 28px;
     opacity: ${props => (props.valid && props.open ? 1 : props.open ? 0.7 : 0)};
     transform: scale(${props => (props.valid ? 1 : 0.8)});

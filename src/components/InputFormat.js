@@ -65,7 +65,7 @@ class InputFormat extends Component {
   };
 
   render() {
-    const { maxLength, label, required, onChange, ...props } = this.props;
+    const { maxLength, label, required, onChange, delimiter, occurance, ...props } = this.props;
     return (
       <SInput
         {...props}

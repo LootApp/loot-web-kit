@@ -122,7 +122,7 @@ class InputMoney extends Component {
   };
 
   render() {
-    const { prefix, maxLength, balance, onChange, onBlur, ...props } = this.props;
+    const { prefix, maxLength, balance, onChange, onBlur, minAmount, ...props } = this.props;
     const showRemainingBalance =
       !!this.props.balance.length && !!this.state.remaining.length && !!this.state.showRemaining;
     return (

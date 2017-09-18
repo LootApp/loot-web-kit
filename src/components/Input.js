@@ -262,6 +262,7 @@ class Input extends Component {
       onFocus,
       onChange,
       onBlur,
+      getRef,
       ...props
     } = this.props;
     return (

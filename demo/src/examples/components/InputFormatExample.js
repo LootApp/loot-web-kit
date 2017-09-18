@@ -33,11 +33,15 @@ const code = `
     maxLength={8}
     delimiter="-"
     occurance={2}
+    getRef={input => console.log("YOL", input)}
+    onBlur={e => console.log(e)}
   />
   <InputFormat
     placeholder="35679876"
     label='Account Number'
     maxLength={8}
+    getRef={input => console.log("YOL", input)}
+    onBlur={e => console.log(e)}
   />
   <InputFormat
     placeholder="12/19"
@@ -45,11 +49,15 @@ const code = `
     maxLength={5}
     delimiter="/"
     occurance={2}
+    getRef={input => console.log("YOL", input)}
+    onBlur={e => console.log(e)}
   />
   <InputFormat
     placeholder="347"
     label='CVV'
     maxLength={3}
+    getRef={input => console.log("YOL", input)}
+    onBlur={e => console.log(e)}
   />
 </div>
 `;

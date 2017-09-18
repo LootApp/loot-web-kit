@@ -9,6 +9,8 @@ const zoomFade = keyframes`
   100% { transform: scale(2); opacity: 0; }
 `;
 
+const SInput = styled(Input)`width: 100%;`;
+
 const SRequirements = styled.div`
   display: flex;
   align-items: center;
@@ -68,6 +70,7 @@ class InputPassword extends Component {
     requirementColour: PropTypes.string,
     requirements: PropTypes.bool,
     onChange: PropTypes.func,
+    onBlur: PropTypes.func,
     getRef: PropTypes.func
   };
 
@@ -75,6 +78,7 @@ class InputPassword extends Component {
     requirementColour: "4db7c3",
     requirements: false,
     onChange: null,
+    onBlur: null,
     getRef: null
   };
 
@@ -82,10 +86,6 @@ class InputPassword extends Component {
     showRequirements: false,
     password: ""
   };
-
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
 
   _onChange = value => {
     this.setState({ password: value });
@@ -95,15 +95,42 @@ class InputPassword extends Component {
 
   _onFocus = () => this.setState({ showRequirements: true });
 
-  _onBlur = () => this.setState({ showRequirements: false });
+  _onBlur = elm => {
+    let valueObj = elm;
+    if (elm.value.length > 0 && this.props.requirements) {
+      if (this.state.password.toUpperCase() === this.state.password) {
+        this.input.setState({
+          error: true,
+          helperText: "Minimum 1 Lowercase character"
+        });
+        valueObj = { ...elm, error: true };
+      }
+      if (this.state.password.toLowerCase() === this.state.password) {
+        this.input.setState({
+          error: true,
+          helperText: "Minimum 1 Uppercase character"
+        });
+        valueObj = { ...elm, error: true };
+      }
+      if (!/\d/.test(this.state.password)) {
+        this.input.setState({
+          error: true,
+          helperText: "Minimum 1 Number character"
+        });
+        valueObj = { ...elm, error: true };
+      }
+    }
+    typeof this.props.onBlur === "function" && this.props.onBlur(valueObj);
+    this.setState({ showRequirements: false });
+  };
 
   _value = () => this.input._value();
 
   render() {
-    const { requirementColour, requirements, onChange, ...props } = this.props;
+    const { requirementColour, requirements, onChange, onBlur, ...props } = this.props;
     return (
       <Container {...props}>
-        <Input
+        <SInput
           {...props}
           type="password"
           autoComplete="off"

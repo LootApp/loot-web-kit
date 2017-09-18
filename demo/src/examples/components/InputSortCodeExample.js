@@ -15,6 +15,8 @@ const code = `
   <InputSortCode
     label='Sort Code'
     placeholder="23-43-36"
+    onBlur={e => console.log(e)}
+    getRef={input => console.log("YOL", input)}
   />
 `;
 

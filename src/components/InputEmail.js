@@ -26,7 +26,7 @@ class InputEmail extends Component {
       });
       valueObj = { ...elm, error: true };
     }
-    this.props.onBlur(valueObj);
+    typeof this.props.onBlur === "function" && this.props.onBlur(valueObj);
   };
 
   render() {

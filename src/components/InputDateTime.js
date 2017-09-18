@@ -141,7 +141,6 @@ class InputDateTime extends Component {
   };
 
   componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     if (!isMobile() || (isMobile() && !isDateInput())) {
       this.picker = new MaterialDateTimePicker({
         default: this.props.defaultDate,
@@ -163,12 +162,7 @@ class InputDateTime extends Component {
           this.overlay.removeEventListener("click", this._onCloseCalendar);
         })
         .on("submit", value => {
-          this.input._updateValue(
-            value
-              .toDate()
-              .toISOString()
-              .substring(0, 10)
-          );
+          this.input._updateValue(value.toDate().toISOString().substring(0, 10));
         });
 
       this._onOpenCalendar = () => this.picker.open();
@@ -183,9 +177,7 @@ class InputDateTime extends Component {
   }
 
   _onCalendarOpen = () =>
-    !isMobile() || (isMobile() && !isDateInput())
-      ? this._onOpenCalendar()
-      : null;
+    !isMobile() || (isMobile() && !isDateInput()) ? this._onOpenCalendar() : null;
 
   _value = () => this.input._value();
 

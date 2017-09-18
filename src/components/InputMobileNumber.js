@@ -147,13 +147,15 @@ class InputMobileNumber extends Component {
   static propTypes = {
     getRef: PropTypes.func,
     label: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
     getRef: null,
     label: "",
-    onChange: null
+    onChange: null,
+    onBlur: null
   };
 
   state = {
@@ -241,7 +243,7 @@ class InputMobileNumber extends Component {
     this.state.dialCodeList === "open" && this.setState({ dialCodeList: "closed" });
   };
   render() {
-    const { onChange, label, getRef, ...props } = this.props;
+    const { onChange, label, getRef, onBlur, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SFlagInputContainer>
@@ -269,6 +271,7 @@ class InputMobileNumber extends Component {
           noHelperText
           label={label}
           getRef={getRef}
+          onBlur={onBlur}
           onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />

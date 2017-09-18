@@ -91,13 +91,13 @@ class InputMoney extends Component {
           helperText: "Minimum amount is 0.01"
         });
         valueObj = { ...valueObj, error: true };
+      } else if (Number(this.state.remaining) < 0) {
+        this.input.setState({
+          error: true,
+          helperText: "Amount exceeds balance"
+        });
+        valueObj = { ...valueObj, error: true };
       }
-    } else if (Number(this.state.remaining) < 0) {
-      this.input.setState({
-        error: true,
-        helperText: "Amount exceeds balance"
-      });
-      valueObj = { ...valueObj, error: true };
     }
     if (typeof elm.value === "string" && !elm.value.length && this.props.balance)
       this.setState({ remaining: "" });

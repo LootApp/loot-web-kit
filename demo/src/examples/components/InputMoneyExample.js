@@ -47,6 +47,7 @@ const code = `<div>
     placeholder='0.00'
     prefix="£"
     balance="100.00"
+    onBlur={e => console.log(e)}
   />
 </div>`;
 

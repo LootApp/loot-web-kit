@@ -153,9 +153,9 @@ class Input extends Component {
     helperText: this.props.helperText || ""
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this._getRef(this.input);
-  };
+  }
 
   _onFocus = () => {
     this.setState({ focus: true });
@@ -300,10 +300,11 @@ class Input extends Component {
           />
           {counter && <SCounter>{`${this.state.value.length} / ${maxLength}`}</SCounter>}
         </SContainer>
-        {!noHelperText &&
+        {!noHelperText && (
           <SHelperText error={this.state.error} show={this.state.error || !!helperText.length}>
             {this.state.helperText}
-          </SHelperText>}
+          </SHelperText>
+        )}
       </div>
     );
   }

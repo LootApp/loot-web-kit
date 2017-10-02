@@ -140,7 +140,7 @@ class InputPassword extends Component {
           minLength={8}
           innerRef={input => (this.input = input)}
         />
-        {this.props.requirements &&
+        {this.props.requirements && (
           <SRequirements requirementColour={requirementColour}>
             <SRequirement
               valid={this.state.password.length >= 8}
@@ -174,7 +174,8 @@ class InputPassword extends Component {
             >
               <span />
             </SRequirement>
-          </SRequirements>}
+          </SRequirements>
+        )}
       </Container>
     );
   }

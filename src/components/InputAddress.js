@@ -13,9 +13,7 @@ const fadeOut = keyframes`
   100% { transform: translateY(-10px); opacity: 0; visibility: hidden; }
 `;
 
-const SInput = styled(Input)`
-  width: 100%;
-`;
+const SInput = styled(Input)`width: 100%;`;
 
 const SContainer = styled.div`
   display: flex;
@@ -65,7 +63,7 @@ const SItemText = styled.span`
   font-size: 1.1em;
   text-overflow: ellipsis;
   span {
-    font-Weight: 600;
+    font-weight: 600;
   }
 `;
 
@@ -175,7 +173,7 @@ class InputAddress extends Component {
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="address-list" isOpen={this.state.addressListStatus}>
-          {addresses.map((address, index) =>
+          {addresses.map((address, index) => (
             <SItem
               key={formatAddress(address)}
               data-index={index}
@@ -185,11 +183,9 @@ class InputAddress extends Component {
                 this.setAddress(index, true);
               }}
             >
-              <SItemText>
-                {formatAddress(address)}
-              </SItemText>
+              <SItemText>{formatAddress(address)}</SItemText>
             </SItem>
-          )}
+          ))}
         </SListContainer>
       </SContainer>
     );

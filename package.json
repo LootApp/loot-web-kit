@@ -6,8 +6,7 @@
   "module": "es/index.js",
   "files": ["css", "es", "lib", "umd"],
   "scripts": {
-    "build":
-      "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
+    "build": "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "test": "jest",
@@ -21,8 +20,8 @@
     "styled-components": "^2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16"
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",

@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledForm = styled.form`
-  width: 100%;
-`;
+const StyledForm = styled.form`width: 100%;`;
 
 class Form extends Component {
   static propTypes = {
@@ -13,18 +11,22 @@ class Form extends Component {
   };
 
   componentWillUnmount() {
-    document.activeElement.blur();
+    document.activeElement && document.activeElement.blur();
   }
 
-  _onSubmit = event => {
+  _onSubmit = (event, onSubmit) => {
     event.preventDefault();
-    this.props.onSubmit(event);
+    onSubmit(event);
   };
 
-  render = () =>
-    <StyledForm {...this.props} onSubmit={this._onSubmit}>
-      {this.props.children}
-    </StyledForm>;
+  render = () => {
+    const { onSubmit, children, ...props } = this.props;
+    return (
+      <StyledForm {...props} onSubmit={e => this._onSubmit(e, onSubmit)}>
+        {children}
+      </StyledForm>
+    );
+  };
 }
 
 export default Form;

@@ -15,7 +15,8 @@ class InputFormat extends Component {
     delimiter: PropTypes.string,
     occurance: PropTypes.number,
     required: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
@@ -24,40 +25,32 @@ class InputFormat extends Component {
     delimiter: "",
     occurance: 0,
     required: false,
-    onChange: null
+    onChange: null,
+    onBlur: null
   };
 
   state = {
-    requiredChar: formatLength(
-      this.props.maxLength,
-      this.props.occurance,
-      this.props.delimiter
-    )
+    requiredChar: formatLength(this.props.maxLength, this.props.occurance, this.props.delimiter)
   };
 
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
-
-  _onBlur = ({ target }) => {
-    if (!target) return null;
-    if (target.value.length && target.value) {
-      if (this.props.required && !target.value.length) {
+  _onBlur = elm => {
+    let valueObj = elm;
+    if (elm.value.length && elm.value) {
+      if (this.props.required && !elm.value.length) {
         this.input.setState({
           error: true,
           helperText: "This field is required"
         });
-      } else if (
-        this.props.maxLength &&
-        target.value.length < this.props.maxLength
-      ) {
+        valueObj = { ...elm, error: true };
+      } else if (this.props.maxLength && elm.value.length < this.props.maxLength) {
         this.input.setState({
           error: true,
-          helperText: `${this.props.label} needs ${this.state
-            .requiredChar} digits`
+          helperText: `${this.props.label} needs ${this.state.requiredChar} digits`
         });
+        valueObj = { ...elm, error: true };
       }
     }
+    typeof this.props.onBlur === "function" && this.props.onBlur(valueObj);
   };
 
   _onChange = value => {
@@ -66,13 +59,12 @@ class InputFormat extends Component {
       delimiter: this.props.delimiter,
       occurance: this.props.occurance
     });
-    typeof this.props.onChange === "function" &&
-      this.props.onChange(formatedValue);
+    typeof this.props.onChange === "function" && this.props.onChange(formatedValue);
     return formatedValue;
   };
 
   render() {
-    const { maxLength, label, required, onChange, ...props } = this.props;
+    const { maxLength, label, required, onChange, delimiter, occurance, ...props } = this.props;
     return (
       <SInput
         {...props}

@@ -30,11 +30,15 @@ const code = `
   <InputPassword
     label='Password'
     placeholder='Smurf'
+    onBlur={e => console.log(e)}
+    getRef={input => console.log("YOL", input)}
   />
   <InputPassword
     label='Password'
     placeholder='Smurf'
     requirements
+    onBlur={e => console.log(e)}
+    getRef={input => console.log("YOL", input)}
   />
   <InputPassword
     label='Password'
@@ -42,6 +46,8 @@ const code = `
     colour="magenta"
     requirementColour="magenta"
     requirements
+    onBlur={e => console.log(e)}
+    getRef={input => console.log("YOL", input)}
   />
 </div>
 `;

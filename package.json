@@ -1,13 +1,12 @@
 {
   "name": "loot-web-kit",
-  "version": "0.1.14",
+  "version": "0.2.0",
   "description": "Set of UI components used at loot.io front-end team",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": ["css", "es", "lib", "umd"],
   "scripts": {
-    "build":
-      "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
+    "build": "nwb build-react-component --copy-files; rm -rf docs/*; cp -R demo/dist/* docs",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
     "test": "jest",
@@ -21,8 +20,8 @@
     "styled-components": "^2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16"
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
@@ -37,9 +36,9 @@
     "jest-cli": "^20.0.4",
     "nwb": "0.18.10",
     "prop-types": "^15.5.10",
-    "react": "^16.0.0-alpha.12",
+    "react": "^16.0.0",
     "react-clipboard.js": "1.1.2",
-    "react-dom": "16.0.0-beta.5",
+    "react-dom": "16.0.0",
     "react-live": "1.7.0",
     "react-markdown": "^2.5.0",
     "react-router-dom": "^4.1.1",

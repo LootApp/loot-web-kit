@@ -16,12 +16,57 @@ const props = `
 
   number of fields required. *Default:* 4
 
+  ---
+
+  **getRef**: func
+
+  Refference to original inputs in DOM i.e. to get value. written as
+
+  ${"`getRef={input => this._nameInput = input}`"}
+  ${"`console.log(this._nameInput) // { element:object, _reset:func, _error:func }`"}
+
+  *Default:* null
+
+  ---
+
+  # Helpers
+
+  when importing component into the project add ref to it like this:
+
+  ${"`<Input getRef={input => this.input = input}`"}
+
+  ---
+
+  **element**: func
+
+  A reference to all the inputs that have been generated
+
+  ${"`this.input.element.input[number]`"}
+
+  ---
+
+  **_reset**: func
+
+  A helper function that allows you to clear the input reseting it back to ${"`''`"}
+
+  ${"`this.input._reset()`"}
+
+  ---
+
+  **_error**: func
+
+  A helper function that allows you to check whether the input currently has an error
+
+  i.e if all inputs have not been completed
+
+  ${"`this.input._error()`"}
 
 `;
 
 const code = `
   <InputVerify
     fields={5}
+    getRef={(ref) => console.log(ref) }
     onChange={(verifyCode) => console.log(verifyCode) }
   />
 `;

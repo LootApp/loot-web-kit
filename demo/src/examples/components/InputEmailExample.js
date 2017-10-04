@@ -9,11 +9,16 @@ const docs = `
   [![GitHub](http://ocramius.github.io/presentations/proxy-pattern-in-php/assets/img/gh.svg)](https://github.com/LootApp/loot-web-kit/blob/master/src/components/InputEmail.js)
 
   Input for email string formating *Extends:* [Input](/loot-web-kit/components/input)
+
+  * Value's in this input will run through an email validation check which will set ${"`error: true`"}
+  if validation fails.
 `;
 
 const code = `
   <InputEmail
     label='Email'
+    onBlur={e => console.log(e)}
+    getRef={input => console.log("YOL", input)}
   />
 `;
 

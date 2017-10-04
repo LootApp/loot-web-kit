@@ -35,7 +35,6 @@ class InputFormat extends Component {
 
   _onBlur = elm => {
     let valueObj = elm;
-    if (!elm) return null;
     if (elm.value.length && elm.value) {
       if (this.props.required && !elm.value.length) {
         this.input.setState({

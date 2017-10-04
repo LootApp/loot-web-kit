@@ -9,8 +9,6 @@ const zoomFade = keyframes`
   100% { transform: scale(2); opacity: 0; }
 `;
 
-const SInput = styled(Input)`width: 100%;`;
-
 const SRequirements = styled.div`
   display: flex;
   align-items: center;
@@ -130,7 +128,7 @@ class InputPassword extends Component {
     const { requirementColour, requirements, onChange, onBlur, ...props } = this.props;
     return (
       <Container {...props}>
-        <SInput
+        <Input
           {...props}
           type="password"
           autoComplete="off"
@@ -138,7 +136,7 @@ class InputPassword extends Component {
           onBlur={this._onBlur}
           onChange={this._onChange}
           minLength={8}
-          innerRef={input => (this.input = input)}
+          ref={input => (this.input = input)}
         />
         {this.props.requirements && (
           <SRequirements requirementColour={requirementColour}>

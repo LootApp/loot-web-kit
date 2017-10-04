@@ -13,9 +13,7 @@ const fadeOut = keyframes`
   100% { transform: translateY(-10px); opacity: 0; visibility: hidden; }
 `;
 
-const SInput = styled(Input)`
-  width: 100%;
-`;
+const SInput = styled(Input)`width: 100%;`;
 
 const SContainer = styled.div`
   display: flex;
@@ -65,7 +63,7 @@ const SItemText = styled.span`
   font-size: 1.1em;
   text-overflow: ellipsis;
   span {
-    font-Weight: 600;
+    font-weight: 600;
   }
 `;
 
@@ -74,20 +72,19 @@ class InputAddress extends Component {
     formatAddress: PropTypes.func.isRequired,
     addresses: PropTypes.array,
     onChange: PropTypes.func,
-    getRef: PropTypes.func
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
     formatAddress: address => address.first_line,
     addresses: [],
     onChange: null,
-    getRef: null
+    onBlur: null
   };
 
   state = { addressListStatus: "", selected: 0, address: "" };
 
   componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
@@ -113,10 +110,7 @@ class InputAddress extends Component {
         break;
       default:
     }
-    if (
-      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
-      this.state.addressListStatus === "open"
-    ) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.addressListStatus === "open") {
       for (let i = 0; i < addressList.length; i += 1) {
         if (
           addressList[i]
@@ -140,13 +134,14 @@ class InputAddress extends Component {
         addressListStatus: shouldClose ? "closed" : "open"
       });
       addressList[index].scrollIntoView();
-      this.input._updateValue(
-        addressList[index].getAttribute("data-address").trim()
-      );
+      this.input._updateValue(addressList[index].getAttribute("data-address").trim());
     }
   };
 
-  _onBlur = () => this.closeList();
+  _onBlur = elm => {
+    this.closeList();
+    typeof this.props.onBlur === "function" && this.props.onBlur(elm);
+  };
 
   _onChange = value => {
     if (!value) this.closeList();
@@ -155,19 +150,17 @@ class InputAddress extends Component {
   };
 
   closeList = () => {
-    (this.state.addressListStatus === "open" ||
-      this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "open" || this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "closed" });
   };
 
   openList = () => {
-    (this.state.addressListStatus === "closed" ||
-      this.state.addressListStatus === "") &&
+    (this.state.addressListStatus === "closed" || this.state.addressListStatus === "") &&
       this.setState({ addressListStatus: "open" });
   };
 
   render() {
-    const { addresses, formatAddress, onChange, ...props } = this.props;
+    const { addresses, formatAddress, onChange, onBlur, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SInput
@@ -180,7 +173,7 @@ class InputAddress extends Component {
           innerRef={input => (this.input = input)}
         />
         <SListContainer id="address-list" isOpen={this.state.addressListStatus}>
-          {addresses.map((address, index) =>
+          {addresses.map((address, index) => (
             <SItem
               key={formatAddress(address)}
               data-index={index}
@@ -190,11 +183,9 @@ class InputAddress extends Component {
                 this.setAddress(index, true);
               }}
             >
-              <SItemText>
-                {formatAddress(address)}
-              </SItemText>
+              <SItemText>{formatAddress(address)}</SItemText>
             </SItem>
-          )}
+          ))}
         </SListContainer>
       </SContainer>
     );

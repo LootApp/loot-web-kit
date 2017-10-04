@@ -41,6 +41,27 @@ const props = `
   **onChange**: function
 
   Function executed by the component within its onChange handler and passes through object with { value, amountLeft, percentage }. *Default:* null
+
+  ---
+
+  # Helpers
+
+  when importing component into the project add ref to it like this:
+
+  ${"`<AmountProgressInput innerRef={input => this.input = input}`"}
+
+  And you can now get inputs value on form submission using
+
+  **_reset**: func
+
+  A helper function that allows you to clear the input reseting it back to ""
+
+  **_error**: func
+
+  A helper function that allows you to check whether the input currently has an error
+
+  ${"`this.input._reset()`"}
+  ${"`this.input._error()`"}
 `;
 
 const code = `<div>
@@ -52,6 +73,8 @@ const code = `<div>
     textAbove="New bal. ..."
     textBelow="... of £250 weekly limit remaining"
     onChange={(e) => { console.log(e) }}
+    getRef={e => console.log(e)}
+    onBlur={e => console.log(e)}
   />
 </div>`;
 

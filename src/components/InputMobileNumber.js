@@ -146,12 +146,16 @@ const SItemText = styled.span`
 class InputMobileNumber extends Component {
   static propTypes = {
     getRef: PropTypes.func,
-    onChange: PropTypes.func
+    label: PropTypes.string,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
     getRef: null,
-    onChange: null
+    label: "",
+    onChange: null,
+    onBlur: null
   };
 
   state = {
@@ -164,7 +168,6 @@ class InputMobileNumber extends Component {
   componentDidMount() {
     document.addEventListener("click", this.onDocClick);
     document.addEventListener("keydown", this.onKeyDown);
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
   }
 
   componentWillUnmount() {
@@ -194,16 +197,11 @@ class InputMobileNumber extends Component {
         break;
       default:
     }
-    if (
-      !event.key.replace(/^[a-zA-Z]+$/g, "") &&
-      this.state.dialCodeList === "open"
-    ) {
+    if (!event.key.replace(/^[a-zA-Z]+$/g, "") && this.state.dialCodeList === "open") {
       for (let i = 0; i < countryList.length; i += 1) {
         if (
-          countryList[i]
-            .getAttribute("data-country-name")
-            .substring(0, 1)
-            .toLowerCase() === event.key.toLowerCase()
+          countryList[i].getAttribute("data-country-name").substring(0, 1).toLowerCase() ===
+          event.key.toLowerCase()
         ) {
           this.setCountry(i);
           return;
@@ -214,11 +212,7 @@ class InputMobileNumber extends Component {
 
   setCountry = (index, shouldClose) => {
     const countryList = document.getElementById("code-list").children;
-    if (
-      index >= 0 &&
-      index < countryList.length &&
-      this.state.dialCodeList === "open"
-    ) {
+    if (index >= 0 && index < countryList.length && this.state.dialCodeList === "open") {
       this.setState({
         flag: emoji(flag(countryList[index].getAttribute("data-country-code"))),
         dialCode: countryList[index].getAttribute("data-country-dial-code"),
@@ -246,11 +240,10 @@ class InputMobileNumber extends Component {
   };
 
   closeList = () => {
-    this.state.dialCodeList === "open" &&
-      this.setState({ dialCodeList: "closed" });
+    this.state.dialCodeList === "open" && this.setState({ dialCodeList: "closed" });
   };
   render() {
-    const { onChange, ...props } = this.props;
+    const { onChange, label, getRef, onBlur, ...props } = this.props;
     return (
       <SContainer {...props}>
         <SFlagInputContainer>
@@ -276,6 +269,9 @@ class InputMobileNumber extends Component {
           type="tel"
           noValidate
           noHelperText
+          label={label}
+          getRef={getRef}
+          onBlur={onBlur}
           onChange={this._onChange}
           innerRef={input => (this.input = input)}
         />

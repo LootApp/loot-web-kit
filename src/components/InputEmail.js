@@ -10,23 +10,23 @@ const SInput = styled(Input)`
 
 class InputEmail extends Component {
   static propTypes = {
-    getRef: PropTypes.func
+    onBlur: PropTypes.func
   };
 
   static defaultProps = {
-    getRef: null
+    onBlur: null
   };
 
-  componentDidMount() {
-    if (typeof this.props.getRef === "function") this.props.getRef(this.input);
-  }
-
-  _onBlur = value => {
-    if (!!value.length && !isValidEmail(value))
+  _onBlur = elm => {
+    let valueObj = elm;
+    if (!!elm.value.length && !isValidEmail(elm.value)) {
       this.input.setState({
         error: true,
         helperText: "Invalid email address!"
       });
+      valueObj = { ...elm, error: true };
+    }
+    typeof this.props.onBlur === "function" && this.props.onBlur(valueObj);
   };
 
   render() {

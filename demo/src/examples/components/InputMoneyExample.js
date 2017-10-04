@@ -26,12 +26,6 @@ const props = `
 
   ---
 
-  **getRef**: function
-
-  Function executed by the component where ref to original input is passed. *Default:* null
-
-  ---
-
   **minAmount**: number
 
   Minimum required amount. *Default:* null
@@ -44,12 +38,16 @@ const code = `<div>
     placeholder='0.00'
     prefix="£"
     minAmount={5.00}
+    onChange={e => console.log(e)}
+    getRef={e => console.log(e)}
+    onBlur={e => console.log(e)}
   />
   <InputMoney
     label='Amount with remaining balance'
     placeholder='0.00'
     prefix="£"
     balance="100.00"
+    onBlur={e => console.log(e)}
   />
 </div>`;
 

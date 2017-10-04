@@ -82,18 +82,19 @@ const props = `
 
   ---
 
-  **onChange**: func(value)
+  **onBlur**: func(value)
 
-  Custom onChange handler that can be passed from above InputType component in order to
+  Custom onBlur handler that can be passed from above InputType component in order to
   format value, must take in value that will be passed from default Input. *Default:* null
 
   ---
 
-  **innerRef**: func
+  **getRef**: func
 
   Refference to original input in DOM i.e. to get value. written as
 
-  ${"`innerRef={input => this._nameInput = input}`"}
+  ${"`getRef={input => this._nameInput = input}`"}
+  ${"`console.log(this._nameInput) // { element:object, _reset:func, _error:func }`"}
 
   *Default:* null
 
@@ -101,7 +102,7 @@ const props = `
 
   **onBlur**: func(value)
 
-  Custom onChange handler that can be passed from above InputType component in order to
+  Custom onBlur handler that can be passed from above InputType component in order to
   validate value, must take in value that will be passed from default Input. *Default:* null
 
   ---
@@ -111,34 +112,43 @@ const props = `
   Customisable label and focused underline colour, can be any valid css colour string
   *Default:* Loot blue
 
+
   # Helpers
 
-  **_value**: func
+  when importing component into the project add ref to it like this:
 
-  Helper function to get value of the component i.e. when importing component
-  into the project add ref to it like this:
+  ${"`<Input getRef={input => this.input = input}`"}
 
-  ${"`<Input ref={input => this.input = input}`"}
+  **_reset**: func
 
-  And you can now get inputs value on form submission using
+  A helper function that allows you to clear the input reseting it back to ""
 
-  ${"`this.input._value()`"}
+  **_error**: func
+
+  A helper function that allows you to check whether the input currently has an error
+
+  ${"`this.input._reset()`"}
+  ${"`this.input._error()`"}
 `;
 
 const code = `<div>
   <Input
     label="Default field"
     placeholder="Default"
+    onBlur={e => console.log(e)}
+    getRef={input => console.log("Default Input", input)}
   />
   <Input
     label="Required field"
     required
     placeholder="Required"
+    onBlur={e => console.log(e)}
   />
   <Input
     label="Minimum length field"
     minLength={5}
     placeholder="Minimum length"
+    onBlur={e => console.log(e)}
   />
   <Input
     label="Maximum length field"

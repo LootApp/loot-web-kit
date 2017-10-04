@@ -14,6 +14,9 @@ Input for mobile number string formating *Extends:* [Input](/loot-web-kit/compon
 const code = `
   <InputMobileNumber
     label='Mobile Number'
+    onBlur={e => console.log(e)}
+    onChange={e => console.log(e)}
+    getRef={e => console.log(e)}
   />
 `;
 
